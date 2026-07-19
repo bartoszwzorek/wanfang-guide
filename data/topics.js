@@ -744,7 +744,7 @@ window.WANFANG_TOPICS = [
         "id": "qin-armia",
         "title": "Qín Shǐhuáng 秦始皇 [Ćin Szy Hłang] i Armia Terakotowa — Bīngmǎyǒng 兵马俑 [Bing-ma-jong]",
         "subtitle": "Narodziny cesarstwa, standaryzacja i próba przeniesienia państwa do zaświatów",
-        "content": "<div class=\"note\"><b>W skrócie:</b> Qín Shǐhuáng 秦始皇 [Ćin Szy Hłang] zjednoczył Chiny w 221 p.n.e. i stworzył model cesarstwa: centralizacja, prawo, standaryzacja, drogi, miary, pismo. Armia Terakotowa to część jego kompleksu grobowego i obraz władzy, która chciała przetrwać śmierć.</div>\n<div class=\"stats\">\n  <div><strong>221 p.n.e.</strong><span>zjednoczenie państw przez Qín Shǐhuánga 秦始皇 [Ćin Szy Hłanga]</span></div>\n  <div><strong>1974</strong><span>odkrycie figur przez rolników kopiących studnię</span></div>\n  <div><strong>1987</strong><span>wpis mauzoleum na listę UNESCO</span></div>\n  <div><strong>około 1,5 km</strong><span>odległość głównych jam armii od kopca grobowego</span></div>\n</div>\n<div class=\"note fact-check\"><b>Co oglądamy:</b> nie „grobowiec cesarza”, lecz część olbrzymiego krajobrazu grobowego. Centralna komora pod kopcem nie została dotąd otwarta. Żołnierze stoją w jamach pomocniczych, mających chronić i obsługiwać władcę w zaświatach.</div>\n<div class=\"prose\"><p>Proszę państwa, Armia Terakotowa to jedno z tych miejsc, które robią wrażenie nawet bez komentarza. Wchodzimy do hali, patrzymy na tysiące żołnierzy i od razu czujemy skalę. Ale jeśli chcemy zrozumieć sens, musimy zapytać: po co ktoś to zrobił?</p><p>Odpowiedź prowadzi nas do Qín Shǐhuánga 秦始皇 [Ćin Szy Hłanga], pierwszego cesarza Chin. W 221 roku p.n.e. państwo Qín 秦 [Ćin] pokonało rywali i zjednoczyło walczące królestwa. To był moment narodzin cesarstwa chińskiego. Qín Shǐhuáng 秦始皇 [Ćin Szy Hłang] nie chciał być tylko kolejnym królem. Chciał być pierwszym cesarzem nowego porządku.</p><p>Jego państwo było twarde, scentralizowane i brutalnie skuteczne. Standaryzowano pismo, miary, wagi, walutę, osie wozów, administrację i prawo. To nie była romantyczna wizja harmonii. To była maszyna. Każdy element miał mieć swoje miejsce.</p><p>Armia Terakotowa jest częścią tej logiki. Cesarz za życia miał armię, urzędników, rozkazy i władzę. Po śmierci chciał mieć to samo. Podziemna armia miała chronić go w zaświatach i przedłużyć porządek cesarstwa poza granicę śmierci.</p><p>To nie jest chaotyczny zbiór figurek. To formacja. Żołnierze stoją w szykach. Mamy piechotę, łuczników, oficerów, wozy, konie. Twarze są różne, ale całość podporządkowana jest systemowi. To idealny obraz Qín 秦 [Ćin]: jednostka ma swoją twarz, ale stoi w szeregu większej machiny.</p><p>Warto powiedzieć, że Armia Terakotowa została odkryta przypadkiem w 1974 roku przez rolników kopiących studnię. I to jest niesamowite: jeden z największych skarbów archeologii światowej wyszedł z ziemi dzięki codziennej potrzebie wody.</p><p>Najważniejsza puenta brzmi: Armia Terakotowa nie jest tylko zabytkiem grobowym. To gliniana wizja państwa. Pokazuje cesarza, który zjednoczył Chiny i nie chciał oddać władzy nawet śmierci.</p><p>Armia Terakotowa to punkt, który często dominuje Xī’ān 西安 [Si-an] w wyobraźni turystów, ale trzeba ją dobrze osadzić. To nie jest tylko „dużo figurek”. To podziemny obraz pierwszego cesarstwa. Qín Shǐhuáng 秦始皇 [Ćin Szy Hłang] zjednoczył Chiny w 221 roku p.n.e., a jego grobowiec pokazuje, jak wyobrażał sobie władzę: totalną, uporządkowaną, trwającą nawet po śmierci.</p><p>Państwo Qín 秦 [Ćin] było twarde, legalistyczne, wojskowe i administracyjne. Ujednoliciło pismo, miary, wagi, walutę, prawo, drogi. To brzmi sucho, ale oznacza ogromną rewolucję: z wielu królestw robi się jeden system. Jeżeli ktoś w różnych częściach kraju używa innych miar, innych pieniędzy, innych zapisów, to trudno rządzić. Qín 秦 [Ćin] mówi: od teraz ma być jedno.</p><p>Armia Terakotowa została odkryta w 1974 roku przez rolników kopiących studnię. I to jest świetna scena: przez ponad dwa tysiące lat pod ziemią stoi armia, a współczesny człowiek trafia na nią przypadkiem, szukając wody. Historia czasem wraca nie przez wielką wyprawę archeologiczną, tylko przez łopatę rolnika.</p><p>W halach widzimy tysiące żołnierzy, konie, rydwany, oficerów, łuczników, piechotę. Każda twarz jest inna albo przynajmniej zindywidualizowana na tyle, że robi wrażenie realnych ludzi. To nie jest anonimowa masa identycznych lalek. To system, ale z twarzami. I właśnie to jest poruszające. Czujemy jednocześnie skalę państwa i pracę pojedynczego rzemieślnika.</p><p>Najważniejsze pytanie brzmi: po co? Odpowiedź: cesarz chciał mieć armię w zaświatach. Władza, którą miał za życia, miała trwać po śmierci. W grobowcu odtwarza swój świat: żołnierzy, urzędników, zwierzęta, ochronę, porządek. To strach przed śmiercią ubrany w administrację i wojsko.</p><p>Można to pięknie skontrastować z Dàyàn Tǎ 大雁塔 [Da Jen Ta]. Xuánzàng 玄奘 [Śüen-dzang] wraca z tekstami, które mają prowadzić ku wyzwoleniu duchowemu. Qín Shǐhuáng 秦始皇 [Ćin Szy Hłang] buduje podziemną armię, żeby przedłużyć władzę. Jeden odpowiada na śmierć sutrą, drugi armią. Oba obrazy są w Xī’ānie 西安 [Si-an]. I to pokazuje głębię miasta.</p><p>Warto też wspomnieć o ogromie całego kompleksu grobowego. Sama armia to tylko część większego założenia. Główny grobowiec cesarza wciąż nie został w pełni otwarty. Źródła starożytne mówią o podziemnym pałacu, rzekach rtęci, mechanizmach i kosmicznym układzie. Część tych opowieści traktujemy ostrożnie, ale badania potwierdzają podwyższone poziomy rtęci w rejonie mauzoleum, więc legenda ma przynajmniej intrygujący cień realności.</p><p>Praktycznie w hali trzeba ustawić grupę: najpierw spojrzenie z dystansu na skalę, potem detale twarzy i formacji, potem opowieść o odkryciu i cesarzu. Nie zaczynać od zbyt wielu dat. Najpierw efekt wow, potem sens.</p><p>Puenta: Armia Terakotowa to nie muzeum figurek. To najpotężniejszy portret władcy, który chciał, żeby jego imperium maszerowało za nim nawet do świata zmarłych.</p></div><div class=\"say\"><b>Wersja 30–60 sekund:</b> Armia Terakotowa to nie tylko „dużo figur”. To podziemna armia pierwszego cesarza Chin, Qín Shǐhuánga 秦始皇 [Ćin Szy Hłanga]. W 221 roku p.n.e. zjednoczył walczące królestwa i stworzył cesarstwo. Standaryzował pismo, miary, wagi, walutę i administrację. A po śmierci chciał dalej być cesarzem, więc dostał armię do zaświatów. Każdy żołnierz jest częścią systemu. To gliniana twarz państwa Qín 秦 [Ćin]: porządek, kontrola, dyscyplina i strach przed śmiercią.</div><div class=\"detail\"><b>Praktycznie z grupą:</b> Przed wejściem: toaleta, bilety/dokumenty, zakaz dotykania zabezpieczeń, tłumy, trzymać grupę razem, pilnować czasu w halach. W hali nie blokować przejść przy barierkach. Po zwiedzaniu ustalić zbiórkę przy sklepie/wyjściu.</div>"
+        "content": "<div class=\"say\"><b>Pełne opracowanie:</b> Ten rozdział jest wprowadzeniem. Szczegółową trasę po jamach, produkcję figur, broń, kolory, konserwację, rtęć i osobny quiz znajdziesz w temacie <a href=\"#topic/armia-terakotowa\"><b>兵马俑 Bīngmǎyǒng [Bing-ma-jung] — Armia Terakotowa</b></a>.</div><div class=\"note\"><b>W skrócie:</b> Qín Shǐhuáng 秦始皇 [Ćin Szy Hłang] zjednoczył Chiny w 221 p.n.e. i stworzył model cesarstwa: centralizacja, prawo, standaryzacja, drogi, miary, pismo. Armia Terakotowa to część jego kompleksu grobowego i obraz władzy, która chciała przetrwać śmierć.</div>\n<div class=\"stats\">\n  <div><strong>221 p.n.e.</strong><span>zjednoczenie państw przez Qín Shǐhuánga 秦始皇 [Ćin Szy Hłanga]</span></div>\n  <div><strong>1974</strong><span>odkrycie figur przez rolników kopiących studnię</span></div>\n  <div><strong>1987</strong><span>wpis mauzoleum na listę UNESCO</span></div>\n  <div><strong>około 1,5 km</strong><span>odległość głównych jam armii od kopca grobowego</span></div>\n</div>\n<div class=\"note fact-check\"><b>Co oglądamy:</b> nie „grobowiec cesarza”, lecz część olbrzymiego krajobrazu grobowego. Centralna komora pod kopcem nie została dotąd otwarta. Żołnierze stoją w jamach pomocniczych, mających chronić i obsługiwać władcę w zaświatach.</div>\n<div class=\"prose\"><p>Proszę państwa, Armia Terakotowa to jedno z tych miejsc, które robią wrażenie nawet bez komentarza. Wchodzimy do hali, patrzymy na tysiące żołnierzy i od razu czujemy skalę. Ale jeśli chcemy zrozumieć sens, musimy zapytać: po co ktoś to zrobił?</p><p>Odpowiedź prowadzi nas do Qín Shǐhuánga 秦始皇 [Ćin Szy Hłanga], pierwszego cesarza Chin. W 221 roku p.n.e. państwo Qín 秦 [Ćin] pokonało rywali i zjednoczyło walczące królestwa. To był moment narodzin cesarstwa chińskiego. Qín Shǐhuáng 秦始皇 [Ćin Szy Hłang] nie chciał być tylko kolejnym królem. Chciał być pierwszym cesarzem nowego porządku.</p><p>Jego państwo było twarde, scentralizowane i brutalnie skuteczne. Standaryzowano pismo, miary, wagi, walutę, osie wozów, administrację i prawo. To nie była romantyczna wizja harmonii. To była maszyna. Każdy element miał mieć swoje miejsce.</p><p>Armia Terakotowa jest częścią tej logiki. Cesarz za życia miał armię, urzędników, rozkazy i władzę. Po śmierci chciał mieć to samo. Podziemna armia miała chronić go w zaświatach i przedłużyć porządek cesarstwa poza granicę śmierci.</p><p>To nie jest chaotyczny zbiór figurek. To formacja. Żołnierze stoją w szykach. Mamy piechotę, łuczników, oficerów, wozy, konie. Twarze są różne, ale całość podporządkowana jest systemowi. To idealny obraz Qín 秦 [Ćin]: jednostka ma swoją twarz, ale stoi w szeregu większej machiny.</p><p>Warto powiedzieć, że Armia Terakotowa została odkryta przypadkiem w 1974 roku przez rolników kopiących studnię. I to jest niesamowite: jeden z największych skarbów archeologii światowej wyszedł z ziemi dzięki codziennej potrzebie wody.</p><p>Najważniejsza puenta brzmi: Armia Terakotowa nie jest tylko zabytkiem grobowym. To gliniana wizja państwa. Pokazuje cesarza, który zjednoczył Chiny i nie chciał oddać władzy nawet śmierci.</p><p>Armia Terakotowa to punkt, który często dominuje Xī’ān 西安 [Si-an] w wyobraźni turystów, ale trzeba ją dobrze osadzić. To nie jest tylko „dużo figurek”. To podziemny obraz pierwszego cesarstwa. Qín Shǐhuáng 秦始皇 [Ćin Szy Hłang] zjednoczył Chiny w 221 roku p.n.e., a jego grobowiec pokazuje, jak wyobrażał sobie władzę: totalną, uporządkowaną, trwającą nawet po śmierci.</p><p>Państwo Qín 秦 [Ćin] było twarde, legalistyczne, wojskowe i administracyjne. Ujednoliciło pismo, miary, wagi, walutę, prawo, drogi. To brzmi sucho, ale oznacza ogromną rewolucję: z wielu królestw robi się jeden system. Jeżeli ktoś w różnych częściach kraju używa innych miar, innych pieniędzy, innych zapisów, to trudno rządzić. Qín 秦 [Ćin] mówi: od teraz ma być jedno.</p><p>Armia Terakotowa została odkryta w 1974 roku przez rolników kopiących studnię. I to jest świetna scena: przez ponad dwa tysiące lat pod ziemią stoi armia, a współczesny człowiek trafia na nią przypadkiem, szukając wody. Historia czasem wraca nie przez wielką wyprawę archeologiczną, tylko przez łopatę rolnika.</p><p>W halach widzimy tysiące żołnierzy, konie, rydwany, oficerów, łuczników, piechotę. Każda twarz jest inna albo przynajmniej zindywidualizowana na tyle, że robi wrażenie realnych ludzi. To nie jest anonimowa masa identycznych lalek. To system, ale z twarzami. I właśnie to jest poruszające. Czujemy jednocześnie skalę państwa i pracę pojedynczego rzemieślnika.</p><p>Najważniejsze pytanie brzmi: po co? Odpowiedź: cesarz chciał mieć armię w zaświatach. Władza, którą miał za życia, miała trwać po śmierci. W grobowcu odtwarza swój świat: żołnierzy, urzędników, zwierzęta, ochronę, porządek. To strach przed śmiercią ubrany w administrację i wojsko.</p><p>Można to pięknie skontrastować z Dàyàn Tǎ 大雁塔 [Da Jen Ta]. Xuánzàng 玄奘 [Śüen-dzang] wraca z tekstami, które mają prowadzić ku wyzwoleniu duchowemu. Qín Shǐhuáng 秦始皇 [Ćin Szy Hłang] buduje podziemną armię, żeby przedłużyć władzę. Jeden odpowiada na śmierć sutrą, drugi armią. Oba obrazy są w Xī’ānie 西安 [Si-an]. I to pokazuje głębię miasta.</p><p>Warto też wspomnieć o ogromie całego kompleksu grobowego. Sama armia to tylko część większego założenia. Główny grobowiec cesarza wciąż nie został w pełni otwarty. Źródła starożytne mówią o podziemnym pałacu, rzekach rtęci, mechanizmach i kosmicznym układzie. Część tych opowieści traktujemy ostrożnie, ale badania potwierdzają podwyższone poziomy rtęci w rejonie mauzoleum, więc legenda ma przynajmniej intrygujący cień realności.</p><p>Praktycznie w hali trzeba ustawić grupę: najpierw spojrzenie z dystansu na skalę, potem detale twarzy i formacji, potem opowieść o odkryciu i cesarzu. Nie zaczynać od zbyt wielu dat. Najpierw efekt wow, potem sens.</p><p>Puenta: Armia Terakotowa to nie muzeum figurek. To najpotężniejszy portret władcy, który chciał, żeby jego imperium maszerowało za nim nawet do świata zmarłych.</p></div><div class=\"say\"><b>Wersja 30–60 sekund:</b> Armia Terakotowa to nie tylko „dużo figur”. To podziemna armia pierwszego cesarza Chin, Qín Shǐhuánga 秦始皇 [Ćin Szy Hłanga]. W 221 roku p.n.e. zjednoczył walczące królestwa i stworzył cesarstwo. Standaryzował pismo, miary, wagi, walutę i administrację. A po śmierci chciał dalej być cesarzem, więc dostał armię do zaświatów. Każdy żołnierz jest częścią systemu. To gliniana twarz państwa Qín 秦 [Ćin]: porządek, kontrola, dyscyplina i strach przed śmiercią.</div><div class=\"detail\"><b>Praktycznie z grupą:</b> Przed wejściem: toaleta, bilety/dokumenty, zakaz dotykania zabezpieczeń, tłumy, trzymać grupę razem, pilnować czasu w halach. W hali nie blokować przejść przy barierkach. Po zwiedzaniu ustalić zbiórkę przy sklepie/wyjściu.</div>"
       },
       {
         "id": "incydent-xian",
@@ -1076,6 +1076,623 @@ window.WANFANG_TOPICS = [
         ],
         "correct": 1,
         "explanation": "Ten motyw pozwala połączyć Qín 秦 [Ćin], Hàn 汉 [Han], Táng 唐 [Tang], mury, religie i kuchnię."
+      }
+    ]
+  },
+  {
+    "id": "armia-terakotowa",
+    "title": "Armia Terakotowa — podziemne państwo pierwszego cesarza",
+    "chinese": "兵马俑",
+    "pronunciation": "Bīngmǎyǒng [Bing-ma-jung]",
+    "city": "Xi’an",
+    "category": "Zabytki i atrakcje",
+    "status": "pełne",
+    "readingTime": 42,
+    "updated": "2026-07-19",
+    "icon": "俑",
+    "accent": "terracotta",
+    "summary": "Bardzo rozbudowany materiał o 兵马俑 Bīngmǎyǒng [Bing-ma-jung]: odkrycie w 1974 roku, 秦始皇 Qín Shǐhuáng [Ćin Szy-hłang], całe mauzoleum, Jamy nr 1–4, rangi, produkcja figur, kolory, prawdziwa broń, kusze, warsztaty, brązowe rydwany, zniszczenie kompleksu, konserwacja, rtęć, koszt ludzki i fact-check najpopularniejszych mitów.",
+    "tags": [
+      "Xi’an",
+      "Armia Terakotowa",
+      "Bīngmǎyǒng",
+      "Qin Shi Huang",
+      "Qin",
+      "mauzoleum",
+      "Pit 1",
+      "Pit 2",
+      "Pit 3",
+      "wojownicy",
+      "broń brązowa",
+      "kusza",
+      "kolory",
+      "rzemieślnicy",
+      "rtęć",
+      "UNESCO",
+      "nawijki",
+      "quiz"
+    ],
+    "facts": [
+      "兵马俑 Bīngmǎyǒng [Bing-ma-jung] oznacza grobowe figury żołnierzy i koni; „Armia Terakotowa” jest zachodnią nazwą skrótową.",
+      "Główne jamy leżą około 1,5 km na wschód od kopca 秦始皇 Qín Shǐhuáng [Ćin Szy-hłang].",
+      "Rolnicy odkryli fragmenty figur w marcu 1974 roku podczas kopania studni.",
+      "Jamy nr 2 i 3 rozpoznano w 1976 roku.",
+      "Cały zespół mauzoleum zajmuje około 56,25 km², a UNESCO opisuje ponad 600 stanowisk w obrębie dobra.",
+      "Obecny kopiec centralny zachował wysokość około 51 metrów; komora grobowa nie została otwarta.",
+      "Oficjalne muzeum szacuje około 6000 figur wojowników i koni w całym układzie Jamy nr 1.",
+      "Jama nr 2 zawiera łuczników, kawalerię, rydwany i formacje mieszane, a Jama nr 3 jest interpretowana jako sztab.",
+      "Figury pierwotnie pokrywano lakierem oraz wielobarwnymi pigmentami.",
+      "Zróżnicowanie twarzy i uszu jest realne, ale nie dowodzi, że każda figura jest portretem konkretnego żołnierza.",
+      "Znaleziono ponad 40 tysięcy grotów strzał oraz setki mechanizmów kusz i innych brązowych elementów broni.",
+      "Badania wskazują na pracę wielu warsztatów i niezależnych zespołów, nie jedną nowoczesną linię montażową.",
+      "Mit o starożytnym chromowaniu broni został obalony; chrom pochodził głównie z lakieru, a konserwację wspierała gleba.",
+      "Na figurach i broni zachowały się imiona, stemple, numery oraz nazwy urzędów związane z produkcją.",
+      "Poza armią odkryto figury urzędników i akrobatów, brązowe ptaki, stajnie, kamienne pancerze oraz dwa brązowe rydwany.",
+      "Ślady ognia i zawalenia dachów wyjaśniają, dlaczego większość wojowników znaleziono w fragmentach.",
+      "史记 Shǐjì [Szy-dzi] opisuje rzeki rtęci; anomalie rtęci w glebie wspierają możliwość, ale nie potwierdzają szczegółów wnętrza.",
+      "Liczba około 700 tysięcy pracowników pochodzi ze starożytnego przekazu i powinna być przedstawiana z takim zastrzeżeniem."
+    ],
+    "quickTalk": "Proszę państwa, 兵马俑 Bīngmǎyǒng [Bing-ma-jung] nie jest muzeum glinianych figurek, lecz zewnętrzną strażą ogromnego państwa zbudowanego dla 秦始皇 Qín Shǐhuáng [Ćin Szy-hłang] po śmierci. Wojownicy byli kolorowi, uzbrojeni w prawdziwą broń i ustawieni według wojskowego planu. Każda twarz wygląda indywidualnie, ale całość podporządkowano jednemu systemowi — dokładnie tak jak imperium Qin.",
+    "stats": [
+      {
+        "value": "1974",
+        "label": "przypadkowe odkrycie podczas kopania studni"
+      },
+      {
+        "value": "56,25 km²",
+        "label": "obszar całego mauzoleum"
+      },
+      {
+        "value": "1,5 km",
+        "label": "od kopca cesarza do jam wojowników"
+      },
+      {
+        "value": "40 000+",
+        "label": "odnalezionych grotów strzał"
+      },
+      {
+        "value": "37 rozdziałów",
+        "label": "około 8 059 słów + 28 pytań"
+      }
+    ],
+    "guideScripts": [
+      {
+        "id": "talk30",
+        "label": "30 sekund",
+        "content": "<p>„<b>兵马俑 Bīngmǎyǒng [Bing-ma-jung]</b> to nie tylko tysiące glinianych żołnierzy. To wschodnia straż ogromnego mauzoleum <b>秦始皇 Qín Shǐhuáng [Ćin Szy-hłang]</b>, pierwszego cesarza zjednoczonych Chin. Figury były kolorowe, uzbrojone w prawdziwą broń i ustawione według wojskowej hierarchii. Armia miała przedłużyć władzę cesarza po śmierci, a dziś pokazuje jednocześnie geniusz rzemiosła i brutalną siłę państwa Qin.”</p>"
+      },
+      {
+        "id": "talk2",
+        "label": "2 minuty",
+        "content": "<p>„Armia Terakotowa <b>兵马俑 Bīngmǎyǒng [Bing-ma-jung]</b> została odkryta w 1974 roku, gdy rolnicy kopali studnię. Jamy leżą około 1,5 kilometra na wschód od kopca <b>秦始皇 Qín Shǐhuáng [Ćin Szy-hłang]</b>, pierwszego cesarza, który w 221 roku p.n.e. zjednoczył rywalizujące królestwa.</p><p>Nie oglądamy zwykłych posągów. Wojownicy stali w przykrytych drewnem korytarzach, mieli kolorowe szaty i prawdziwą broń z brązu. Po pożarze oraz zawaleniu dachu większość została rozbita, a dzisiejsze figury są składane przez konserwatorów z tysięcy fragmentów.</p><p>Każda twarz wygląda indywidualnie, lecz nie wiemy, czy przedstawia konkretną osobę. Broń była standaryzowana, ale powstawała w wielu równoległych warsztatach. Całe mauzoleum zajmuje około 56 km² i odtwarza nie tylko armię, lecz także administrację, stajnie, artystów i cesarski transport. Największa tajemnica — właściwa komora grobowa — nadal pozostaje nieotwarta.”</p>"
+      },
+      {
+        "id": "talk5",
+        "label": "5 minut",
+        "content": "<p>„Proszę państwa, zanim zobaczymy szeregi wojowników, ustawmy jedno zdanie: Armia Terakotowa <b>兵马俑 Bīngmǎyǒng [Bing-ma-jung]</b> jest glinianym portretem pierwszego cesarstwa Chin. Jej właściciel, <b>秦始皇 Qín Shǐhuáng [Ćin Szy-hłang]</b>, w 221 roku p.n.e. pokonał rywali i stworzył scentralizowane państwo. Ujednolicił administrację, miary, monety i zapis urzędowy, ale osiągał cele przy pomocy surowego prawa, ciężkich robót oraz ogromnej mobilizacji ludzi.</p><p>Mauzoleum zaczęto budować, gdy władca był jeszcze nastoletnim królem. Cały zespół zajmuje około 56,25 km² i zawiera setki jam oraz grobów. Jamy wojowników leżą 1,5 kilometra na wschód od kopca. W centrum nadal spoczywa nieotwarta komora, którą starożytny historyk <b>司马迁 Sīmǎ Qiān [Sy-ma Ćjen]</b> opisał jako podziemny kosmos z pałacami i rzekami rtęci.</p><p>W 1974 roku rolnicy kopiący studnię trafili na fragmenty gliny. Odkryli Jamę nr 1 z wielką formacją piechoty i rydwanów. Jama nr 2 pokazuje łuczników, kawalerię i jednostki mieszane, a Jama nr 3 jest interpretowana jako sztab. Figury nie zostały zakopane jako kawałki. Stały w drewnianych korytarzach, które spłonęły i zawaliły się, rozbijając armię.</p><p>Wojowników wykonywano z lokalnej gliny. Ciała budowano z części i pasm materiału, a twarze, fryzury oraz pancerze wykańczano ręcznie. Nie była to nowoczesna taśma produkcyjna ani osiem tysięcy identycznych odlewów. Figury są zindywidualizowane, lecz nauka nie potwierdza, że każda jest portretem konkretnego żołnierza.</p><p>Pierwotnie postacie były pokryte lakierem i żywymi pigmentami. W dłoniach trzymały prawdziwe miecze, lance, halabardy i kusze. Znaleziono ponad czterdzieści tysięcy grotów. Badania pokazały wysoką standaryzację i pracę wielu warsztatów. Obalono jednak mit, że broń chroniła celowa powłoka chromowa.</p><p>Najważniejsze jest połączenie przeciwieństw. Każdy żołnierz ma twarz, ale stoi w jednym systemie. Rzemieślnicy mieli imiona, lecz ich pracę podporządkowano jednemu władcy. Armia miała dać cesarzowi nieśmiertelność. Ostatecznie zachowała dla nas wiedzę o całej epoce.”</p>"
+      },
+      {
+        "id": "talk10",
+        "label": "10 minut — pełna nawijka",
+        "content": "<p>„Proszę państwa, większość ludzi przyjeżdża tutaj zobaczyć osiem tysięcy wojowników. Zacznijmy jednak od poprawki: nie zobaczymy wszystkich, nie wszystkie zostały wydobyte, a sama armia jest tylko niewielką częścią krajobrazu grobowego o powierzchni około 56,25 km². Chińska nazwa <b>兵马俑 Bīngmǎyǒng [Bing-ma-jung]</b> oznacza grobowe figury żołnierzy i koni. Słowo <b>俑 yǒng [jung]</b> przypomina, że postacie miały zastępować żywych ludzi w świecie zmarłych.</p><p>Właścicielem tego świata był <b>秦始皇 Qín Shǐhuáng [Ćin Szy-hłang]</b>. Urodził się jako <b>嬴政 Yíng Zhèng [Jing Dżeng]</b>, został królem państwa <b>秦 Qín [Ćin]</b> jako trzynastolatek, a w 221 roku p.n.e. ogłosił się pierwszym cesarzem. Jego państwo ujednolicało miary, monety, zapis urzędowy i administrację. Dzięki temu można było sprawniej przesuwać wojsko, pobierać podatki i wydawać rozkazy. Cena była wysoka: surowe prawo, pobór, ciężkie roboty i brutalne tłumienie sprzeciwu.</p><p>Budowę mauzoleum tradycyjnie datuje się od 246 roku p.n.e. Starożytny historyk <b>司马迁 Sīmǎ Qiān [Sy-ma Ćjen]</b> pisał o setkach tysięcy ludzi, podziemnych pałacach, automatycznych kuszach i rzekach rtęci. Współczesna archeologia odkryła setki jam: wojsko, urzędników, akrobatów, stajnie, ptaki wodne, kamienne pancerze i dwa wspaniałe brązowe rydwany. Układ przypomina podziemną stolicę, nie pojedynczy grobowiec.</p><p>Jamy wojowników znajdują się około 1,5 kilometra na wschód od kopca. W marcu 1974 roku rolnicy kopiący studnię natrafili na fragmenty figur. Badania ujawniły Jamę nr 1, a w 1976 roku Jamy nr 2 i 3. Jama nr 1 pokazuje wielką formację piechoty, rydwanów i awangardy. Jama nr 2 zawiera łuczników, kawalerię oraz jednostki mieszane. Jama nr 3 jest interpretowana jako centrum dowodzenia. Pusta Jama nr 4 sugeruje projekt, którego nie zdążono ukończyć.</p><p>Podziemne korytarze miały ceglane posadzki i drewniane dachy. Po upadku dynastii kompleks został naruszony, ograbiony i częściowo spalony. Gdy dachy się zawaliły, ziemia rozbiła figury. Dlatego stojący wojownik jest najczęściej rekonstrukcją z wielu autentycznych fragmentów. W tylnej części hali widzimy współczesny warsztat konserwatorski, nie magazyn gotowych posągów.</p><p>Figury wykonywano z gliny przy użyciu powtarzalnych procedur i wielu części, ale wykańczano je ręcznie. Twarze, uszy, fryzury, wąsy, pancerze i szaty są bardzo zróżnicowane. Fotogrametria potwierdza różnorodność, lecz nie dowodzi, że każda postać jest portretem konkretnej osoby. Najbezpieczniej powiedzieć: armia miała wyglądać jak prawdziwa populacja żołnierzy.</p><p>Dzisiaj widzimy kolor gliny, ale wojownicy byli malowani. Lakier i pigmenty dawały czerwienie, zielenie, błękity, fiolety, czerń oraz kolory skóry. Po odsłonięciu lakier szybko wysycha i odspaja się, dlatego wykopaliska prowadzi się bardzo ostrożnie. Czasami pozostawienie figury w ziemi jest lepszą ochroną niż efektowne wydobycie.</p><p>Wojownicy trzymali prawdziwą broń. Odnaleziono miecze, lance, halabardy, mechanizmy kusz i ponad czterdzieści tysięcy grotów strzał. Badania wykazały wysoką standaryzację oraz partie pochodzące z różnych warsztatów. Znaki na figurach i broni zachowały imiona oraz nazwy urzędów. Nie była to jedna taśma montażowa, lecz sieć zespołów działających według wspólnego planu.</p><p>Przez lata mówiono, że broń została chromowana. Nowoczesne badania wykazały, że chrom pochodził przede wszystkim z sąsiedniego lakieru, a dobry stan brązu zawdzięczamy głównie glebie. Podobnie musimy uważać z innymi efektownymi twierdzeniami. Nie wiemy, czy każda twarz jest portretem. Nie wiemy, czy cesarz na pewno zmarł od rtęci. Nie wiemy, czy armia stała na wschodzie wyłącznie ze strachu przed duchami podbitych państw.</p><p>Wiemy natomiast, że projekt łączy niezwykłą sztukę, logistykę, metalurgię i przemoc państwa. Widzimy tysiące indywidualnych twarzy podporządkowanych jednemu szykowi. Widzimy imiona rzemieślników, ale znamy przede wszystkim imię cesarza. Widzimy ogrom pracy, która miała sprawić, że jeden człowiek będzie nadal rządził po śmierci.</p><p>Największa tajemnica nadal leży pod kopcem. Komory nie otwarto z obawy o zniszczenie zabytków, bezpieczeństwo konstrukcji, możliwą rtęć i kwestie etyczne. To, co uznajemy za jedno z największych odkryć archeologii, może być jedynie zewnętrzną strażą przed zamkniętymi drzwiami.</p><p>Armia miała zapewnić cesarzowi nieśmiertelność. Paradoksalnie zrobiła coś szerszego. Zachowała wiedzę o żołnierzach, rzemieślnikach, broni, kolorach, administracji i lęku przed śmiercią. Cesarz chciał zabrać państwo ze sobą. Zamiast tego zostawił je nam do odczytania.”</p>"
+      },
+      {
+        "id": "talkpit1",
+        "label": "3 minuty przy Jamie nr 1",
+        "content": "<p>„Proszę spojrzeć najpierw na całość. Przed nami nie scena parady pod gołym niebem, ale wnętrze dawnej podziemnej hali. Pomiędzy ziemnymi ścianami znajdowały się korytarze przykryte drewnianym dachem. Gdy konstrukcja spłonęła i zawaliła się, ciężar ziemi rozbił większość figur.</p><p>Na froncie widzimy awangardę, dalej główne kolumny piechoty oraz rydwanów, a po bokach osłonę skrzydeł. Oficjalnie dla całej Jamy nr 1 szacuje się około sześciu tysięcy figur wojowników i koni, ale znaczna część nadal pozostaje w ziemi.</p><p>Proszę spojrzeć również na tył hali. To nie magazyn replik, tylko strefa rekonstrukcji. Każdy stojący wojownik mógł zostać złożony z dziesiątek fragmentów. Największe wrażenie robi więc nie tylko starożytna armia, lecz także współczesna cierpliwość archeologów.”</p>"
+      },
+      {
+        "id": "talkfinal",
+        "label": "Finał 1 minuta",
+        "content": "<p>„Ta armia miała chronić jednego człowieka po śmierci. Po ponad dwóch tysiącach lat nie wykonuje już jego rozkazów. Opowiada o całej cywilizacji: o sztuce, wojnie, organizacji, kolorach, przymusowej pracy i strachu przed końcem. Pierwszy cesarz chciał, żeby została po nim wieczna armia. Została — ale dzisiaj mówi głosem historii, nie władcy.”</p>"
+      }
+    ],
+    "defaultGuideScript": "talk5",
+    "sections": [
+      {
+        "id": "jak-korzystac",
+        "title": "Jak korzystać z tego materiału",
+        "subtitle": "Osobny temat do autobusu, muzeum i wieczornego powtórzenia",
+        "content": "<div class=\"grid-3\">\n<article class=\"feature\"><b>Przed dojazdem</b><p>Użyj rozdziałów o odkryciu, pierwszym cesarzu i całym mauzoleum. Grupa powinna wiedzieć, że jedzie nie do „hali z figurami”, lecz do zewnętrznej części ogromnego podziemnego państwa.</p></article>\n<article class=\"feature\"><b>W halach</b><p>Najpierw daj ludziom chwilę na efekt skali. Potem prowadź kolejno: formacja, rodzaje żołnierzy, twarze, ślady dachu, broń i stanowiska konserwatorów.</p></article>\n<article class=\"feature\"><b>Na szybki strzał</b><p>Masz gotowe nawijki 30 sekund, 2, 5 i 10 minut. Quiz sprawdza fakty, ale także rozróżnia potwierdzone informacje od hipotez i legend.</p></article>\n</div>\n<div class=\"note fact-check\"><b>Zasada opracowania:</b> widowiskowe twierdzenia z filmów dokumentalnych zostały sprawdzone. Nie podajemy jako pewnika, że każda figura jest portretem konkretnego żołnierza, że broń była chromowana, że cesarz na pewno umarł od rtęci ani że znamy dokładny cel każdej jamy.</div>"
+      },
+      {
+        "id": "otwarcie",
+        "title": "Otwarcie: armia, która miała maszerować po śmierci",
+        "subtitle": "Pierwsze dwie minuty, które ustawiają cały klimat",
+        "content": "<div class=\"prose\">\n<p>Proszę państwa, za chwilę zobaczymy jedno z najsłynniejszych odkryć archeologicznych świata, ale spróbujmy od razu odsunąć obraz „muzeum z glinianymi figurkami”. <b>兵马俑 Bīngmǎyǒng [Bing-ma-jung]</b>, czyli dosłownie grobowe figury żołnierzy i koni, są tylko najbardziej widoczną częścią ogromnego mauzoleum pierwszego cesarza. Ten człowiek nie zamówił zwykłego grobu. Próbował przenieść całe państwo poza granicę śmierci.</p>\n<p>W podziemnych korytarzach ustawiono piechurów, łuczników, woźniców, kawalerzystów, oficerów, konie i rydwany. W innych jamach odkryto urzędników, akrobatów, stajnie, ptaki wodne z brązu, kamienne pancerze i ślady wielkiego zaplecza rytualnego. W centrum nadal leży nieotwarta komora grobowa <b>秦始皇 Qín Shǐhuáng [Ćin Szy-hłang]</b>. To, co oglądamy, jest więc strażą i otoczeniem, a nie samym sercem grobowca.</p>\n<p>Najmocniejszy motyw całej opowieści brzmi: jednostkowe twarze, lecz jeden system. Żołnierze wyglądają jak różni ludzie, ale stoją w idealnych szykach. Rzemieślnicy zostawiali znaki i nazwiska, lecz pracowali dla projektu państwowego. Broń była prawdziwa i standaryzowana, ale trafiała do świata, w którym nikt nie miał już walczyć. Sztuka, administracja, wojna, religia i strach przed śmiercią zostały połączone w jednym przedsięwzięciu.</p>\n<p>Dlatego Armia Terakotowa nie jest jedynie pomnikiem geniuszu. Jest także pomnikiem kontroli. Pokazuje cywilizację zdolną zorganizować ogromny projekt, stworzyć tysiące rzeźb, wyposażyć je w broń i rozmieścić według wojskowego planu. Jednocześnie przypomina o pracownikach przymusowych, skazańcach, rzemieślnikach i urzędnikach, których wysiłek został podporządkowany nieśmiertelności jednego władcy.</p>\n</div>\n<div class=\"say\"><b>Powiedz grupie:</b> „Ta armia miała chronić jednego człowieka po śmierci. Paradoks polega na tym, że dzisiaj nie chroni już cesarza — opowiada nam o całym państwie, które stworzył.”</div>"
+      },
+      {
+        "id": "nazwa-polozenie",
+        "title": "Nazwa i położenie: 兵马俑 Bīngmǎyǒng [Bing-ma-jung]",
+        "subtitle": "Dlaczego „Armia Terakotowa” jest zachodnim skrótem",
+        "content": "<div class=\"prose\">\n<p>Polska nazwa „Armia Terakotowa” jest wygodna, ale chińskie określenie mówi coś bardziej precyzyjnego. <b>兵马俑 Bīngmǎyǒng [Bing-ma-jung]</b> składa się z trzech części: <b>bīng 兵 [bing]</b> — żołnierz lub wojsko, <b>mǎ 马 [ma]</b> — koń oraz <b>yǒng 俑 [jung]</b> — figura grobowa zastępująca żywą osobę. To ostatnie słowo jest kluczowe. Nie oglądamy dekoracyjnych posągów ustawionych później w muzeum, lecz element rytuału pogrzebowego.</p>\n<p>Terakota oznacza wypaloną glinę. Figury nie zostały jednak pozostawione w naturalnym brunatnym kolorze. Po wypaleniu pokrywano je warstwą lakieru, a następnie żywymi pigmentami. Dzisiejsza szaro-brązowa armia jest więc tylko szkieletem pierwotnego efektu wizualnego.</p>\n<p>Jamy wojowników znajdują się w dzielnicy <b>临潼 Líntóng [Lin-tung]</b>, około 35 kilometrów na północny wschód od centrum <b>西安 Xī’ān [Si-an]</b>, u północnych podnóży góry <b>骊山 Líshān [Li-szan]</b>. Od właściwego kopca cesarza dzieli je około 1,5 kilometra. Z punktu widzenia turysty muzeum z halami i park archeologiczny przy kopcu wydają się dwiema atrakcjami, ale historycznie są częścią jednego założenia.</p>\n<p>Warto od razu rozróżnić trzy nazwy. <b>秦始皇陵 Qín Shǐhuáng Líng [Ćin Szy-hłang Ling]</b> to mauzoleum pierwszego cesarza. <b>秦始皇帝陵博物院 Qín Shǐhuángdì Líng Bówùyuàn [Ćin Szy-hłang-di Ling Bo-u-jüan]</b> to współczesne muzeum i instytucja opiekująca się całością. Natomiast <b>兵马俑 Bīngmǎyǒng [Bing-ma-jung]</b> oznacza same figury żołnierzy i koni oraz potocznie ich jamy.</p>\n</div>\n<div class=\"detail\"><b>Praktycznie:</b> Mów grupie „Armia Terakotowa”, ale raz wyjaśnij słowo <b>俑 yǒng [jung]</b>. Dzięki temu ludzie rozumieją, że chodzi o zastępczych mieszkańców zaświatów, a nie o gigantyczną kolekcję rzeźb dla ozdoby.</div>"
+      },
+      {
+        "id": "yong-tradycja",
+        "title": "Od ofiar z ludzi do figur 俑 yǒng [jung]",
+        "subtitle": "Dlaczego gliniany żołnierz mógł zastąpić żywego towarzysza grobu",
+        "content": "<div class=\"prose\">\n<p>Armia Terakotowa nie pojawiła się znikąd. W dawnych Chinach osoby wysokiej rangi zabierano do grobu z przedmiotami, zwierzętami, a czasem również ludźmi. Archeologia epoki <b>商 Shāng [Szang]</b> i wczesnej <b>周 Zhōu [Dżoł]</b> zna pochówki, w których słudzy, strażnicy lub jeńcy ginęli razem z elitą. Z czasem coraz częściej żywe ofiary zastępowano figurami, modelami domów, zwierząt i przedmiotów.</p>\n<p>Słowo <b>俑 yǒng [jung]</b> oznacza właśnie figurę grobową pełniącą rolę zastępcy. Nie musi być wojownikiem. Późniejsze groby dynastii <b>汉 Hàn [Han]</b> zawierają mniejsze figurki służby, żołnierzy, tancerzy i zwierząt. Projekt pierwszego cesarza wyróżnia skala oraz naturalny rozmiar postaci, ale opiera się na znanej idei: zmarły potrzebuje w zaświatach otoczenia odpowiadającego jego pozycji.</p>\n<p>Warto jednak unikać prostej historii „dawniej zabijano ludzi, a dobry cesarz zastąpił ich gliną”. Mauzoleum zawiera również prawdziwe pochówki ludzi i koni. Figury nie zakończyły przemocy rytualnej. Raczej pozwoliły stworzyć znacznie większy i bardziej kontrolowany model społeczeństwa, niż byłoby możliwe przy pomocy samych żywych ofiar.</p>\n<p>Naturalny rozmiar wojowników zwiększał ich obecność. Mała figurka może symbolizować sługę, lecz armia wielkości prawdziwych ludzi tworzy doświadczenie niemal fizycznej konfrontacji. Cesarz nie chciał jedynie znaku wojska. Chciał wojska, które w podziemnej przestrzeni wygląda jak zdolne do marszu.</p>\n<p>Ta tradycja pomaga wyjaśnić, dlaczego obok wojowników pojawiają się urzędnicy, artyści, zwierzęta i rydwany. Wszystkie są kategoriami zastępczych uczestników cesarskiego życia. Mauzoleum nie jest magazynem dzieł sztuki, lecz systemem funkcji przeznaczonych dla zmarłego.</p>\n</div>\n<div class=\"say\"><b>Powiedz grupie:</b> „Kluczowe słowo to 俑 yǒng [jung] — zastępca w grobie. Żołnierz nie miał być oglądany. Miał wykonywać swoją funkcję w świecie zmarłych.”</div>"
+      },
+      {
+        "id": "odkrycie",
+        "title": "Odkrycie w 1974 roku: studnia, glina i wielka niespodzianka",
+        "subtitle": "Jedno z największych odkryć XX wieku zaczęło się od poszukiwania wody",
+        "content": "<div class=\"prose\">\n<p>W marcu 1974 roku rolnicy z okolic wsi <b>西杨村 Xīyángcūn [Si-jang-cun]</b> kopali studnię. Region cierpiał na niedobór wody, więc nie prowadzili ekspedycji archeologicznej i nie szukali skarbu. Natrafili na twardą warstwę ziemi, fragmenty wypalonej gliny, cegły oraz części postaci. Początkowo kawałki mogły wyglądać jak stare naczynia albo pozostałości niewielkiego grobu.</p>\n<p>W lokalnych opowieściach najczęściej wymienia się rolnika <b>杨志发 Yáng Zhìfā [Jang Dży-fa]</b> i jego towarzyszy. Warto jednak nie sprowadzać odkrycia do jednej osoby z łopatą. Przy studni pracowała grupa mieszkańców, a znaczenie znaleziska rozpoznał miejscowy specjalista od zabytków <b>赵康民 Zhào Kāngmín [Dżao Kang-min]</b>. To on zabezpieczał pierwsze fragmenty i składał części figur, zanim przyjechały większe zespoły archeologiczne.</p>\n<p>Po badaniach potwierdzono istnienie ogromnej jamy, później nazwanej Jamą nr 1. Oficjalne muzeum podaje, że w jej całym układzie przewidywano około sześciu tysięcy figur wojowników i koni. Latem 1976 roku odkryto dwie kolejne duże jamy, oznaczone numerami 2 i 3 według kolejności rozpoznania. Do dzisiaj nie wykopano wszystkiego. Archeologia nie polega tu na jak najszybszym wydobyciu całej armii, ponieważ każda nowa figura wymaga dokumentacji, sklejania, stabilizacji i ochrony delikatnych warstw malarskich.</p>\n<p>Odkrycie było przypadkowe, ale teren nie był całkowicie „nieznany”. Przez stulecia mieszkańcy znajdowali w okolicy fragmenty ceramiki, dachówek i przedmiotów z epoki <b>秦 Qín [Ćin]</b>. Nikt nie rozumiał jednak skali zjawiska. Nawet starożytny historyk <b>司马迁 Sīmǎ Qiān [Sy-ma Ćjen]</b>, który bardzo szczegółowo opisał grobowiec, nie wspomniał wprost o tysiącach glinianych żołnierzy.</p>\n<p>To tworzy świetną przewodnicką scenę: przez ponad dwa tysiące lat pod polami stała armia, a nowoczesny świat trafił na nią nie dlatego, że odczytał tajną mapę, lecz dlatego, że ludzie potrzebowali studni.</p>\n</div>\n<div class=\"timeline\">\n<div><time>marzec 1974</time><p>Rolnicy natrafiają na fragmenty figur podczas kopania studni.</p></div>\n<div><time>1974–1975</time><p>Badania potwierdzają ogromną Jamę nr 1.</p></div>\n<div><time>lato 1976</time><p>Rozpoznane zostają Jamy nr 2 i 3.</p></div>\n<div><time>1 października 1979</time><p>Hala nad Jamą nr 1 zostaje udostępniona publiczności.</p></div>\n<div><time>1987</time><p>Mauzoleum trafia na listę światowego dziedzictwa UNESCO.</p></div>\n</div>"
+      },
+      {
+        "id": "cesarz",
+        "title": "秦始皇 Qín Shǐhuáng [Ćin Szy-hłang] — twórca imperium i władca przemocy",
+        "subtitle": "Bez niego nie da się zrozumieć armii",
+        "content": "<div class=\"prose\">\n<p>Przyszły cesarz urodził się jako <b>嬴政 Yíng Zhèng [Jing Dżeng]</b> w 259 roku p.n.e. W wieku trzynastu lat został królem państwa <b>秦 Qín [Ćin]</b>. Gdy przejął pełnię władzy, państwo było już potężną machiną wojskową i administracyjną, rozwijaną przez wcześniejsze pokolenia reformatorów. W kolejnych kampaniach armie <b>秦 Qín [Ćin]</b> pokonały sześć głównych rywalizujących królestw.</p>\n<p>W 221 roku p.n.e. <b>嬴政 Yíng Zhèng [Jing Dżeng]</b> przyjął nowy tytuł <b>始皇帝 Shǐ Huángdì [Szy Hłang-di]</b>, czyli Pierwszy Dostojny Cesarz. Liczył, że po nim nastąpi drugi, trzeci i kolejne pokolenia władców. Dynastia przetrwała jednak zaledwie kilkanaście lat po zjednoczeniu. Paradoks jest ogromny: państwo <b>秦 Qín [Ćin]</b> rozpadło się szybko, ale model cesarstwa, centralnej administracji i tytuł cesarski przetrwały ponad dwa tysiące lat.</p>\n<p>Władca standaryzował pismo administracyjne, monety, miary i wagi. Rozbudowywał sieć dróg, system urzędów i połączenia wcześniejszych fortyfikacji. Te reformy ułatwiały zarządzanie wielkim terytorium, pobór podatków i przesuwanie wojska. Nie należy jednak mówić, że cesarz „sam wymyślił wszystko”. Korzystał z wcześniejszych reform państwa <b>秦 Qín [Ćin]</b>, pracy ministrów, generałów i ogromnego aparatu biurokratycznego.</p>\n<p>Drugą stroną sukcesu były ciężkie podatki, pobór do wojska, wielkie roboty publiczne i surowe prawo. Późniejsze źródła opowiadają o paleniu ksiąg i egzekucji uczonych. Historycy dyskutują szczegóły i skalę tych wydarzeń, ale nie ma wątpliwości, że państwo stosowało brutalne kary oraz wymuszało pracę na ogromną skalę.</p>\n<p><b>秦始皇 Qín Shǐhuáng [Ćin Szy-hłang]</b> pozostaje więc postacią podwójną. Jest symbolem politycznego zjednoczenia i skutecznej organizacji, a zarazem symbolem autokracji. Armia Terakotowa materializuje oba obrazy: zachwyca perfekcją projektu, ale jej skala nie byłaby możliwa bez bezwzględnej mobilizacji ludzi i zasobów.</p>\n</div>\n<div class=\"say\"><b>Powiedz grupie:</b> „Pierwszy cesarz zrobił z wielu królestw jeden system. Armia pod ziemią jest miniaturą tego pomysłu: tysiące różnych twarzy, ale wszystkie stoją w jednym szeregu i wykonują jeden rozkaz.”</div>"
+      },
+      {
+        "id": "legalizm",
+        "title": "法家 Fǎjiā [Fa-dźia] — legalizm i państwo jako maszyna",
+        "subtitle": "Dlaczego sprawna organizacja nie oznaczała łagodnych rządów",
+        "content": "<div class=\"prose\">\n<p>Państwo <b>秦 Qín [Ćin]</b> było silnie związane z tradycją określaną jako <b>法家 Fǎjiā [Fa-dźia]</b>, czyli „szkoła prawa”, najczęściej tłumaczoną jako legalizm. Nie była to nowoczesna koncepcja rządów prawa chroniącego obywatela. Chodziło o stworzenie jasnych norm, nagród, kar i procedur, dzięki którym władca mógł kontrolować urzędników oraz poddanych.</p>\n<p>Reformator <b>商鞅 Shāng Yāng [Szang Jang]</b> w IV wieku p.n.e. wzmacniał rejestrację ludności, odpowiedzialność zbiorową, wojskową nagrodę za zasługi oraz podporządkowanie dawnych elit państwu. Myśliciel <b>韩非 Hán Fēi [Han Fej]</b> podkreślał znaczenie prawa, technik kontroli i autorytetu stanowiska. Pierwszy cesarz oraz jego minister <b>李斯 Lǐ Sī [Li Sy]</b> korzystali z tej logiki, tworząc system, w którym urzędnik miał być oceniany według wyników i zgodności z poleceniem.</p>\n<p>Ślady podobnego myślenia widzimy na przedmiotach z mauzoleum. Na figurach i broni znajdują się znaki warsztatowe, imiona, nazwy urzędów i numery. Nie oznacza to automatycznie, że każdego rzemieślnika ścinano za najmniejszą wadę. Pokazuje jednak, że produkcja nie była anonimowa. Państwo potrafiło śledzić pochodzenie partii, identyfikować wykonawców i organizować pracę wielu zespołów.</p>\n<p>Najciekawsze jest napięcie pomiędzy modułowością a indywidualnością. Ciała i elementy wyposażenia powstawały przy użyciu powtarzalnych procedur, lecz ostateczny efekt wykańczano ręcznie. Podobnie działało państwo: oczekiwało standardu, ale wykorzystywało specjalistyczne umiejętności. Rzemieślnik nie był wolnym artystą pracującym dla własnej sławy, lecz częścią wielkiego programu.</p>\n<p>W przewodnickiej narracji legalizm dobrze tłumaczy, dlaczego Armia Terakotowa wygląda jednocześnie jak dzieło sztuki i raport administracyjny. Każda postać ma twarz, rangę i pozycję, ale cały zespół jest zaplanowany jak dokument: rzędy, sektory, jednostki, uzbrojenie i hierarchia.</p>\n</div>"
+      },
+      {
+        "id": "armia-qin",
+        "title": "Jak walczyła armia 秦 Qín [Ćin]",
+        "subtitle": "Piechota, rydwany, kawaleria, kusze i nagrody za zasługi",
+        "content": "<div class=\"prose\">\n<p>Formacje w jamach są idealizowanym modelem, ale przekazują dużo informacji o wojsku państwa <b>秦 Qín [Ćin]</b>. Podstawę stanowiła masowa piechota wspierana przez kuszników, rydwany i rozwijającą się kawalerię. Różne rodzaje jednostek mogły działać wspólnie, a państwo potrafiło mobilizować wielkie armie oraz zaopatrywać je na znacznych odległościach.</p>\n<p>Wcześniej rydwan był także znakiem arystokratycznego statusu. W okresie Walczących Królestw rosnąca skala wojen zwiększyła znaczenie piechoty i kawalerii. Rydwany nie zniknęły, ale funkcjonowały w nowych układach. Jama nr 2 dobrze pokazuje ten świat przejściowy: pojazdy, konie, łucznicy i piechurzy występują obok siebie.</p>\n<p>Reformy <b>商鞅 Shāng Yāng [Szang Jang]</b> wiązały awans z zasługami wojskowymi zamiast wyłącznie z urodzeniem. Źródła opisują system nagród za zdobycie głów przeciwników, ziemię i rangę przyznawaną za wyniki. Propaganda państwa promowała dyscyplinę, odpowiedzialność jednostek i kontrolę małych grup.</p>\n<p>Nie należy jednak traktować figur jak dokładnego katalogu całej armii. Część typów wojsk mogła nie zostać przedstawiona, a wyposażenie grobowe podlegało rytualnej selekcji. Brak tarcz w wielu widocznych formacjach nie oznacza, że żaden żołnierz <b>秦 Qín [Ćin]</b> nie używał tarczy. Drewno i skóra zniknęły, a niektóre przedmioty mogły zostać skradzione.</p>\n<p>Uzbrojenie pokazuje przewagę organizacyjną. Kusza wymagała skomplikowanej produkcji mechanizmu, ale użytkownik otrzymywał powtarzalny system. Groty miały podobne rozmiary, a broń była oznaczana oraz magazynowana. Państwo nie wygrywało wyłącznie odwagą żołnierza. Wygrywało zdolnością do produkcji, transportu, szkolenia i wymiany wyposażenia.</p>\n<p>Patrząc na szeregi, warto więc mówić nie tylko o „potędze armii”, ale o zapleczu. Za każdym żołnierzem stały pola dostarczające zboże, drogi, magazyny, warsztaty, konie, urzędnicy i system kar. Gliniana formacja jest skrótem całej gospodarki wojennej.</p>\n</div>"
+      },
+      {
+        "id": "kompleks",
+        "title": "Nie grób, lecz podziemne państwo",
+        "subtitle": "Skala 56,25 km² i setki stanowisk archeologicznych",
+        "content": "<div class=\"prose\">\n<p>Najczęstszy błąd polega na utożsamieniu trzech hal z całym mauzoleum. Tymczasem obszar zespołu <b>秦始皇陵 Qín Shǐhuáng Líng [Ćin Szy-hłang Ling]</b> zajmuje około 56,25 km². UNESCO opisuje ponad sześćset rozpoznanych stanowisk, a oficjalne muzeum wymienia setki jam i grobów towarzyszących. Jamy wojowników są najbardziej widowiskowe, lecz znajdują się na wschodnim skraju ogromnego krajobrazu grobowego.</p>\n<p>W centrum stoi kopiec nad komorą cesarza, otoczony dwiema strefami murów. Układ miał przypominać cesarską stolicę <b>咸阳 Xiányáng [Sien-jang]</b>: wewnętrzny pałac, zewnętrzne miasto i wyspecjalizowane obszary służby. Na terenie odkryto miejsca związane z urzędnikami, stajniami, ptakami, magazynami, kamiennymi pancerzami, akrobatami i pojazdami. Władca nie przygotowywał się więc wyłącznie do obrony. Odtwarzał funkcjonowanie dworu.</p>\n<p>Projekt rozpoczęto tradycyjnie w 246 roku p.n.e., gdy trzynastoletni <b>嬴政 Yíng Zhèng [Jing Dżeng]</b> objął tron państwa <b>秦 Qín [Ćin]</b>. Budowa trwała do śmierci cesarza w 210 roku p.n.e. Starożytny historyk <b>司马迁 Sīmǎ Qiān [Sy-ma Ćjen]</b> pisał o ponad siedmiuset tysiącach zmobilizowanych ludzi z całego państwa. Liczbę należy traktować jako przekaz starożytny, nie wynik współczesnego spisu, ale dobrze oddaje pamięć o gigantycznej mobilizacji.</p>\n<p>Warto porównać skalę nie z pojedynczym grobowcem, lecz z miastem. Ludzie musieli wydobywać ziemię, formować i wypalać ceramikę, odlewać metal, budować drewniane korytarze, malować figury, tworzyć drogi oraz zaopatrywać pracowników. Potrzebna była administracja zapisująca dostawy, brygady budowlane, piece, magazyny i kontrola jakości. Mauzoleum stało się jednym z największych projektów infrastrukturalnych starożytności.</p>\n</div>\n<div class=\"stats\">\n<div><strong>56,25 km²</strong><span>obszar całego założenia mauzoleum</span></div>\n<div><strong>około 1,5 km</strong><span>od kopca cesarza do jam wojowników</span></div>\n<div><strong>ponad 600</strong><span>rozpoznanych stanowisk według UNESCO</span></div>\n<div><strong>37 lat</strong><span>tradycyjnie podawany okres budowy</span></div>\n</div>"
+      },
+      {
+        "id": "shiji-grob",
+        "title": "史记 Shǐjì [Szy-dzi] i opis grobowca",
+        "subtitle": "Co wiemy ze starożytnego tekstu, a czego nadal nie potwierdzono",
+        "content": "<div class=\"prose\">\n<p>Najbardziej znany opis wnętrza pochodzi z dzieła <b>史记 Shǐjì [Szy-dzi]</b>, czyli „Zapisków historyka”, napisanego około wieku po śmierci cesarza przez <b>司马迁 Sīmǎ Qiān [Sy-ma Ćjen]</b>. Historyk opowiada o podziemnych pałacach, modelach budowli, kosztownościach, mechanicznych kuszach mających strzelać do włamywaczy oraz rzekach i morzach z rtęci.</p>\n<p>Według tej relacji sklepienie miało przedstawiać niebo, a podłoga — ziemskie imperium. Rtęć poruszana mechanicznie symbolizowała rzeki i morza. Brzmi to fantastycznie, lecz badania geochemiczne wykazywały podwyższone stężenia rtęci w rejonie kopca. Nie dowodzi to każdego szczegółu opowieści, ale sprawia, że nie można jej odrzucić jako czystej legendy.</p>\n<p>Starożytny tekst wspomina także, że po pogrzebie zamknięto osoby znające sekrety konstrukcji, a bezdzietne konkubiny miały towarzyszyć cesarzowi w śmierci. Archeologia potwierdza istnienie pochówków towarzyszących i śladów brutalnych praktyk, ale nie pozwala jeszcze precyzyjnie przypisać wszystkich szczątków do konkretnych zdań kroniki.</p>\n<p>Największe zaskoczenie polega na tym, że <b>司马迁 Sīmǎ Qiān [Sy-ma Ćjen]</b> nie opisał wyraźnie Armii Terakotowej. Być może nie znał jej szczegółów, być może informacje były tajne, a może uznał je za mniej ważne niż centralną komorę. Odkrycie z 1974 roku pokazało, że nawet najważniejsze starożytne źródło nie zawiera pełnej mapy mauzoleum.</p>\n<p>W prowadzeniu grupy warto oddzielać trzy poziomy: potwierdzone stanowiska archeologiczne, przekaz <b>史记 Shǐjì [Szy-dzi]</b> oraz współczesne interpretacje. Dzięki temu opowieść nie traci magii, ale pozostaje uczciwa.</p>\n</div>\n<div class=\"note fact-check\"><b>Nie mów:</b> „Wiemy, że w środku płyną rzeki rtęci”. Lepiej: „Starożytne źródło opisuje rzeki rtęci, a badania gleby wykazują anomalie, które mogą wspierać tę relację. Komory jednak nie otwarto.”</div>"
+      },
+      {
+        "id": "po-co-armia",
+        "title": "Po co cesarzowi była armia w zaświatach?",
+        "subtitle": "Ochrona, kontynuacja władzy i ostrożność wobec łatwych odpowiedzi",
+        "content": "<div class=\"prose\">\n<p>Najprostsza odpowiedź brzmi: armia miała chronić cesarza po śmierci. Jest prawdopodobna, lecz nie wyjaśnia wszystkiego. Figury stoją w formacjach na wschód od kopca, z awangardą zwróconą na wschód. UNESCO interpretuje układ jako wojsko czuwające na zewnętrznych obrzeżach podziemnej stolicy.</p>\n<p>Popularna opowieść mówi, że na wschodzie leżały królestwa podbite przez <b>秦 Qín [Ćin]</b>, więc cesarz bał się duchów pokonanych przeciwników. To atrakcyjna interpretacja i pasuje do geografii, ale nie zachował się dokument z poleceniem: „ustawić armię tutaj z obawy przed zemstą”. Należy ją przedstawiać jako hipotezę.</p>\n<p>Druga funkcja była reprezentacyjna. Władca za życia był chroniony przez gwardię, rydwany, łuczników i dowódców. Po śmierci oczekiwał podobnego otoczenia. W chińskiej tradycji grobowej przedmioty oraz figury <b>俑 yǒng [jung]</b> miały umożliwiać zmarłemu kontynuację właściwego statusu. Armia potwierdzała więc rangę właściciela mauzoleum.</p>\n<p>Trzecia funkcja dotyczy porządku. W jamach nie ustawiono chaotycznego tłumu. Istnieje awangarda, skrzydła, kolumny, rydwany, łucznicy i przestrzeń dowodzenia. Zaświaty cesarza miały działać zgodnie z regułami państwa. Śmierć nie oznaczała końca hierarchii, lecz jej przeniesienie do innego świata.</p>\n<p>Można też odczytać armię jako propagandę skierowaną do tych, którzy uczestniczyli w budowie i pogrzebie. Już samo stworzenie tysięcy postaci komunikowało, że władza cesarza przekracza normalne granice. Nie miał zostać zwykłym przodkiem. Miał pozostać centrum kosmosu i imperium.</p>\n</div>\n<div class=\"say\"><b>Powiedz grupie:</b> „Nie znamy jednego zdania wyjaśniającego cel armii. Najbezpieczniej powiedzieć, że łączyła ochronę, prestiż i kontynuację cesarskiego porządku. Hipoteza o zemście podbitych królestw jest możliwa, ale nie jest podpisaną instrukcją pierwszego cesarza.”</div>"
+      },
+      {
+        "id": "jamy-wprowadzenie",
+        "title": "Cztery jamy i jedna armia, której nie ukończono",
+        "subtitle": "Jak czytać układ wojskowy przed wejściem do hal",
+        "content": "<div class=\"prose\">\n<p>Główne jamy wojowników oznaczono numerami według kolejności odkrycia, a nie rangi. Jama nr 1 jest największa i pokazuje masę piechoty oraz rydwanów. Jama nr 2 zawiera najbardziej zróżnicowane jednostki: łuczników, kawalerię, rydwany i formacje mieszane. Jama nr 3 jest najmniejsza i powszechnie interpretowana jako stanowisko dowodzenia. Jama nr 4 pozostała pusta, co często łączy się z nagłą śmiercią cesarza i upadkiem dynastii, choć dokładnego powodu nie znamy.</p>\n<p>Podziemne konstrukcje przypominały wielkie hale. W ziemi wykopano jamy, wzniesiono ściany rozdzielające równoległe korytarze, ustawiono figury na ceglanej posadzce, a całość przykryto drewnianymi słupami, belkami, matami i warstwą ziemi. To ważne, bo wojownicy pierwotnie nie stali pod otwartym niebem. Znajdowali się w ciemnych, zamkniętych korytarzach.</p>\n<p>Dzisiejszy widok jest połączeniem stanowiska archeologicznego i warsztatu konserwatorskiego. Część figur stoi odtworzona, część pozostaje w ziemi, a na zapleczu widać rzędy fragmentów czekających na dopasowanie. Należy powiedzieć grupie, że „liczba wojowników” jest szacunkiem dla całego układu, a nie liczbą gotowych figur stojących dziś publicznie.</p>\n<p>Oficjalna trasa muzeum często prowadzi najpierw przez Jamę nr 1, potem nr 3 i nr 2, co pozwala przejść od efektu skali do dowodzenia i różnorodnych typów żołnierzy. Jako przewodnik możesz zastosować tę logikę nawet wtedy, gdy organizacja ruchu się zmieni.</p>\n</div>\n<div class=\"grid-3\">\n<article class=\"feature\"><b>Jama nr 1</b><p>Masa armii, kolumny piechoty, rydwany i awangarda.</p></article>\n<article class=\"feature\"><b>Jama nr 2</b><p>Największa różnorodność formacji i najbardziej znane pojedyncze typy figur.</p></article>\n<article class=\"feature\"><b>Jama nr 3</b><p>Niewielki zespół interpretowany jako sztab lub centrum dowodzenia.</p></article>\n</div>"
+      },
+      {
+        "id": "jama1",
+        "title": "一号坑 Yīhào Kēng [I-hao Keng] — Jama nr 1",
+        "subtitle": "Pierwsze wrażenie: skala, porządek i zawalony podziemny dach",
+        "content": "<div class=\"prose\">\n<p>Jama nr 1 jest największa. Oficjalne materiały muzeum mówią o planowanej obecności około sześciu tysięcy wojowników i koni. Jama ma kształt długiego prostokąta, a jej wnętrze dzielą równoległe korytarze. Z punktu widokowego widzimy rzędy postaci, ale warto uświadomić grupie, że całość ciągnie się znacznie dalej niż przednia odrestaurowana część.</p>\n<p>Na wschodnim krańcu znajduje się awangarda z żołnierzami ustawionymi w kilku rzędach. Za nią maszerują główne kolumny piechoty i rydwanów, a na bokach figury tworzą osłonę skrzydeł. Układ odtwarza logiczną formację wojskową, choć jest także idealizowanym modelem, nie fotografią konkretnej bitwy.</p>\n<p>Spójrzmy na ziemne przegrody. Pomiędzy nimi znajdowały się drewniane konstrukcje dachu. Po spaleniu i zawaleniu ciężar ziemi zmiażdżył większość figur. Dlatego archeolodzy nie znaleźli uporządkowanej armii gotowej do fotografowania. Znaleźli tysiące fragmentów: głowy, torsy, nogi, pancerze i dłonie. Każda stojąca figura jest wynikiem długiej pracy dokumentacyjnej i rekonstrukcyjnej.</p>\n<p>W tylnej części hali można zwykle zobaczyć „szpital wojowników”: platformy z postaciami na różnych etapach składania. To idealne miejsce, by opowiedzieć, że konserwacja nie polega na szybkim sklejeniu kilku kawałków. Jeden wojownik może składać się z dziesiątek lub setek fragmentów. Trzeba zbadać glinę, dopasować pęknięcia, ustabilizować materiał i zachować wszystkie autentyczne ślady.</p>\n<p>Najpierw pozwól ludziom patrzeć bez słów. Potem pokaż trzy elementy: frontową awangardę, równoległe korytarze oraz strefę rekonstrukcji. Dzięki temu ogromna hala przestaje być tylko widokiem „dużo żołnierzy” i staje się opowieścią o formacji, zniszczeniu oraz współczesnej archeologii.</p>\n</div>\n<div class=\"say\"><b>Powiedz grupie:</b> „To, co wygląda jak idealnie zachowana armia, w większości zostało poskładane z ruin. Każdy stojący żołnierz jest jednocześnie zabytkiem epoki Qin i dziełem współczesnych konserwatorów.”</div>"
+      },
+      {
+        "id": "jama2",
+        "title": "二号坑 Èrhào Kēng [Ar-hao Keng] — Jama nr 2",
+        "subtitle": "Łucznicy, kawaleria, rydwany i laboratorium armii Qin",
+        "content": "<div class=\"prose\">\n<p>Jama nr 2 jest mniej widowiskowa jako „morze postaci”, ale naukowo i przewodnicko bywa ciekawsza. Ma nieregularny plan i zawiera cztery główne zespoły: łuczników, jednostki rydwanów, formacje mieszane piechoty z rydwanami oraz kawalerię. Dzięki temu pokazuje większą różnorodność armii <b>秦 Qín [Ćin]</b> niż Jama nr 1.</p>\n<p>Najbardziej rozpoznawalna figura to klęczący łucznik. Jedno kolano spoczywa na ziemi, druga noga tworzy stabilną podporę, a dłonie pierwotnie trzymały kuszę. Pancerz został wymodelowany z ogromną dokładnością: płytki, wiązania, fałdy rękawów i podeszwy butów. Niektóre klęczące postacie zachowały się lepiej, ponieważ ich niska, zwarta forma była mniej podatna na zmiażdżenie przez zawalony dach.</p>\n<p>Obok łuczników klęczących znajdowali się łucznicy stojący. Zestawienie obu pozycji bywa interpretowane jako sposób prowadzenia naprzemiennego ognia: jedni przygotowują broń, inni strzelają. Trzeba jednak uważać, by nie udawać, że posiadamy pełny podręcznik taktyki dla konkretnej sceny.</p>\n<p>Kawalerzyści prowadzą gliniane konie, a ręce wskazują miejsce uprzęży i broni, która się nie zachowała. Postacie mają krótsze stroje ułatwiające jazdę, nakrycia głowy i wyposażenie odróżniające je od piechoty. Zespół rydwanów pokazuje z kolei, że w epoce pierwszego cesarza pojazdy nadal odgrywały ważną rolę, choć znaczenie kawalerii rosło.</p>\n<p>W tej hali wystawia się często pojedyncze figury w gablotach. To najlepsza okazja, by zobaczyć z bliska twarz, splot włosów, zbroję, ślady pigmentu i sposób ustawienia dłoni. W Jamie nr 1 rządzi skala; w Jamie nr 2 rządzi detal.</p>\n</div>\n<div class=\"detail\"><b>Pokaż grupie:</b> klęczącego łucznika, różnice w długości szat, siodło bez strzemion, układ dłoni po nieistniejącej broni i miejsca, gdzie zachowały się ślady farby.</div>"
+      },
+      {
+        "id": "jama3-4",
+        "title": "三号坑 Sānhào Kēng [San-hao Keng] i pusta Jama nr 4",
+        "subtitle": "Sztab bez głównego dowódcy oraz projekt przerwany przez historię",
+        "content": "<div class=\"prose\">\n<p>Jama nr 3 jest najmniejsza z trzech głównych i zawiera kilkadziesiąt figur, konie oraz rydwan. Wojownicy nie stoją w wielkich kolumnach, lecz w układzie przypominającym straż lub personel sztabu. Z tego powodu stanowisko interpretuje się jako centrum dowodzenia nad formacjami z Jam nr 1 i 2.</p>\n<p>W jednej części odkryto postacie ustawione twarzami do siebie, jakby tworzyły korytarz honorowy. W drugiej znajdował się rydwan z dekorowanymi elementami. Nie znaleziono jednak jednoznacznej figury naczelnego dowódcy całej armii. To otwiera pytania: czy najwyższym dowódcą miał być sam cesarz spoczywający w kopcu, czy brakująca postać nie została ukończona albo zniszczona?</p>\n<p>Jama nr 3 ucierpiała od ognia w mniejszym stopniu niż pozostałe, dlatego na niektórych figurach zachowały się lepsze ślady warstw malarskich. Nadal jednak większość pierwotnej polichromii jest bardzo delikatna.</p>\n<p>W pobliżu znajduje się Jama nr 4, która została przygotowana, lecz pozostała pusta. Popularna interpretacja mówi, że projekt przerwała śmierć <b>秦始皇 Qín Shǐhuáng [Ćin Szy-hłang]</b> w 210 roku p.n.e., walki o sukcesję i szybki bunt przeciw dynastii. To prawdopodobne, ale pusta jama nie posiada tablicy wyjaśniającej dokładny plan, który miał zostać zrealizowany.</p>\n<p>Jama nr 4 jest szczególnie ważna, bo pokazuje, że mauzoleum nie było gotowym dziełem zamkniętym wiele lat przed pogrzebem. Budowa trwała do ostatnich lat panowania, a wydarzenia polityczne pozostawiły ślady w architekturze. Nawet cesarz obsesyjnie planujący wieczność nie zdołał ukończyć wszystkiego.</p>\n</div>"
+      },
+      {
+        "id": "trasa-muzeum",
+        "title": "Gotowy flow po muzeum",
+        "subtitle": "Jak prowadzić od efektu „wow” do sensu historycznego",
+        "content": "<div class=\"timeline\">\n<div><time>1. Przed wejściem</time><p>Wyjaśnij, że jamy są 1,5 km od kopca i stanowią jedynie część kompleksu.</p></div>\n<div><time>2. Pierwszy widok Jamy nr 1</time><p>Daj 30–60 sekund ciszy i zdjęć. Nie zabijaj pierwszego wrażenia listą dat.</p></div>\n<div><time>3. Front formacji</time><p>Pokaż awangardę, skrzydła oraz równoległe korytarze.</p></div>\n<div><time>4. Strefa konserwacji</time><p>Opowiedz o zawaleniu dachu, połamanych figurach i składaniu fragmentów.</p></div>\n<div><time>5. Jama nr 3</time><p>Przejdź do hierarchii, dowodzenia i pytania o brak naczelnego generała.</p></div>\n<div><time>6. Jama nr 2</time><p>Pokaż klęczącego łucznika, kawalerię, rydwany, zbroje i indywidualne detale.</p></div>\n<div><time>7. Broń i rydwany</time><p>Połącz metalurgię, kusze, prawdziwe uzbrojenie i logistykę warsztatów.</p></div>\n<div><time>8. Finał</time><p>Wróć do nieotwartego grobu i puenty: wielkość projektu mierzy również wielkość lęku cesarza.</p></div>\n</div>\n<div class=\"note\"><b>Zasada prowadzenia:</b> Najpierw obraz, potem pytanie, dopiero później liczba. Zamiast zaczynać „Jama ma tyle metrów”, powiedz: „Proszę zobaczyć, jak daleko ciągną się korytarze — teraz wyobraźmy sobie, że wszystkie były przykryte dachem i ukryte pod ziemią”.</div>\n<div class=\"detail\"><b>Komunikat logistyczny:</b> „Będzie tłoczno. Ustalamy punkt zbiórki przed wejściem do kolejnej hali. Zdjęcia robimy sprawnie, nie blokujemy barierki i nie oddalamy się bez informacji.”</div>"
+      },
+      {
+        "id": "rangi",
+        "title": "Jak rozpoznawać żołnierzy i ich rangi",
+        "subtitle": "Fryzura, nakrycie głowy, pancerz, szata i postawa",
+        "content": "<div class=\"prose\">\n<p>Figury nie noszą podpisów „generał”, „piechur” czy „woźnica”, ale ranga i funkcja są zakodowane w wyglądzie. Najwyżsi oficerowie są wyżsi, mają rozbudowane nakrycia głowy, dłuższe pancerze i bardziej złożone dekoracje. Zwykli piechurzy mogą być bez pancerza albo w prostszych zbrojach, a ich włosy związano w charakterystyczne koki.</p>\n<p>Generałowie wyróżniają się masywną sylwetką, podwójnymi warstwami szat i pancerzem ozdobionym elementami przypominającymi wstęgi. Oficer średniej rangi nosi skromniejsze nakrycie głowy i pancerz, ale nadal odróżnia się od szeregowego. Woźnica ma wyprostowane ręce przygotowane do trzymania lejców i często specjalną ochronę ramion.</p>\n<p>Łucznik klęczący nosi pancerz, ponieważ zajmuje niższą i bardziej statyczną pozycję, podczas gdy część łuczników stojących ma lżejszy strój ułatwiający ruch. Kawalerzysta posiada krótszą szatę i obcisłe spodnie, a przy koniu stoi tak, jakby prowadził go za wodze. W epoce <b>秦 Qín [Ćin]</b> nie używano jeszcze strzemion w późniejszym, rozwiniętym sensie, dlatego wsiadanie i walka z konia wymagały dużej sprawności.</p>\n<p>Fryzury także niosą informacje. Koki mogą znajdować się po różnych stronach głowy, a czapki i korony wskazują rangę. Nie oznacza to jednak, że każda różnica jest dokładnym kodem wojskowym, który umiemy dziś bezbłędnie odczytać. Część detali może wynikać z warsztatu, mody, regionu lub indywidualnego wykończenia.</p>\n<p>Dla turysty najlepsza zabawa polega na „czytaniu” figury: najpierw głowa, potem ramiona, pancerz, długość szaty, dłonie i pozycja stóp. Wtedy przestajemy widzieć identyczne gliniane postacie, a zaczynamy rozpoznawać role.</p>\n</div>\n<div class=\"grid-3\">\n<article class=\"feature\"><b>Głowa</b><p>Kok, czapka, korona i wąsy pomagają rozpoznać rangę lub typ.</p></article>\n<article class=\"feature\"><b>Tułów</b><p>Długość i złożoność pancerza pokazują status oraz funkcję.</p></article>\n<article class=\"feature\"><b>Dłonie</b><p>Ich ustawienie zdradza nieistniejącą dziś broń, lejce albo sposób służby.</p></article>\n</div>"
+      },
+      {
+        "id": "produkcja",
+        "title": "Jak powstawał wojownik: glina, części, ręce i ogień",
+        "subtitle": "Nie nowoczesna taśma, lecz zorganizowana produkcja wielu warsztatów",
+        "content": "<div class=\"prose\">\n<p>Figury są puste w środku, co zmniejszało masę i umożliwiało równomierniejsze wypalanie. Dolne partie nóg wykonywano solidnie, ponieważ musiały utrzymać całą postać. Tors budowano z pasm gliny nakładanych podobnie jak przy formowaniu dużego naczynia. Głowy, ręce i dłonie powstawały oddzielnie, a następnie były łączone z korpusem.</p>\n<p>Badania ceramiczne wskazują na wykorzystanie lokalnych surowców i produkcję w pobliżu kompleksu. Piece musiały pomieścić wielkie elementy i pozwolić na kontrolowane suszenie oraz wypalanie. Zbyt szybkie odparowanie wody mogło rozerwać figurę, a nierównomierna temperatura prowadziła do pęknięć.</p>\n<p>Popularny obraz głosi, że istniało kilka gotowych form głów, z których składano identyczne ciała, a rzemieślnik tylko doklejał wąsy. Badania pokazują bardziej złożony proces. Powtarzalne rozwiązania i formy były używane, lecz figury budowano oraz modelowano indywidualnie. UCL podkreśla, że nie była to prosta taśma montażowa. Ręczne wykańczanie twarzy, uszu, fryzur, pancerzy i fałd ubrania tworzyło ogromną różnorodność.</p>\n<p>Po wysuszeniu i wypaleniu postać pokrywano ciemnym lakierem organicznym, a następnie pigmentami. Dopiero później trafiała do jamy i otrzymywała uzbrojenie. Kolejność nie wszystkich etapów jest całkowicie pewna, lecz analiza śladów pozwala odtworzyć główną logikę produkcji.</p>\n<p>Szacowana masa przeciętnego wojownika wynosi często około 150–200 kg, zależnie od typu figury. Sam koń był jeszcze większym wyzwaniem. Transport, ustawienie i zabezpieczenie tak ciężkich obiektów wymagały dróg, platform oraz zespołów ludzi. Pomnóżmy to przez tysiące figur, a zobaczymy projekt nie jednej pracowni, lecz całego systemu.</p>\n</div>\n<div class=\"say\"><b>Powiedz grupie:</b> „To była starożytna masowa personalizacja: wspólne procedury i powtarzalne rozwiązania, ale ogrom ręcznego modelowania. Nie fabryka klonów, tylko sieć warsztatów pracujących według jednego planu.”</div>"
+      },
+      {
+        "id": "konie",
+        "title": "Konie z gliny i konie prawdziwe",
+        "subtitle": "Transport, kawaleria, rydwany oraz ofiary zwierzęce",
+        "content": "<div class=\"prose\">\n<p>Chińska nazwa <b>兵马俑 Bīngmǎyǒng [Bing-ma-jung]</b> wymienia konie równie wyraźnie jak żołnierzy. W jamach znajdują się pełnowymiarowe konie rydwanowe i kawaleryjskie. Modelowano je z napiętymi mięśniami, uniesionymi głowami, otwartymi nozdrzami i precyzyjnymi detalami uprzęży.</p>\n<p>Konie dla rydwanów ustawiano po cztery. Zwierzęta kawaleryjskie stoją przy swoich jeźdźcach, ponieważ figury nie zostały przedstawione w siodle. Dłonie kawalerzystów wskazują miejsce wodzy. Siodła były stosunkowo proste, a rozwinięte strzemiona pojawiły się później, dlatego utrzymanie się podczas jazdy i walki wymagało treningu.</p>\n<p>W innych częściach mauzoleum znaleziono nie tylko ceramiczne konie, ale również szkielety prawdziwych zwierząt pochowanych w stajniach i jamach. Pokazuje to, że figury zastępcze oraz rzeczywiste ofiary funkcjonowały obok siebie. Cesarz otrzymywał symboliczne stado z gliny, lecz także autentyczne zwierzęta związane z dworem.</p>\n<p>Konie miały znaczenie militarne, komunikacyjne i prestiżowe. Pozwalały ciągnąć rydwany, przenosić rozkazy, prowadzić zwiad i ścigać przeciwnika. Państwa północnych i zachodnich pograniczy rozwijały kawalerię pod wpływem kontaktów ze społecznościami stepowymi. <b>秦 Qín [Ćin]</b>, położone na zachodzie świata chińskiego, od dawna funkcjonowało w strefie takich kontaktów.</p>\n<p>Przy figurze konia można zwrócić uwagę na proporcje. Nie są to drobne kuce dekoracyjne, lecz mocne zwierzęta wojskowe. Każdy koń z terakoty również musiał zostać wykonany w częściach, wysuszony, wypalony, pomalowany i ustawiony bez pęknięcia. Technicznie był co najmniej tak wymagający jak wojownik.</p>\n</div>\n<div class=\"detail\"><b>Pokaż:</b> kształt pyska, grzywę, uszy, ślady uprzęży i różnicę między końmi rydwanowymi a kawaleryjskimi.</div>"
+      },
+      {
+        "id": "znaki-warsztaty",
+        "title": "Imiona w glinie i metalu",
+        "subtitle": "Jak archeolodzy odtwarzają organizację warsztatów",
+        "content": "<div class=\"prose\">\n<p>Na figurach z Jamy nr 1 zachowały się stemple, ryte imiona, liczby i nazwy miejsc lub instytucji. Badanie ponad tysiąca wojowników wykazało setki znaków, w tym dziesiątki imion. Część stempli zawiera znak <b>宫 gōng [gung]</b>, czyli „pałac”, co może wskazywać na warsztaty związane z administracją królewską. Inne oznaczenia łączą figury z określonymi zespołami lub lokalnymi wykonawcami.</p>\n<p>Nie wszystkie znaki pełniły tę samą funkcję. Stempel wykonany przed wypaleniem mógł identyfikować warsztat lub osobę odpowiedzialną. Numer mógł służyć kontroli partii, montażowi albo rozmieszczeniu. Napis na broni bywał związany z urzędem, datą i hierarchią nadzoru. Archeolodzy analizują nie tylko treść znaku, ale także miejsce jego występowania oraz rozkład w jamie.</p>\n<p>Wyniki sugerują kilka równolegle działających sposobów organizacji. Produkcja figur mogła angażować duże warsztaty pałacowe i zespoły lokalne. Broń powstawała w partiach o nieco innych wymiarach oraz składzie chemicznym, a następnie była magazynowana i rozdawana poszczególnym sektorom jamy. Nie widać jednej nowoczesnej linii produkcyjnej, na której przedmiot przechodził przez identyczne stanowiska. Bardziej prawdopodobne są samodzielne komórki potrafiące wykonać komplet lub dużą część procesu.</p>\n<p>Popularne filmy mówią, że podpis pozwalał natychmiast zabić rzemieślnika za każdą wadę. Surowość prawa <b>秦 Qín [Ćin]</b> jest dobrze znana, a znaki mogły służyć odpowiedzialności i kontroli jakości. Nie mamy jednak dokumentacji każdej kary ani dowodu, że każdy błąd automatycznie kończył się egzekucją. Lepiej powiedzieć: produkcja była identyfikowalna, kontrolowana i osadzona w państwowej biurokracji.</p>\n</div>\n<div class=\"note fact-check\"><b>Fakt:</b> imiona i znaki naprawdę istnieją. <b>Uproszczenie:</b> „Każdy wojownik ma podpis jednego artysty”. Wykonanie postaci mogło być pracą zespołową, a znak nie zawsze oznacza autora całej figury.</div>"
+      },
+      {
+        "id": "twarze",
+        "title": "Czy każda twarz przedstawia prawdziwego żołnierza?",
+        "subtitle": "Fotogrametria, uszy i granice tego, co możemy udowodnić",
+        "content": "<div class=\"prose\">\n<p>Na pierwszy rzut oka każdy wojownik wydaje się inny. Różnią się oczami, brwiami, ustami, zarostem, wiekiem, fryzurą i wyrazem twarzy. To jedna z największych sił artystycznych zespołu: armia wygląda jak populacja, a nie jak magazyn identycznych manekinów.</p>\n<p>Naukowcy wykorzystali fotogrametrię, czyli tworzenie modeli 3D na podstawie serii fotografii. Analizowali między innymi uszy, ponieważ u żywych ludzi są bardzo zróżnicowane, a w sztuce mogą również ujawniać styl poszczególnych rzemieślników. Badania potwierdziły dużą zmienność sposobów modelowania.</p>\n<p>Nie daje to jednak „ostatecznego dowodu”, że każda figura jest portretem konkretnego gwardzisty. Różnorodność może mieć kilka źródeł: obserwację prawdziwych ludzi, świadome tworzenie różnych typów fizjonomicznych, indywidualne ręce rzemieślników i warianty warsztatowe. Bez nazwiska przedstawionej osoby i niezależnego wizerunku nie możemy połączyć konkretnej twarzy z konkretnym żołnierzem.</p>\n<p>Najbezpieczniejsze zdanie brzmi: figury zostały celowo zindywidualizowane, aby przypominały realistyczną armię. Nie są kopiami jednego modelu, ale nie wiemy, czy są portretami w dzisiejszym sensie.</p>\n<p>Warto zwrócić uwagę na emocje. Wojownicy nie krzyczą i nie pokazują dramatycznego ruchu. Ich twarze są kontrolowane, spokojne i skupione. To pasuje do ogólnego języka zespołu: dyscyplina jest ważniejsza od indywidualnego bohaterstwa. Każdy żołnierz ma osobowość, ale żadna twarz nie wybija się ponad porządek formacji.</p>\n</div>\n<div class=\"say\"><b>Powiedz grupie:</b> „Możemy powiedzieć, że każdy wygląda indywidualnie. Nie możemy uczciwie powiedzieć, że znamy osiem tysięcy portretów konkretnych żołnierzy.”</div>"
+      },
+      {
+        "id": "kolory",
+        "title": "Kolory, które znikają po zetknięciu z powietrzem",
+        "subtitle": "Lakier, pigmenty i wyścig konserwatorów z czasem",
+        "content": "<div class=\"prose\">\n<p>Dzisiejsza armia jest w większości szara, brunatna i ziemista. Pierwotnie wyglądała zupełnie inaczej. Po wypaleniu glinę pokrywano warstwą lakieru, a na nim nakładano pigmenty: czerwień, zieleń, błękit, fiolet, biel, czerń i różne odcienie skóry. Malowano szaty, spodnie, pancerze, twarze, włosy, zarost i elementy wyposażenia.</p>\n<p>Kolor nie tworzył jednolitego munduru. Znane fragmenty pokazują różnorodne zestawienia, co oznacza, że wyobrażenie całej armii w identycznych czerwonych strojach jest błędne. Polichromia dodawała realizmu i pozwalała odróżnić tkaniny, zbroje oraz detale.</p>\n<p>Największy problem pojawia się podczas wykopalisk. Lakier przez dwa tysiące lat pozostawał w wilgotnej ziemi. Po odsłonięciu szybko wysycha, kurczy się i odspaja od ceramiki. Razem z nim odpada pigment. W pierwszych dekadach badań wiele kolorów zniknęło, zanim opracowano skuteczniejsze metody stabilizacji.</p>\n<p>To jedna z przyczyn ostrożnego tempa wykopalisk. Z archeologicznego punktu widzenia pozostawienie figury w ziemi może być bezpieczniejsze niż wydobycie jej bez technologii pozwalającej zachować powierzchnię. „Nieodkopane” nie oznacza zapomniane. Może oznaczać świadomie chronione dla przyszłych pokoleń.</p>\n<p>W Jamie nr 2 i na figurach z innych części mauzoleum nadal odnajduje się fragmenty polichromii. Naukowcy badają skład pigmentów, warstwy lakieru i mikroklimat. Dzisiejszy odwiedzający powinien więc wyobrazić sobie nie armię glinianych duchów, lecz wielobarwną, pełnowymiarową paradę.</p>\n</div>\n<div class=\"detail\"><b>Pokaż:</b> różowe lub czerwone ślady na twarzach i szatach, czarne linie włosów, zielone oraz fioletowe pigmenty. Nawet mała plamka jest pozostałością całej zaginionej warstwy wizualnej.</div>"
+      },
+      {
+        "id": "bron",
+        "title": "Prawdziwa broń w rękach glinianych żołnierzy",
+        "subtitle": "Miecze, lance, halabardy, kusze i ponad 40 tysięcy grotów",
+        "content": "<div class=\"prose\">\n<p>Wojownicy zostali wyposażeni nie w ceramiczne imitacje, lecz w prawdziwe przedmioty z brązu oraz broń z elementami drewnianymi. Drewno, bambus, skóra i sznury w większości zniknęły, dlatego dłonie figur są dziś puste. Na posadzce jam znaleziono jednak miecze, ostrza włóczni, lance, halabardy, haki, okucia i mechanizmy kusz.</p>\n<p>Najliczniejsze są groty strzał: ponad czterdzieści tysięcy egzemplarzy. Badacze nie przeanalizowali laboratoryjnie każdego z nich; szczegółowe pomiary i analizy wykonano na dużych próbach. Groty są bardzo podobne wymiarowo, co świadczy o wysokim stopniu standaryzacji, ale badania chemiczne ujawniają mniejsze grupy produkcyjne.</p>\n<p>Na krawędziach wielu przedmiotów zauważono równoległe ślady końcowej obróbki. Wskazują one na używanie obracających się narzędzi ściernych do ostrzenia i polerowania. Nie należy nazywać ich bez zastrzeżeń „pierwszymi przemysłowymi tokarkami świata”. Mamy dowód systematycznej mechanicznej obróbki, nie kompletną maszynę zachowaną w warsztacie.</p>\n<p>Część broni mogła zostać wykonana specjalnie dla mauzoleum, a część pochodzić z państwowych arsenałów. Inskrypcje z datami i urzędnikami sugerują skomplikowany obieg produkcji oraz magazynowania. Broń była funkcjonalna, ale brak śladów walki na wielu egzemplarzach wskazuje, że nie musiała wcześniej służyć na polu bitwy.</p>\n<p>Przez lata popularny był mit, że broń pokryto chromem jako starożytną powłoką antykorozyjną. Badanie opublikowane w 2019 roku wykazało, że chrom na powierzchniach pochodził głównie z sąsiedniego lakieru, a dobre zachowanie brązu wiązało się przede wszystkim z właściwościami gleby i lokalnym środowiskiem.</p>\n</div>\n<div class=\"note fact-check\"><b>Fakt:</b> broń była realna i wysokiej jakości. <b>Mit:</b> „Chińczycy wynaleźli chromowanie broni dwa tysiące lat przed Europą”.</div>"
+      },
+      {
+        "id": "kusze-groty",
+        "title": "Kusza i strzała: technologia wojny masowej",
+        "subtitle": "Standaryzowane mechanizmy, wiązki po sto grotów i ostrożność z legendami",
+        "content": "<div class=\"prose\">\n<p>Chińska kusza istniała przed zjednoczeniem przez <b>秦 Qín [Ćin]</b>, ale państwo pierwszego cesarza potrafiło produkować ją i wykorzystywać na ogromną skalę. Najbardziej zaawansowaną częścią był brązowy mechanizm spustowy złożony z kilku precyzyjnie dopasowanych elementów. Drewniana kolba i łuk zniknęły, lecz metalowe spusty pozwalają odtworzyć zasadę działania.</p>\n<p>Kusza nie czyniła automatycznie z niewyszkolonego chłopa mistrza w jeden dzień. Nadal wymagała obsługi, ustawiania szyku, napinania i celowania. Ułatwiała jednak standaryzację szkolenia i pozwalała utrzymać napięcie cięciwy mechanicznie, co odróżniało ją od zwykłego łuku.</p>\n<p>Groty odnajdywano często w skupiskach liczących około stu sztuk, interpretowanych jako zawartość kołczanu jednego kusznika. Zespół metalowy składał się z twardego, ostrego grotu oraz trzpienia łączącego go z drewnianym lub bambusowym promieniem. Badania składu stopu pokazują, że rzemieślnicy kontrolowali proporcje miedzi, cyny i ołowiu, lecz popularna opowieść o dokładnie dwóch uniwersalnych recepturach dla każdej strzały jest zbyt prosta. Skład zależał od partii i funkcji elementu.</p>\n<p>Rozmieszczenie mechanizmów kusz i grup chemicznych grotów wskazuje, że bronie trafiały do jam w partiach. Warsztaty pracowały równolegle, a gotowe zestawy były przechowywane i wydawane określonym jednostkom. To obraz logistyki bardziej złożonej niż jedna centralna fabryka.</p>\n<p>W hali zwróć uwagę na dłonie łuczników. Ich palce i układ ramion zachowały „negatyw” broni, która zgniła. Archeologia odtwarza zatem nie tylko to, co przetrwało, ale także brakujące przedmioty na podstawie pozycji ciała, metalowych części i śladów na ziemi.</p>\n</div>"
+      },
+      {
+        "id": "rydwany",
+        "title": "铜车马 Tóng Chēmǎ [Tung Cze-ma] — brązowe rydwany cesarza",
+        "subtitle": "Miniaturowe pojazdy złożone z tysięcy elementów",
+        "content": "<div class=\"prose\">\n<p>W pobliżu kopca cesarza odkryto dwa zespoły brązowych rydwanów i koni. Nie są naturalnej wielkości; wykonano je mniej więcej w połowie skali. Mimo to należą do najbardziej skomplikowanych metalowych zabytków całego mauzoleum. Każdy zespół składa się z tysięcy odlanych, kutych, lutowanych i łączonych części.</p>\n<p>Pierwszy pojazd jest bardziej otwarty i bywa interpretowany jako rydwan prowadzący, ochronny lub inspekcyjny. Drugi posiada zamkniętą kabinę z oknami i dachem, dlatego łączy się go z podróżą cesarza. Cztery konie ciągną każdy rydwan, a uprząż, lejce, parasol, broń i ornamenty zostały odwzorowane z niezwykłą dokładnością.</p>\n<p>Pojazdy były pierwotnie malowane i zdobione złotem oraz srebrem. Ich metalowe ścianki są cienkie, a ruchome elementy pokazują wysoki poziom odlewnictwa i montażu. Nie jest to jednolity posąg odlany jednym ruchem, lecz złożona konstrukcja, której części musiały do siebie pasować.</p>\n<p>Rydwany pokazują zmianę skali w mauzoleum. Wojownicy są pełnowymiarowi, ale pojazdy przy kopcu zostały pomniejszone. Świat grobowy nie był więc prostym kopiowaniem rzeczywistości. Artyści i projektanci dobierali skalę oraz materiał zależnie od funkcji i miejsca.</p>\n<p>Dla przewodnika jest to doskonały pomost między sztuką a inżynierią. W figurach zachwyca modelowanie człowieka, a w rydwanach — zdolność do stworzenia działającego modelu z metalu. Oba rodzaje obiektów służą jednak tej samej idei: cesarz musi podróżować i być chroniony także po śmierci.</p>\n</div>"
+      },
+      {
+        "id": "inne-jamy",
+        "title": "Urzędnicy, akrobaci, ptaki i kamienne pancerze",
+        "subtitle": "Armia była tylko jednym działem podziemnego państwa",
+        "content": "<div class=\"prose\">\n<p>W Jamie K0006, położonej bliżej kopca, odnaleziono figury interpretowane jako urzędnicy cywilni, pozostałości drewnianego rydwanu, naczynie, brązowe topory i kości prawdziwych koni. Jeśli interpretacja jest poprawna, cesarz potrzebował po śmierci nie tylko żołnierzy, ale również administracji prowadzącej sprawy państwa.</p>\n<p>Jama K9901 jest nazywana jamą akrobatów lub artystów. Figury mają odsłonięte torsy, silnie wymodelowane mięśnie i dynamiczne postawy. Mogły przedstawiać akrobatów, zapaśników, siłaczy lub wykonawców uczestniczących w dworskich widowiskach. Nie trzymają broni i nie należą do typowej formacji wojskowej.</p>\n<p>W innych miejscach odkryto ptaki wodne z brązu — żurawie, łabędzie i gęsi — ustawione przy sztucznie zaaranżowanym środowisku wodnym. Mogły symbolizować cesarski park, polowanie, muzyków lub idealizowany krajobraz. Ich obecność pokazuje, że projektanci myśleli o dźwięku, naturze i rozrywce, a nie wyłącznie o wojnie.</p>\n<p>Jama kamiennych pancerzy zawiera setki zbroi i hełmów wykonanych z małych płytek wapiennych połączonych drutem. Takie wyposażenie byłoby zbyt ciężkie i kruche do normalnej bitwy, dlatego miało prawdopodobnie znaczenie rytualne. Samo wykonanie tysięcy płytek i otworów było ogromnym nakładem pracy.</p>\n<p>Odkryto również stajnie z prawdziwymi szkieletami koni, groby pracowników, miejsca ofiarne i pozostałości zabudowy naziemnej. Całość przypomina państwo podzielone na wyspecjalizowane departamenty. Armia jest najgłośniejsza, lecz bez administracji, transportu, zwierząt, rozrywki i rytuału cesarski świat byłby niepełny.</p>\n</div>\n<div class=\"say\"><b>Powiedz grupie:</b> „Wojownicy są najbardziej znani, ale cesarz zabrał do zaświatów także urzędników, pojazdy, konie, artystów i krajobraz. To nie armia przy grobie — to grób zaprojektowany jak państwo.”</div>"
+      },
+      {
+        "id": "zniszczenie",
+        "title": "Dlaczego wojownicy byli połamani?",
+        "subtitle": "Pożar, rabunek, zawalone stropy i ślady końca dynastii",
+        "content": "<div class=\"prose\">\n<p>Figury ustawiono pionowo i uzbrojono. Nie zakopano ich jako sterty kawałków. Po zakończeniu pracy korytarze przykryto drewnianymi belkami, matami i ziemią. Gdy konstrukcje spłonęły lub zgniły, dachy zawaliły się na armię. Ciężar ziemi połamał postacie i konie, a elementy drewniane zniknęły.</p>\n<p>W Jamach nr 1 i 2 znajdują się wyraźne ślady ognia. Tradycyjna narracja wiąże rabunek i podpalenie z wojskami <b>项羽 Xiàng Yǔ [Śiang Jü]</b>, jednego z przywódców buntu po upadku <b>秦 Qín [Ćin]</b>. Starożytne źródła mówią o spaleniu pałaców i naruszeniu mauzoleum. Archeologia potwierdza gwałtowne zniszczenia, ale nie pozwala przypisać każdej spalonej belki jednej konkretnej osobie.</p>\n<p>Rabujący mogli szukać prawdziwej broni. W wielu miejscach brakuje metalowych przedmiotów, a układ szczątków wskazuje na wejście ludzi do korytarzy. Pożar mógł być zamierzony, przypadkowy albo wynikać z kilku epizodów. Następnie erozja, woda i nacisk ziemi działały przez ponad dwa tysiące lat.</p>\n<p>Jama nr 3 zachowała mniej śladów intensywnego pożaru, co tłumaczy lepszy stan niektórych powierzchni. Różnice pomiędzy jamami przypominają, że „Armia Terakotowa” nie przeżyła jednego identycznego wydarzenia. Każda strefa ma własną historię zniszczenia.</p>\n<p>W przewodnickiej opowieści warto odwrócić perspektywę. Cudem nie jest to, że figury są połamane. Cudem jest to, że z tych ruin udało się odtworzyć tysiące postaci, broń, formacje i system produkcji.</p>\n</div>"
+      },
+      {
+        "id": "konserwacja",
+        "title": "Archeologia i konserwacja: dlaczego nie wykopuje się wszystkiego",
+        "subtitle": "Odkrycie może być początkiem zniszczenia",
+        "content": "<div class=\"prose\">\n<p>Archeolog nie jest poszukiwaczem skarbów, którego sukces mierzy się liczbą szybko wydobytych przedmiotów. Każde odsłonięcie zmienia temperaturę, wilgotność, ciśnienie i kontakt z tlenem. W przypadku Armii Terakotowej najbardziej spektakularnym ostrzeżeniem jest utrata kolorów.</p>\n<p>Po znalezieniu fragmentu najpierw dokumentuje się jego położenie. Fotografie, rysunki, skany i numery pozwalają odtworzyć kontekst. Następnie fragmenty trafiają do konserwacji, gdzie są oczyszczane, dopasowywane i łączone odwracalnymi metodami. Uzupełnienia powinny stabilizować figurę, ale nie udawać starożytnego oryginału.</p>\n<p>Dużym wyzwaniem jest identyfikacja fragmentów. W jednej strefie mogą leżeć części wielu wojowników przemieszane podczas zawalenia. Kształt pęknięcia, skład gliny, kolor, ślady narzędzi i modele 3D pomagają dopasować odpowiednie elementy. Nowoczesne algorytmy mogą wspierać pracę, lecz decyzję podejmują specjaliści.</p>\n<p>Nie wszystkie jamy są otwarte. Pozostawienie stanowiska pod ziemią zachowuje je w bardziej stabilnym środowisku. W przyszłości lepsze metody mogą umożliwić wydobycie pigmentów i materiałów organicznych z mniejszym ryzykiem. Dzisiejsza cierpliwość jest więc inwestycją w przyszłą wiedzę.</p>\n<p>W halach zwróć uwagę, że muzeum jest nadal aktywnym miejscem badań. To nie gotowa ekspozycja zamkniętej historii. Każdy nowy fragment może zmienić rozumienie rangi, uzbrojenia, produkcji lub kolorów.</p>\n</div>\n<div class=\"detail\"><b>Puenta:</b> Czasami najlepszą decyzją archeologa jest nie kopać. Zabytku nie można odkryć drugi raz.</div>"
+      },
+      {
+        "id": "grob-rtęć",
+        "title": "Dlaczego nie otwarto właściwego grobu cesarza",
+        "subtitle": "Rtęć, bezpieczeństwo konstrukcji, konserwacja i etyka",
+        "content": "<div class=\"prose\">\n<p>Centralna komora pod kopcem nadal nie została otwarta. To rodzi teorie o pułapkach, klątwach i tajnych technologiach, ale rzeczywiste powody ostrożności są bardziej praktyczne i poważne.</p>\n<p>Po pierwsze, nie znamy dokładnego stanu konstrukcji. Wejście może spowodować zawalenie komór, zmianę ciśnienia lub przepływu wody. Po drugie, wewnątrz mogą znajdować się drewno, tkaniny, lakier i pigmenty znacznie delikatniejsze niż terakota. Bez przygotowania można w kilka minut zniszczyć powierzchnie zachowane przez dwa tysiące lat.</p>\n<p>Po trzecie, badania wykazują podwyższone stężenia rtęci w rejonie kopca, co pasuje do przekazu <b>史记 Shǐjì [Szy-dzi]</b>. Rozkład jest interesujący, ale pomiary z powierzchni nie tworzą szczegółowej mapy podziemnych rzek. Rtęć stanowiłaby zagrożenie dla ludzi i środowiska, a jednocześnie ważny element stanowiska wymagający badań bez zanieczyszczenia.</p>\n<p>Po czwarte, grobowiec jest miejscem pochówku. Pojawia się pytanie etyczne, czy ciekawość naukowa automatycznie usprawiedliwia naruszenie komory ze szczątkami. W wielu kulturach wykopaliska grobów budzą podobne dylematy.</p>\n<p>Techniki nieinwazyjne — geofizyka, badania oporu elektrycznego, magnetometria, analiza chemiczna i obrazowanie — pozwalają poznawać kopiec bez otwierania. Możliwe, że kiedyś technologia oraz plan konserwacji osiągną poziom pozwalający na bezpieczną eksplorację. Na razie tajemnica nie jest wynikiem braku odwagi, lecz świadomości konsekwencji.</p>\n</div>\n<div class=\"note fact-check\"><b>Nie mów:</b> „Chińczycy boją się klątwy”. <b>Powiedz:</b> „Największe ryzyko stanowią zniszczenie zabytków, niepewna konstrukcja, możliwa rtęć i kwestie etyczne.”</div>"
+      },
+      {
+        "id": "koszt-ludzki",
+        "title": "Ludzie, którzy nie dostali własnych posągów",
+        "subtitle": "Rzemieślnicy, skazańcy, poborowi i groby pracowników",
+        "content": "<div class=\"prose\">\n<p>Wielkie liczby łatwo zamieniają ludzi w abstrakcję. Starożytny przekaz mówi o ponad siedmiuset tysiącach robotników, lecz za tą formułą kryły się różne grupy: wykwalifikowani garncarze i metalurdzy, urzędnicy, transportowcy, żołnierze, chłopi odrabiający obowiązki, skazańcy oraz osoby pracujące pod przymusem.</p>\n<p>Znaki na figurach pokazują, że część rzemieślników miała imiona i specjalizacje. Nie byli bezimienną masą z punktu widzenia administracji, chociaż historia długo zachowywała głównie imię cesarza. Archeolodzy odnaleźli groby pracowników oraz szczątki ludzi w pobliżu kompleksu. Część zmarła podczas budowy lub została pochowana jako osoby związane z projektem.</p>\n<p>Nie możemy powiedzieć, że wszyscy byli niewolnikami grzebanymi żywcem. System pracy w państwie <b>秦 Qín [Ćin]</b> obejmował podatki w pracy, pobór, kary oraz wyspecjalizowane warsztaty. Warunki mogły się znacznie różnić. Nie zmienia to faktu, że projekt opierał się na przymusowej zdolności państwa do przesuwania ogromnych zasobów ludzkich.</p>\n<p>Warto zadać grupie pytanie: dlaczego znamy twarz każdego glinianego żołnierza, ale nie znamy większości ludzi, którzy ją wykonali? Mauzoleum miało unieśmiertelnić władcę, a przypadkiem zachowało odciski palców, imiona, ślady narzędzi i decyzje tysięcy pracowników.</p>\n<p>Najbardziej uczciwa ocena miejsca powinna pomieścić dwa zdania jednocześnie. To jedno z największych osiągnięć artystycznych i organizacyjnych starożytności. To także produkt systemu, w którym ambicja władcy miała pierwszeństwo przed życiem i wolnością wielu poddanych.</p>\n</div>\n<div class=\"say\"><b>Powiedz grupie:</b> „Cesarz dostał osiem tysięcy twarzy. Rzemieślnicy dostali kilka znaków w glinie. Archeologia powoli przywraca im miejsce w tej historii.”</div>"
+      },
+      {
+        "id": "smierc-upadek",
+        "title": "Śmierć cesarza i szybki upadek dynastii",
+        "subtitle": "Eliksiry, fałszywy rozkaz, 二世皇帝 Èrshì Huángdì [Ar-szy Hłang-di] i bunt",
+        "content": "<div class=\"prose\">\n<p><b>秦始皇 Qín Shǐhuáng [Ćin Szy-hłang]</b> zmarł w 210 roku p.n.e. podczas podróży inspekcyjnej na wschodzie imperium. Źródła łączą jego ostatnie lata z poszukiwaniem nieśmiertelności, wyprawami po magiczne wyspy i przyjmowaniem eliksirów. Część preparatów mogła zawierać rtęć, ale nie znamy pewnej medycznej przyczyny śmierci.</p>\n<p>Minister <b>李斯 Lǐ Sī [Li Sy]</b>, eunuch i urzędnik <b>赵高 Zhào Gāo [Dżao Gao]</b> oraz młodszy syn cesarza <b>胡亥 Hú Hài [Hu Haj]</b> ukrywali śmierć podczas powrotu do stolicy. Późniejsza tradycja opowiada, że dla zamaskowania zapachu ciała do orszaku dołączono wozy z rybami. Historia jest możliwa, ale szczegóły pochodzą z narracji kronikarskiej.</p>\n<p>Grupa zmieniła sukcesję. Prawowity lub przynajmniej najbardziej prawdopodobny następca <b>扶苏 Fúsū [Fu-su]</b> otrzymał sfałszowany rozkaz samobójstwa, a <b>胡亥 Hú Hài [Hu Haj]</b> został drugim cesarzem jako <b>二世皇帝 Èrshì Huángdì [Ar-szy Hłang-di]</b>. Rządy stały się jeszcze bardziej niestabilne, a <b>赵高 Zhào Gāo [Dżao Gao]</b> eliminował rywali, w tym <b>李斯 Lǐ Sī [Li Sy]</b>.</p>\n<p>Już w 209 roku p.n.e. wybuchł bunt <b>陈胜 Chén Shèng [Czen Szeng]</b> i <b>吴广 Wú Guǎng [U Głang]</b>. Kolejne armie powstańcze rozbiły państwo. W 206 roku p.n.e. dynastia <b>秦 Qín [Ćin]</b> upadła. Przywódcy <b>项羽 Xiàng Yǔ [Śiang Jü]</b> i <b>刘邦 Liú Bāng [Lioł Bang]</b> walczyli później o władzę, a zwycięski <b>刘邦 Liú Bāng [Lioł Bang]</b> założył dynastię <b>汉 Hàn [Han]</b>.</p>\n<p>Szybki upadek pomaga wyjaśnić niedokończone elementy mauzoleum, pustą Jamę nr 4 oraz rabunek kompleksu. Cesarz planował „imperium tysiąca pokoleń”, lecz jego bezpośrednia dynastia nie przeżyła nawet jednego pełnego pokolenia po jego śmierci.</p>\n</div>\n<div class=\"say\"><b>Powiedz grupie:</b> „Cesarz zbudował armię na wieczność, lecz jego dynastia rozpadła się niemal natychmiast. To jeden z największych paradoksów całego miejsca.”</div>"
+      },
+      {
+        "id": "chronologia",
+        "title": "Chronologia: od trzynastoletniego króla do odkrycia w XX wieku",
+        "subtitle": "Daty, które naprawdę warto zapamiętać",
+        "content": "<div class=\"timeline dense\">\n<div><time>259 p.n.e.</time><p>Rodziny przyszły cesarz 嬴政 Yíng Zhèng [Jing Dżeng].</p></div>\n<div><time>246 p.n.e.</time><p>Trzynastoletni król obejmuje tron 秦 Qín [Ćin]; tradycyjny początek budowy mauzoleum.</p></div>\n<div><time>230–221 p.n.e.</time><p>Podbój sześciu głównych rywalizujących królestw.</p></div>\n<div><time>221 p.n.e.</time><p>Powstaje zjednoczone cesarstwo; władca przyjmuje tytuł 秦始皇 Qín Shǐhuáng [Ćin Szy-hłang].</p></div>\n<div><time>210 p.n.e.</time><p>Śmierć cesarza podczas podróży; pogrzeb w mauzoleum.</p></div>\n<div><time>209 p.n.e.</time><p>Wybuchają wielkie bunty przeciw dynastii.</p></div>\n<div><time>206 p.n.e.</time><p>Upadek 秦 Qín [Ćin] i naruszenie kompleksu w okresie walk.</p></div>\n<div><time>ok. 100 p.n.e.</time><p>司马迁 Sīmǎ Qiān [Sy-ma Ćjen] opisuje mauzoleum w 史记 Shǐjì [Szy-dzi].</p></div>\n<div><time>marzec 1974</time><p>Odkrycie fragmentów podczas kopania studni.</p></div>\n<div><time>1976</time><p>Rozpoznanie Jam nr 2 i 3.</p></div>\n<div><time>1979</time><p>Otwarcie hali Jamy nr 1 dla publiczności.</p></div>\n<div><time>1987</time><p>Wpis mauzoleum na listę UNESCO.</p></div>\n<div><time>1999–2000</time><p>Odkrycia jam akrobatów K9901 i urzędników K0006.</p></div>\n<div><time>2019</time><p>Publikacja badań obalających mit chromowania broni.</p></div>\n</div>"
+      },
+      {
+        "id": "ciekawostki",
+        "title": "Anegdoty i detale, które działają na grupę",
+        "subtitle": "Krótkie wstawki między większymi blokami historii",
+        "content": "<div class=\"story-cards\">\n<article><h3>Puste dłonie</h3><p>Większość dłoni wygląda, jakby nadal trzymała broń. Drewno zgniło, lecz układ palców pozwala odtworzyć miecz, kuszę, włócznię albo lejce.</p></article>\n<article><h3>Klęczący łucznik przetrwał lepiej</h3><p>Niska, zwarta figura była mniej narażona na zmiażdżenie niż wysoki piechur. Forma bojowa stała się przypadkiem formą ochronną.</p></article>\n<article><h3>Wojownicy nie stali w świetle</h3><p>Cała kolorowa armia została zamknięta w ciemnych korytarzach i nie była przeznaczona dla ludzkiej publiczności.</p></article>\n<article><h3>Imię rzemieślnika De</h3><p>Badacze rozpoznali powtarzające się znaki konkretnych wykonawców. Jeden z pałacowych rzemieślników, zapisywany jako Dé 得 [De], pozostawił oznaczenia na wielu figurach.</p></article>\n<article><h3>Sto strzał w kołczanie</h3><p>Groty często znajdowano w skupiskach około stu sztuk, interpretowanych jako wyposażenie pojedynczego kusznika.</p></article>\n<article><h3>Brak jednego wielkiego generała</h3><p>W całej armii są figury wysokich oficerów, ale nadal dyskutuje się, kto symbolicznie dowodził całością. Najprostsza odpowiedź: sam cesarz.</p></article>\n<article><h3>Glina pamięta palce</h3><p>Na powierzchni i wewnątrz figur zachowały się odciski, ślady wygładzania i ruchów narzędzia — bezpośredni zapis pracy sprzed ponad dwóch tysięcy lat.</p></article>\n<article><h3>Muzeum nadal kopie</h3><p>Armia nie jest „odkryta i skończona”. Nowe badania, konserwacja i wykopaliska nadal zmieniają wiedzę o kompleksie.</p></article>\n</div>"
+      },
+      {
+        "id": "fakty-mity",
+        "title": "Fakty, hipotezy i mity",
+        "subtitle": "Najczęstsze pytania turystów — bez psucia dobrej historii",
+        "content": "<div class=\"fact-table\">\n<div class=\"fact-row\"><b>„Każdy wojownik jest portretem konkretnego żołnierza.”</b><span class=\"mixed\">NIEPEWNE</span><p>Figury są silnie zindywidualizowane, ale różnorodność może wynikać także z pracy wielu warsztatów i świadomego tworzenia realistycznych typów.</p></div>\n<div class=\"fact-row\"><b>„Wojownicy byli od początku szarzy.”</b><span class=\"false\">NIE</span><p>Pokrywano ich lakierem i wielobarwnymi pigmentami. Większość kolorów uległa zniszczeniu po odsłonięciu.</p></div>\n<div class=\"fact-row\"><b>„Broń była chromowana przeciw korozji.”</b><span class=\"false\">MIT</span><p>Chrom wiąże się głównie z lakierem i zanieczyszczeniem po pochówku. Stan brązu tłumaczą przede wszystkim warunki gleby.</p></div>\n<div class=\"fact-row\"><b>„W grobowcu na pewno płyną rzeki rtęci.”</b><span class=\"mixed\">MOŻLIWE</span><p>Opisuje je 史记 Shǐjì [Szy-dzi], a pomiary pokazują anomalie rtęci, lecz komory nie otwarto.</p></div>\n<div class=\"fact-row\"><b>„Cesarz na pewno zmarł od rtęci.”</b><span class=\"mixed\">HIPOTEZA</span><p>Mógł przyjmować eliksiry z rtęcią, ale bez badań szczątków przyczyny śmierci nie da się potwierdzić.</p></div>\n<div class=\"fact-row\"><b>„Przy projekcie pracowało dokładnie 700 000 ludzi.”</b><span class=\"legend\">PRZEKAZ</span><p>Liczba pochodzi ze starożytnej kroniki i jest tradycyjnie powtarzana, nie jest wynikiem zachowanego spisu płac.</p></div>\n<div class=\"fact-row\"><b>„Każdy rzemieślnik był zabijany za najmniejszy błąd.”</b><span class=\"false\">BRAK DOWODU</span><p>Produkcja była oznaczana i kontrolowana, a prawo było surowe, ale nie znamy automatycznej kary dla każdej wady.</p></div>\n<div class=\"fact-row\"><b>„Wszystkie figury wykopano.”</b><span class=\"false\">NIE</span><p>Znaczna część stanowiska pozostaje nieodkopana, a prace są celowo powolne z powodów konserwatorskich.</p></div>\n<div class=\"fact-row\"><b>„To ósmy cud świata.”</b><span class=\"legend\">HASŁO</span><p>To popularne określenie turystyczne przypisywane różnym osobom, nie oficjalna kategoria UNESCO.</p></div>\n</div>"
+      },
+      {
+        "id": "nawijki-uzycie",
+        "title": "Jak domknąć opowieść",
+        "subtitle": "Trzy puenty zależnie od charakteru grupy",
+        "content": "<div class=\"story-cards\">\n<article><h3>Puenta historyczna</h3><p>„Dynastia Qín 秦 [Ćin] szybko upadła, ale stworzony przez nią model cesarstwa przeżył ponad dwa tysiące lat. Podziemna armia jest migawką z momentu narodzin tego systemu.”</p></article>\n<article><h3>Puenta ludzka</h3><p>„Najpotężniejszy człowiek swojej epoki bał się śmierci tak bardzo, że zbudował całe państwo pod ziemią. Wielkość armii mierzy również wielkość jego lęku.”</p></article>\n<article><h3>Puenta archeologiczna</h3><p>„Największa tajemnica nadal leży pod kopcem. To, co nazywamy jednym z największych odkryć świata, może być tylko zewnętrzną strażą przed nieotwartymi drzwiami.”</p></article>\n<article><h3>Puenta o pracy</h3><p>„Widzimy twarze żołnierzy, lecz za nimi stoją tysiące niewidzialnych ludzi: garncarzy, malarzy, hutników, transportowców i konserwatorów.”</p></article>\n</div>\n<div class=\"say\"><b>Finał do grupy:</b> „Ta armia miała zapewnić nieśmiertelność cesarzowi. Ostatecznie unieśmiertelniła także technikę, ubiory, broń, organizację i ręce ludzi, których imion prawie nie znamy. Cesarz chciał zabrać państwo ze sobą. Zamiast tego zostawił je nam do zbadania.”</div>"
+      },
+      {
+        "id": "slownik",
+        "title": "Słownik nazw i wymowa",
+        "subtitle": "Najważniejsze terminy do konsekwentnego używania",
+        "content": "<div class=\"glossary\">\n<div><b>兵马俑 Bīngmǎyǒng</b><span>[Bing-ma-jung]</span><p>Grobowe figury żołnierzy i koni; Armia Terakotowa.</p></div>\n<div><b>秦始皇 Qín Shǐhuáng</b><span>[Ćin Szy-hłang]</span><p>Pierwszy cesarz zjednoczonych Chin.</p></div>\n<div><b>秦 Qín</b><span>[Ćin]</span><p>Państwo, a następnie krótka dynastia pierwszego cesarza.</p></div>\n<div><b>秦始皇陵 Qín Shǐhuáng Líng</b><span>[Ćin Szy-hłang Ling]</span><p>Mauzoleum pierwszego cesarza.</p></div>\n<div><b>临潼 Líntóng</b><span>[Lin-tung]</span><p>Dzielnica Xi’anu, w której leży kompleks.</p></div>\n<div><b>骊山 Líshān</b><span>[Li-szan]</span><p>Góra przy mauzoleum.</p></div>\n<div><b>司马迁 Sīmǎ Qiān</b><span>[Sy-ma Ćjen]</span><p>Historyk, autor 史记 Shǐjì [Szy-dzi].</p></div>\n<div><b>史记 Shǐjì</b><span>[Szy-dzi]</span><p>„Zapiski historyka”, główne starożytne źródło o grobowcu.</p></div>\n<div><b>俑 yǒng</b><span>[jung]</span><p>Zastępcza figura grobowa.</p></div>\n<div><b>法家 Fǎjiā</b><span>[Fa-dźia]</span><p>„Szkoła prawa”, nazywana legalizmem.</p></div>\n<div><b>一号坑 Yīhào Kēng</b><span>[I-hao Keng]</span><p>Jama nr 1.</p></div>\n<div><b>二号坑 Èrhào Kēng</b><span>[Ar-hao Keng]</span><p>Jama nr 2.</p></div>\n<div><b>三号坑 Sānhào Kēng</b><span>[San-hao Keng]</span><p>Jama nr 3.</p></div>\n<div><b>铜车马 Tóng Chēmǎ</b><span>[Tung Cze-ma]</span><p>Brązowe rydwany i konie.</p></div>\n</div>"
+      },
+      {
+        "id": "zrodla",
+        "title": "Źródła i weryfikacja",
+        "subtitle": "Materiały użyte do oddzielenia faktów od efektownych uproszczeń",
+        "content": "<div class=\"prose sources\">\n<p><b>Najważniejsze źródła instytucjonalne i naukowe:</b></p>\n<ul>\n<li><a href=\"https://whc.unesco.org/en/list/441/\" target=\"_blank\" rel=\"noopener\">UNESCO — Mausoleum of the First Qin Emperor</a>: skala, układ mauzoleum, liczba stanowisk, znaczenie historyczne i obecna wysokość kopca.</li>\n<li><a href=\"https://www.bmy.com.cn/jingtai/bmyweb/about.html\" target=\"_blank\" rel=\"noopener\">Emperor Qinshihuang’s Mausoleum Site Museum</a>: oficjalna historia odkrycia, Jamy nr 1–3, obszar 56,25 km² i wykaz typów jam.</li>\n<li><a href=\"https://www.ucl.ac.uk/social-historical-sciences/archaeology/research/research-directory/material-worlds/imperial-logistics-making-terracotta-army\" target=\"_blank\" rel=\"noopener\">UCL Imperial Logistics</a>: wspólny projekt UCL i muzeum poświęcony produkcji oraz logistyce.</li>\n<li><a href=\"https://discovery.ucl.ac.uk/1341916/1/MartinonTorresetal11.pdf\" target=\"_blank\" rel=\"noopener\">Making Weapons for the Terracotta Army</a>: broń, mechanizmy kusz, ponad 40 tys. grotów i organizacja partii produkcyjnych.</li>\n<li><a href=\"https://discovery.ucl.ac.uk/1504424/1/bevan_Lietal16_postprint.pdf\" target=\"_blank\" rel=\"noopener\">Marking Practices and the Making of the Qin Terracotta Army</a>: stemple, imiona rzemieślników i struktura warsztatów.</li>\n<li><a href=\"https://discovery.ucl.ac.uk/1414213/1/Computer_vision.pdf\" target=\"_blank\" rel=\"noopener\">Computer vision, archaeological classification and China’s Terracotta Warriors</a>: fotogrametria i ostrożna interpretacja różnic między twarzami oraz uszami.</li>\n<li><a href=\"https://www.nature.com/articles/s41598-019-40613-7\" target=\"_blank\" rel=\"noopener\">Scientific Reports 2019</a>: obalenie mitu starożytnego chromowania broni.</li>\n</ul>\n<p>Przesłane materiały przewodnickie zostały wykorzystane jako baza narracyjna, ale twierdzenia dokumentalne zostały złagodzone tam, gdzie badania nie pozwalają na pewność. Szczególnie dotyczy to „portretów konkretnych żołnierzy”, maszynowej tokarki, automatycznych egzekucji rzemieślników, śmierci cesarza od rtęci i dokładnego celu ustawienia armii na wschodzie.</p>\n</div>"
+      }
+    ],
+    "media": [],
+    "quiz": [
+      {
+        "question": "Co dosłownie oznacza chińska nazwa 兵马俑 Bīngmǎyǒng [Bing-ma-jung]?",
+        "answers": [
+          "Grobowe figury żołnierzy i koni",
+          "Pałac wiecznego pokoju",
+          "Kamienna armia cesarzowej"
+        ],
+        "correct": 0,
+        "explanation": "兵 bīng [bing] to żołnierz, 马 mǎ [ma] to koń, a 俑 yǒng [jung] oznacza figurę grobową."
+      },
+      {
+        "question": "W którym roku odkryto główną jamę Armii Terakotowej?",
+        "answers": [
+          "1912",
+          "1974",
+          "2001"
+        ],
+        "correct": 1,
+        "explanation": "W marcu 1974 roku rolnicy kopiący studnię natrafili na fragmenty figur."
+      },
+      {
+        "question": "Dlaczego rolnicy kopali w miejscu odkrycia?",
+        "answers": [
+          "Szukali złota",
+          "Budowali drogę",
+          "Szukali wody i kopali studnię"
+        ],
+        "correct": 2,
+        "explanation": "Odkrycie wynikło z codziennej potrzeby zdobycia wody."
+      },
+      {
+        "question": "Jak nazywał się pierwszy cesarz zjednoczonych Chin?",
+        "answers": [
+          "秦始皇 Qín Shǐhuáng [Ćin Szy-hłang]",
+          "汉武帝 Hàn Wǔdì [Han U-di]",
+          "唐太宗 Táng Tàizōng [Tang Taj-dzung]"
+        ],
+        "correct": 0,
+        "explanation": "秦始皇 Qín Shǐhuáng [Ćin Szy-hłang] przyjął tytuł pierwszego cesarza po zjednoczeniu w 221 roku p.n.e."
+      },
+      {
+        "question": "Co wydarzyło się w 221 roku p.n.e.?",
+        "answers": [
+          "Odkryto armię",
+          "Qin zjednoczyło rywalizujące królestwa",
+          "Otworzono centralny grobowiec"
+        ],
+        "correct": 1,
+        "explanation": "To rok politycznego zjednoczenia i przyjęcia tytułu cesarskiego."
+      },
+      {
+        "question": "Jak duży jest cały zespół mauzoleum według oficjalnych materiałów?",
+        "answers": [
+          "Około 1 km²",
+          "Około 56,25 km²",
+          "Około 500 km²"
+        ],
+        "correct": 1,
+        "explanation": "Jamy wojowników stanowią tylko część obszaru około 56,25 km²."
+      },
+      {
+        "question": "Gdzie w stosunku do kopca cesarza znajdują się główne jamy wojowników?",
+        "answers": [
+          "Około 1,5 km na wschód",
+          "Na szczycie kopca",
+          "20 km na południe"
+        ],
+        "correct": 0,
+        "explanation": "Jamy leżą około 1,5 kilometra na wschód od centralnego kopca."
+      },
+      {
+        "question": "Która jama jest największa i pokazuje główną masę piechoty?",
+        "answers": [
+          "Jama nr 1",
+          "Jama nr 3",
+          "Jama nr 4"
+        ],
+        "correct": 0,
+        "explanation": "Jama nr 1 jest największym zespołem i zawiera główną formację."
+      },
+      {
+        "question": "Z czego słynie Jama nr 2?",
+        "answers": [
+          "Wyłącznie z urzędników",
+          "Z różnorodnych formacji: łuczników, kawalerii i rydwanów",
+          "Z centralnej komory cesarza"
+        ],
+        "correct": 1,
+        "explanation": "Jama nr 2 pokazuje największą różnorodność typów wojsk."
+      },
+      {
+        "question": "Jak najczęściej interpretuje się Jamę nr 3?",
+        "answers": [
+          "Jako sztab lub centrum dowodzenia",
+          "Jako kuchnię",
+          "Jako kopalnię gliny"
+        ],
+        "correct": 0,
+        "explanation": "Niewielki układ figur, straży i rydwanu sugeruje funkcję dowódczą."
+      },
+      {
+        "question": "Co jest szczególnego w Jamie nr 4?",
+        "answers": [
+          "Jest wypełniona wodą",
+          "Pozostała pusta",
+          "Zawiera tysiąc generałów"
+        ],
+        "correct": 1,
+        "explanation": "Przygotowana, lecz pusta jama może świadczyć o przerwaniu projektu."
+      },
+      {
+        "question": "Czy wojownicy zostali zakopani jako połamane fragmenty?",
+        "answers": [
+          "Tak",
+          "Nie, pierwotnie stali w przykrytych korytarzach",
+          "Nie wiadomo, bo nie znaleziono posadzki"
+        ],
+        "correct": 1,
+        "explanation": "Pożar, rabunek i zawalenie drewnianych dachów rozbiły figury później."
+      },
+      {
+        "question": "Czy każdy wojownik jest potwierdzonym portretem konkretnej osoby?",
+        "answers": [
+          "Tak, istnieje lista nazwisk",
+          "Nie; figury są zindywidualizowane, ale portretowość nie jest dowiedziona",
+          "Wszystkie przedstawiają cesarza"
+        ],
+        "correct": 1,
+        "explanation": "Badania potwierdzają różnorodność, lecz nie pozwalają przypisać postaci konkretnym żołnierzom."
+      },
+      {
+        "question": "Jak wyglądały figury pierwotnie?",
+        "answers": [
+          "Były wielobarwnie malowane",
+          "Były całe złote",
+          "Zawsze miały kolor szarej gliny"
+        ],
+        "correct": 0,
+        "explanation": "Lakier i pigmenty tworzyły czerwienie, zielenie, błękity, fiolety i inne barwy."
+      },
+      {
+        "question": "Dlaczego kolory są tak trudne do zachowania?",
+        "answers": [
+          "Lakier szybko wysycha i odspaja się po odsłonięciu",
+          "Pigmenty były rozpuszczalne wyłącznie w deszczu",
+          "Kolory usunięto celowo w starożytności"
+        ],
+        "correct": 0,
+        "explanation": "Zmiana wilgotności i kontakt z powietrzem powodują szybkie odspajanie lakieru wraz z farbą."
+      },
+      {
+        "question": "Czy broń wojowników była wyłącznie symboliczną atrapą?",
+        "answers": [
+          "Tak",
+          "Nie, znaleziono funkcjonalne brązowe uzbrojenie",
+          "Wojownicy nie mieli broni"
+        ],
+        "correct": 1,
+        "explanation": "Odnaleziono miecze, lance, halabardy, spusty kusz i dziesiątki tysięcy grotów."
+      },
+      {
+        "question": "Ile grotów strzał odnaleziono w przybliżeniu?",
+        "answers": [
+          "Kilkadziesiąt",
+          "Ponad 40 tysięcy",
+          "Ponad milion"
+        ],
+        "correct": 1,
+        "explanation": "Ponad 40 tysięcy grotów stanowi największą grupę metalowych zabytków broni."
+      },
+      {
+        "question": "Co pokazały badania śladów na broni?",
+        "answers": [
+          "Systematyczną obróbkę i polerowanie narzędziami obrotowymi",
+          "Użycie nowoczesnej stali nierdzewnej",
+          "Brak jakiejkolwiek obróbki"
+        ],
+        "correct": 0,
+        "explanation": "Równoległe ślady wskazują na mechaniczną obróbkę ścierną, lecz nie dowodzą nowoczesnej tokarki."
+      },
+      {
+        "question": "Czy broń była celowo chromowana przeciw rdzy?",
+        "answers": [
+          "Tak",
+          "Nie, chrom pochodził głównie z lakieru",
+          "Broń wykonano z aluminium"
+        ],
+        "correct": 1,
+        "explanation": "Badanie z 2019 roku obaliło popularną teorię starożytnego chromowania."
+      },
+      {
+        "question": "Co pokazują znaki i imiona na figurach oraz broni?",
+        "answers": [
+          "Produkcja była identyfikowalna i zorganizowana warsztatowo",
+          "Każdy przedmiot był kupowany na targu",
+          "Znaki dodali współcześni turyści"
+        ],
+        "correct": 0,
+        "explanation": "Oznaczenia pomagają badać warsztaty, partie, urzędy i kontrolę produkcji."
+      },
+      {
+        "question": "Czy produkcja działała jak jedna nowoczesna taśma montażowa?",
+        "answers": [
+          "Tak, dokładnie jak fabryka samochodów",
+          "Nie, bardziej jak równoległe zespoły i warsztaty pracujące według planu",
+          "Nie było żadnej organizacji"
+        ],
+        "correct": 1,
+        "explanation": "Badania wskazują na samodzielne komórki produkcyjne, partie i różne warsztaty."
+      },
+      {
+        "question": "Co znajduje się poza jamami wojowników?",
+        "answers": [
+          "Tylko puste pola",
+          "Urzędnicy, akrobaci, stajnie, ptaki, pancerze i rydwany",
+          "Wyłącznie nowoczesne repliki"
+        ],
+        "correct": 1,
+        "explanation": "Mauzoleum odtwarzało różne działy cesarskiego państwa i dworu."
+      },
+      {
+        "question": "Jak należy traktować liczbę 700 tysięcy robotników?",
+        "answers": [
+          "Jako dokładny współczesny spis",
+          "Jako starożytny przekaz o skali mobilizacji",
+          "Jako liczbę turystów dziennie"
+        ],
+        "correct": 1,
+        "explanation": "Liczba pochodzi z 史记 Shǐjì [Szy-dzi] i nie jest wynikiem zachowanej ewidencji."
+      },
+      {
+        "question": "Czy centralna komora grobowa została otwarta?",
+        "answers": [
+          "Tak, w 1974 roku",
+          "Nie, nadal pozostaje zamknięta",
+          "Tak, ale była całkowicie pusta"
+        ],
+        "correct": 1,
+        "explanation": "Badania prowadzi się nieinwazyjnie z powodu ryzyka konserwatorskiego i konstrukcyjnego."
+      },
+      {
+        "question": "Co starożytny tekst mówi o wnętrzu grobowca?",
+        "answers": [
+          "O rzekach rtęci i modelu kosmosu",
+          "O bibliotece drukowanych książek",
+          "O lokomotywach parowych"
+        ],
+        "correct": 0,
+        "explanation": "司马迁 Sīmǎ Qiān [Sy-ma Ćjen] opisał podziemne pałace, niebo i rzeki rtęci."
+      },
+      {
+        "question": "Czy wiadomo na pewno, że cesarz umarł od rtęci?",
+        "answers": [
+          "Tak, wykonano sekcję zwłok",
+          "Nie, to popularna hipoteza",
+          "Nie używano rtęci w starożytnych Chinach"
+        ],
+        "correct": 1,
+        "explanation": "Eliksiry mogły zawierać rtęć, ale przyczyna śmierci nie jest potwierdzona."
+      },
+      {
+        "question": "Jaki jest najlepszy sposób rozpoczęcia oprowadzania w Jamie nr 1?",
+        "answers": [
+          "Natychmiast podać dziesięć wymiarów",
+          "Dać chwilę na skalę, a potem pokazać formację i korytarze",
+          "Zacząć od sklepu z pamiątkami"
+        ],
+        "correct": 1,
+        "explanation": "Pierwszy obraz działa najmocniej, gdy grupa dostanie moment na spokojne spojrzenie."
+      },
+      {
+        "question": "Jaka jest najważniejsza puenta o Armii Terakotowej?",
+        "answers": [
+          "To wyłącznie dekoracja",
+          "Łączy sztukę, państwową organizację, wojnę, wierzenia i koszt ludzki",
+          "Powstała dla współczesnej turystyki"
+        ],
+        "correct": 1,
+        "explanation": "Miejsce jest równocześnie osiągnięciem technicznym, wizją zaświatów i świadectwem władzy."
       }
     ]
   },
