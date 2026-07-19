@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Wanfang Guide — prywatna baza wiedzy pilota i przewodnika po Chinach.">
+  <meta name="theme-color" content="#7d171d">
+  <title>Wanfang Guide — przewodnik dla przewodnika</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="data/topics.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <div id="readingProgress" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <button class="icon-button mobile-only" id="menuButton" aria-label="Otwórz menu">☰</button>
+    <a class="brand" href="#home" aria-label="Wanfang Guide — strona główna">
+      <span class="brand-seal">万</span>
+      <span><strong>WANFANG</strong><small>GUIDE</small></span>
+    </a>
+    <div class="global-search">
+      <span aria-hidden="true">⌕</span>
+      <input id="searchInput" type="search" placeholder="Szukaj: Zakazane Miasto, smok, Tang, hutongi…" autocomplete="off">
+      <kbd>⌘ K</kbd>
+    </div>
+    <div class="top-actions">
+      <button class="icon-button" id="guideModeButton" title="Tryb przewodnika">🎤</button>
+      <button class="icon-button" id="themeButton" title="Tryb jasny / ciemny">☾</button>
+      <button class="button primary" id="addTopicButton">＋ Dodaj temat</button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <nav>
+        <div class="nav-label">Baza wiedzy</div>
+        <a class="nav-link active" href="#home" data-view="home"><span>⌂</span> Start</a>
+        <a class="nav-link" href="#library" data-view="library"><span>▦</span> Wszystkie tematy <b id="allCount">0</b></a>
+        <a class="nav-link" href="#favorites" data-view="favorites"><span>★</span> Ulubione <b id="favoriteCount">0</b></a>
+        <a class="nav-link" href="#route" data-view="route"><span>↝</span> Plan aktualnej trasy <b id="routeCount">0</b></a>
+
+        <div class="nav-label">Kategorie</div>
+        <button class="filter-link" data-category="Miasta i trasy"><span>城</span> Miasta i trasy</button>
+        <button class="filter-link" data-category="Historia"><span>史</span> Historia</button>
+        <button class="filter-link" data-category="Kultura i zwyczaje"><span>礼</span> Kultura i zwyczaje</button>
+        <button class="filter-link" data-category="Życie codzienne"><span>人</span> Życie codzienne</button>
+        <button class="filter-link" data-category="Praktyczne"><span>行</span> Praktyczne</button>
+        <button class="filter-link" data-category="Nawijki"><span>话</span> Gotowe nawijki</button>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="tiny-label">SZYBKI TRYB</span>
+        <strong>Jutro prowadzisz grupę?</strong>
+        <p>Dodaj potrzebne tematy do trasy. Będą ułożone w jednym miejscu.</p>
+        <a href="#route" class="text-link">Otwórz plan trasy →</a>
+      </div>
+
+      <footer class="sidebar-footer">
+        <button id="backupButton">Eksport kopii</button>
+        <label class="import-label">Import kopii<input id="importInput" type="file" accept="application/json"></label>
+      </footer>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <main id="mainContent" tabindex="-1">
+      <section id="homeView" class="view active-view">
+        <div class="hero-panel">
+          <div class="hero-copy">
+            <div class="eyebrow">PRYWATNY ATLAS PILOTA • CHINY</div>
+            <h1>Przewodnik<br><em>dla przewodnika.</em></h1>
+            <p>Nie kolejny suchy katalog. To ma być Twoja własna księga Chin: miasta, historia, gotowe opowieści, zdjęcia, filmy, szybkie odpowiedzi i plan całego objazdu.</p>
+            <div class="hero-buttons">
+              <a class="button primary large" href="#library">Wejdź do atlasu</a>
+              <button class="button large" id="randomTopicButton">Losuj ciekawostkę</button>
+            </div>
+            <div class="hero-signature">Budowane rozdział po rozdziale pod Twoje trasy i sposób opowiadania.</div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="stamp">万方<br><small>WANFANG</small></div>
+            <div class="hero-art-copy">
+              <span>atlas • opowieści • trasy</span>
+              <strong>Od Wielkiego Muru po uliczne jedzenie Chengdu.</strong>
+              <small>Każde miejsce jako osobny rozdział, ale wszystko połączone wspólną historią Chin.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card"><span>📚</span><div><strong id="statTopics">0</strong><small>tematów w bazie</small></div></div>
+          <div class="stat-card"><span>🏙️</span><div><strong id="statCities">0</strong><small>miast i regionów</small></div></div>
+          <div class="stat-card"><span>🎤</span><div><strong id="statTalks">0</strong><small>gotowych nawijek</small></div></div>
+          <div class="stat-card"><span>⭐</span><div><strong id="statFavorites">0</strong><small>ulubionych</small></div></div>
+        </div>
+
+        <section class="journey-strip" aria-label="Przykładowa trasa po Chinach">
+          <div class="journey-copy">
+            <span class="tiny-label" style="color:#e7c77f">PRZYKŁADOWA OŚ OPOWIEŚCI</span>
+            <h2>Jedna podróż, wiele warstw Chin</h2>
+            <p>Strona będzie prowadzić Cię tak samo jak dobry objazd: od korzeni cesarstwa do współczesnych megamiast.</p>
+          </div>
+          <div class="journey-route">
+            <div class="journey-stop"><b>Pekin</b><span>władza, rytuał, cesarz</span></div>
+            <div class="journey-stop"><b>Xi’an</b><span>korzenie, Jedwabny Szlak</span></div>
+            <div class="journey-stop"><b>Chengdu</b><span>herbata, panda, codzienność</span></div>
+            <div class="journey-stop"><b>Szanghaj</b><span>port, nowoczesność, kontrast</span></div>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-heading">
+            <div><span class="tiny-label">NA START</span><h2>Najważniejsze działy</h2></div>
+          </div>
+          <div class="category-grid" id="categoryGrid"></div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-heading">
+            <div><span class="tiny-label">OSTATNIO OPRACOWANE</span><h2>Materiały gotowe do użycia</h2></div>
+            <a href="#library" class="text-link">Zobacz wszystkie →</a>
+          </div>
+          <div class="topic-grid" id="featuredTopics"></div>
+        </section>
+
+        <section class="quote-panel">
+          <span class="quote-mark">“</span>
+          <p>Nie pokazuj grupie tylko budynków. Pokaż im, dlaczego te budynki stoją właśnie tutaj i co Chińczycy chcieli przez nie powiedzieć.</p>
+          <small>Główna zasada Wanfang Guide</small>
+        </section>
+      </section>
+
+      <section id="libraryView" class="view">
+        <div class="page-header">
+          <div><span class="tiny-label">BAZA WIEDZY</span><h1>Wszystkie tematy</h1><p id="librarySummary">Wybierz miasto, kategorię albo wpisz hasło.</p></div>
+          <button class="button" id="clearFiltersButton">Wyczyść filtry</button>
+        </div>
+        <div class="filter-bar">
+          <select id="cityFilter" aria-label="Filtruj według miasta"><option value="">Wszystkie miasta</option></select>
+          <select id="categoryFilter" aria-label="Filtruj według kategorii"><option value="">Wszystkie kategorie</option></select>
+          <div class="view-switch"><button class="active" data-layout="grid">▦</button><button data-layout="list">☷</button></div>
+        </div>
+        <div class="topic-grid" id="libraryGrid"></div>
+        <div class="empty-state" id="libraryEmpty" hidden><span>找</span><h3>Nic nie znalazłem</h3><p>Spróbuj innego hasła albo wyczyść filtry.</p></div>
+      </section>
+
+      <section id="favoritesView" class="view">
+        <div class="page-header"><div><span class="tiny-label">TWOJA PÓŁKA</span><h1>Ulubione</h1><p>Materiały, do których chcesz szybko wracać.</p></div></div>
+        <div class="topic-grid" id="favoritesGrid"></div>
+        <div class="empty-state" id="favoritesEmpty"><span>☆</span><h3>Na razie pusto</h3><p>Kliknij gwiazdkę przy wybranym materiale.</p></div>
+      </section>
+
+      <section id="routeView" class="view">
+        <div class="page-header">
+          <div><span class="tiny-label">AKTUALNY OBJAZD</span><h1>Plan trasy</h1><p>Materiały ułożone w kolejności, w jakiej chcesz z nich korzystać.</p></div>
+          <div class="header-actions"><button class="button" id="printRouteButton">Drukuj / PDF</button><button class="button danger" id="clearRouteButton">Wyczyść</button></div>
+        </div>
+        <div id="routeList" class="route-list"></div>
+        <div class="empty-state" id="routeEmpty"><span>路</span><h3>Trasa jest pusta</h3><p>Na kartach tematów kliknij „Dodaj do trasy”.</p></div>
+      </section>
+
+      <article id="topicView" class="view topic-view"></article>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="topicDialog" class="modal">
+    <form method="dialog" id="topicForm">
+      <div class="modal-header"><div><span class="tiny-label">NOWY MATERIAŁ</span><h2>Dodaj własny temat</h2></div><button class="icon-button" value="cancel" aria-label="Zamknij">×</button></div>
+      <div class="form-grid">
+        <label>Tytuł<input name="title" required placeholder="np. Świątynia Lamy w Pekinie"></label>
+        <label>Miasto / region<input name="city" required placeholder="np. Pekin"></label>
+        <label>Kategoria<select name="category" required><option>Miasta i trasy</option><option>Historia</option><option>Kultura i zwyczaje</option><option>Życie codzienne</option><option>Praktyczne</option><option>Nawijki</option></select></label>
+        <label>Chińska nazwa<input name="chinese" placeholder="np. 雍和宫"></label>
+        <label class="full">Krótki opis<textarea name="summary" required rows="3" placeholder="O czym jest ten materiał?"></textarea></label>
+        <label class="full">Treść / notatki<textarea name="content" rows="8" placeholder="Wklej tekst, plan nawijki, linki albo robocze notatki…"></textarea></label>
+      </div>
+      <div class="modal-actions"><button class="button" value="cancel">Anuluj</button><button class="button primary" value="default" id="saveTopicButton">Zapisz temat</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="factDialog" class="modal fact-modal">
+    <div class="modal-header"><span class="tiny-label">LOSOWA CIEKAWOSTKA</span><button class="icon-button" onclick="this.closest('dialog').close()" aria-label="Zamknij">×</button></div>
+    <div id="randomFactContent"></div>
+    <div class="modal-actions"><button class="button" id="anotherFactButton">Losuj kolejną</button><button class="button primary" id="openFactTopicButton">Otwórz temat</button></div>
+  </dialog>
+</body>
+</html>

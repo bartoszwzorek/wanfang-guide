@@ -1,0 +1,12 @@
+WANFANG GUIDE — UPLOAD TO GITHUB PAGES
+
+1. Create a PUBLIC repository named: wanfang-guide
+2. Open the extracted wanfang-guide-github folder.
+3. Upload ALL CONTENTS of this folder to the repository root.
+   Important: index.html must be visible in the main repository view.
+4. Commit the files to the main branch.
+5. Repository Settings > Pages.
+6. Source: Deploy from a branch.
+7. Branch: main, folder: /(root), then Save.
+8. The site address will be:
+   https://bartoszwzorek.github.io/wanfang-guide/
