@@ -1,62 +1,15 @@
-# Wanfang Guide — wersja wizualna 0.2
+# Wanfang Guide — aktualizacja 0.3
 
-Statyczna, bogato ilustrowana strona internetowa będąca prywatną bazą wiedzy pilota i przewodnika po Chinach.
+Ta paczka zawiera pełne opracowanie **Zakazanego Miasta**: 15 rozdziałów, trasę 12 przystanków, długie nawijki 30 sekund / 2 minuty / 5 minut, fact-check, anegdoty, słownik, quiz i źródła.
 
-## Uruchomienie
+## Aktualizacja na GitHubie
 
-Najprościej otworzyć plik `index.html` w przeglądarce. Większość funkcji działa bez serwera.
+1. Otwórz repozytorium `wanfang-guide`.
+2. Kliknij **Add file → Upload files**.
+3. Rozpakuj paczkę i przeciągnij **całą zawartość tego folderu** do głównego katalogu repozytorium.
+4. GitHub zapyta o nadpisanie plików — zatwierdź **Commit changes**.
+5. Odczekaj 1–3 minuty i odśwież stronę z `Ctrl+F5` / `Cmd+Shift+R`.
 
-Lepszy wariant lokalny:
+Twoje ulubione, trasa i własne notatki pozostają w pamięci przeglądarki, ponieważ identyfikator tematu `zakazane-miasto` nie został zmieniony.
 
-```bash
-python3 -m http.server 8000
-```
-
-Następnie otwórz `http://localhost:8000`.
-
-## Co już działa
-
-Wersja 0.2 ma całkowicie przebudowany wygląd: editorialowy atlas, lokalne ilustracje SVG, bogatszą stronę główną, wizualne karty materiałów i magazynowy układ rozdziałów.
-
-- wyszukiwarka tematów,
-- filtrowanie według miasta i kategorii,
-- wersja jasna i ciemna,
-- ulubione zapisywane w przeglądarce,
-- plan aktualnej trasy z własną kolejnością,
-- tryb przewodnika z dużą czcionką,
-- własne notatki do każdego materiału,
-- dodawanie własnych tematów w przeglądarce,
-- eksport i import kopii danych,
-- drukowanie materiału albo planu trasy do PDF.
-
-## Ważne o zapisie danych
-
-Ulubione, trasa, notatki i tematy dodane z formularza są przechowywane w `localStorage` konkretnej przeglądarki. Używaj przycisku **Eksport kopii**, aby zachować je przed zmianą komputera lub czyszczeniem danych przeglądarki.
-
-Materiały wbudowane na stałe znajdują się w pliku:
-
-`data/topics.js`
-
-## Publikacja za darmo
-
-### GitHub Pages
-
-1. Utwórz nowe repozytorium na GitHubie.
-2. Wgraj całą zawartość folderu `wanfang-guide`.
-3. Wejdź w **Settings → Pages**.
-4. Wybierz publikację z gałęzi `main` i folderu `/root`.
-
-### Cloudflare Pages
-
-1. Utwórz projekt Pages i połącz repozytorium GitHub.
-2. Framework preset: `None`.
-3. Build command: pozostaw puste.
-4. Output directory: `/`.
-
-### Netlify
-
-Przeciągnij cały folder na stronę Netlify Drop albo połącz repozytorium. Nie jest potrzebna komenda budowania.
-
-## Kolejny etap
-
-Najlepszy następny krok to przeniesienie pełnych materiałów HTML do wspólnego formatu danych, dodanie galerii zdjęć oraz prawdziwych linków do filmów i playlist.
+Pełny samodzielny materiał źródłowy znajduje się także w `materials/zakazane-miasto-pelny-przewodnik.html`.

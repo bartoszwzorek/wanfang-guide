@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Interaktywny, rozbudowany przewodnik po Zakazanym Mieście w Pekinie dla pilota i przewodnika.">
+<title>Zakazane Miasto — interaktywny przewodnik dla przewodnika</title>
+<style>
+:root{
+  --bg:#f3eee5;--paper:#fffdf8;--ink:#241d18;--muted:#766a60;--line:#d7c8b7;
+  --red:#8f1f1c;--red2:#b1392e;--gold:#b58a39;--deep:#351512;--chip:#efe3d0;
+  --shadow:0 14px 35px rgba(52,30,18,.10);--radius:18px;--font:18px;
+}
+body.dark{
+  --bg:#171310;--paper:#221b17;--ink:#f2e8dd;--muted:#bbaa9d;--line:#493b31;
+  --red:#d45a4f;--red2:#ec796c;--gold:#d9ad58;--deep:#0e0907;--chip:#342920;
+  --shadow:0 16px 40px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:var(--font);line-height:1.75}
+a{color:var(--red2)}
+button,input{font:inherit}
+button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:.62rem 1rem;cursor:pointer}
+button:hover{border-color:var(--red);color:var(--red)}
+button.primary{background:var(--red);color:white;border-color:var(--red)}
+button.primary:hover{background:var(--red2);color:white}
+#progress{position:fixed;left:0;top:0;height:4px;background:linear-gradient(90deg,var(--red),var(--gold));width:0;z-index:100}
+.appbar{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.appbar-inner{max-width:1280px;margin:auto;display:flex;align-items:center;gap:.65rem;padding:.6rem 1rem}
+.brand{font-weight:800;white-space:nowrap;color:var(--red)}
+.search{flex:1;min-width:150px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:.62rem 1rem}
+.icon-btn{padding:.55rem .75rem}
+.layout{max-width:1280px;margin:auto;display:grid;grid-template-columns:270px minmax(0,1fr);gap:28px;padding:28px 20px 80px}
+.sidebar{position:sticky;top:76px;align-self:start;max-height:calc(100vh - 95px);overflow:auto;padding-right:10px}
+.sidebar h2{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .8rem}
+.sidebar a{display:block;text-decoration:none;color:var(--muted);padding:.42rem .65rem;border-left:3px solid transparent;font-size:.88rem;line-height:1.3}
+.sidebar a:hover,.sidebar a.active{color:var(--red);border-left-color:var(--red);background:var(--chip)}
+main{min-width:0}
+.hero,.chapter{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(22px,4vw,54px);margin-bottom:26px;box-shadow:var(--shadow)}
+.hero{position:relative;overflow:hidden;background:
+radial-gradient(circle at 88% 8%,color-mix(in srgb,var(--gold) 22%,transparent),transparent 28%),
+linear-gradient(135deg,var(--paper),color-mix(in srgb,var(--paper) 85%,var(--chip)))}
+.hero:after{content:"紫禁城";position:absolute;right:-1rem;bottom:-4rem;font-family:serif;font-size:11rem;font-weight:700;color:color-mix(in srgb,var(--red) 7%,transparent);line-height:1;pointer-events:none}
+.eyebrow{letter-spacing:.16em;font-size:.76rem;font-weight:800;color:var(--red)}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.4rem,6vw,5.3rem);line-height:1.04;margin:.55rem 0 1rem;max-width:850px}
+h1 span{font-family:serif;color:var(--red);white-space:nowrap}
+.lead{font-family:Georgia,serif;font-size:clamp(1.08rem,2vw,1.42rem);max-width:850px;color:var(--muted)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.5rem 0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:2rem}
+.stats div{border-top:3px solid var(--gold);padding:.8rem .7rem;background:color-mix(in srgb,var(--paper) 82%,var(--chip));border-radius:0 0 12px 12px}
+.stats strong{display:block;color:var(--red);font-size:1.05rem}
+.stats span{display:block;color:var(--muted);font-size:.78rem;line-height:1.3}
+.guide-opening{margin-top:2rem;border-left:5px solid var(--red);padding:1rem 1.2rem;background:var(--chip);border-radius:0 12px 12px 0;position:relative;z-index:1}
+.guide-opening .label{font-size:.72rem;letter-spacing:.12em;font-weight:800;color:var(--red)}
+.chapter-head{display:grid;grid-template-columns:70px 1fr;gap:18px;align-items:start;margin-bottom:1.5rem}
+.chapter-no{font-family:Georgia,serif;font-size:2.7rem;color:var(--gold);line-height:1}
+h2{font-family:Georgia,serif;font-size:clamp(1.7rem,3vw,2.7rem);line-height:1.15;margin:0 0 .35rem}
+.chapter-head p{margin:0;color:var(--muted)}
+h3{line-height:1.25}
+.prose{max-width:820px}
+.prose p{margin:0 0 1.05rem}
+.prose p:first-child:first-letter{font-family:Georgia,serif;float:left;font-size:3.6rem;line-height:.8;padding:.12rem .45rem 0 0;color:var(--red)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feature{border-top:3px solid var(--red);background:var(--chip);padding:1rem;border-radius:0 0 12px 12px}
+.feature b{color:var(--red)}
+.note,.say,.detail,.research-note{padding:1rem 1.15rem;border-radius:12px;margin:1rem 0}
+.note,.research-note{background:var(--chip);border:1px solid var(--line)}
+.fact-check{border-left:5px solid var(--gold)}
+.say{background:color-mix(in srgb,var(--red) 9%,var(--paper));border-left:5px solid var(--red)}
+.detail{background:color-mix(in srgb,var(--gold) 14%,var(--paper));border-left:5px solid var(--gold)}
+details{border:1px solid var(--line);border-radius:12px;margin:1rem 0;background:color-mix(in srgb,var(--paper) 94%,var(--chip))}
+summary{cursor:pointer;font-weight:700;padding:1rem 1.15rem;color:var(--red)}
+details>p,details>.prose{padding:0 1.15rem 1.15rem;margin:0}
+.timeline{border-left:3px solid var(--gold);margin:2rem 0 0 1rem;padding-left:1.5rem}
+.timeline div{position:relative;margin-bottom:1rem}
+.timeline div:before{content:"";position:absolute;width:13px;height:13px;border-radius:50%;background:var(--red);left:-2rem;top:.55rem;border:3px solid var(--paper)}
+.timeline time{display:block;font-weight:900;color:var(--red);font-size:1.1rem}
+.timeline p{margin:.1rem 0;color:var(--muted)}
+.timeline.dense{display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem 2rem}
+.myth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:1.5rem}
+.myth-grid article{border:1px solid var(--line);border-radius:12px;padding:1rem}
+.myth-grid span{font-size:.72rem;font-weight:900;letter-spacing:.12em;color:var(--red)}
+.map-wrap{max-width:760px;margin:2rem auto 0}
+#palaceMap{width:100%;height:auto;display:block}
+.wall{fill:var(--deep);stroke:var(--gold);stroke-width:4}
+.ground{fill:var(--chip)}
+.axis{stroke:var(--gold);stroke-width:4;stroke-dasharray:8 12;opacity:.7}
+.map-stop{cursor:pointer}
+.map-stop rect,.map-stop path:not(.river){fill:var(--red);stroke:var(--gold);stroke-width:2;transition:.2s}
+.map-stop text{fill:white;font-size:16px;text-anchor:middle;pointer-events:none;font-weight:700}
+.map-stop:hover rect,.map-stop:hover path:not(.river){fill:var(--red2);filter:brightness(1.05)}
+.river{fill:none;stroke:#6a9db4;stroke-width:12}
+.map-stop text[x="380"][y="770"]{fill:var(--ink)}
+.map-hint{text-align:center;color:var(--muted);font-size:.85rem}
+.stop{scroll-margin-top:85px;border-top:1px solid var(--line);padding:2.1rem 0}
+.stop:first-of-type{border-top:0}
+.stop-tag{display:inline-block;background:var(--red);color:white;border-radius:999px;padding:.2rem .62rem;font-size:.72rem;font-weight:900;letter-spacing:.08em}
+.stop h3{font-family:Georgia,serif;font-size:1.65rem;margin:.7rem 0}
+.scene{font-family:Georgia,serif;font-style:italic;color:var(--muted);border-left:3px solid var(--gold);padding-left:1rem}
+.day-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:1.5rem}
+.day-grid div{background:var(--chip);padding:1rem;border-radius:12px}
+.day-grid time{font-weight:900;color:var(--red)}
+.day-grid p{margin:.3rem 0 0;font-size:.88rem;color:var(--muted)}
+.symbol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.symbol-grid article{border:1px solid var(--line);border-radius:14px;padding:1.1rem}
+.symbol-mark{font-family:serif;font-size:2.7rem;color:var(--red)}
+.symbol-grid h3{margin:.2rem 0}
+.symbol-grid p{font-size:.9rem;color:var(--muted)}
+.fact-table{display:grid;gap:10px}
+.fact-row{display:grid;grid-template-columns:1fr auto;gap:.6rem 1rem;border:1px solid var(--line);border-radius:12px;padding:1rem}
+.fact-row p{grid-column:1/-1;margin:0;color:var(--muted)}
+.fact-row span{font-size:.68rem;font-weight:900;letter-spacing:.08em;border-radius:999px;padding:.25rem .55rem;align-self:start}
+.legend{background:#efe0a7;color:#564107}.false{background:#f0c1ba;color:#681711}.mixed{background:#d7d0ee;color:#372d66}
+body.dark .legend,body.dark .false,body.dark .mixed{filter:brightness(.72);color:white}
+.story-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.story-cards article{background:var(--chip);border-radius:14px;padding:1.1rem}
+.story-cards h3{color:var(--red);margin:.1rem 0 .45rem}
+.story-cards p{margin:0;color:var(--muted)}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.tab.active{background:var(--red);color:#fff;border-color:var(--red)}
+.talk{display:none;max-width:820px;background:var(--chip);padding:1.3rem;border-radius:14px;font-family:Georgia,serif}
+.talk.active{display:block}
+.glossary{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.glossary>div{display:grid;grid-template-columns:1fr auto;gap:.3rem 1rem;border-bottom:1px solid var(--line);padding:.7rem}
+.glossary span{color:var(--red);font-weight:700}
+.glossary p{grid-column:1/-1;margin:0;color:var(--muted);font-size:.88rem}
+.quiz-box{max-width:700px;border:1px solid var(--line);border-radius:14px;padding:1.2rem;background:var(--chip)}
+#quizQuestion{font-weight:800;font-size:1.1rem}
+#quizAnswers{display:grid;gap:.55rem}
+#quizAnswers button{text-align:left;border-radius:10px;background:var(--paper)}
+#quizAnswers button.correct{background:#d9ead3;border-color:#4f7f45;color:#24411f}
+#quizAnswers button.wrong{background:#f2d0cc;border-color:#a7463c;color:#651c16}
+#quizFeedback{min-height:1.6rem;font-weight:700}
+.sources li{margin-bottom:.65rem}
+.hidden-by-search{display:none!important}
+.no-results{display:none;padding:1rem;background:var(--chip);border-radius:12px;color:var(--muted)}
+.no-results.show{display:block}
+.random-toast{position:fixed;right:22px;bottom:22px;max-width:380px;background:var(--deep);color:white;border:1px solid var(--gold);box-shadow:var(--shadow);border-radius:14px;padding:1rem 1.2rem;z-index:120;opacity:0;transform:translateY(20px);pointer-events:none;transition:.25s}
+.random-toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr;padding:16px 12px 60px}
+  .sidebar{position:static;max-height:none;display:flex;overflow:auto;gap:2px;background:var(--paper);border:1px solid var(--line);padding:.5rem;border-radius:12px}
+  .sidebar h2{display:none}.sidebar a{white-space:nowrap;border-left:0;border-bottom:3px solid transparent}.sidebar a.active{border-left:0;border-bottom-color:var(--red)}
+  .stats,.grid-3,.myth-grid,.symbol-grid{grid-template-columns:repeat(2,1fr)}
+  .day-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .appbar-inner{flex-wrap:wrap}.brand{width:100%}.search{order:3;width:100%}
+  .hero,.chapter{padding:22px 18px;border-radius:14px}
+  .stats,.grid-3,.myth-grid,.symbol-grid,.story-cards,.glossary,.timeline.dense{grid-template-columns:1fr}
+  .chapter-head{grid-template-columns:48px 1fr;gap:10px}.chapter-no{font-size:2rem}
+  .fact-row{grid-template-columns:1fr}.fact-row span{justify-self:start}.fact-row p{grid-column:1}
+}
+@media print{
+  #progress,.appbar,.sidebar,.hero-actions,.tabs,#quiz,.quiz-box button,.map-hint{display:none!important}
+  body{background:white;color:black;font-size:12pt}
+  .layout{display:block;max-width:none;padding:0}.hero,.chapter{box-shadow:none;border:0;border-radius:0;page-break-inside:avoid;margin:0 0 18pt;padding:0}
+  .talk{display:block!important;background:white;border:1px solid #bbb}
+  .stop{page-break-inside:avoid}
+  a{color:black;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="appbar">
+  <div class="appbar-inner">
+    <div class="brand">紫禁城 • PRZEWODNIK</div>
+    <input id="search" class="search" type="search" placeholder="Szukaj: Cixi, smoki, Wumen, egzamin…" aria-label="Szukaj w opracowaniu">
+    <button id="fontMinus" class="icon-btn" type="button" title="Mniejszy tekst">A−</button>
+    <button id="fontPlus" class="icon-btn" type="button" title="Większy tekst">A+</button>
+    <button id="theme" class="icon-btn" type="button" title="Tryb ciemny">🌙</button>
+    <button id="print" class="icon-btn" type="button" title="Drukuj lub zapisz PDF">🖨️</button>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Spis treści"><h2>Spis treści</h2><a href="#start">Start</a>
+<a href="#jak-czytac">Jak korzystać</a>
+<a href="#nazwa-skala">Nazwa i skala</a>
+<a href="#historia-budowy">Yongle i budowa</a>
+<a href="#inzynieria">Inżynieria</a>
+<a href="#os">Oś i plan</a>
+<a href="#trasa">Trasa 12 przystanków</a>
+<a href="#zycie">Życie codzienne</a>
+<a href="#symbole">Symbolika</a>
+<a href="#historia-pozniej">Upadek i muzeum</a>
+<a href="#mity">Fakty i mity</a>
+<a href="#ciekawostki">Anegdoty</a>
+<a href="#wersje">Gotowe nawijki</a>
+<a href="#slownik">Wymowa</a>
+<a href="#quiz">Quiz</a>
+<a href="#zrodla">Źródła</a></nav>
+  <main>
+    <div id="noResults" class="no-results">Brak wyników. Spróbuj innego hasła.</div>
+    
+<section class="hero searchable" id="start">
+  <div class="eyebrow">INTERAKTYWNY MATERIAŁ PRZEWODNICKI • PEKIN</div>
+  <h1>Zakazane Miasto <span>紫禁城</span></h1>
+  <p class="lead">Opowieść o pałacu, który nie był tylko domem cesarza. Był modelem całego świata: z Niebem na osi, władzą w centrum, rytuałem przed człowiekiem i tysiącami ludzi ukrytych za czerwonymi murami.</p>
+  <div class="hero-actions">
+    <button class="primary" type="button" data-jump="trasa">▶ Zacznij trasę przewodnicką</button>
+    <button type="button" data-jump="wersje">🎤 Gotowe nawijki</button>
+    <button type="button" id="randomFact">🎲 Losuj ciekawostkę</button>
+  </div>
+  <div class="stats">
+    <div><strong>720 000 m²</strong><span>powierzchni kompleksu</span></div>
+    <div><strong>961 × 753 m</strong><span>wymiary murów</span></div>
+    <div><strong>24 cesarzy</strong><span>14 Ming + 10 Qing</span></div>
+    <div><strong>1406–1420</strong><span>główna faza budowy</span></div>
+  </div>
+  <div class="guide-opening">
+    <span class="label">OTWARCIE DO GRUPY</span>
+    <p>„Proszę spojrzeć przed siebie. Za chwilę wejdziemy do miejsca, które przez prawie pięć stuleci było politycznym sercem Chin. Tędy przechodzili cesarze, urzędnicy, generałowie, eunuchowie i kobiety dworu. Ale najważniejsze jest coś innego: tu każdy mur, kolor, liczba i kierunek mówił człowiekowi, gdzie znajduje się w hierarchii świata. Zakazane Miasto nie miało tylko robić wrażenia. Ono miało nauczyć każdego, kto przekraczał bramę, że cesarz znajduje się w centrum porządku.”</p>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="jak-czytac">
+  <div class="chapter-head">
+    <span class="chapter-no">01</span>
+    <div><h2>Jak korzystać z tego materiału</h2><p>Nie jest to encyklopedia do wykucia. To zestaw warstw, z których możesz układać opowieść zależnie od czasu i grupy.</p></div>
+  </div>
+  <div class="grid-3">
+    <article class="feature"><b>Na trasie</b><p>W części „Trasa” masz kolejne przystanki od Bramy Południkowej do Bramy Boskiej Potęgi. Każdy ma krótkie wejście, dłuższą opowieść, detal do pokazania i ciekawostkę.</p></article>
+    <article class="feature"><b>W autobusie</b><p>Rozdziały o historii, życiu codziennym i symbolice są napisane narracyjnie. Możesz czytać je prawie słowo w słowo, a tekst nadal brzmi jak opowieść, nie jak szkolna notatka.</p></article>
+    <article class="feature"><b>Na szybki strzał</b><p>W sekcji „Gotowe nawijki” znajdziesz wersje 30 sekund, 2 minuty i 5 minut, a także wejście i zakończenie wycieczki.</p></article>
+  </div>
+  <div class="note fact-check"><b>Ważne:</b> kilka popularnych opowieści zostało oznaczonych jako legenda albo uproszczenie. Dotyczy to m.in. „9999 komnat”, egzekucji przy Wumen, „ani jednego gwoździa” oraz rzekomych piętnastu warstw kamienia pod całym pałacem.</div>
+</section>
+
+
+<section class="chapter searchable" id="nazwa-skala">
+  <div class="chapter-head">
+    <span class="chapter-no">02</span>
+    <div><h2>Co naprawdę znaczy „Zakazane Miasto”</h2><p>紫禁城 — Zǐjìnchéng [dzy-dzin-czeng]</p></div>
+  </div>
+  <div class="prose">
+    <p>Zacznijmy od nazwy, bo już ona jest małą lekcją chińskiej kosmologii. Dziś Chińczycy najczęściej mówią po prostu <b>Gùgōng</b> 故宫 [gu-gung], czyli „Dawny Pałac”. Historyczna nazwa <b>Zǐjìnchéng</b> składa się jednak z trzech znaków. <b>Zǐ</b> oznacza purpurę, ale nie chodzi wyłącznie o kolor. W dawnej astronomii chińskiej okolice Gwiazdy Polarnej nazywano Purpurowym Ogrodzeniem. Gwiazda Polarna niemal nie zmienia położenia na niebie, a pozostałe gwiazdy zdają się wokół niej krążyć. To idealna metafora cesarza: on pozostaje w centrum, a urzędnicy, wojsko, rodzina i poddani poruszają się wokół niego.</p>
+    <p><b>Jìn</b> oznacza zakaz, ograniczenie dostępu, strefę kontrolowaną. Nie znaczy to, że wewnątrz mieszkało tylko kilka osób. Pałac był ogromnym organizmem pełnym służby, straży, rzemieślników, kobiet dworu, eunuchów, urzędników i dostawców. Zakazana była swoboda wejścia. Każdy miał określoną bramę, godzinę, trasę i powód obecności. <b>Chéng</b> to miasto lub ufortyfikowany zespół. A więc nie „zakazany pałacyk”, lecz ziemski odpowiednik niebiańskiej stolicy.</p>
+    <p>Kompleks zajmuje około <b>720 tysięcy metrów kwadratowych</b>. Mury tworzą prostokąt długości 961 metrów z północy na południe i szerokości 753 metrów ze wschodu na zachód. Otacza je fosa szeroka na około 52 metry, a ściany mają około 10 metrów wysokości. Oficjalne i popularnonaukowe źródła często podają <b>980 zachowanych budynków</b> oraz ponad 8700 „pomieszczeń”, ale warto wyjaśnić grupie, że tradycyjnie liczono nie tyle współczesne pokoje z drzwiami, ile <i>jian</i> — przestrzenie między czterema słupami konstrukcyjnymi. Dlatego w różnych opracowaniach spotyka się liczby 8707, 8886 albo inne.</p>
+    <p>Najlepszym sposobem, żeby poczuć skalę, jest wejście na wzgórze Jingshan po zwiedzaniu. Dopiero stamtąd widać, że dachy nie tworzą przypadkowego morza budynków. Układają się w czytelny system osi, dziedzińców i stref. Z poziomu ziemi pałac działa jak teatr: odsłania kolejne sceny dopiero wtedy, kiedy przechodzimy przez następną bramę.</p>
+  </div>
+  <details>
+    <summary>🎤 Krótka wersja do powiedzenia</summary>
+    <p>„Chińska nazwa nie oznacza po prostu pałacu, do którego nie wolno wejść. Purpura odnosi się do Gwiazdy Polarnej — centrum nieba. Cesarz miał być jej ziemskim odpowiednikiem. Zakazane Miasto było więc modelem kosmosu, w którym każdy wiedział, jak blisko centrum może się znaleźć.”</p>
+  </details>
+</section>
+
+
+<section class="chapter searchable" id="historia-budowy">
+  <div class="chapter-head">
+    <span class="chapter-no">03</span>
+    <div><h2>Yongle: cesarz, który musiał zbudować sobie legalność</h2><p>Dlaczego nowa stolica powstała właśnie w Pekinie</p></div>
+  </div>
+  <div class="prose">
+    <p>Budowę rozpoczęto w 1406 roku z rozkazu cesarza Yongle — Zhu Di. To jedna z najważniejszych postaci w historii Ming i zarazem człowiek, którego droga do tronu była politycznie niewygodna. Zhu Di był synem założyciela dynastii, ale nie wyznaczonym następcą. Po śmierci ojca tron objął jego bratanek, cesarz Jianwen. Zhu Di, jako książę Yan stacjonujący w Pekinie, rozpoczął bunt znany jako kampania Jingnan. Po kilku latach wojny zdobył Nankin, przejął tron i ogłosił epokę „Wiecznego Szczęścia” — Yongle.</p>
+    <p>Nowy władca potrzebował czegoś więcej niż zwycięstwa militarnego. Musiał pokazać, że jego panowanie posiada Mandat Niebios. Przeniesienie centrum imperium do Pekinu miało kilka sensów naraz. Było powrotem do jego własnej bazy politycznej i wojskowej. Zbliżało dwór do północnej granicy i zagrożenia mongolskiego. Łączyło cesarza z wielkimi projektami: odbudową Wielkiego Kanału, wyprawami admirała Zheng He, kompilacją encyklopedii Yongle i rozbudową nowej stolicy. Zakazane Miasto było architektonicznym argumentem: „to tutaj znajduje się teraz prawidłowe centrum świata”.</p>
+    <p>Prace trwały do 1420 roku, a w 1421 dwór i główne urzędy zaczęły funkcjonować w Pekinie. Nie należy jednak przedstawiać budowy jako dzieła jednego genialnego architekta. Był to projekt państwowy angażujący Ministerstwo Robót, wielu mistrzów, inżynierów, rzemieślników i urzędników. W źródłach pojawiają się m.in. <b>Kuai Xiang</b>, <b>Cai Xin</b>, <b>Lu Xiang</b> oraz wietnamski eunuch i inżynier <b>Nguyễn An</b>, w chińskiej transkrypcji <b>Ruan An</b>. To ostatnie jest ważne: KIMI potraktował Ruan Ana i Nguyễn Ana jak dwie osoby, tymczasem to dwa zapisy imienia tej samej postaci.</p>
+    <p>Pałac ukończono szybko, ale nie pozostał niezmienny. Już w 1421 roku pożar zniszczył trzy główne sale audiencyjne. Przez następne stulecia budynki płonęły, były odbudowywane, przemianowywane i dostosowywane do potrzeb kolejnych cesarzy. Dzisiejsze Zakazane Miasto jest więc zespołem o planie z epoki Yongle, lecz z wieloma konstrukcjami pochodzącymi z późniejszych rekonstrukcji, zwłaszcza z czasów Qing.</p>
+  </div>
+  <div class="timeline">
+    <div><time>1402</time><p>Zhu Di zdobywa tron i zostaje cesarzem Yongle.</p></div>
+    <div><time>1406</time><p>Rozpoczyna się wielka budowa nowego kompleksu pałacowego.</p></div>
+    <div><time>1420</time><p>Główna faza budowy dobiega końca; Pekin zostaje główną stolicą.</p></div>
+    <div><time>1421</time><p>Pożar niszczy główne sale; pałac od początku żyje cyklem zniszczeń i odbudowy.</p></div>
+    <div><time>1644</time><p>Upadek Ming, zajęcie Pekinu i przejęcie pałacu przez dynastię Qing.</p></div>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="inzynieria">
+  <div class="chapter-head">
+    <span class="chapter-no">04</span>
+    <div><h2>Jak zbudowano pałac dla Syna Niebios</h2><p>Drewno, kamień, lód, cegły i państwowa logistyka</p></div>
+  </div>
+  <div class="prose">
+    <p>Najbardziej imponujące w Zakazanym Mieście nie jest to, że użyto drogich materiałów, lecz że potrafiono dostarczyć je do Pekinu z różnych części ogromnego imperium. Wielkie pnie drewna <b>nanmu</b> sprowadzano z południowo-zachodnich Chin. Kamień wydobywano w kamieniołomach pod Pekinem. Glazurowane dachówki i elementy ceramiczne wytwarzano w wyspecjalizowanych piecach. Posadzki reprezentacyjnych sal wykładano tak zwanymi <b>jīnzhuān</b> 金砖 [dzin-dżuan] — „złotymi cegłami” z okolic Suzhou. Nie były ze złota. Nazwa podkreślała ich gęstość, dźwięk, gładkość i koszt wytworzenia.</p>
+    <p>Jedna z najlepiej udokumentowanych historii dotyczy transportu wielkich kamiennych płyt. Badacze opisali dokument z XVI wieku dotyczący przewozu ponad stutonowego bloku z kamieniołomu oddalonego o około 70 kilometrów. Kamień umieszczano na saniach, a drogę zimą polewano wodą, tworząc lodowy trakt. Co kilkaset metrów kopano studnie, z których czerpano wodę. Cienka warstwa wody na lodzie zmniejszała tarcie. Rozwiązanie było wolne, ale bezpieczniejsze i wymagało mniej ludzi niż ciągnięcie po suchej drodze.</p>
+    <p>Konstrukcja drewniana opiera się na słupach, belkach, systemie wsporników <b>dǒugǒng</b> 斗拱 [doł-gung] oraz złożonych połączeniach ciesielskich. Popularne zdanie „nie użyto ani jednego gwoździa” dobrze brzmi, ale jest zbyt absolutne. Istotą budowli nie są gwoździe w ścianach nośnych, lecz elastyczny szkielet drewniany i połączenia czopowe, które przenoszą siły i pozwalają elementom minimalnie pracować. Metalowe łączniki, klamry czy gwoździe mogły występować w elementach pomocniczych i podczas kolejnych napraw. Lepiej powiedzieć: „główna konstrukcja nie zależy od gwoździ tak, jak wiele budynków europejskich”.</p>
+    <p>Ważny był również system ochrony przed ogniem. Drewno, lakier, tkaniny, świece i paleniska tworzyły ogromne ryzyko. W pałacu ustawiono setki wielkich metalowych kadzi z wodą — oficjalny materiał Muzeum Pałacowego mówi o 308. Zimą kadzie ogrzewano od spodu, by woda nie zamarzła. Istniały ręczne pompy, patrole i specjalne oddziały przeciwpożarowe. Mimo to w czasach Ming i Qing odnotowano ponad dwadzieścia dużych pożarów. To przypomina, że oglądany dziś kompleks jest wynikiem nie tylko budowy, ale także sześciu stuleci nieustannej konserwacji.</p>
+    <p>Pod ziemią kryły się systemy grzewcze. W niektórych pałacach kanały prowadziły gorące powietrze pod podłogą i pod platformami do spania, podobnie do północnochińskiego <i>kangu</i>. Używano też piecyków na węgiel drzewny, ogrzewaczy do rąk i stóp. Komfort nie był równy dla wszystkich: ciepło, podobnie jak jedzenie, tkaniny i dostęp do lekarzy, podlegało hierarchii.</p>
+  </div>
+  <div class="myth-grid">
+    <article><span>FAKT</span><h3>Kamienie transportowano po lodzie</h3><p>Potwierdzają to dokumenty historyczne i analiza inżynieryjna opublikowana w PNAS.</p></article>
+    <article><span>UPROSZCZENIE</span><h3>„Ani jednego gwoździa”</h3><p>Główny szkielet opierał się na kunsztownych połączeniach drewnianych, ale całkowity brak metalu jest zbyt mocnym twierdzeniem.</p></article>
+    <article><span>NIEPEWNE</span><h3>15 warstw kamienia pod pałacem</h3><p>Popularna internetowa opowieść o warstwach chroniących przed tunelami nie ma mocnego potwierdzenia dla całego kompleksu.</p></article>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="os">
+  <div class="chapter-head">
+    <span class="chapter-no">05</span>
+    <div><h2>Pałac jako mapa porządku świata</h2><p>Oś północ–południe, symetria i kontrolowane odsłanianie władzy</p></div>
+  </div>
+  <div class="prose">
+    <p>Zakazane Miasto najlepiej czytać jak procesję. Nie oglądamy jednego ogromnego budynku, lecz przechodzimy przez sekwencję bram, mostów, placów i pawilonów. Każde przejście zwiększa rangę przestrzeni. To architektura, która steruje tempem człowieka: zatrzymuje go przed bramą, otwiera wielki dziedziniec, prowadzi centralną drogą, każe wspiąć się po marmurowym tarasie i dopiero wtedy pozwala spojrzeć na tron.</p>
+    <p>Najważniejsze budynki leżą na centralnej osi Pekinu. Budowle reprezentacyjne zwrócone są ku południu, kierunkowi światła, ciepła i aktywnego pierwiastka yang. Północ kojarzyła się z zimnem i zagrożeniem. Za pałacem usypano wzgórze Jingshan, które wzmacniało korzystne ukształtowanie terenu i osłaniało kompleks od północy. Na południu rozciągała się przestrzeń ceremonialna prowadząca ku bramom miasta.</p>
+    <p>Południowa część to <b>Dwór Zewnętrzny</b>: miejsce wielkich ceremonii państwowych. Północna część to <b>Dwór Wewnętrzny</b>: rezydencje cesarza, cesarzowej, małżonek i personelu. Podział nie oznacza, że polityka kończyła się na granicy. Wręcz przeciwnie — za Qing najważniejsze codzienne decyzje zapadały często w stosunkowo niewielkiej Sali Kultywowania Umysłu, a nie w monumentalnym Pawilonie Najwyższej Harmonii. Wielkie sale służyły przede wszystkim rytuałowi i komunikowaniu władzy.</p>
+  </div>
+
+  <div class="map-wrap" aria-label="Schemat centralnej osi Zakazanego Miasta">
+    <svg id="palaceMap" viewBox="0 0 760 980" role="img" aria-labelledby="mapTitle mapDesc">
+      <title id="mapTitle">Schemat centralnej osi Zakazanego Miasta</title>
+      <desc id="mapDesc">Interaktywny schemat od Bramy Południkowej na południu do Bramy Boskiej Potęgi na północy.</desc>
+      <rect x="95" y="25" width="570" height="920" rx="18" class="wall"/>
+      <rect x="115" y="45" width="530" height="880" rx="12" class="ground"/>
+      <path d="M380 70V900" class="axis"/>
+      <g class="map-stop" data-target="stop-wumen"><rect x="245" y="865" width="270" height="38" rx="7"/><text x="380" y="890">1. Wǔmén • Brama Południkowa</text></g>
+      <g class="map-stop" data-target="stop-rzeka"><path d="M160 790 Q260 750 380 790 T600 790" class="river"/><text x="380" y="770">2. Złota Rzeka i Brama Najwyższej Harmonii</text></g>
+      <g class="map-stop" data-target="stop-taihe"><rect x="230" y="650" width="300" height="56" rx="8"/><text x="380" y="683">3. Pawilon Najwyższej Harmonii</text></g>
+      <g class="map-stop" data-target="stop-zhonghe"><rect x="285" y="590" width="190" height="40" rx="20"/><text x="380" y="615">4. Środkowa Harmonia</text></g>
+      <g class="map-stop" data-target="stop-baohe"><rect x="245" y="515" width="270" height="48" rx="8"/><text x="380" y="545">5. Zachowanie Harmonii</text></g>
+      <g class="map-stop" data-target="stop-qianqingmen"><rect x="250" y="445" width="260" height="35" rx="7"/><text x="380" y="468">6. Brama Niebiańskiej Czystości</text></g>
+      <g class="map-stop" data-target="stop-qianqing"><rect x="250" y="365" width="260" height="48" rx="8"/><text x="380" y="395">7. Pałac Niebiańskiej Czystości</text></g>
+      <g class="map-stop" data-target="stop-jiaotai"><rect x="290" y="315" width="180" height="30" rx="15"/><text x="380" y="336">8. Sala Zjednoczenia</text></g>
+      <g class="map-stop" data-target="stop-kunning"><rect x="255" y="250" width="250" height="42" rx="8"/><text x="380" y="277">9. Pałac Ziemskiego Spokoju</text></g>
+      <g class="map-stop" data-target="stop-boczne"><rect x="135" y="320" width="85" height="175" rx="8"/><rect x="540" y="320" width="85" height="175" rx="8"/><text x="380" y="235">10. Pałace boczne i Yangxindian</text></g>
+      <g class="map-stop" data-target="stop-ogrod"><path d="M205 120 Q380 45 555 120 L520 210 L240 210 Z"/><text x="380" y="167">11. Ogród Cesarski</text></g>
+      <g class="map-stop" data-target="stop-shenwu"><rect x="250" y="58" width="260" height="34" rx="7"/><text x="380" y="81">12. Shénwǔmén • wyjście</text></g>
+    </svg>
+    <p class="map-hint">Kliknij element mapy, aby przejść do konkretnego przystanku.</p>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="trasa">
+  <div class="chapter-head">
+    <span class="chapter-no">06</span>
+    <div><h2>Trasa przewodnicka krok po kroku</h2><p>Od progu władzy do prywatnego świata cesarza</p></div>
+  </div>
+
+  <article class="stop" id="stop-wumen">
+    <div class="stop-tag">PRZYSTANEK 1</div>
+    <h3>午门 Wǔmén [u-men] — Brama Południkowa</h3>
+    <p class="scene">Zatrzymaj grupę jeszcze przed wejściem. Niech spojrzą na czerwony mur, środkowy pawilon i boczne skrzydła przypominające rozwarte ramiona.</p>
+    <div class="prose">
+      <p>Wumen była najważniejszą bramą Zakazanego Miasta. Jej układ tworzy pięć pawilonów, dlatego nazywano ją także Wieżą Pięciu Feniksów. Architektura ma tu działać psychologicznie: człowiek przychodzi z szerokiej przestrzeni przed pałacem, a następnie zostaje wciągnięty w ciemny tunel bramy. Po drugiej stronie otwiera się zupełnie nowy świat.</p>
+      <p>Środkowe przejście było zarezerwowane dla cesarza. Istniały jednak słynne wyjątki. Cesarzowa mogła przejść tędy raz — podczas wjazdu na ślub. Trzej najlepsi absolwenci egzaminu pałacowego otrzymywali zaszczyt opuszczenia pałacu środkiem po ogłoszeniu wyników. Pozostali korzystali z przejść odpowiadających randze i funkcji.</p>
+      <p>Tu ogłaszano kalendarz, edykty i wyniki wypraw. Odbywały się ceremonie wojskowe oraz kary chłosty wobec urzędników. Popularne zdanie z filmów „wyprowadzić za Wumen i ściąć” jest mylące. Brama nie była standardowym miejscem egzekucji; publiczne stracenia w Pekinie kojarzono raczej z Caishikou. Przy Wumen urzędnicy mogli jednak zostać dotkliwie pobici, a część z nich umierała wskutek kary.</p>
+    </div>
+    <div class="say"><b>Powiedz grupie:</b> „Przejście przez tę bramę było pierwszą lekcją hierarchii. Nawet drzwi nie były równe. To, którędy wolno było przejść, mówiło, kim jesteś.”</div>
+  </article>
+
+  <article class="stop" id="stop-rzeka">
+    <div class="stop-tag">PRZYSTANEK 2</div>
+    <h3>Wewnętrzna Złota Rzeka i Brama Najwyższej Harmonii</h3>
+    <p class="scene">Po wyjściu z tunelu pojawia się szeroki plac, kręta woda i pięć marmurowych mostów. To celowy moment „oddechu” po wąskim przejściu bramy.</p>
+    <div class="prose">
+      <p>Rzeka ma funkcję praktyczną i symboliczną. Pomagała w odprowadzaniu wody i ochronie przeciwpożarowej, lecz jej łuk przypomina także jadeitowy pas lub napięty łuk. Pięć mostów odzwierciedla hierarchię przejść. Centralna droga prowadziła cesarza ku osi pałacu.</p>
+      <p>Brama Najwyższej Harmonii otwiera największy ceremonialny dziedziniec. Po jej bokach stoją lwy. Samiec ma pod łapą haftowaną kulę — symbol porządku i władzy. Samica trzyma młode — symbol ciągłości rodu. Nie są to „lew i lwica rozpoznane biologicznie”; to para symbolicznych ról. Zwróć uwagę, że lwy spoglądają na zewnątrz i pilnują progu.</p>
+    </div>
+    <div class="detail">👀 <b>Pokaż:</b> pięć mostów, lwy, zmianę skali po przejściu bramy.</div>
+  </article>
+
+  <article class="stop" id="stop-taihe">
+    <div class="stop-tag">PRZYSTANEK 3</div>
+    <h3>太和殿 Tàihédiàn [taj-he-djen] — Pawilon Najwyższej Harmonii</h3>
+    <p class="scene">Stań nieco z boku dziedzińca. Z tej perspektywy najlepiej widać trzy tarasy, schody, balustrady i dach unoszący się nad całością.</p>
+    <div class="prose">
+      <p>To najwyżej rangą ustawiony budynek w całym kompleksie i największa sala Zakazanego Miasta. Dzisiejsza konstrukcja pochodzi z rekonstrukcji z epoki Kangxi, ponieważ wcześniejsze budynki wielokrotnie płonęły. Pawilon służył nie codziennej pracy, lecz najważniejszym rytuałom państwa: intronizacjom, cesarskim ślubom, Nowemu Rokowi, urodzinom władcy, ogłaszaniu wielkich decyzji i przyjmowaniu hołdów.</p>
+      <p>Kluczowy jest dystans. Urzędnicy ustawiali się na dziedzińcu według rang. Dźwięk dzwonów, bębnów i muzyki rytualnej, zapach kadzidła, sztandary, stroje i ustalona liczba pokłonów tworzyły spektakl. Wielu ludzi obecnych na placu ledwo widziało cesarza. Nie musieli. Władza miała być odczuwana poprzez organizację całej przestrzeni.</p>
+      <p>Na dachu zobaczysz najdłuższy szereg zwierząt w pałacu: jeźdźca na feniksie i dziesięć stworzeń. Tylko ten pawilon otrzymał pełną liczbę dziesięciu bestii, co podkreśla jego wyjątkową rangę. Figurki były symbolem ochrony, ale maskowały też metalowe kolce mocujące dachówki.</p>
+      <p>Na tarasach znajdują się kamienne głowy smoków pełniące rolę odpływów. Podczas intensywnego deszczu woda wypływa z setek pysków naraz. Wygląda to jak „tysiąc smoków plujących wodą” — jeden z najbardziej widowiskowych przykładów połączenia symboliki i inżynierii.</p>
+    </div>
+    <div class="say"><b>Powiedz grupie:</b> „Cesarz nie siedział tu codziennie. To była scena najważniejszych ceremonii — trochę jak tron, katedra, parlament i studio transmisji państwowej w jednym.”</div>
+  </article>
+
+  <article class="stop" id="stop-zhonghe">
+    <div class="stop-tag">PRZYSTANEK 4</div>
+    <h3>中和殿 Zhōnghédiàn [dżong-he-djen] — Pawilon Środkowej Harmonii</h3>
+    <p class="scene">Po wielkości Taihedian ten niewielki, niemal kwadratowy pawilon działa zaskakująco kameralnie.</p>
+    <div class="prose">
+      <p>Tu cesarz przygotowywał się do ceremonii: odpoczywał, sprawdzał tekst przemowy, przyjmował ostatnie instrukcje i porządkował rytualny strój. Sama nazwa mówi o osiągnięciu równowagi przed działaniem. W konfucjańskim idea­le władca powinien najpierw uporządkować siebie, a dopiero później państwo.</p>
+      <p>To dobry moment, żeby powiedzieć, że cesarz był teoretycznie absolutnym władcą, ale jednocześnie więźniem rytuału. Każdy gest miał znaczenie. Błąd podczas wielkiej ceremonii mógł zostać odczytany jako zły znak, brak harmonii między Niebem a dynastią.</p>
+    </div>
+  </article>
+
+  <article class="stop" id="stop-baohe">
+    <div class="stop-tag">PRZYSTANEK 5</div>
+    <h3>保和殿 Bǎohédiàn [bao-he-djen] — Pawilon Zachowania Harmonii</h3>
+    <div class="prose">
+      <p>W czasach Ming cesarz mógł tu zmieniać szaty przed ceremonią. Za Qing odbywały się bankiety noworoczne dla książąt, ministrów i gości z obszarów związanych z imperium. Od 1789 roku organizowano tu finałowy egzamin pałacowy. Kandydaci, którzy przechodzili przez wieloletni system egzaminów, trafiali w końcu przed oblicze władzy.</p>
+      <p>Za budynkiem znajduje się monumentalna kamienna płyta z wijącymi się smokami pośród chmur i fal. Największe bloki transportowano z kamieniołomów zimą po sztucznie oblodzonych drogach. To świetne miejsce, by połączyć opowieść o ideologii z inżynierią: smok mówi „władza cesarska”, a sam kamień mówi „państwo potrafi zmobilizować ludzi, wodę, drogi i czas”.</p>
+    </div>
+    <div class="detail">👀 <b>Pokaż:</b> kamienną rampę z dziewięcioma smokami i ślady po systemie transportu.</div>
+  </article>
+
+  <article class="stop" id="stop-qianqingmen">
+    <div class="stop-tag">PRZYSTANEK 6</div>
+    <h3>乾清门 Qiánqīngmén [ćjen-ćing-men] — Brama Niebiańskiej Czystości</h3>
+    <div class="prose">
+      <p>Ta brama oddziela Dwór Zewnętrzny od Wewnętrznego. Przed nią kończy się monumentalna przestrzeń ceremonii, a zaczyna obszar życia, pracy i intrygi. Za Qing cesarze odbywali przy bramie poranne audiencje. Urzędnicy mogli przedstawiać sprawy, lecz dostęp do wnętrza pozostawał ściśle kontrolowany.</p>
+      <p>Warto wyjaśnić, że im dalej na północ, tym budynki stają się mniejsze, dziedzińce ciaśniejsze, a przestrzeń bardziej ludzka. Nie oznacza to mniej władzy. Przeciwnie: tutaj podejmowano decyzje, dobierano następców, zarządzano rodziną cesarską i kontrolowano dostęp do osoby władcy.</p>
+    </div>
+  </article>
+
+  <article class="stop" id="stop-qianqing">
+    <div class="stop-tag">PRZYSTANEK 7</div>
+    <h3>乾清宫 Qiánqīnggōng [ćjen-ćing-gung] — Pałac Niebiańskiej Czystości</h3>
+    <div class="prose">
+      <p>Od Yongle do wczesnych Qing był główną rezydencją cesarzy. Władca spał, pracował i przyjmował tu najbliższych urzędników. Po śmierci jego trumna mogła zostać wystawiona w pałacu przed pogrzebem. Od czasów Yongzheng funkcję mieszkalną przejęła Sala Kultywowania Umysłu, lecz Qianqinggong nadal był miejscem ważnych ceremonii i bankietów.</p>
+      <p>Nad tronem znajduje się tablica <b>正大光明 Zhèngdà Guāngmíng</b> [dżeng-da głang-ming], tłumaczona jako „prawość i jawność” albo „uczciwość i światło”. Yongzheng wprowadził system tajnego wyznaczania następcy. Imię kandydata zamykano w szkatułce ukrytej za tablicą, a drugi egzemplarz cesarz przechowywał przy sobie. Po jego śmierci porównywano dokumenty. Miało to ograniczyć otwarte walki książąt o tron, choć nie usuwało politycznych napięć.</p>
+    </div>
+    <div class="say"><b>Powiedz grupie:</b> „Za tą tablicą ukrywano imię przyszłego cesarza. Całe imperium mogło nie wiedzieć, kto odziedziczy władzę, ale odpowiedź wisiała kilka metrów nad tronem.”</div>
+  </article>
+
+  <article class="stop" id="stop-jiaotai">
+    <div class="stop-tag">PRZYSTANEK 8</div>
+    <h3>交泰殿 Jiāotàidiàn [dźjao-taj-djen] — Sala Zjednoczenia</h3>
+    <div class="prose">
+      <p>Nazwa odnosi się do harmonijnego spotkania Nieba i Ziemi, yang i yin, władcy i cesarzowej. Sala łączy Pałac Niebiańskiej Czystości z Pałacem Ziemskiego Spokoju. Przechowywano tu część cesarskich pieczęci. Znajduje się tu również zegar i klepsydra wodna — symbol panowania nie tylko nad przestrzenią, ale także nad czasem.</p>
+      <p>Cesarz kontrolował kalendarz, a kalendarz był polityką. Wyznaczał święta, rytuały, prace rolnicze i szczęśliwe dni. Ogłoszenie oficjalnego kalendarza potwierdzało, że dynastia potrafi uporządkować czas całego państwa.</p>
+    </div>
+  </article>
+
+  <article class="stop" id="stop-kunning">
+    <div class="stop-tag">PRZYSTANEK 9</div>
+    <h3>坤宁宫 Kūnnínggōng [kun-ning-gung] — Pałac Ziemskiego Spokoju</h3>
+    <div class="prose">
+      <p>Za Ming był główną rezydencją cesarzowej. Qing przebudowali go częściowo według mandżurskich tradycji. W zachodniej części odbywały się rytuały szamanistyczne, a wschodnia służyła jako komnata ślubna. Wbrew uproszczeniu cesarzowa Qing nie mieszkała tu stale. Wybrane pary cesarskie spędzały w komnacie ślubnej pierwsze dwa dni małżeństwa, a później przenosiły się do właściwych rezydencji.</p>
+      <p>Czerwone dekoracje, podwójny znak szczęścia 囍, symbole płodności i rozbudowane łóżko tworzyły przestrzeń, w której prywatny związek był sprawą państwa. Najważniejszym zadaniem małżeństwa cesarskiego było zapewnienie ciągłości dynastii.</p>
+    </div>
+  </article>
+
+  <article class="stop" id="stop-boczne">
+    <div class="stop-tag">PRZYSTANEK 10</div>
+    <h3>Sześć Pałaców Wschodnich, Sześć Zachodnich i 养心殿 Yǎngxīndiàn [jang-sin-djen]</h3>
+    <div class="prose">
+      <p>Po obu stronach osi znajdują się zespoły rezydencji małżonek cesarskich. Ich poetyckie nazwy — Pałac Wiecznej Wiosny, Zgromadzonej Elegancji czy Przedłużonego Szczęścia — brzmią sielankowo, lecz życie było ściśle regulowane. Ranga decydowała o liczbie służących, wysokości przydziałów, stroju, prawie do korzystania z określonych kolorów i szansie na spotkanie z cesarzem.</p>
+      <p>Sala Kultywowania Umysłu stała się od czasów Yongzheng rzeczywistym centrum codziennej władzy. Cesarz mieszkał w tylnej części, a w przedniej czytał memoriały i przyjmował urzędników. W wschodniej komnacie cesarzowe wdowy Cixi i Ci’an prowadziły rządy „zza zasłony” podczas małoletności Tongzhi i Guangxu. Nie była to tajna magia pałacu, lecz formalna praktyka regencji: młody cesarz siedział z przodu, a za ekranem znajdowały się kobiety posiadające realną władzę.</p>
+      <p>W tym kompleksie zapadła także decyzja o abdykacji dynastii Qing. W 1912 roku dokument ogłoszono w imieniu małoletniego Puyi. Monumentalne sale na południu wciąż stały, lecz polityczne centrum cesarstwa przestało istnieć.</p>
+    </div>
+  </article>
+
+  <article class="stop" id="stop-ogrod">
+    <div class="stop-tag">PRZYSTANEK 11</div>
+    <h3>御花园 Yùhuāyuán [ju-hła-jüan] — Ogród Cesarski</h3>
+    <div class="prose">
+      <p>Po ogromnych placach ogród wydaje się niemal miniaturowy. Kręte ścieżki, stare cyprysy, fantazyjne skały, pawilony i sztuczne wzniesienia łamią surową symetrię osi. Chiński ogród nie miał być wielką otwartą panoramą. Miał tworzyć kolejne kadry, które pojawiają się w ruchu.</p>
+      <p>Skały symbolizowały góry, małe zbiorniki — jeziora, a wiekowe drzewa — trwałość dynastii. Tutaj odbywały się spacery, święta i rodzinne spotkania. Nie należy jednak wyobrażać sobie pełnej swobody. Nawet wypoczynek władcy odbywał się w przestrzeni otoczonej personelem i protokołem.</p>
+    </div>
+  </article>
+
+  <article class="stop" id="stop-shenwu">
+    <div class="stop-tag">PRZYSTANEK 12</div>
+    <h3>神武门 Shénwǔmén [szen-u-men] — Brama Boskiej Potęgi</h3>
+    <div class="prose">
+      <p>To północna brama i obecnie standardowe wyjście turystyczne, nie główne wejście. Dawniej przechodziły tędy osoby i dostawy związane z życiem Dworu Wewnętrznego. Nad bramą działał bęben i dzwon regulujące rytm pałacu.</p>
+      <p>Po wyjściu spójrz w stronę Jingshan. W 1644 roku ostatni cesarz Ming, Chongzhen, uciekł z pałacu i powiesił się na wzgórzu, gdy rebelianci Li Zichenga weszli do Pekinu. Warto zakończyć trasę właśnie tym obrazem: za najpotężniejszym pałacem świata znajduje się wzgórze, na którym władca odkrył, że mury i rytuały nie są w stanie zatrzymać upadku dynastii.</p>
+    </div>
+    <div class="say"><b>Zakończenie:</b> „Weszliśmy przez bramę, którą symbolicznie wchodziła władza, a wychodzimy bramą prowadzącą ku historii jej upadku. Zakazane Miasto przetrwało cesarzy, ale żaden cesarz nie przetrwał czasu.”</div>
+  </article>
+</section>
+
+
+<section class="chapter searchable" id="zycie">
+  <div class="chapter-head">
+    <span class="chapter-no">07</span>
+    <div><h2>Jak wyglądało życie za czerwonym murem</h2><p>Cesarz, kobiety dworu, eunuchowie, kuchnie i codzienna administracja</p></div>
+  </div>
+  <div class="prose">
+    <p>Najłatwiej popełnić błąd, wyobrażając sobie Zakazane Miasto jako cichy pałac zamieszkany przez cesarza i kilka konkubin. W rzeczywistości był to gigantyczny zakład pracy. Liczba mieszkańców i pracowników zmieniała się w zależności od epoki. Byli tu członkowie rodziny cesarskiej, kobiety dworu, eunuchowie, strażnicy, kucharze, lekarze, krawcy, magazynierzy, skrybowie, ogrodnicy, rzemieślnicy i urzędnicy przychodzący na audiencje.</p>
+    <p>Dzień cesarza mógł zaczynać się bardzo wcześnie. Czytał memoriały — raporty przesyłane z prowincji — zaznaczał decyzje czerwonym tuszem, przyjmował ministrów, uczestniczył w rytuałach, studiował klasyczne teksty i zajmował się sprawami rodziny. Pracowici cesarze, tacy jak Kangxi czy Yongzheng, zostawili ogromne ilości komentarzy na dokumentach. Inni ograniczali kontakt z administracją, pozwalając, by dostęp do nich kontrolowali faworyci lub eunuchowie.</p>
+    <p>Jedzenie było logistycznym rytuałem. Cesarskie kuchnie przygotowywały wiele potraw, lecz liczby typu „108 dań przy każdym posiłku” są zwykle późniejszą przesadą albo opisem wyjątkowej uczty. Potrawy próbowano, rejestrowano i dostarczano w specjalnych pojemnikach. Cesarz nie musiał jeść wszystkiego. Wielość dań demonstrowała obfitość i pozwalała zachować bezpieczeństwo: nie należało zbyt wyraźnie ujawniać ulubionych potraw.</p>
+    <p>Kobiety dworu żyły w systemie rang. Oficjalna cesarzowa zajmowała pozycję najwyższą, poniżej znajdowały się kolejne klasy małżonek i konkubin. Awans mógł zależeć od przychylności władcy, urodzenia syna, rodzinnych powiązań i polityki dworu. Narodziny następcy zwiększały znaczenie matki, ale dziecko nie zawsze wychowywało się wyłącznie pod jej opieką. System miał ograniczać prywatne więzi i podporządkować rodzinę interesowi dynastii.</p>
+    <p>Eunuchowie wykonywali prace niedostępne dla zwykłych mężczyzn w części mieszkalnej. Kontrolowali drzwi, dokumenty, garderobę, kuchnie, transport i komunikację. Ponieważ mogli znajdować się blisko cesarza, czasem zdobywali ogromne wpływy. Nie wszyscy byli potężni. Większość prowadziła ciężkie, zdyscyplinowane życie i mogła zostać surowo ukarana. Historia pałacu pokazuje jednak prostą zasadę: kto kontroluje dostęp do władcy, może wpływać na państwo.</p>
+    <p>Choroba również była sprawą polityczną. Lekarze dworscy badali puls, zapisywali recepty i prowadzili rejestry. Diagnoza cesarza mogła pozostawać tajemnicą, bo informacja o słabości władcy wpływała na walkę o sukcesję. Śmierć nie kończyła rytuału: ciało wystawiano, ogłaszano żałobę, przygotowywano świątynne imię i wielką procesję pogrzebową do cesarskich grobowców.</p>
+  </div>
+  <div class="day-grid">
+    <div><time>Przed świtem</time><p>Toaleta, strój, pierwsze raporty i rytuały.</p></div>
+    <div><time>Poranek</time><p>Audiencje, memoriały, decyzje administracyjne.</p></div>
+    <div><time>Południe</time><p>Posiłek, nauka, przyjęcia i sprawy rodziny.</p></div>
+    <div><time>Wieczór</time><p>Dokumenty, ceremonia wyboru nocnej rezydencji, odpoczynek pod kontrolą służby.</p></div>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="symbole">
+  <div class="chapter-head">
+    <span class="chapter-no">08</span>
+    <div><h2>Słownik symboli, który widać na każdym kroku</h2><p>Kolory, liczby, zwierzęta i przedmioty mówiące językiem władzy</p></div>
+  </div>
+  <div class="symbol-grid">
+    <article><div class="symbol-mark">黄</div><h3>Żółty dach</h3><p>Żółty był mocno związany z cesarzem i centrum. Większość głównych budynków ma żółte glazurowane dachówki. Wyjątki są znaczące: zielone dachy rezydencji następcy wiązano ze wzrostem, a ciemne dachówki biblioteki Wenyuange — z wodą i ochroną przed ogniem.</p></article>
+    <article><div class="symbol-mark">九</div><h3>Liczba dziewięć</h3><p>Najwyższa jednocyfrowa liczba yang, kojarzona z cesarskością. Widzisz ją w liczbie gwoździ na wrotach, smokach, podziałach dekoracji i nazwach. Nie każdy układ 9×9 jest identyczny — niektóre bramy mają inne konfiguracje.</p></article>
+    <article><div class="symbol-mark">龍</div><h3>Smok</h3><p>Smok cesarski łączy władzę, deszcz, płodność i siłę kosmiczną. Pięciopazurzasty smok był szczególnie związany z najwyższą rangą. Na kamiennych rampach unosi się między chmurami i falami, jak władca między Niebem a ziemskim światem.</p></article>
+    <article><div class="symbol-mark">鳳</div><h3>Feniks</h3><p>Feniks był często łączony z cesarzową i harmonijnym panowaniem. Para smoka i feniksa może symbolizować cesarską parę, ale znaczenia zmieniają się zależnie od kontekstu.</p></article>
+    <article><div class="symbol-mark">鹤</div><h3>Żuraw i żółw</h3><p>Brązowe żurawie i żółwie oznaczają długowieczność. Stoją przy tronach jak życzenie, aby panowanie trwało tak długo, jak mityczne życie tych stworzeń.</p></article>
+    <article><div class="symbol-mark">蝠</div><h3>Nietoperz</h3><p>Po chińsku „nietoperz” <i>fú</i> brzmi podobnie do „szczęścia”. Pięć nietoperzy może oznaczać pięć błogosławieństw: długowieczność, bogactwo, zdrowie, cnotę i spokojną śmierć.</p></article>
+  </div>
+
+  <details>
+    <summary>🏯 Stwory na dachach — pełna opowieść</summary>
+    <div class="prose">
+      <p>Na narożnych grzbietach dachów jedzie najpierw nieśmiertelny na feniksie, a za nim ustawia się szereg stworzeń. Im ważniejszy budynek, tym dłuższa grupa. Pawilon Najwyższej Harmonii jako jedyny ma dziesięć bestii: smoka, feniksa, lwa, niebiańskiego konia, morskiego konia, suanni, yayu, xiezhi, douniu i hangshi. Część ma chronić przed ogniem i piorunem, część symbolizuje sprawiedliwość, odwagę lub panowanie nad wodą.</p>
+      <p>Pod legendą kryje się praktyka: figurki osłaniają metalowe elementy mocujące dachówki na krawędzi. To typowe dla chińskiej architektury pałacowej — rozwiązanie techniczne zamienia się w opowieść o kosmosie i randze.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>🚪 Gwoździe na bramach</summary>
+    <p>Rzędy złoconych guzów wzmacniały drewniane wrota i jednocześnie komunikowały rangę. Układ dziewięciu na dziewięć kojarzono z cesarzem. Nie należy jednak twierdzić, że wszystkie drzwi w pałacu mają dokładnie 81 guzów; układ zależał od funkcji i pozycji budynku.</p>
+  </details>
+</section>
+
+
+<section class="chapter searchable" id="historia-pozniej">
+  <div class="chapter-head">
+    <span class="chapter-no">09</span>
+    <div><h2>Od upadku Ming do ostatniego cesarza</h2><p>Pałac zmienia dynastię, ale nie traci pozycji centrum</p></div>
+  </div>
+  <div class="prose">
+    <p>Wiosną 1644 roku sytuacja dynastii Ming była katastrofalna. Rebelia Li Zichenga zbliżała się do Pekinu, skarbiec był osłabiony, a wojsko rozproszone. Cesarz Chongzhen próbował zebrać obronę, lecz stolica upadła. Opuścił pałac i na wzgórzu Jingshan popełnił samobójstwo. Według tradycji przed śmiercią zabił część kobiet swojej rodziny, aby nie dostały się w ręce rebeliantów. To brutalne zakończenie pokazuje, że życie dynastii było utożsamione z kontrolą nad rodziną i pałacem.</p>
+    <p>Li Zicheng utrzymał Pekin krótko. Były generał Ming Wu Sangui połączył siły z Mandżurami, którzy wkroczyli przez przełęcz Shanhai. Wkrótce dynastia Qing zajęła stolicę. Mandżurowie nie zburzyli pałacu jako symbolu obcej władzy. Przejęli go, odnowili i przepisali jego znaczenie. Dodali język mandżurski do tablic, wprowadzili rytuały szamanistyczne i własne praktyki dworskie, a zarazem zachowali chiński model cesarstwa.</p>
+    <p>W XIX wieku pałac był świadkiem narastającego kryzysu. Wojny opiumowe, rebelia tajpingów, presja mocarstw i spory o reformy nie zawsze toczyły się fizycznie wewnątrz murów, ale ich skutki docierały do cesarskich komnat. Cesarzowa wdowa Cixi stała się najpotężniejszą osobą późnego Qing. Rządziła jako regentka, budowała sieci lojalności i hamowała część reform, choć obraz wyłącznie „złej starej cesarzowej” jest uproszczeniem tworzonym również przez wrogów politycznych i zachodnią prasę.</p>
+    <p>Po rewolucji 1911 roku ostatni cesarz Puyi abdykował w 1912 roku. Na mocy porozumienia mógł nadal mieszkać w północnej części pałacu, zachowując dwór i ceremoniał w miniaturowej formie. Powstała dziwna sytuacja: na zewnątrz istniała republika, a za murami dziecko nadal odgrywało rolę cesarza. W 1924 roku wojska Feng Yuxianga usunęły Puyi z pałacu. Rok później utworzono Muzeum Pałacowe.</p>
+    <p>W latach trzydziestych, wobec zagrożenia japońskiego, najcenniejsze zbiory zapakowano w tysiące skrzyń i wywieziono z Pekinu. Podróżowały przez Chiny w warunkach wojny. Po wojnie część kolekcji wróciła do Pekinu, a część została przewieziona na Tajwan i stała się trzonem Narodowego Muzeum Pałacowego w Tajpej. Dlatego istnieją dziś dwa wielkie „muzea pałacowe”, obydwa wywodzące się z cesarskiej kolekcji.</p>
+    <p>Podczas rewolucji kulturalnej w 1966 roku kompleks został zamknięty i objęty ochroną wojskową. Popularna wersja mówi, że Zhou Enlai osobiście „uratował Zakazane Miasto”; najbezpieczniej powiedzieć, że jego interwencje i decyzje władz o zamknięciu oraz ochronie kompleksu pomogły uchronić go przed chaosem Czerwonej Gwardii. W 1987 roku pałac wpisano na listę UNESCO. Muzeum podaje dziś kolekcję ponad 1,8 miliona obiektów.</p>
+  </div>
+  <div class="timeline dense">
+    <div><time>1644</time><p>Upadek Ming; śmierć Chongzhena; przejęcie Pekinu przez Qing.</p></div>
+    <div><time>1861–1908</time><p>Dominująca rola cesarzowej wdowy Cixi w polityce późnego Qing.</p></div>
+    <div><time>1912</time><p>Abdykacja Puyi i koniec systemu cesarskiego.</p></div>
+    <div><time>1924</time><p>Puyi zostaje usunięty z Zakazanego Miasta.</p></div>
+    <div><time>1925</time><p>Otwarcie Muzeum Pałacowego.</p></div>
+    <div><time>1933</time><p>Rozpoczyna się ewakuacja skarbów przed wojną.</p></div>
+    <div><time>1987</time><p>Wpis na listę światowego dziedzictwa UNESCO.</p></div>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="mity">
+  <div class="chapter-head">
+    <span class="chapter-no">10</span>
+    <div><h2>Fakty, legendy i zdania, których lepiej nie mówić bez komentarza</h2><p>Szybki fact-check przewodnika</p></div>
+  </div>
+  <div class="fact-table">
+    <div class="fact-row"><b>„Zakazane Miasto ma 9999 i pół komnaty.”</b><span class="legend">LEGENDA</span><p>Liczba nawiązuje do doskonałości i pałacu Niebiańskiego Cesarza. Współczesne pomiary mówią o ponad 8700–8800 jednostkach przestrzennych, zależnie od sposobu liczenia.</p></div>
+    <div class="fact-row"><b>„Przy Wumen ścinano skazańców.”</b><span class="false">MYLĄCE</span><p>Przy bramie karano urzędników chłostą i odbywały się ceremonie wojskowe. Standardowe egzekucje wykonywano w innych miejscach, m.in. w Caishikou.</p></div>
+    <div class="fact-row"><b>„Pałac zbudował jeden Wietnamczyk Nguyễn An.”</b><span class="mixed">CZĘŚCIOWO</span><p>Nguyễn An był ważnym inżynierem i budowniczym, lecz projekt był zbiorowym przedsięwzięciem państwowym. Ruan An to jego chińskie imię, nie druga osoba.</p></div>
+    <div class="fact-row"><b>„Nie użyto ani jednego gwoździa.”</b><span class="mixed">UPROSZCZENIE</span><p>Główne konstrukcje opierają się na drewnianych połączeniach i systemie dougong. Absolutny brak wszelkich gwoździ lub metalowych łączników w całej historii kompleksu jest nieprawdziwym skrótem.</p></div>
+    <div class="fact-row"><b>„Wszystkie dachy są żółte.”</b><span class="false">NIE</span><p>Większość najważniejszych dachów jest żółta, ale biblioteka Wenyuange ma ciemne dachówki związane symbolicznie z wodą, a część rezydencji następcy miała zieleń.</p></div>
+    <div class="fact-row"><b>„Cixi mieszkała i rządziła w Pałacu Ziemskiego Spokoju.”</b><span class="false">NIEPRECYZYJNE</span><p>Jej kluczową przestrzenią rządzenia zza zasłony była wschodnia komnata Sali Kultywowania Umysłu; mieszkała w innych rezydencjach zależnie od okresu.</p></div>
+    <div class="fact-row"><b>„Brama Boskiej Potęgi jest głównym wejściem.”</b><span class="false">NIE</span><p>Dziś standardowe wejście odbywa się od południa przez Wumen, a Shenwumen jest głównym wyjściem na północy.</p></div>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="ciekawostki">
+  <div class="chapter-head">
+    <span class="chapter-no">11</span>
+    <div><h2>Anegdoty, które działają na grupę</h2><p>Krótkie historie do wrzucenia między daty i budynki</p></div>
+  </div>
+  <div class="story-cards">
+    <article><h3>Tron, który zaginął</h3><p>Oryginalny smoczy tron w Taihedian usunięto w czasach Yuan Shikaia. Przez dziesięciolecia uznawano go za zaginiony. W 1959 roku ekspert Zhu Jiajin rozpoznał uszkodzony mebel w magazynie na podstawie starego zdjęcia. Po 934 dniach konserwacji tron wrócił na miejsce.</p></article>
+    <article><h3>Woda w kadziach nie mogła zamarznąć</h3><p>W zimie pod metalowymi kadziami rozpalano niewielki ogień albo osłaniano je materiałem, aby w razie pożaru woda była dostępna. Złocenia części kadzi zeskrobywali podobno żołnierze wojsk okupacyjnych w 1900 roku.</p></article>
+    <article><h3>Cesarz i tysiąc starszych</h3><p>Kangxi i Qianlong organizowali w Qianqinggong „bankiety tysiąca starców”, zapraszając bardzo wiekowych poddanych. Była to propaganda synowskiej pobożności i długowieczności państwa.</p></article>
+    <article><h3>Pałacowe koty</h3><p>Koty były obecne na dworze od wieków i pomagały kontrolować gryzonie. Dziś muzealne koty stały się internetowymi celebrytami, ale ich historyczny sens był bardzo praktyczny: chroniły zapasy i tkaniny.</p></article>
+    <article><h3>Każda cegła miała odpowiedzialnego człowieka</h3><p>Na elementach budowlanych można znaleźć stemple z nazwami warsztatów i urzędników. System umożliwiał kontrolę jakości: błąd nie był anonimowy, dało się ustalić, kto odpowiadał za wadliwy materiał.</p></article>
+    <article><h3>Dlaczego cesarz spał w różnych pokojach</h3><p>Wielu cesarzy zmieniało komnaty z powodów bezpieczeństwa, rytuału i komfortu. Opowieść o „27 łóżkach, żeby nikt nie wiedział, gdzie śpi” jest popularna, ale liczby należy traktować ostrożnie. Sens jest prawdziwy: dokładna lokalizacja władcy była informacją chronioną.</p></article>
+    <article><h3>Najwyższy budynek nie był biurem</h3><p>Najbardziej monumentalny Taihedian wykorzystywano tylko w wybrane dni. Prawdziwa codzienna administracja działała w mniejszych pomieszczeniach. To świetny przykład różnicy między obrazem władzy a jej praktyką.</p></article>
+    <article><h3>Ostatni cesarz nie zniknął w 1912</h3><p>Puyi po abdykacji mieszkał w pałacu jeszcze dwanaście lat. Republika istniała za murami, ale wewnątrz nadal funkcjonował miniaturowy dwór z tytułami, służbą i ceremoniami.</p></article>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="wersje">
+  <div class="chapter-head">
+    <span class="chapter-no">12</span>
+    <div><h2>Gotowe nawijki przewodnickie</h2><p>Wybierz długość i czytaj prawie słowo w słowo</p></div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Długość nawijki">
+    <button type="button" class="tab active" data-tab="talk30">30 sekund</button>
+    <button type="button" class="tab" data-tab="talk2">2 minuty</button>
+    <button type="button" class="tab" data-tab="talk5">5 minut</button>
+    <button type="button" class="tab" data-tab="talkend">Zakończenie</button>
+  </div>
+
+  <div class="talk active" id="talk30">
+    <p>„Zakazane Miasto było przez ponad pięć stuleci sercem chińskiego imperium. Mieszkało tu 24 cesarzy dynastii Ming i Qing. Kompleks ma 72 hektary, ale najważniejsza jest jego oś: od południa do północy przechodzimy od świata publicznych ceremonii do prywatnych rezydencji. Każda brama, dach i liczba pokazuje hierarchię. To pałac zaprojektowany tak, żeby człowiek nie tylko widział władzę, ale fizycznie ją odczuwał.”</p>
+  </div>
+  <div class="talk" id="talk2">
+    <p>„Kiedy w 1406 roku cesarz Yongle rozpoczął budowę, nie tworzył po prostu nowego domu. Potrzebował stolicy, która potwierdzi jego prawo do tronu. Dlatego pałac ustawiono na centralnej osi Pekinu i zbudowano jak ziemski odpowiednik niebiańskiego dworu. Purpura w nazwie odnosi się do Gwiazdy Polarnej — nieruchomego centrum nieba. Cesarz miał być jej odpowiednikiem na ziemi.</p>
+    <p>Przed nami są dwie główne strefy. Na południu Dwór Zewnętrzny z wielkimi pawilonami harmonii, gdzie odbywały się koronacje, śluby i uroczystości. Na północy Dwór Wewnętrzny, czyli mieszkania, biura, pałace kobiet i miejsce codziennego rządzenia. Największa sala nie była używana codziennie. Prawdziwa praca odbywała się w mniejszych pomieszczeniach. Zakazane Miasto jest więc jednocześnie sceną i maszyną administracyjną — piękne, ale też niezwykle praktyczne.”</p>
+  </div>
+  <div class="talk" id="talk5">
+    <p>„Proszę wyobrazić sobie Pekin na początku XV wieku. Cesarz Yongle zdobył tron w wojnie domowej i przenosi centrum imperium z Nankinu na północ. Potrzebuje czegoś, co zamieni zwycięstwo wojskowe w legalną władzę. Buduje więc nie zwykły pałac, lecz model wszechświata.</p>
+    <p>Chińska nazwa Zǐjìnchéng oznacza Purpurowe Zakazane Miasto. Purpura nie jest tu dekoracją. Odnosi się do okolic Gwiazdy Polarnej — centrum nieba. Cesarz jako Syn Niebios ma mieszkać w centrum ziemskiego porządku. Dlatego cały kompleks jest ustawiony na osi północ–południe. Budynki zwracają się ku południu, a człowiek wchodzący przez kolejne bramy stopniowo zbliża się do centrum.</p>
+    <p>Najpierw widzimy ogromne dziedzińce i trzy pawilony harmonii. To przestrzeń wielkich ceremonii. Najważniejszy Pawilon Najwyższej Harmonii był używany podczas intronizacji, Nowego Roku czy cesarskich ślubów. Urzędnicy stali na placu według rang. Wielu nie widziało władcy, ale każdy widział własne miejsce w hierarchii.</p>
+    <p>Dalej przechodzimy do Dworu Wewnętrznego. Tutaj skala maleje, ale rośnie znaczenie codziennych decyzji. W Sali Kultywowania Umysłu cesarz czytał raporty, przyjmował ministrów i spał. Tutaj Cixi rządziła zza zasłony, a w 1912 roku podjęto decyzję o abdykacji Puyi.</p>
+    <p>Pałac ma także drugie oblicze: inżynieryjne. Wielkie kamienie ciągnięto zimą po lodowych drogach. Drewniane szkielety składano z precyzyjnych połączeń. Setki kadzi z wodą chroniły przed pożarem, a kanały pod podłogą ogrzewały komnaty. Wszystko — od smoka na kamiennej rampie po odpływ w jego pysku — łączy symbol z praktyką.</p>
+    <p>Zakazane Miasto przetrwało upadek Ming, dynastię Qing, republikę, wojny i rewolucję kulturalną. Od 1925 roku jest muzeum. Miejsce stworzone po to, by odgradzać zwykłych ludzi, stało się jednym z najczęściej odwiedzanych muzeów świata.”</p>
+  </div>
+  <div class="talk" id="talkend">
+    <p>„Na początku mówiłem, że ten pałac był modelem świata. Teraz widzimy również jego paradoks. Zbudowano go, aby cesarska władza wyglądała na wieczną, ale mieszkały tu dwie dynastie, dwudziestu czterech cesarzy i żaden z nich nie zatrzymał historii. Przetrwały nie osoby, lecz architektura, przedmioty i opowieści. Zakazane Miasto nie jest więc tylko pomnikiem potęgi. Jest także pomnikiem przemijania.”</p>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="slownik">
+  <div class="chapter-head">
+    <span class="chapter-no">13</span>
+    <div><h2>Mini-słownik z wymową</h2><p>Przybliżona wymowa po polsku — wystarczająca do nawijki</p></div>
+  </div>
+  <div class="glossary">
+    <div><b>故宫 Gùgōng</b><span>[gu-gung]</span><p>Dawny Pałac; współczesna codzienna nazwa.</p></div>
+    <div><b>紫禁城 Zǐjìnchéng</b><span>[dzy-dzin-czeng]</span><p>Purpurowe Zakazane Miasto.</p></div>
+    <div><b>午门 Wǔmén</b><span>[u-men]</span><p>Brama Południkowa.</p></div>
+    <div><b>太和殿 Tàihédiàn</b><span>[taj-he-djen]</span><p>Pawilon Najwyższej Harmonii.</p></div>
+    <div><b>中和殿 Zhōnghédiàn</b><span>[dżong-he-djen]</span><p>Pawilon Środkowej Harmonii.</p></div>
+    <div><b>保和殿 Bǎohédiàn</b><span>[bao-he-djen]</span><p>Pawilon Zachowania Harmonii.</p></div>
+    <div><b>乾清宫 Qiánqīnggōng</b><span>[ćjen-ćing-gung]</span><p>Pałac Niebiańskiej Czystości.</p></div>
+    <div><b>坤宁宫 Kūnnínggōng</b><span>[kun-ning-gung]</span><p>Pałac Ziemskiego Spokoju.</p></div>
+    <div><b>养心殿 Yǎngxīndiàn</b><span>[jang-sin-djen]</span><p>Sala Kultywowania Umysłu.</p></div>
+    <div><b>御花园 Yùhuāyuán</b><span>[ju-hła-jüan]</span><p>Ogród Cesarski.</p></div>
+    <div><b>神武门 Shénwǔmén</b><span>[szen-u-men]</span><p>Brama Boskiej Potęgi.</p></div>
+    <div><b>斗拱 Dǒugǒng</b><span>[doł-gung]</span><p>System drewnianych wsporników.</p></div>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="quiz">
+  <div class="chapter-head">
+    <span class="chapter-no">14</span>
+    <div><h2>Szybki quiz przed wyjściem z grupą</h2><p>Sprawdź, czy najważniejsze rzeczy siedzą w głowie</p></div>
+  </div>
+  <div id="quizBox" class="quiz-box">
+    <p id="quizQuestion"></p>
+    <div id="quizAnswers"></div>
+    <p id="quizFeedback" aria-live="polite"></p>
+    <button type="button" id="nextQuestion">Następne pytanie</button>
+  </div>
+</section>
+
+
+<section class="chapter searchable" id="zrodla">
+  <div class="chapter-head">
+    <span class="chapter-no">15</span>
+    <div><h2>Źródła i uwagi badawcze</h2><p>Opracowanie bazuje przede wszystkim na materiałach Muzeum Pałacowego, UNESCO i publikacjach naukowych.</p></div>
+  </div>
+  <ol class="sources">
+    <li><a href="https://intl.dpm.org.cn/visit.html" target="_blank" rel="noreferrer">The Palace Museum — Visit</a>: oficjalne wymiary, mury, fosa i układ bram.</li>
+    <li><a href="https://whc.unesco.org/en/list/439/" target="_blank" rel="noreferrer">UNESCO World Heritage — Imperial Palaces of the Ming and Qing Dynasties</a>: budowa 1406–1420, 24 cesarzy, znaczenie i historia ochrony.</li>
+    <li><a href="https://intl.dpm.org.cn/hallsinfo/374.html" target="_blank" rel="noreferrer">Hall of Supreme Harmony</a>: funkcja, rekonstrukcja, ranga i dziesięć figur dachowych.</li>
+    <li><a href="https://intl.dpm.org.cn/hallsinfo/368.html" target="_blank" rel="noreferrer">Hall of Preserving Harmony</a>: bankiety i egzamin pałacowy od 1789 roku.</li>
+    <li><a href="https://intl.dpm.org.cn/hallsinfo/369.html" target="_blank" rel="noreferrer">Palace of Heavenly Purity</a>: rezydencja cesarza i tajne wyznaczanie następcy.</li>
+    <li><a href="https://intl.dpm.org.cn/hallsinfo/371.html" target="_blank" rel="noreferrer">Palace of Earthly Tranquility</a>: mandżurska przebudowa, rytuały i komnata ślubna.</li>
+    <li><a href="https://intl.dpm.org.cn/hallsinfo/372.html" target="_blank" rel="noreferrer">Hall of Mental Cultivation</a>: codzienna administracja i rządy zza zasłony.</li>
+    <li><a href="https://young.dpm.org.cn/en/info/1097" target="_blank" rel="noreferrer">The Mysterious Beasts on the Roof Ridges</a>: lista i funkcja figur dachowych.</li>
+    <li><a href="https://young.dpm.org.cn/en/info/1133" target="_blank" rel="noreferrer">First Layer: Fire Hydrants and Extinguishers</a>: 308 kadzi, pożary i straż pożarna.</li>
+    <li><a href="https://young.dpm.org.cn/en/info/1101" target="_blank" rel="noreferrer">Palace Heating</a>: ogrzewanie podłogowe, kang i braziery.</li>
+    <li><a href="https://www.pnas.org/doi/10.1073/pnas.1309319110" target="_blank" rel="noreferrer">Li i in., PNAS (2013)</a>: transport wielkich kamieni po lodzie.</li>
+    <li><a href="https://english.suzhou.gov.cn/szsenglish/sgy/201611/5b453126fd374a4b945d4d0df58fec1b.shtml" target="_blank" rel="noreferrer">Suzhou Government — Golden Bricks</a>: cesarskie cegły posadzkowe.</li>
+    <li><a href="https://intl.dpm.org.cn/index.html?l=en" target="_blank" rel="noreferrer">The Palace Museum</a>: kolekcja ponad 1,8 mln obiektów.</li>
+  </ol>
+  <div class="research-note">
+    <b>Metoda:</b> tekst dostarczony przez użytkownika został potraktowany jako punkt wyjścia. Usunięto lub oznaczono twierdzenia słabo potwierdzone, poprawiono pomylenie Nguyễn Ana z Ruan Anem, funkcję Shenwumen, rolę Wumen, miejsce rządów Cixi oraz kilka zbyt kategorycznych liczb.
+  </div>
+</section>
+
+  </main>
+</div>
+<div id="toast" class="random-toast" role="status" aria-live="polite"></div>
+<script>
+const q=(s,c=document)=>c.querySelector(s), qa=(s,c=document)=>[...c.querySelectorAll(s)];
+const body=document.body;
+const search=q('#search');
+const toast=q('#toast');
+const facts=[
+  "Wielkie kamienne płyty transportowano po zimowych drogach lodowych, polewanych wodą ze studni.",
+  "Pawilon Najwyższej Harmonii jako jedyny ma pełny szereg dziesięciu bestii dachowych.",
+  "Po abdykacji Puyi mieszkał w północnej części pałacu jeszcze do 1924 roku.",
+  "308 wielkich kadzi pełniło funkcję dawnych hydrantów; zimą chroniono wodę przed zamarzaniem.",
+  "Środkowym przejściem Wumen mogła raz przejechać cesarzowa w dniu ślubu.",
+  "Największa sala pałacu nie była codziennym biurem. Realna praca odbywała się w mniejszych komnatach.",
+  "Ruan An i Nguyễn An to chiński i wietnamski zapis imienia tej samej osoby.",
+  "Nazwa Zǐjìnchéng łączy Purpurowe Ogrodzenie Gwiazdy Polarnej, zakaz dostępu i ufortyfikowane miasto."
+];
+
+function jump(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+qa('[data-jump]').forEach(b=>b.addEventListener('click',()=>jump(b.dataset.jump)));
+qa('.map-stop').forEach(g=>g.addEventListener('click',()=>jump(g.dataset.target)));
+
+q('#theme').addEventListener('click',()=>{body.classList.toggle('dark');q('#theme').textContent=body.classList.contains('dark')?'☀️':'🌙';});
+let size=18;
+q('#fontPlus').addEventListener('click',()=>{size=Math.min(23,size+1);document.documentElement.style.setProperty('--font',size+'px')});
+q('#fontMinus').addEventListener('click',()=>{size=Math.max(15,size-1);document.documentElement.style.setProperty('--font',size+'px')});
+q('#print').addEventListener('click',()=>window.print());
+
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  q('#progress').style.width=(h?scrollY/h*100:0)+'%';
+  let current='start';
+  qa('main section[id]').forEach(sec=>{if(sec.getBoundingClientRect().top<130)current=sec.id});
+  qa('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+});
+
+search.addEventListener('input',()=>{
+  const term=search.value.trim().toLocaleLowerCase('pl');
+  let count=0;
+  qa('.searchable').forEach(sec=>{
+    const match=!term||sec.innerText.toLocaleLowerCase('pl').includes(term);
+    sec.classList.toggle('hidden-by-search',!match);
+    if(match)count++;
+  });
+  q('#noResults').classList.toggle('show',count===0);
+});
+
+q('#randomFact').addEventListener('click',()=>{
+  toast.textContent=facts[Math.floor(Math.random()*facts.length)];
+  toast.classList.add('show');
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>toast.classList.remove('show'),6000);
+});
+
+qa('.tab').forEach(btn=>btn.addEventListener('click',()=>{
+  qa('.tab').forEach(x=>x.classList.remove('active'));
+  qa('.talk').forEach(x=>x.classList.remove('active'));
+  btn.classList.add('active');q('#'+btn.dataset.tab).classList.add('active');
+}));
+
+const quiz=[
+ {q:"Co symbolizuje „purpura” w nazwie Zǐjìnchéng?",a:["Drogą tkaninę z Suzhou","Okolice Gwiazdy Polarnej i centrum nieba","Kolor stroju eunuchów"],c:1,e:"Purpurowe Ogrodzenie było niebiańską strefą wokół Gwiazdy Polarnej."},
+ {q:"Gdzie odbywała się codzienna praca wielu cesarzy Qing?",a:["Wyłącznie w Taihedian","W Sali Kultywowania Umysłu","Na murach Wumen"],c:1,e:"Yangxindian stała się mieszkaniem i codziennym centrum administracyjnym."},
+ {q:"Czy Wumen była typowym miejscem egzekucji?",a:["Tak, zawsze ścinano tam urzędników","Nie; karano tam chłostą, ale egzekucje odbywały się zwykle gdzie indziej","Nie odbywały się tam żadne kary"],c:1,e:"Filmowe „ściąć za Wumen” jest mitem; kary chłosty były jednak realne i czasem śmiertelne."},
+ {q:"Dlaczego kamienne głowy smoków na tarasach są praktyczne?",a:["Są kominami","Są odpływami deszczówki","Przechowują dokumenty"],c:1,e:"Podczas ulewy woda wypływa z ich pysków."},
+ {q:"Kto to Ruan An i Nguyễn An?",a:["Dwaj rywalizujący architekci","Ta sama osoba zapisana po chińsku i wietnamsku","Dwaj cesarze Ming"],c:1,e:"Nguyễn An był wietnamskim inżynierem i eunuchem w służbie Ming; Ruan An to transkrypcja chińska."}
+];
+let qi=0,locked=false;
+function renderQuiz(){
+ locked=false;const item=quiz[qi];q('#quizQuestion').textContent=item.q;q('#quizFeedback').textContent='';
+ const box=q('#quizAnswers');box.innerHTML='';
+ item.a.forEach((txt,i)=>{const b=document.createElement('button');b.type='button';b.textContent=txt;b.addEventListener('click',()=>{
+   if(locked)return;locked=true;
+   qa('button',box).forEach((x,j)=>x.classList.add(j===item.c?'correct':(j===i?'wrong':'')));
+   q('#quizFeedback').textContent=(i===item.c?'Dobrze. ':'Nie tym razem. ')+item.e;
+ });box.appendChild(b)});
+}
+q('#nextQuestion').addEventListener('click',()=>{qi=(qi+1)%quiz.length;renderQuiz()});renderQuiz();
+</script>
+</body>
+</html>

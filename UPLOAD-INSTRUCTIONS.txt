@@ -1,12 +1,16 @@
-WANFANG GUIDE — UPLOAD TO GITHUB PAGES
+WANFANG GUIDE 0.3 — JAK WGRAC AKTUALIZACJE
 
-1. Create a PUBLIC repository named: wanfang-guide
-2. Open the extracted wanfang-guide-github folder.
-3. Upload ALL CONTENTS of this folder to the repository root.
-   Important: index.html must be visible in the main repository view.
-4. Commit the files to the main branch.
-5. Repository Settings > Pages.
-6. Source: Deploy from a branch.
-7. Branch: main, folder: /(root), then Save.
-8. The site address will be:
-   https://bartoszwzorek.github.io/wanfang-guide/
+1. Rozpakuj ZIP.
+2. Wejdz do srodka folderu.
+3. Na GitHubie otworz repozytorium wanfang-guide.
+4. Add file -> Upload files.
+5. Przeciagnij WSZYSTKIE pliki i foldery z tej paczki do glownego katalogu repozytorium.
+6. Kliknij Commit changes.
+7. Poczekaj 1-3 minuty i odswiez strone twardym odswiezeniem (Ctrl+F5 / Cmd+Shift+R).
+
+Najwazniejsze zmienione pliki:
+- data/topics.js
+- assets/app.js
+- assets/style.css
+
+Mozesz wrzucic cala paczke; pozostale pliki sa zgodne z poprzednia wersja.

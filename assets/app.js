@@ -81,9 +81,14 @@
     $("#cityFilter").innerHTML='<option value="">Wszystkie miasta</option>'+cities.map(c=>`<option ${state.city===c?'selected':''}>${escapeHtml(c)}</option>`).join("");
     $("#categoryFilter").innerHTML='<option value="">Wszystkie kategorie</option>'+categories.map(c=>`<option ${state.category===c?'selected':''}>${escapeHtml(c)}</option>`).join("");
   }
+  function stripHtml(html=""){const box=document.createElement("div");box.innerHTML=html;return box.textContent||"";}
   function filteredTopics(source=topics()){
     const q=state.query.trim().toLowerCase();
-    return source.filter(t=>(!state.city||t.city===state.city)&&(!state.category||t.category===state.category)&&(!q||[t.title,t.chinese,t.pronunciation,t.city,t.category,t.summary,...(t.tags||[])].join(" ").toLowerCase().includes(q)));
+    return source.filter(t=>{
+      const sectionText=(t.sections||[]).map(s=>`${s.title||""} ${s.subtitle||""} ${stripHtml(s.content||"")}`).join(" ");
+      const haystack=[t.title,t.chinese,t.pronunciation,t.city,t.category,t.summary,...(t.tags||[]),sectionText].join(" ").toLowerCase();
+      return (!state.city||t.city===state.city)&&(!state.category||t.category===state.category)&&(!q||haystack.includes(q));
+    });
   }
   function renderLibrary(){
     renderFilters(); const found=filteredTopics(); const grid=$("#libraryGrid"); grid.classList.toggle("list-layout",state.layout==="list"); grid.innerHTML=found.map(topicCard).join(""); bindCards(grid);
@@ -104,22 +109,50 @@
   function updateCounts(){const all=topics();$("#allCount").textContent=all.length;$("#favoriteCount").textContent=state.favorites.size;$("#routeCount").textContent=state.route.length;}
 
   function renderTopic(id){
-    const t=topics().find(x=>x.id===id); if(!t){location.hash="library";return;} state.currentTopicId=id; const notes=localStorage.getItem(`wanfang:notes:${id}`)||""; const fav=state.favorites.has(id),inRoute=state.route.includes(id);
+    const t=topics().find(x=>x.id===id); if(!t){location.hash="library";return;} state.currentTopicId=id;
+    const notes=localStorage.getItem(`wanfang:notes:${id}`)||""; const fav=state.favorites.has(id),inRoute=state.route.includes(id);
     views.topic.style.setProperty("--topic-accent",colorFor(t));
-    const sections=t.sections||[]; const facts=t.facts||[]; const tags=t.tags||[];
-    views.topic.innerHTML=`<button class="guide-exit" id="guideExit">Wyjdź z trybu przewodnika</button>
+    const sections=t.sections||[]; const facts=t.facts||[]; const tags=t.tags||[]; const scripts=t.guideScripts||[];
+    const sectionAnchor=(s,i)=>`topic-section-${s.id||i+1}`;
+    const fallbackStats=[
+      {value:`${t.readingTime||5} min`,label:"orientacyjny czas czytania"},
+      {value:String(sections.length),label:"głównych rozdziałów"},
+      {value:String(facts.length),label:"ciekawostek do grupy"},
+      {value:t.updated||"—",label:"ostatnia aktualizacja"}
+    ];
+    const statCards=(t.stats?.length?t.stats:fallbackStats).slice(0,4);
+    const scriptsHtml=scripts.length?`<section class="guide-scripts-panel" id="guide-scripts">
+      <div class="guide-scripts-head"><div><span class="tiny-label">TRYB PRZEWODNIKA · GOTOWE TEKSTY</span><h2>Wybierz długość nawijki</h2><p>Możesz czytać prawie słowo w słowo albo potraktować tekst jako rusztowanie własnej opowieści.</p></div></div>
+      <div class="guide-script-tabs">${scripts.map(s=>`<button class="guide-script-tab ${s.id===(t.defaultGuideScript||scripts[0].id)?'active':''}" data-guide-script="${escapeHtml(s.id)}">${escapeHtml(s.label)}</button>`).join("")}</div>
+      ${scripts.map(s=>`<div class="guide-script-content ${s.id===(t.defaultGuideScript||scripts[0].id)?'active':''}" data-guide-script-panel="${escapeHtml(s.id)}">${s.content}</div>`).join("")}
+    </section>`:"";
+    const guideNav=`<div class="guide-mode-nav"><button data-guide-jump="guide-scripts">🎤 Nawijki</button>${sections.some(s=>s.id==='trasa')?'<button data-guide-jump="topic-section-trasa">🧭 Trasa 12 punktów</button>':''}<button data-guide-font="-1">A−</button><button data-guide-font="1">A+</button></div>`;
+    views.topic.innerHTML=`<button class="guide-exit" id="guideExit">× Wyjdź</button>${guideNav}
     <header class="topic-hero" style="--topic-image:url('${artworkFor(t)}')">
       <div class="topic-hero-art"><div class="topic-hero-seal">${t.icon||categorySymbol(t.category)}</div><div class="topic-hero-caption"><span>WANFANG GUIDE · ${escapeHtml(t.city)}</span><strong>${escapeHtml(t.category)} opowiedziane jak historia, nie jak podręcznik.</strong></div></div>
-      <div class="topic-hero-copy"><div class="topic-breadcrumbs"><a href="#library">Baza wiedzy</a> / ${escapeHtml(t.city)} / ${escapeHtml(t.category)}</div><span class="tiny-label">${escapeHtml(t.city)} · ${escapeHtml(t.category)}</span><h1>${escapeHtml(t.title)}</h1><div class="cn-title">${escapeHtml(t.chinese||"")} ${t.pronunciation?`· ${escapeHtml(t.pronunciation)}`:""}</div><p class="topic-lead">${escapeHtml(t.summary)}</p><div class="topic-meta"><span>${t.status}</span><span>⏱ ${t.readingTime||5} min</span><span>${sections.length} rozdziałów</span>${tags.slice(0,4).map(x=>`<span>#${escapeHtml(x)}</span>`).join("")}</div></div>
+      <div class="topic-hero-copy"><div class="topic-breadcrumbs"><a href="#library">Baza wiedzy</a> / ${escapeHtml(t.city)} / ${escapeHtml(t.category)}</div><span class="tiny-label">${escapeHtml(t.city)} · ${escapeHtml(t.category)}</span><h1>${escapeHtml(t.title)}</h1><div class="cn-title">${escapeHtml(t.chinese||"")} ${t.pronunciation?`· ${escapeHtml(t.pronunciation)}`:""}</div><p class="topic-lead">${escapeHtml(t.summary)}</p><div class="topic-meta"><span>${escapeHtml(t.status)}</span><span>⏱ ${t.readingTime||5} min</span><span>${sections.length} rozdziałów</span>${tags.slice(0,4).map(x=>`<span>#${escapeHtml(x)}</span>`).join("")}</div></div>
     </header>
     <div class="topic-toolbar"><button id="backLibrary">← Baza</button><button id="topicFav">${fav?'★ Ulubione':'☆ Ulubione'}</button><button id="topicRoute">${inRoute?'✓ W trasie':'＋ Do trasy'}</button><span class="spacer"></span><button class="hide-mobile" id="printTopic">Drukuj / PDF</button><button id="enterGuide">🎤 Tryb przewodnika</button></div>
-    <div class="topic-stat-row"><div class="topic-stat"><strong>${t.readingTime||5} min</strong><span>orientacyjny czas czytania</span></div><div class="topic-stat"><strong>${sections.length}</strong><span>głównych rozdziałów</span></div><div class="topic-stat"><strong>${facts.length}</strong><span>ciekawostki do grupy</span></div><div class="topic-stat"><strong>${escapeHtml(t.updated||'—')}</strong><span>ostatnia aktualizacja</span></div></div>
+    <div class="topic-stat-row">${statCards.map(s=>`<div class="topic-stat"><strong>${escapeHtml(String(s.value))}</strong><span>${escapeHtml(String(s.label))}</span></div>`).join("")}</div>
     <section class="talk-box"><span class="tiny-label">OTWARCIE DO GRUPY · GOTOWA NAWIJKA</span><p>${escapeHtml(t.quickTalk||t.summary)}</p></section>
+    ${scriptsHtml}
     <div class="facts-panel">${facts.map((f,i)=>`<div class="fact-card"><span class="tiny-label">CIEKAWOSTKA ${String(i+1).padStart(2,'0')}</span><p>${escapeHtml(f)}</p></div>`).join("")}</div>
-    <div class="topic-layout"><aside class="topic-toc"><strong>SPIS TREŚCI</strong>${sections.map((s,i)=>`<a href="#section-${i+1}" data-scroll="section-${i+1}">${String(i+1).padStart(2,"0")}. ${escapeHtml(s.title)}</a>`).join("")}<a href="#personal-notes" data-scroll="personal-notes">Moje notatki</a></aside><div class="topic-article">${sections.map((s,i)=>`<section class="article-section" id="section-${i+1}" data-cn="${t.icon||categorySymbol(t.category)}"><span class="tiny-label">${String(i+1).padStart(2,"0")}</span><h2>${escapeHtml(s.title)}</h2>${s.content}</section>`).join("")}<section class="notes-panel" id="personal-notes"><span class="tiny-label">TYLKO DLA CIEBIE</span><h2>Moje notatki do tego tematu</h2><textarea id="topicNotes" placeholder="Dopisz pytania turystów, własne żarty, punkt zbiórki, informacje praktyczne…">${escapeHtml(notes)}</textarea><div class="notes-actions"><button class="button primary" id="saveNotes">Zapisz notatki</button></div></section></div></div>`;
+    <div class="topic-layout"><aside class="topic-toc"><strong>SPIS TREŚCI</strong>${scripts.length?'<a href="#guide-scripts" data-scroll="guide-scripts">🎤 Gotowe nawijki</a>':''}${sections.map((s,i)=>`<a href="#${sectionAnchor(s,i)}" data-scroll="${sectionAnchor(s,i)}">${String(i+1).padStart(2,"0")}. ${escapeHtml(s.title)}</a>`).join("")}<a href="#personal-notes" data-scroll="personal-notes">Moje notatki</a></aside><div class="topic-article">${sections.map((s,i)=>`<section class="article-section rich-section" id="${sectionAnchor(s,i)}" data-section-id="${escapeHtml(s.id||String(i+1))}" data-cn="${t.icon||categorySymbol(t.category)}"><span class="tiny-label">${String(i+1).padStart(2,"0")}</span><h2>${escapeHtml(s.title)}</h2>${s.subtitle?`<p class="article-subtitle">${escapeHtml(s.subtitle)}</p>`:""}${s.content}</section>`).join("")}<section class="notes-panel" id="personal-notes"><span class="tiny-label">TYLKO DLA CIEBIE</span><h2>Moje notatki do tego tematu</h2><textarea id="topicNotes" placeholder="Dopisz pytania turystów, własne żarty, punkt zbiórki, informacje praktyczne…">${escapeHtml(notes)}</textarea><div class="notes-actions"><button class="button primary" id="saveNotes">Zapisz notatki</button></div></section></div></div>`;
     $("#backLibrary").onclick=()=>location.hash="library"; $("#topicFav").onclick=()=>toggleFavorite(id); $("#topicRoute").onclick=()=>toggleRoute(id); $("#printTopic").onclick=()=>window.print(); $("#enterGuide").onclick=enterGuide; $("#guideExit").onclick=exitGuide;
     $("#saveNotes").onclick=()=>{localStorage.setItem(`wanfang:notes:${id}`,$("#topicNotes").value);toast("Notatki zapisane");};
     $$(`[data-scroll]`, views.topic).forEach(a=>a.onclick=e=>{e.preventDefault();document.getElementById(a.dataset.scroll)?.scrollIntoView({behavior:"smooth",block:"start"});});
+    $$(`[data-guide-jump]`, views.topic).forEach(b=>b.onclick=()=>document.getElementById(b.dataset.guideJump)?.scrollIntoView({behavior:"smooth",block:"start"}));
+    $$(`[data-guide-font]`, views.topic).forEach(b=>b.onclick=()=>{const current=parseInt(getComputedStyle(document.body).getPropertyValue('--guide-font-size'))||26;const next=Math.max(20,Math.min(36,current+(+b.dataset.guideFont)*2));document.body.style.setProperty('--guide-font-size',`${next}px`);toast(`Tekst: ${next}px`);});
+    $$('.guide-script-tab',views.topic).forEach(btn=>btn.onclick=()=>{$$('.guide-script-tab',views.topic).forEach(x=>x.classList.toggle('active',x===btn));$$('.guide-script-content',views.topic).forEach(x=>x.classList.toggle('active',x.dataset.guideScriptPanel===btn.dataset.guideScript));});
+    $$('.tab[data-tab]',views.topic).forEach(btn=>btn.onclick=()=>{$$('.tab[data-tab]',views.topic).forEach(x=>x.classList.toggle('active',x===btn));$$('.talk',views.topic).forEach(x=>x.classList.toggle('active',x.id===btn.dataset.tab));});
+    $$('.map-stop[data-target]',views.topic).forEach(g=>g.onclick=()=>document.getElementById(g.dataset.target)?.scrollIntoView({behavior:'smooth',block:'start'}));
+    initTopicQuiz(t);
+  }
+  function initTopicQuiz(t){
+    const quiz=t.quiz||[]; const question=$("#quizQuestion",views.topic),answers=$("#quizAnswers",views.topic),feedback=$("#quizFeedback",views.topic),next=$("#nextQuestion",views.topic);
+    if(!quiz.length||!question||!answers||!feedback||!next)return;let qi=0,locked=false;
+    const draw=()=>{locked=false;const item=quiz[qi];question.textContent=item.question;feedback.textContent="";answers.innerHTML="";item.answers.forEach((txt,i)=>{const b=document.createElement('button');b.type='button';b.textContent=txt;b.onclick=()=>{if(locked)return;locked=true;[...answers.children].forEach((x,j)=>x.classList.add(j===item.correct?'correct':(j===i?'wrong':'')));feedback.textContent=(i===item.correct?'Dobrze. ':'Nie tym razem. ')+item.explanation;};answers.appendChild(b);});};
+    next.onclick=()=>{qi=(qi+1)%quiz.length;draw();};draw();
   }
   function openTopic(id){location.hash=`topic/${id}`;}
   function enterGuide(){document.body.classList.add("guide-mode");window.scrollTo({top:0,behavior:"smooth"});}
