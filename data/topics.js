@@ -156,12 +156,6 @@ window.WANFANG_TOPICS = [
         "content": "<div class=\"glossary\">\n<div><b>故宫 Gùgōng</b><span>[gu-gung]</span><p>Dawny Pałac; współczesna codzienna nazwa.</p></div>\n<div><b>紫禁城 Zǐjìnchéng</b><span>[dzy-dzin-czeng]</span><p>Purpurowe Zakazane Miasto.</p></div>\n<div><b>午门 Wǔmén</b><span>[u-men]</span><p>Brama Południkowa.</p></div>\n<div><b>太和殿 Tàihédiàn</b><span>[taj-he-djen]</span><p>Pawilon Najwyższej Harmonii.</p></div>\n<div><b>中和殿 Zhōnghédiàn</b><span>[dżong-he-djen]</span><p>Pawilon Środkowej Harmonii.</p></div>\n<div><b>保和殿 Bǎohédiàn</b><span>[bao-he-djen]</span><p>Pawilon Zachowania Harmonii.</p></div>\n<div><b>乾清宫 Qiánqīnggōng</b><span>[ćjen-ćing-gung]</span><p>Pałac Niebiańskiej Czystości.</p></div>\n<div><b>坤宁宫 Kūnnínggōng</b><span>[kun-ning-gung]</span><p>Pałac Ziemskiego Spokoju.</p></div>\n<div><b>养心殿 Yǎngxīndiàn</b><span>[jang-sin-djen]</span><p>Sala Kultywowania Umysłu.</p></div>\n<div><b>御花园 Yùhuāyuán</b><span>[ju-hła-jüan]</span><p>Ogród Cesarski.</p></div>\n<div><b>神武门 Shénwǔmén</b><span>[szen-u-men]</span><p>Brama Boskiej Potęgi.</p></div>\n<div><b>斗拱 Dǒugǒng</b><span>[doł-gung]</span><p>System drewnianych wsporników.</p></div>\n</div>"
       },
       {
-        "id": "quiz",
-        "title": "Szybki quiz przed wyjściem z grupą",
-        "subtitle": "Sprawdź, czy najważniejsze rzeczy siedzą w głowie",
-        "content": "<div class=\"quiz-box\" id=\"quizBox\">\n<p id=\"quizQuestion\"></p>\n<div id=\"quizAnswers\"></div>\n<p aria-live=\"polite\" id=\"quizFeedback\"></p>\n<button id=\"nextQuestion\" type=\"button\">Następne pytanie</button>\n</div>"
-      },
-      {
         "id": "zrodla",
         "title": "Źródła i uwagi badawcze",
         "subtitle": "Opracowanie bazuje przede wszystkim na materiałach Muzeum Pałacowego, UNESCO i publikacjach naukowych.",
@@ -231,7 +225,7 @@ window.WANFANG_TOPICS = [
     "category": "Życie codzienne",
     "status": "gotowe",
     "readingTime": 14,
-    "updated": "05.07.2026",
+    "updated": "19.07.2026",
     "icon": "巷",
     "accent": "green",
     "summary": "Zakazane Miasto pokazuje cesarzy, a hutongi pokazują ludzi — codzienne życie starego Pekinu za szarymi murami.",
@@ -267,7 +261,49 @@ window.WANFANG_TOPICS = [
         "content": "<p>W XX i XXI wieku wiele hutongów wyburzono, inne poddano rewitalizacji. Część dzielnic zachowuje lokalne życie, część zmieniła się w atrakcyjne strefy kawiarni i sklepów. Dobra opowieść przewodnicka powinna pokazać oba procesy: ochronę dziedzictwa i komercjalizację.</p>"
       }
     ],
-    "media": []
+    "media": [],
+    "quiz": [
+      {
+        "question": "Jaka jest różnica między hutongiem a siheyuanem?",
+        "answers": [
+          "Hutong to uliczka, a siheyuan to dom z dziedzińcem",
+          "Hutong to świątynia, a siheyuan to targ",
+          "To dwie nazwy tego samego budynku"
+        ],
+        "correct": 0,
+        "explanation": "Hutong oznacza uliczkę lub zaułek, natomiast siheyuan to zespół budynków otaczających wewnętrzny dziedziniec."
+      },
+      {
+        "question": "Gdzie zwykle znajdował się najważniejszy budynek klasycznego siheyuanu?",
+        "answers": [
+          "Od południa, skierowany na północ",
+          "Od północy, skierowany na południe",
+          "Zawsze po stronie zachodniej"
+        ],
+        "correct": 1,
+        "explanation": "Najważniejszy budynek zwykle stał od północy i był zwrócony ku południu; układ domu odzwierciedlał hierarchię rodzinną."
+      },
+      {
+        "question": "Z jaką epoką wiąże się upowszechnienie nazwy „hutong”?",
+        "answers": [
+          "Z dynastią Yuan i wpływami mongolskimi",
+          "Wyłącznie z XX wiekiem",
+          "Z okresem europejskich koncesji"
+        ],
+        "correct": 0,
+        "explanation": "Nazwa prawdopodobnie ma korzenie mongolskie i upowszechniła się w Pekinie w epoce Yuan."
+      },
+      {
+        "question": "Co warto podkreślić, mówiąc o współczesnych hutongach?",
+        "answers": [
+          "Wszystkie zachowały niezmienione dawne życie",
+          "Wszystkie zostały wyburzone",
+          "Ochrona dziedzictwa miesza się z wyburzeniami, rewitalizacją i komercjalizacją"
+        ],
+        "correct": 2,
+        "explanation": "Los hutongów jest zróżnicowany: część zniknęła, część zachowano, a część zmieniła się w turystyczne strefy kawiarni i sklepów."
+      }
+    ]
   },
   {
     "id": "xian-warstwy",
@@ -278,7 +314,7 @@ window.WANFANG_TOPICS = [
     "category": "Miasta i trasy",
     "status": "gotowe",
     "readingTime": 22,
-    "updated": "07.07.2026",
+    "updated": "19.07.2026",
     "icon": "唐",
     "accent": "gold",
     "summary": "Miasto, w którym Chiny stały się imperium i spotkały świat: Qin, Han, Tang, Jedwabny Szlak, buddyzm i społeczność Hui.",
@@ -315,7 +351,49 @@ window.WANFANG_TOPICS = [
         "content": "<p>Układaj dzień warstwami: Qin — pierwszy cesarz i armia; Han — otwarcie na zachód; Tang — złoty Chang’an i buddyzm; Ming — obecne mury; współczesność — miasto żyjące na tych fundamentach.</p>"
       }
     ],
-    "media": []
+    "media": [],
+    "quiz": [
+      {
+        "question": "Jak brzmiała dawna nazwa Xi’anu i co oznaczała?",
+        "answers": [
+          "Luoyang — Miasto Piwonii",
+          "Chang’an — Wieczny Pokój",
+          "Dadu — Wielka Stolica"
+        ],
+        "correct": 1,
+        "explanation": "Dawne Chang’an 长安 oznacza „Wieczny Pokój” i było jedną z najważniejszych stolic cesarskich Chin."
+      },
+      {
+        "question": "Z jakiej epoki pochodzą głównie obecne mury miejskie Xi’anu?",
+        "answers": [
+          "Z dynastii Qin",
+          "Z dynastii Tang",
+          "Z dynastii Ming"
+        ],
+        "correct": 2,
+        "explanation": "Choć Xi’an słynie z epoki Tang, zachowane dziś mury pochodzą głównie z czasów dynastii Ming."
+      },
+      {
+        "question": "Co poza towarami przemieszczało się Jedwabnym Szlakiem?",
+        "answers": [
+          "Tylko cesarskie rozkazy",
+          "Religie, muzyka, technologie, języki i style życia",
+          "Wyłącznie jedwab i przyprawy"
+        ],
+        "correct": 1,
+        "explanation": "Jedwabny Szlak był siecią wymiany kulturowej, nie tylko handlowej."
+      },
+      {
+        "question": "Jaki motyw najlepiej porządkuje opowieść o Xi’anie?",
+        "answers": [
+          "Miasto jednej dynastii",
+          "Historyczny przekładaniec wielu epok",
+          "Wyłącznie początek Wielkiego Muru"
+        ],
+        "correct": 1,
+        "explanation": "Xi’an najlepiej opowiadać warstwami: Qin, Han, Tang, Ming i współczesność."
+      }
+    ]
   },
   {
     "id": "swieta-droga",
@@ -326,7 +404,7 @@ window.WANFANG_TOPICS = [
     "category": "Historia",
     "status": "gotowe",
     "readingTime": 16,
-    "updated": "05.07.2026",
+    "updated": "19.07.2026",
     "icon": "陵",
     "accent": "stone",
     "summary": "Nekropolia trzynastu cesarzy, feng shui, kamienne straże i cesarska pamięć ukryta w dolinie.",
@@ -358,7 +436,49 @@ window.WANFANG_TOPICS = [
         "content": "<p>Figury zwierząt i urzędników ustawiono parami. Część zwierząt stoi, część klęczy — symboliczna straż jest jednocześnie gotowa do działania i odpoczynku.</p>"
       }
     ],
-    "media": []
+    "media": [],
+    "quiz": [
+      {
+        "question": "Ilu cesarzy dynastii Ming pochowano w głównej nekropolii pod Pekinem?",
+        "answers": [
+          "Trzynastu",
+          "Szesnastu",
+          "Dziewięciu"
+        ],
+        "correct": 0,
+        "explanation": "W dolinie spoczywa 13 z 16 cesarzy dynastii Ming."
+      },
+      {
+        "question": "Do którego cesarza należał grobowiec Changling?",
+        "answers": [
+          "Hongwu",
+          "Yongle",
+          "Puyi"
+        ],
+        "correct": 1,
+        "explanation": "Changling był grobowcem cesarza Yongle, budowniczego Zakazanego Miasta i twórcy pekińskiego centrum dynastii Ming."
+      },
+      {
+        "question": "Dlaczego wszystkie szesnaście osób panujących w epoce Ming nie spoczęło w tej dolinie?",
+        "answers": [
+          "Część została pochowana gdzie indziej lub nie otrzymała tam grobowca",
+          "Nekropolia była przeznaczona tylko dla cesarzowych",
+          "Pozostałe grobowce znajdują się pod Zakazanym Miastem"
+        ],
+        "correct": 0,
+        "explanation": "Hongwu spoczął w Nankinie, Jianwen zaginął po wojnie domowej, a Jingtai został pochowany poza główną nekropolią."
+      },
+      {
+        "question": "Jaką rolę pełniły kamienne figury przy Świętej Drodze?",
+        "answers": [
+          "Były wyłącznie znakami handlowymi",
+          "Tworzyły symboliczną eskortę i straż cesarza",
+          "Oznaczały miejsca sprzedaży zwierząt"
+        ],
+        "correct": 1,
+        "explanation": "Figury zwierząt i urzędników symbolicznie chroniły drogę do grobowców i towarzyszyły zmarłemu władcy."
+      }
+    ]
   },
   {
     "id": "swiatynia-nieba",
@@ -396,7 +516,49 @@ window.WANFANG_TOPICS = [
         "content": "<p>W tradycyjnej symbolice Niebo kojarzono z okręgiem, a ziemię z kwadratem. Układ kompleksu, tarasy i liczby powtarzają tę kosmologiczną logikę.</p>"
       }
     ],
-    "media": []
+    "media": [],
+    "quiz": [
+      {
+        "question": "O co cesarz modlił się w Świątyni Nieba?",
+        "answers": [
+          "O dobre zbiory i harmonię między Niebem a ludźmi",
+          "O zwycięstwo w egzaminach urzędniczych",
+          "O pozwolenie na zamieszkanie w Pekinie"
+        ],
+        "correct": 0,
+        "explanation": "Najważniejsze ceremonie dotyczyły urodzaju i odpowiedzialności cesarza za kosmiczną oraz społeczną harmonię."
+      },
+      {
+        "question": "Co symbolizowały okrąg i kwadrat w tradycyjnej kosmologii?",
+        "answers": [
+          "Okrąg — ziemię, kwadrat — morze",
+          "Okrąg — Niebo, kwadrat — ziemię",
+          "Oba oznaczały wyłącznie cesarza"
+        ],
+        "correct": 1,
+        "explanation": "Niebo kojarzono z okręgiem, a ziemię z kwadratem; tę zasadę powtarza układ kompleksu."
+      },
+      {
+        "question": "Czy Świątynia Nieba była zwykłą świątynią dostępną dla wszystkich wiernych?",
+        "answers": [
+          "Tak, działała jak typowa europejska parafia",
+          "Nie, była przede wszystkim przestrzenią państwowego rytuału cesarskiego",
+          "Była wyłącznie prywatnym ogrodem cesarzowej"
+        ],
+        "correct": 1,
+        "explanation": "Ceremonie miały rangę państwową, a cesarz występował jako pośrednik między Niebem i światem ludzi."
+      },
+      {
+        "question": "Jak najtrafniej opisać Pawilon Modlitwy o Urodzaj?",
+        "answers": [
+          "Jako element cesarskiego kompleksu rytualnego",
+          "Jako pałac mieszkalny eunuchów",
+          "Jako wieżę obronną Pekinu"
+        ],
+        "correct": 0,
+        "explanation": "To najbardziej rozpoznawalny budynek kompleksu, związany z rytuałami urodzaju, a nie świątynia w prostym europejskim rozumieniu."
+      }
+    ]
   },
   {
     "id": "chinski-smok",
@@ -434,7 +596,49 @@ window.WANFANG_TOPICS = [
         "content": "<p>Opis smoka łączy rogi jelenia, łuski ryby, pazury ptaka drapieżnego, ciało węża i inne cechy. Ta hybryda podkreśla, że smok nie należy do jednego porządku natury — stoi ponad nimi.</p>"
       }
     ],
-    "media": []
+    "media": [],
+    "quiz": [
+      {
+        "question": "Z czym chiński smok jest szczególnie związany?",
+        "answers": [
+          "Z wodą, deszczem i pogodą",
+          "Wyłącznie z ogniem i niszczeniem wiosek",
+          "Tylko z zaświatami"
+        ],
+        "correct": 0,
+        "explanation": "Chińskie smoki mieszkają w wodach i chmurach oraz kontrolują deszcz, dlatego mogą oznaczać dobrobyt albo zagrożenie powodzią."
+      },
+      {
+        "question": "Jaki smok był szczególnie kojarzony z cesarzem?",
+        "answers": [
+          "Dwupazurzasty",
+          "Pięciopazurzasty",
+          "Smok bez łap"
+        ],
+        "correct": 1,
+        "explanation": "Pięciopazurzasty smok stał się znakiem najwyższej, cesarskiej rangi."
+      },
+      {
+        "question": "Dlaczego ciało chińskiego smoka łączy cechy wielu zwierząt?",
+        "answers": [
+          "Ponieważ jest symbolem obejmującym różne siły natury",
+          "Ponieważ artyści nie znali żadnych prawdziwych zwierząt",
+          "Ponieważ był herbem jednego konkretnego rodu kupieckiego"
+        ],
+        "correct": 0,
+        "explanation": "Hybrydowa postać pokazuje, że smok przekracza jeden porządek natury i jednoczy wiele mocy."
+      },
+      {
+        "question": "Czym chiński smok różni się od typowego smoka europejskich legend?",
+        "answers": [
+          "Zwykle nie jest wyłącznie potworem do pokonania",
+          "Zawsze nie ma żadnego związku z władzą",
+          "Jest wyłącznie ptakiem"
+        ],
+        "correct": 0,
+        "explanation": "W Chinach smok może być dobroczynną, kosmiczną i cesarską siłą, a nie jedynie niebezpiecznym potworem."
+      }
+    ]
   },
   {
     "id": "hukou",
@@ -473,7 +677,49 @@ window.WANFANG_TOPICS = [
         "content": "<p>Miliony ludzi przeniosły się ze wsi do miast do pracy. Ich sytuacja pokazuje, że można być mieszkańcem miasta w codziennym sensie, ale nie posiadać pełnego lokalnego statusu administracyjnego.</p>"
       }
     ],
-    "media": []
+    "media": [],
+    "quiz": [
+      {
+        "question": "Czym hukou różni się od zwykłego adresu zameldowania?",
+        "answers": [
+          "Historycznie łączył osobę także z dostępem do usług i systemem administracyjnym",
+          "Nie różni się niczym od numeru mieszkania",
+          "Jest wyłącznie kartą płatniczą"
+        ],
+        "correct": 0,
+        "explanation": "Hukou wskazuje gospodarstwo i miejsce rejestracji, ale historycznie wpływał także na edukację, zatrudnienie, zaopatrzenie i inne usługi."
+      },
+      {
+        "question": "Czy przeprowadzka do dużego miasta automatycznie daje pełny dostęp do wszystkich lokalnych świadczeń?",
+        "answers": [
+          "Zawsze tak",
+          "Nie zawsze; zależy od lokalnej rejestracji i zasad",
+          "Nigdy, nawet po zmianie hukou"
+        ],
+        "correct": 1,
+        "explanation": "Można mieszkać i pracować w mieście, nie posiadając pełnego lokalnego statusu administracyjnego."
+      },
+      {
+        "question": "Kogo często określa się mianem migrantów wewnętrznych w Chinach?",
+        "answers": [
+          "Osoby przenoszące się ze wsi i mniejszych miejscowości do miast za pracą",
+          "Wyłącznie zagranicznych turystów",
+          "Cesarzy zmieniających pałac"
+        ],
+        "correct": 0,
+        "explanation": "Miliony ludzi przeniosły się wewnątrz kraju do ośrodków miejskich, często bez pełnej zmiany lokalnego statusu hukou."
+      },
+      {
+        "question": "Czy system hukou wygląda obecnie identycznie w każdym chińskim mieście?",
+        "answers": [
+          "Tak, bez żadnych wyjątków",
+          "Nie; reformy i znaczenie systemu różnią się lokalnie",
+          "System całkowicie zniknął w całym kraju"
+        ],
+        "correct": 1,
+        "explanation": "Hukou jest reformowane, lecz tempo zmian i warunki uzyskania lokalnego statusu zależą od miejsca."
+      }
+    ]
   },
   {
     "id": "gaokao",
@@ -507,7 +753,49 @@ window.WANFANG_TOPICS = [
         "content": "<p>Rozwój szkolnictwa wyższego zwiększył liczbę miejsc, ale najbardziej prestiżowe uczelnie pozostają bardzo konkurencyjne. Wynik egzaminu może wpływać na wybór uczelni, kierunku i miasta.</p>"
       }
     ],
-    "media": []
+    "media": [],
+    "quiz": [
+      {
+        "question": "Czym jest gaokao?",
+        "answers": [
+          "Ogólnokrajowym egzaminem wstępnym na studia",
+          "Egzaminem na prawo jazdy",
+          "Corocznym spisem ludności"
+        ],
+        "correct": 0,
+        "explanation": "Gaokao jest kluczowym elementem rekrutacji na chińskie uczelnie."
+      },
+      {
+        "question": "Czy konkurencja i progi rekrutacyjne są jednakowe w całych Chinach?",
+        "answers": [
+          "Tak, wszędzie obowiązuje dokładnie ten sam próg",
+          "Nie, zależą między innymi od prowincji i dostępnych miejsc",
+          "Nie istnieją żadne progi"
+        ],
+        "correct": 1,
+        "explanation": "Warunki rekrutacji zależą od prowincji, uczelni, kierunku i liczby miejsc."
+      },
+      {
+        "question": "Jak miasta reagują podczas dni egzaminu?",
+        "answers": [
+          "Zwiększają hałas wokół szkół",
+          "Często ograniczają hałas, a służby pomagają uczniom dotrzeć na czas",
+          "Zamykają wszystkie uczelnie na miesiąc"
+        ],
+        "correct": 1,
+        "explanation": "Gaokao ma ogromne znaczenie społeczne, dlatego wokół ośrodków egzaminacyjnych podejmuje się specjalne działania organizacyjne."
+      },
+      {
+        "question": "Na co może wpłynąć wynik gaokao?",
+        "answers": [
+          "Na wybór uczelni, kierunku i miasta studiów",
+          "Wyłącznie na kolor świadectwa",
+          "Tylko na możliwość wyjazdu turystycznego"
+        ],
+        "correct": 0,
+        "explanation": "Wynik może silnie kształtować dalszą ścieżkę edukacyjną i zawodową ucznia."
+      }
+    ]
   },
   {
     "id": "chinska-herbata",
@@ -545,7 +833,49 @@ window.WANFANG_TOPICS = [
         "content": "<p>Zamiast wymieniać dziesiątki nazw, pokaż trzy osie: stopień utlenienia, sposób obróbki i region. Potem dopiero dodawaj przykłady, takie jak Longjing, Tieguanyin czy pu-erh.</p>"
       }
     ],
-    "media": []
+    "media": [],
+    "quiz": [
+      {
+        "question": "Ile wielkich rodzin herbat wyróżnia się najczęściej w chińskiej klasyfikacji?",
+        "answers": [
+          "Trzy",
+          "Sześć",
+          "Dwanaście"
+        ],
+        "correct": 1,
+        "explanation": "Najczęściej mówi się o herbatach zielonych, białych, żółtych, oolong, czerwonych i ciemnych."
+      },
+      {
+        "question": "Jak europejska „czarna herbata” jest zwykle nazywana w Chinach?",
+        "answers": [
+          "Herbatą czerwoną",
+          "Herbatą białą",
+          "Herbatą żółtą"
+        ],
+        "correct": 0,
+        "explanation": "Chińska nazwa odnosi się do koloru naparu, dlatego europejska czarna herbata należy do rodziny czerwonej."
+      },
+      {
+        "question": "Czy różne rodziny herbat muszą pochodzić z różnych gatunków rośliny?",
+        "answers": [
+          "Tak, każda rodzina ma zupełnie inną roślinę",
+          "Nie, ta sama roślina może dać różne herbaty zależnie od obróbki",
+          "Herbata nie pochodzi z roślin"
+        ],
+        "correct": 1,
+        "explanation": "O charakterze herbaty decydują między innymi sposób obróbki, stopień utlenienia i region."
+      },
+      {
+        "question": "Jak najprościej uporządkować opowieść o herbacie dla grupy?",
+        "answers": [
+          "Przez stopień utlenienia, sposób obróbki i region",
+          "Przez cenę najdroższych opakowań",
+          "Wyłącznie alfabetycznie według marek"
+        ],
+        "correct": 0,
+        "explanation": "Te trzy osie pomagają zrozumieć różnice bez zasypywania grupy dziesiątkami nazw."
+      }
+    ]
   },
   {
     "id": "praktyczne-alipay",
@@ -583,6 +913,48 @@ window.WANFANG_TOPICS = [
         "content": "<p>Warto mieć powerbank, działającą kartę, internet i niewielką ilość gotówki. W grupie dobrze ustalić jedną osobę, która pomoże innym przy konfiguracji.</p>"
       }
     ],
-    "media": []
+    "media": [],
+    "quiz": [
+      {
+        "question": "Co zwykle robi klient przy stałym kodzie QR wystawionym na ladzie?",
+        "answers": [
+          "Skanuje kod i sam wpisuje kwotę",
+          "Pokazuje paszport zamiast płatności",
+          "Czeka, aż kod wydrukuje paragon"
+        ],
+        "correct": 0,
+        "explanation": "Stały kod sprzedawcy klient skanuje swoim telefonem, po czym zwykle wpisuje należną kwotę."
+      },
+      {
+        "question": "Co dzieje się z kodem płatniczym wygenerowanym w aplikacji klienta?",
+        "answers": [
+          "Skanuje go sprzedawca lub terminal",
+          "Należy wysłać go pocztą elektroniczną",
+          "Kod działa tylko po wydrukowaniu"
+        ],
+        "correct": 0,
+        "explanation": "To drugi popularny model: klient pokazuje kod, a sprzedawca skanuje go urządzeniem."
+      },
+      {
+        "question": "Co warto mieć jako plan awaryjny?",
+        "answers": [
+          "Powerbank, działającą kartę, internet i trochę gotówki",
+          "Wyłącznie drugi paszport",
+          "Tylko papierową mapę metra"
+        ],
+        "correct": 0,
+        "explanation": "Brak baterii, internetu albo odrzucenie karty mogą zablokować płatność, dlatego warto mieć kilka zabezpieczeń."
+      },
+      {
+        "question": "Czy zagraniczna karta podpięta do aplikacji zawsze działa bez limitów i dodatkowych kosztów?",
+        "answers": [
+          "Tak, w każdej sytuacji",
+          "Nie, mogą występować limity i opłaty operatora",
+          "Karty zagraniczne nigdy nie mogą być używane"
+        ],
+        "correct": 1,
+        "explanation": "Warunki zależą od operatora, banku, kwoty i aktualnych zasad aplikacji."
+      }
+    ]
   }
 ];
