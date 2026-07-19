@@ -351,3 +351,62 @@ body.guide-mode .answer-text{font-size:calc(var(--guide-font-size,26px) * .72)}
   .answer-text{font-size:15px}
   .quiz-result.show{grid-template-columns:1fr}
 }
+
+/* =========================================================
+   WANFANG GUIDE v0.6 — fotografie i atlas Zakazanego Miasta
+   ========================================================= */
+.visual-atlas{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  max-width:1040px;
+  margin:1.7rem 0;
+}
+.topic-photo{
+  max-width:980px;
+  margin:1.5rem 0 1.8rem;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:linear-gradient(145deg,var(--paper-2),var(--paper));
+  box-shadow:var(--shadow-soft);
+}
+.visual-atlas .topic-photo{margin:0;max-width:none}
+.topic-photo.wide{grid-column:1/-1;max-width:1040px}
+.topic-photo img{
+  display:block;
+  width:100%;
+  aspect-ratio:16/10;
+  object-fit:cover;
+  background:var(--paper-2);
+}
+.topic-photo.wide img{aspect-ratio:21/9}
+.topic-photo figcaption{
+  padding:14px 17px 16px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.58;
+}
+.topic-photo figcaption b{color:var(--ink)}
+.photo-credit{
+  display:block;
+  margin-top:6px;
+  font-size:11px;
+  line-height:1.45;
+  opacity:.82;
+}
+body.guide-mode .topic-photo,
+body.guide-mode .visual-atlas{max-width:100%}
+body.guide-mode .topic-photo figcaption{font-size:16px}
+
+@media(max-width:700px){
+  .visual-atlas{grid-template-columns:1fr;gap:13px}
+  .topic-photo.wide{grid-column:auto}
+  .topic-photo.wide img{aspect-ratio:16/10}
+  .topic-photo figcaption{padding:12px 14px 14px;font-size:13px}
+}
+
+@media print{
+  .topic-photo{box-shadow:none;break-inside:avoid}
+  .topic-photo img{max-height:430px;object-fit:cover}
+}
