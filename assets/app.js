@@ -82,13 +82,13 @@
     $("#categoryFilter").innerHTML='<option value="">Wszystkie kategorie</option>'+categories.map(c=>`<option ${state.category===c?'selected':''}>${escapeHtml(c)}</option>`).join("");
   }
   function stripHtml(html=""){const box=document.createElement("div");box.innerHTML=html;return box.textContent||"";}
+  function topicSearchText(t){
+    const sectionText=(t.sections||[]).map(s=>`${s.title||""} ${s.subtitle||""} ${stripHtml(s.content||"")}`).join(" ");
+    return [t.title,t.chinese,t.pronunciation,t.city,t.category,t.summary,...(t.tags||[]),sectionText].join(" ").toLowerCase();
+  }
   function filteredTopics(source=topics()){
     const q=state.query.trim().toLowerCase();
-    return source.filter(t=>{
-      const sectionText=(t.sections||[]).map(s=>`${s.title||""} ${s.subtitle||""} ${stripHtml(s.content||"")}`).join(" ");
-      const haystack=[t.title,t.chinese,t.pronunciation,t.city,t.category,t.summary,...(t.tags||[]),sectionText].join(" ").toLowerCase();
-      return (!state.city||t.city===state.city)&&(!state.category||t.category===state.category)&&(!q||haystack.includes(q));
-    });
+    return source.filter(t=>(!state.city||t.city===state.city)&&(!state.category||t.category===state.category)&&(!q||topicSearchText(t).includes(q)));
   }
   function renderLibrary(){
     renderFilters(); const found=filteredTopics(); const grid=$("#libraryGrid"); grid.classList.toggle("list-layout",state.layout==="list"); grid.innerHTML=found.map(topicCard).join(""); bindCards(grid);
@@ -97,11 +97,14 @@
   function renderFavorites(){
     const fav=topics().filter(t=>state.favorites.has(t.id)); $("#favoritesGrid").innerHTML=fav.map(topicCard).join(""); bindCards($("#favoritesGrid")); $("#favoritesEmpty").hidden=fav.length>0;
   }
+  function routeTopics(){return state.route.map(id=>topics().find(t=>t.id===id)).filter(Boolean);}
   function renderRoute(){
-    const list=state.route.map(id=>topics().find(t=>t.id===id)).filter(Boolean); const root=$("#routeList");
-    root.innerHTML=list.map((t,i)=>`<div class="route-item"><div class="route-number">${i+1}</div><div><h3><a href="#topic/${t.id}">${escapeHtml(t.title)}</a></h3><p>${escapeHtml(t.city)} · ${t.readingTime||5} min czytania · ${escapeHtml(t.category)}</p></div><div class="route-actions"><button data-up="${i}" title="Przesuń wyżej">↑</button><button data-down="${i}" title="Przesuń niżej">↓</button><button data-remove-route="${t.id}" title="Usuń">×</button></div></div>`).join("");
+    const list=routeTopics(); const root=$("#routeList");
+    root.innerHTML=list.map((t,i)=>`<div class="route-item"><div class="route-number">${i+1}</div><div><h3><a href="#topic/${t.id}">${escapeHtml(t.title)}</a></h3><p>${escapeHtml(t.city)} · ${t.readingTime||5} min czytania · ${escapeHtml(t.category)}</p></div><div class="route-actions"><button class="route-play" data-start-route="${t.id}" title="Uruchom trasę od tego tematu">▶</button><button data-up="${i}" title="Przesuń wyżej">↑</button><button data-down="${i}" title="Przesuń niżej">↓</button><button data-remove-route="${t.id}" title="Usuń">×</button></div></div>`).join("");
     $("#routeEmpty").hidden=list.length>0;
+    $$('[data-start-route]',root).forEach(b=>b.onclick=()=>startRoute(b.dataset.startRoute));
     $$('[data-up]',root).forEach(b=>b.onclick=()=>moveRoute(+b.dataset.up,-1)); $$('[data-down]',root).forEach(b=>b.onclick=()=>moveRoute(+b.dataset.down,1)); $$('[data-remove-route]',root).forEach(b=>b.onclick=()=>toggleRoute(b.dataset.removeRoute));
+    const start=$("#startRouteButton"); if(start){start.disabled=!list.length;start.textContent=list.length?"▶ Uruchom trasę":"▶ Najpierw dodaj tematy";}
   }
   function moveRoute(index,delta){const to=index+delta;if(to<0||to>=state.route.length)return;[state.route[index],state.route[to]]=[state.route[to],state.route[index]];save();renderRoute();updateCounts();}
   function toggleFavorite(id){state.favorites.has(id)?state.favorites.delete(id):state.favorites.add(id);save();updateCounts();renderHome();renderLibrary();renderFavorites(); if(state.currentTopicId===id) renderTopic(id);toast(state.favorites.has(id)?"Dodano do ulubionych":"Usunięto z ulubionych");}
@@ -127,7 +130,19 @@
       ${scripts.map(s=>`<div class="guide-script-content ${s.id===(t.defaultGuideScript||scripts[0].id)?'active':''}" data-guide-script-panel="${escapeHtml(s.id)}">${s.content}</div>`).join("")}
     </section>`:"";
     const guideNav=`<div class="guide-mode-nav"><button data-guide-jump="guide-scripts">🎤 Nawijki</button>${sections.some(s=>s.id==='trasa')?'<button data-guide-jump="topic-section-trasa">🧭 Trasa 12 punktów</button>':''}<button data-guide-font="-1">A−</button><button data-guide-font="1">A+</button></div>`;
-    views.topic.innerHTML=`<button class="guide-exit" id="guideExit">× Wyjdź</button>${guideNav}
+    const routeList=routeTopics(),routeIndex=routeList.findIndex(x=>x.id===id),isRouteTopic=routeIndex>=0;
+    const guideRouteBar=`<div class="guide-route-bar ${isRouteTopic?'has-route':'standalone'}" id="guideRouteBar">
+      <button class="guide-plan-button" id="guideRoutePlan" type="button">← Plan</button>
+      <div class="guide-route-summary"><span id="guideRouteKicker">${isRouteTopic?`TRASA · ${routeIndex+1} Z ${routeList.length}`:'TRYB PRZEWODNIKA'}</span><strong>${escapeHtml(t.title)}</strong><div class="guide-progress-labels"><span>Temat: <b id="guideTopicPercent">0%</b></span><span>Cała trasa: <b id="guideRoutePercent">${isRouteTopic?Math.round(routeIndex/Math.max(routeList.length,1)*100):0}%</b></span></div><div class="guide-route-progress"><i id="guideRouteProgressFill"></i></div></div>
+      <div class="guide-route-controls">
+        <button id="guidePrevTopic" type="button" title="Poprzedni temat" ${!isRouteTopic||routeIndex===0?'disabled':''}>←</button>
+        <select id="guideRouteSelect" aria-label="Przejdź do tematu z planu trasy"><option value="">${routeList.length?'Przejdź do tematu…':'Plan trasy jest pusty'}</option>${routeList.map((x,i)=>`<option value="${x.id}" ${x.id===id?'selected':''}>${i+1}. ${escapeHtml(x.title)}</option>`).join('')}</select>
+        <button id="guideNextTopic" type="button" title="Następny temat" ${!isRouteTopic||routeIndex===routeList.length-1?'disabled':''}>→</button>
+      </div>
+      <div class="guide-database-search"><span>⌕</span><input id="guideSearchInput" type="search" placeholder="Szukaj w całej bazie…" autocomplete="off"><div class="guide-search-results" id="guideSearchResults"></div></div>
+      <button class="guide-close-button" id="guideExit" type="button">× Wyjdź</button>
+    </div>`;
+    views.topic.innerHTML=`${guideRouteBar}${guideNav}
     <header class="topic-hero" style="--topic-image:url('${artworkFor(t)}')">
       <div class="topic-hero-art"><div class="topic-hero-seal">${t.icon||categorySymbol(t.category)}</div><div class="topic-hero-caption"><span>WANFANG GUIDE · ${escapeHtml(t.city)}</span><strong>${escapeHtml(t.category)} opowiedziane jak historia, nie jak podręcznik.</strong></div></div>
       <div class="topic-hero-copy"><div class="topic-breadcrumbs"><a href="#library">Baza wiedzy</a> / ${escapeHtml(t.city)} / ${escapeHtml(t.category)}</div><span class="tiny-label">${escapeHtml(t.city)} · ${escapeHtml(t.category)}</span><h1>${escapeHtml(t.title)}</h1><div class="cn-title">${escapeHtml(t.chinese||"")} ${t.pronunciation?`· ${escapeHtml(t.pronunciation)}`:""}</div><p class="topic-lead">${escapeHtml(t.summary)}</p><div class="topic-meta"><span>${escapeHtml(t.status)}</span><span>⏱ ${t.readingTime||5} min</span><span>${sections.length} rozdziałów</span>${tags.slice(0,4).map(x=>`<span>#${escapeHtml(x)}</span>`).join("")}</div></div>
@@ -138,7 +153,8 @@
     ${scriptsHtml}
     <div class="facts-panel">${facts.map((f,i)=>`<div class="fact-card"><span class="tiny-label">CIEKAWOSTKA ${String(i+1).padStart(2,'0')}</span><p>${escapeHtml(f)}</p></div>`).join("")}</div>
     <div class="topic-layout"><aside class="topic-toc"><strong>SPIS TREŚCI</strong>${scripts.length?'<a href="#guide-scripts" data-scroll="guide-scripts">🎤 Gotowe nawijki</a>':''}${sections.map((s,i)=>`<a href="#${sectionAnchor(s,i)}" data-scroll="${sectionAnchor(s,i)}">${String(i+1).padStart(2,"0")}. ${escapeHtml(s.title)}</a>`).join("")}<a href="#personal-notes" data-scroll="personal-notes">Moje notatki</a></aside><div class="topic-article">${sections.map((s,i)=>`<section class="article-section rich-section" id="${sectionAnchor(s,i)}" data-section-id="${escapeHtml(s.id||String(i+1))}" data-cn="${t.icon||categorySymbol(t.category)}"><span class="tiny-label">${String(i+1).padStart(2,"0")}</span><h2>${escapeHtml(s.title)}</h2>${s.subtitle?`<p class="article-subtitle">${escapeHtml(s.subtitle)}</p>`:""}${s.content}</section>`).join("")}<section class="notes-panel" id="personal-notes"><span class="tiny-label">TYLKO DLA CIEBIE</span><h2>Moje notatki do tego tematu</h2><textarea id="topicNotes" placeholder="Dopisz pytania turystów, własne żarty, punkt zbiórki, informacje praktyczne…">${escapeHtml(notes)}</textarea><div class="notes-actions"><button class="button primary" id="saveNotes">Zapisz notatki</button></div></section></div></div>`;
-    $("#backLibrary").onclick=()=>location.hash="library"; $("#topicFav").onclick=()=>toggleFavorite(id); $("#topicRoute").onclick=()=>toggleRoute(id); $("#printTopic").onclick=()=>window.print(); $("#enterGuide").onclick=enterGuide; $("#guideExit").onclick=exitGuide;
+    $("#backLibrary").onclick=()=>location.hash="library"; $("#topicFav").onclick=()=>toggleFavorite(id); $("#topicRoute").onclick=()=>toggleRoute(id); $("#printTopic").onclick=()=>window.print(); $("#enterGuide").onclick=enterGuide;
+    bindGuideRouteBar(t,routeList,routeIndex);
     $("#saveNotes").onclick=()=>{localStorage.setItem(`wanfang:notes:${id}`,$("#topicNotes").value);toast("Notatki zapisane");};
     $$(`[data-scroll]`, views.topic).forEach(a=>a.onclick=e=>{e.preventDefault();document.getElementById(a.dataset.scroll)?.scrollIntoView({behavior:"smooth",block:"start"});});
     $$(`[data-guide-jump]`, views.topic).forEach(b=>b.onclick=()=>document.getElementById(b.dataset.guideJump)?.scrollIntoView({behavior:"smooth",block:"start"}));
@@ -148,6 +164,70 @@
     $$('.map-stop[data-target]',views.topic).forEach(g=>g.onclick=()=>document.getElementById(g.dataset.target)?.scrollIntoView({behavior:'smooth',block:'start'}));
     initTopicQuiz(t);
   }
+  function bindGuideRouteBar(t,routeList,routeIndex){
+    const plan=$("#guideRoutePlan",views.topic),exit=$("#guideExit",views.topic),prev=$("#guidePrevTopic",views.topic),next=$("#guideNextTopic",views.topic),select=$("#guideRouteSelect",views.topic),input=$("#guideSearchInput",views.topic),results=$("#guideSearchResults",views.topic);
+    if(plan)plan.onclick=()=>{exitGuide();location.hash="route";};
+    if(exit)exit.onclick=exitGuide;
+    if(prev)prev.onclick=()=>navigateRoute(-1);
+    if(next)next.onclick=()=>navigateRoute(1);
+    if(select)select.onchange=()=>{if(select.value)openTopicInGuide(select.value);};
+    if(input&&results){
+      const drawResults=()=>{
+        const q=input.value.trim().toLowerCase();
+        if(!q){results.innerHTML="";results.classList.remove("show");return;}
+        const found=topics().filter(x=>topicSearchText(x).includes(q)).slice(0,8);
+        results.innerHTML=found.length?found.map(x=>`<button type="button" data-guide-open="${x.id}"><strong>${escapeHtml(x.title)}</strong><small>${escapeHtml(x.city)} · ${escapeHtml(x.category)}</small></button>`).join(""):`<div class="guide-search-empty">Nic nie znalazłem.</div>`;
+        results.classList.add("show");
+        $$('[data-guide-open]',results).forEach(b=>b.onclick=()=>openTopicInGuide(b.dataset.guideOpen));
+      };
+      input.oninput=drawResults;
+      input.onfocus=drawResults;
+      input.onkeydown=e=>{if(e.key==="Escape"){input.value="";drawResults();input.blur();}};
+    }
+    updateReadingProgress();
+  }
+  function navigateRoute(delta){
+    const list=routeTopics(),index=list.findIndex(x=>x.id===state.currentTopicId),next=index+delta;
+    if(index<0||next<0||next>=list.length){toast(delta>0?"To już koniec planu trasy":"To jest pierwszy temat trasy");return;}
+    openTopicInGuide(list[next].id);
+  }
+  function openTopicInGuide(id){
+    document.body.classList.add("guide-mode");
+    localStorage.setItem("wanfang:lastRouteTopic",id);
+    if(state.currentTopicId===id&&location.hash===`#topic/${id}`){renderTopic(id);window.scrollTo({top:0,behavior:"smooth"});}
+    else location.hash=`topic/${id}`;
+  }
+  function startRoute(id){
+    const list=routeTopics(); const target=id||localStorage.getItem("wanfang:lastRouteTopic")||list[0]?.id;
+    if(!target||!list.some(x=>x.id===target)){
+      if(!list.length){toast("Najpierw dodaj materiały do planu trasy");return;}
+      return openTopicInGuide(list[0].id);
+    }
+    openTopicInGuide(target);
+  }
+  function currentTopicProgress(){
+    if(!state.currentTopicId||!views.topic.classList.contains("active-view"))return 0;
+    const startEl=$(".talk-box",views.topic)||views.topic;
+    const endEl=$(".topic-article",views.topic)||views.topic;
+    const start=startEl.getBoundingClientRect().top+window.scrollY-130;
+    const end=endEl.getBoundingClientRect().bottom+window.scrollY-window.innerHeight+45;
+    if(end<=start)return 1;
+    return Math.max(0,Math.min(1,(window.scrollY-start)/(end-start)));
+  }
+  function updateReadingProgress(){
+    const docMax=document.documentElement.scrollHeight-window.innerHeight;
+    const page=docMax>0?Math.max(0,Math.min(1,window.scrollY/docMax)):0;
+    let visible=page;
+    const topicFraction=currentTopicProgress();
+    const list=routeTopics(),index=list.findIndex(x=>x.id===state.currentTopicId);
+    if(document.body.classList.contains("guide-mode")&&index>=0&&list.length)visible=(index+topicFraction)/list.length;
+    $("#readingProgress").style.width=`${visible*100}%`;
+    const topicPct=$("#guideTopicPercent",views.topic),routePct=$("#guideRoutePercent",views.topic),fill=$("#guideRouteProgressFill",views.topic),kicker=$("#guideRouteKicker",views.topic);
+    if(topicPct)topicPct.textContent=`${Math.round(topicFraction*100)}%`;
+    if(routePct)routePct.textContent=index>=0&&list.length?`${Math.round(((index+topicFraction)/list.length)*100)}%`:`${Math.round(topicFraction*100)}%`;
+    if(fill)fill.style.width=index>=0&&list.length?`${((index+topicFraction)/list.length)*100}%`:`${topicFraction*100}%`;
+    if(kicker&&index>=0)kicker.textContent=`TRASA · ${index+1} Z ${list.length}`;
+  }
   function initTopicQuiz(t){
     const quiz=t.quiz||[]; const question=$("#quizQuestion",views.topic),answers=$("#quizAnswers",views.topic),feedback=$("#quizFeedback",views.topic),next=$("#nextQuestion",views.topic);
     if(!quiz.length||!question||!answers||!feedback||!next)return;let qi=0,locked=false;
@@ -155,18 +235,18 @@
     next.onclick=()=>{qi=(qi+1)%quiz.length;draw();};draw();
   }
   function openTopic(id){location.hash=`topic/${id}`;}
-  function enterGuide(){document.body.classList.add("guide-mode");window.scrollTo({top:0,behavior:"smooth"});}
-  function exitGuide(){document.body.classList.remove("guide-mode");}
+  function enterGuide(){document.body.classList.add("guide-mode");updateReadingProgress();window.scrollTo({top:0,behavior:"smooth"});}
+  function exitGuide(){document.body.classList.remove("guide-mode");updateReadingProgress();}
 
   function showView(name){Object.values(views).forEach(v=>v.classList.remove("active-view"));(views[name]||views.home).classList.add("active-view");$$('.nav-link').forEach(a=>a.classList.toggle("active",a.dataset.view===name));$("#mainContent").focus({preventScroll:true});}
-  function routeHash(){const raw=location.hash.slice(1)||"home";if(raw.startsWith("topic/")){const id=raw.split("/")[1];showView("topic");renderTopic(id);}else if(raw==="library"){showView("library");renderLibrary();}else if(raw==="favorites"){showView("favorites");renderFavorites();}else if(raw==="route"){showView("route");renderRoute();}else{showView("home");renderHome();}closeSidebar();window.scrollTo(0,0);}
+  function routeHash(){const raw=location.hash.slice(1)||"home";if(raw.startsWith("topic/")){const id=raw.split("/")[1];showView("topic");renderTopic(id);}else{document.body.classList.remove("guide-mode");if(raw==="library"){showView("library");renderLibrary();}else if(raw==="favorites"){showView("favorites");renderFavorites();}else if(raw==="route"){showView("route");renderRoute();}else{showView("home");renderHome();}}closeSidebar();window.scrollTo(0,0);requestAnimationFrame(updateReadingProgress);}
 
   function randomFact(){const candidates=topics().filter(t=>t.facts?.length);const t=candidates[Math.floor(Math.random()*candidates.length)];const fact=t.facts[Math.floor(Math.random()*t.facts.length)];factTopicId=t.id;$("#randomFactContent").innerHTML=`<h3>${escapeHtml(t.title)} · ${escapeHtml(t.city)}</h3><blockquote>${escapeHtml(fact)}</blockquote>`;if(!$("#factDialog").open)$("#factDialog").showModal();}
   function closeSidebar(){$("#sidebar").classList.remove("open");$("#sidebarBackdrop").classList.remove("show");}
   function initEvents(){
     window.addEventListener("hashchange",routeHash);
     $("#searchInput").addEventListener("input",e=>{state.query=e.target.value; if(location.hash!=="#library")location.hash="library";else renderLibrary();});
-    document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#searchInput").focus();}if(e.key==="Escape")exitGuide();});
+    document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();const guideSearch=$("#guideSearchInput",views.topic);(document.body.classList.contains("guide-mode")&&guideSearch?guideSearch:$("#searchInput")).focus();}if(e.key==="Escape"&&document.body.classList.contains("guide-mode")&&!$("#guideSearchInput",views.topic)?.matches(":focus"))exitGuide();});
     $("#cityFilter").onchange=e=>{state.city=e.target.value;renderLibrary();}; $("#categoryFilter").onchange=e=>{state.category=e.target.value;renderLibrary();};
     $("#clearFiltersButton").onclick=()=>{state.city="";state.category="";state.query="";$("#searchInput").value="";renderLibrary();};
     $$('[data-layout]').forEach(b=>b.onclick=()=>{state.layout=b.dataset.layout;$$('[data-layout]').forEach(x=>x.classList.toggle("active",x===b));renderLibrary();});
@@ -177,9 +257,9 @@
     $("#randomTopicButton").onclick=randomFact;$("#anotherFactButton").onclick=randomFact;$("#openFactTopicButton").onclick=()=>{if(factTopicId){$("#factDialog").close();openTopic(factTopicId);}};
     $("#addTopicButton").onclick=()=>$("#topicDialog").showModal();
     $("#saveTopicButton").onclick=e=>{e.preventDefault();const form=$("#topicForm");if(!form.reportValidity())return;const fd=new FormData(form);const title=fd.get("title").trim();const id=`custom-${slug(title)}-${Date.now().toString().slice(-5)}`;const raw=fd.get("content").trim();state.customTopics.push({id,title,city:fd.get("city").trim(),category:fd.get("category"),chinese:fd.get("chinese").trim(),pronunciation:"",status:"szkic",readingTime:Math.max(2,Math.ceil(raw.split(/\s+/).length/180)),updated:new Date().toLocaleDateString("pl-PL"),icon:categorySymbol(fd.get("category")),accent:"gold",summary:fd.get("summary").trim(),tags:[fd.get("city").trim(),fd.get("category")],facts:[],quickTalk:fd.get("summary").trim(),sections:[{title:"Roboczy materiał",content:`<p>${escapeHtml(raw||"Treść do uzupełnienia.").replace(/\n/g,"</p><p>")}</p>`}],media:[]});save();updateCounts();renderHome();form.reset();$("#topicDialog").close();openTopic(id);toast("Temat został dodany");};
-    $("#clearRouteButton").onclick=()=>{state.route=[];save();renderRoute();updateCounts();toast("Plan trasy wyczyszczony");};$("#printRouteButton").onclick=()=>window.print();
+    $("#clearRouteButton").onclick=()=>{state.route=[];save();renderRoute();updateCounts();toast("Plan trasy wyczyszczony");};$("#printRouteButton").onclick=()=>window.print();$("#startRouteButton").onclick=()=>startRoute();
     $("#backupButton").onclick=exportBackup;$("#importInput").onchange=importBackup;
-    window.addEventListener("scroll",()=>{const max=document.documentElement.scrollHeight-innerHeight;$("#readingProgress").style.width=(max>0?scrollY/max*100:0)+"%";});
+    window.addEventListener("scroll",updateReadingProgress,{passive:true});window.addEventListener("resize",updateReadingProgress);
   }
   function exportBackup(){const notes={};topics().forEach(t=>{const n=localStorage.getItem(`wanfang:notes:${t.id}`);if(n)notes[t.id]=n;});const data={version:1,date:new Date().toISOString(),favorites:[...state.favorites],route:state.route,customTopics:state.customTopics,notes};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`wanfang-backup-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);}
   function importBackup(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const d=JSON.parse(reader.result);state.favorites=new Set(d.favorites||[]);state.route=d.route||[];state.customTopics=d.customTopics||[];Object.entries(d.notes||{}).forEach(([id,n])=>localStorage.setItem(`wanfang:notes:${id}`,n));save();updateCounts();renderHome();renderLibrary();renderFavorites();renderRoute();toast("Kopia została wczytana");}catch{toast("Nie udało się wczytać pliku");}};reader.readAsText(file);e.target.value="";}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="wanfang-version" content="0.3">
+  <meta name="wanfang-version" content="0.4">
   <meta name="description" content="Wanfang Guide — prywatna baza wiedzy pilota i przewodnika po Chinach.">
   <meta name="theme-color" content="#7d171d">
   <title>Wanfang Guide — przewodnik dla przewodnika</title>
@@ -17,7 +17,7 @@
   <header class="topbar">
     <button class="icon-button mobile-only" id="menuButton" aria-label="Otwórz menu">☰</button>
     <a class="brand" href="#home" aria-label="Wanfang Guide — strona główna">
-      <span class="brand-seal">万</span>
+      <span class="brand-seal" aria-hidden="true"><i>万</i><i>方</i></span>
       <span><strong>WANFANG</strong><small>GUIDE</small></span>
     </a>
     <div class="global-search">
@@ -154,7 +154,7 @@
       <section id="routeView" class="view">
         <div class="page-header">
           <div><span class="tiny-label">AKTUALNY OBJAZD</span><h1>Plan trasy</h1><p>Materiały ułożone w kolejności, w jakiej chcesz z nich korzystać.</p></div>
-          <div class="header-actions"><button class="button" id="printRouteButton">Drukuj / PDF</button><button class="button danger" id="clearRouteButton">Wyczyść</button></div>
+          <div class="header-actions"><button class="button primary" id="startRouteButton">▶ Uruchom trasę</button><button class="button" id="printRouteButton">Drukuj / PDF</button><button class="button danger" id="clearRouteButton">Wyczyść</button></div>
         </div>
         <div id="routeList" class="route-list"></div>
         <div class="empty-state" id="routeEmpty"><span>路</span><h3>Trasa jest pusta</h3><p>Na kartach tematów kliknij „Dodaj do trasy”.</p></div>

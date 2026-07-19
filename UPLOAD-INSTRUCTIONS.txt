@@ -1,16 +1,17 @@
-WANFANG GUIDE 0.3 — JAK WGRAC AKTUALIZACJE
+WANFANG GUIDE 0.4 — JAK WGRAC AKTUALIZACJE
 
 1. Rozpakuj ZIP.
-2. Wejdz do srodka folderu.
+2. Wejdz do srodka rozpakowanego folderu.
 3. Na GitHubie otworz repozytorium wanfang-guide.
-4. Add file -> Upload files.
-5. Przeciagnij WSZYSTKIE pliki i foldery z tej paczki do glownego katalogu repozytorium.
+4. Kliknij Add file -> Upload files.
+5. Przeciagnij WSZYSTKIE pliki i foldery z paczki do glownego katalogu repozytorium.
 6. Kliknij Commit changes.
-7. Poczekaj 1-3 minuty i odswiez strone twardym odswiezeniem (Ctrl+F5 / Cmd+Shift+R).
+7. Poczekaj 1-3 minuty.
+8. Odswiez strone: Ctrl+F5 albo Cmd+Shift+R.
 
 Najwazniejsze zmienione pliki:
-- data/topics.js
+- index.html
 - assets/app.js
 - assets/style.css
 
-Mozesz wrzucic cala paczke; pozostale pliki sa zgodne z poprzednia wersja.
+Aktualizacja nie usuwa zapisanej trasy, ulubionych ani notatek z przegladarki.
