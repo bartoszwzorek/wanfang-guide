@@ -25,7 +25,10 @@ self.addEventListener('fetch',event=>{
  if(event.request.method!=='GET'||url.origin!==scope.origin||!url.pathname.startsWith(scope.pathname))return;
  event.respondWith((async()=>{
   const complete=await caches.open(markerCache),saved=await complete.match(marker);
-  if(saved){const cache=await caches.open(await saved.text());const exact=await cache.match(event.request,{ignoreSearch:true});if(exact)return exact;if(event.request.mode==='navigate'){const index=await cache.match(new URL('./index.html',scope).href);if(index)return index;}}
-  return fetch(event.request);
+  try{return await fetch(event.request);}
+  catch(error){
+   if(saved){const cache=await caches.open(await saved.text());const exact=await cache.match(event.request,{ignoreSearch:true});if(exact)return exact;if(event.request.mode==='navigate'){const index=await cache.match(new URL('./index.html',scope).href);if(index)return index;}}
+   throw error;
+  }
  })());
 });
