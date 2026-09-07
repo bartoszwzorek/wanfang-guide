@@ -34,6 +34,24 @@
     const target=trip?`#trip/${trip.id}/${d.number}`:`#day/${p.code}/${v.id}/${d.number}`;
     return `<article class="day-card"><span class="tiny-label">DZIEŃ ${number}${date?' · '+date:''}</span><h2><a href="${target}">${esc(trip?.titles[d.number]||d.title)}</a></h2><p>${ids.length} tematów · ${gaps} do opracowania${trip?.confirmed.includes(d.number)?' · ✓ plan potwierdzony':''}</p><div class="work-actions"><a class="text-link" href="${target}">Przygotuj dzień →</a>${trip?button('↑','move',`${d.number}:-1`,`aria-label="Przesuń dzień wyżej" ${index===0?'disabled':''}`)+button('↓','move',`${d.number}:1`,`aria-label="Przesuń dzień niżej" ${index===trip.order.length-1?'disabled':''}`):''}</div></article>`;
   }
+  function fullDayMaterials(ids){
+    const topics=A.topics(), grouped=new Map();
+    for(const id of ids){
+      const c=item(id),t=c?.topicId&&topics.find(x=>x.id===c.topicId);if(!t)continue;
+      if(!grouped.has(t.id))grouped.set(t.id,{topic:t,entries:[]});
+      grouped.get(t.id).entries.push(c);
+    }
+    const materials=[];
+    for(const {topic:t,entries} of grouped.values()){
+      const whole=entries.some(c=>!c.sectionId);
+      const sections=whole?t.sections:C.unique(entries.map(c=>c.sectionId).filter(Boolean)).map(id=>t.sections.find(s=>s.id===id)).filter(Boolean);
+      if(!sections.length)continue;
+      const words=sections.reduce((n,s)=>n+s.content.replace(/<[^>]*>/g,' ').trim().split(/\s+/).filter(Boolean).length,0);
+      const title=whole?t.title:entries.map(c=>c.title).filter((x,i,a)=>a.indexOf(x)===i).join(' · ');
+      materials.push(`<details class="full-material"><summary><span>${esc(title)}</span><small>${words.toLocaleString('pl-PL')} słów · około ${Math.max(1,Math.ceil(words/130))} min czytania</small></summary><div class="reading-copy">${sections.map(s=>`<section id="day-${esc(t.id)}-${esc(s.id||'section')}"><h3>${esc(s.title||t.title)}</h3>${s.content}</section>`).join('')}</div><p><a class="text-link" href="#topic/${t.id}${!whole&&sections.length===1?'/'+sections[0].id:''}">Otwórz jako osobny materiał →</a></p></details>`);
+    }
+    return materials.join('');
+  }
   function dayPage(p,v,d,trip){
     if(!d)return missing();const order=trip?trip.order:v.days.map(x=>x.number), position=order.indexOf(d.number);
     const link=n=>trip?`#trip/${trip.id}/${n}`:`#day/${p.code}/${v.id}/${n}`;
@@ -41,13 +59,15 @@
     if(trip){storage.activeTrip=trip.id;trip.lastDay=d.number;persist();}
     const ids=C.unique([...d.places,...d.talks]);
     const available=C.unique(ids.map(id=>item(id)?.topicId).filter(Boolean)).map(id=>A.topics().find(t=>t.id===id)).filter(Boolean);
+    const full=fullDayMaterials(ids);
     const short=available.flatMap(t=>C.talkOptions(t,5).slice(0,1).map(s=>({topic:t,script:s})));
     const briefing=p.code==='CTF'&&v.id==='praktyka'?window.WANFANG_CTF_BRIEFINGS.find(b=>b.day===d.number):null;
     root.innerHTML=`<a class="text-link" href="${trip?'#trip/'+trip.id:'#program/'+p.code+'/'+v.id}">← ${trip?'Mój objazd':'Dni programu'}</a>`+header(`${p.code} · DZIEŃ ${position+1}${trip?.startDate?' · '+C.dateForDay(trip.startDate,position):''}`,trip?.titles[d.number]||d.title,v.name)+
       `<div class="work-actions">${button('Czytaj materiały kolejno','read-day',available.map(t=>t.id).join(','),available.length?'':'disabled')}${button('Drukuj dzień / PDF','print')}<a class="button" href="#catalog">Uzupełnij materiały</a></div>
       <div class="day-columns"><section><h2>Na miejscu</h2>${d.places.map(id=>resource(id,trip)).join('')||'<p>To dzień podróży — wykorzystaj tematy na przejazd.</p>'}<h2>Do opowiedzenia w drodze</h2>${d.talks.map(id=>resource(id,trip)).join('')}</section><aside class="day-checks"><span class="tiny-label">PRZED WYJŚCIEM</span><h2>Do potwierdzenia</h2><ul>${d.checks.map(s=>`<li>${esc(s)}</li>`).join('')}</ul><p>Godziny i bilety sprawdź w odprawie swojej grupy.</p>${trip?`<label class="check-label"><input id="confirmDay" type="checkbox" ${trip.confirmed.includes(d.number)?'checked':''}> Plan tego dnia potwierdzony</label>`:`<a href="#trip/new/${p.code}/${v.id}">Utwórz objazd, żeby zapisywać ustalenia →</a>`}</aside></div>
-      <section class="quick-panel"><h2>Mam 5 minut</h2><p>Wybierz jedną krótką opowieść. Czas szacowany przy około 130 słowach na minutę.</p>${short.map(({topic:t,script:s})=>`<details><summary>${esc(t.title)} · około ${s.minutes} min</summary><div class="reading-copy">${s.content}</div><a href="#topic/${t.id}">Pełny materiał →</a></details>`).join('')||'<p>Do tego dnia nie ma jeszcze krótkiej wersji. Otwórz materiał lub dopisz własny tekst.</p>'}</section>
-      ${briefing?`<section class="quick-panel"><span class="tiny-label">TWOJE OPRACOWANIE CTF</span><h2>Odprawa i opowieści na ten dzień</h2><p>Archiwalny materiał roboczy. Szczegóły operacyjne wymagają potwierdzenia.</p>${briefing.narration.map(n=>`<details><summary>${esc(n.title)}</summary><div class="reading-copy">${n.content}</div></details>`).join('')}${briefing.myth?`<p><strong>Mit do wyjaśnienia:</strong> ${esc(briefing.myth)}</p>`:''}${briefing.closing?`<p><strong>Domknięcie dnia:</strong> ${esc(briefing.closing)}</p>`:''}</section>`:''}
+      <section class="full-materials"><span class="tiny-label">TEKSTY DO CZYTANIA I OPOWIADANIA</span><h2>Pełne materiały na ten dzień</h2><p>Otwórz wybrany temat — poniżej znajduje się cała treść przypisana do tego dnia, a nie jej skrót.</p>${full||'<p>Do tego dnia nie odzyskano jeszcze pełnego tekstu. Dostępne hasła są oznaczone wyżej jako „Do opracowania”.</p>'}</section>
+      <details class="quick-panel compact-panel"><summary><strong>Mam tylko 5 minut — pokaż skróty</strong></summary><p>Wybierz jedną krótką wersję. Czas szacowany przy około 130 słowach na minutę.</p>${short.map(({topic:t,script:s})=>`<details><summary>${esc(t.title)} · około ${s.minutes} min</summary><div class="reading-copy">${s.content}</div><a href="#topic/${t.id}">Pełny materiał →</a></details>`).join('')||'<p>Do tego dnia nie ma jeszcze krótkiej wersji.</p>'}</details>
+      ${briefing?`<details class="preparation-panel editorial-only"><summary><strong>Odprawa robocza CTF i informacje do sprawdzenia</strong></summary><p>Materiał pomocniczy do przygotowania dnia. Pełne teksty znajdują się wyżej.</p>${briefing.narration.map(n=>`<details><summary>${esc(n.title)}</summary><div class="reading-copy">${n.content}</div></details>`).join('')}${briefing.myth?`<p><strong>Do sprawdzenia:</strong> ${esc(briefing.myth)}</p>`:''}${briefing.closing?`<p><strong>Domknięcie dnia:</strong> ${esc(briefing.closing)}</p>`:''}</details>`:''}
       ${trip?`<section class="notes-panel"><h2>Notatki z tego dnia</h2><label>Nazwa dnia w Twoim objeździe<input id="dayTitle" maxlength="200" value="${esc(trip.titles[d.number]||d.title)}"></label><label>Ustalenia, pytania grupy i nowe ciekawostki<textarea id="dayNotes" rows="8" placeholder="Co warto dopisać do kompendium po powrocie?">${esc(trip.notes[d.number]||'')}</textarea></label><p id="noteStatus" role="status">Zapis lokalny na tym urządzeniu. Eksport kopii przenosi notatki między urządzeniami.</p>${button('Eksportuj kopię z notatkami','backup')}</section>`:''}
       <nav class="day-pagination" aria-label="Sąsiednie dni">${position>0?`<a class="button" href="${link(order[position-1])}">← Poprzedni dzień</a>`:'<span></span>'}${position<order.length-1?`<a class="button" href="${link(order[position+1])}">Następny dzień →</a>`:''}</nav>`;
     if(trip){$('#dayNotes').oninput=e=>{trip.notes[d.number]=e.target.value;$('#noteStatus').textContent=persist()?'Zapisano na tym urządzeniu.':'Zapis nie powiódł się — wyeksportuj kopię.';};$('#dayTitle').onchange=e=>{trip.titles[d.number]=e.target.value;persist();};$('#confirmDay').onchange=e=>{trip.confirmed=e.target.checked?C.unique([...trip.confirmed,d.number]):trip.confirmed.filter(n=>n!==d.number);persist();};}
