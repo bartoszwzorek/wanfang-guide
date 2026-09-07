@@ -3,11 +3,12 @@
   const C=window.WanfangCore, programs=window.WANFANG_PROGRAMS, catalog=window.WANFANG_CATALOG;
   const $=(s,r=document)=>r.querySelector(s);
   let A, root, pending='', returnDay='', storage, bookmarkTimer;
-  const empty=()=>({version:1,trips:[],activeTrip:'',progress:{},bindings:{}});
+  const empty=()=>({version:2,trips:[],activeTrip:'',progress:{},bindings:{},dayTopics:{}});
   const filters={query:'',program:'',status:''};
   const esc=v=>A.escapeHtml(v), program=code=>programs.find(p=>p.code===code);
   const variant=(p,id)=>p?.variants.find(v=>v.id===id)||p?.variants[0];
   const active=()=>storage.trips.find(t=>t.id===storage.activeTrip);
+  function defaultDayIds(key){const parts=key.split('/');if(parts[0]==='trip'){const t=storage.trips.find(x=>x.id===parts[1]),p=t&&program(t.program),v=t&&variant(p,t.variant),d=v?.days.find(x=>x.number===+parts[2]);return d?C.unique([...d.places,...d.talks]):[];}const p=program(parts[0]),v=variant(p,parts[1]),d=v?.days.find(x=>x.number===+parts[2]);return d?C.unique([...d.places,...d.talks]):[];}
   const item=id=>{const c=catalog.find(c=>c.id===id);return c&&storage.bindings[id]?{...c,topicId:storage.bindings[id],sectionId:null}:c;};
   const info=c=>C.materialInfo(c,A.topics());
   const href=c=>c.topicId?`#topic/${c.topicId}${c.sectionId?'/'+c.sectionId:''}`:`#catalog/${c.id}`;
@@ -48,29 +49,31 @@
       if(!sections.length)continue;
       const words=sections.reduce((n,s)=>n+s.content.replace(/<[^>]*>/g,' ').trim().split(/\s+/).filter(Boolean).length,0);
       const title=whole?t.title:entries.map(c=>c.title).filter((x,i,a)=>a.indexOf(x)===i).join(' · ');
-      materials.push(`<details class="full-material"><summary><span>${esc(title)}</span><small>${words.toLocaleString('pl-PL')} słów · około ${Math.max(1,Math.ceil(words/130))} min czytania</small></summary><div class="reading-copy">${sections.map(s=>`<section id="day-${esc(t.id)}-${esc(s.id||'section')}"><h3>${esc(s.title||t.title)}</h3>${s.content}</section>`).join('')}</div><p><a class="text-link" href="#topic/${t.id}${!whole&&sections.length===1?'/'+sections[0].id:''}">Otwórz jako osobny materiał →</a></p></details>`);
+      materials.push({key:t.id,title,topic:t,sections,whole,words});
     }
-    return materials.join('');
+    return {materials,html:materials.map((m,index)=>`<details class="full-material" data-material-key="${esc(m.key)}"><summary><span>${esc(m.title)}</span><small>${m.words.toLocaleString('pl-PL')} słów · około ${Math.max(1,Math.ceil(m.words/130))} min czytania</small></summary><div class="reading-copy">${m.sections.map(s=>`<section id="day-${esc(m.topic.id)}-${esc(s.id||'section')}"><h3>${esc(s.title||m.topic.title)}</h3>${s.content}</section>`).join('')}</div><nav class="material-actions"><button class="button" data-action="day-topic-list">↑ Tematy dnia</button>${index<materials.length-1?button('Następny temat →','open-day-topic',materials[index+1].key):''}</nav></details>`).join('')};
   }
   function dayPage(p,v,d,trip){
     if(!d)return missing();const order=trip?trip.order:v.days.map(x=>x.number), position=order.indexOf(d.number);
     const link=n=>trip?`#trip/${trip.id}/${n}`:`#day/${p.code}/${v.id}/${n}`;
     returnDay=link(d.number);
     if(trip){storage.activeTrip=trip.id;trip.lastDay=d.number;persist();}
-    const ids=C.unique([...d.places,...d.talks]);
+    const defaultIds=C.unique([...d.places,...d.talks]),dayKey=trip?`trip/${trip.id}/${d.number}`:`${p.code}/${v.id}/${d.number}`;
+    const ids=storage.dayTopics[dayKey]||defaultIds;
     const available=C.unique(ids.map(id=>item(id)?.topicId).filter(Boolean)).map(id=>A.topics().find(t=>t.id===id)).filter(Boolean);
     const full=fullDayMaterials(ids);
+    const topicButtons=full.materials.map(m=>button(m.title,'open-day-topic',m.key)).join('');
+    const missingButtons=ids.map(id=>item(id)).filter(c=>c&&!c.topicId).map(c=>`<a class="day-topic missing-topic" href="#catalog/${c.id}">${esc(c.title)} <small>brak tekstu</small></a>`).join('');
+    const remaining=catalog.filter(c=>!ids.includes(c.id)).sort((a,b)=>a.title.localeCompare(b.title,'pl'));
     const short=available.flatMap(t=>C.talkOptions(t,5).slice(0,1).map(s=>({topic:t,script:s})));
-    const briefing=p.code==='CTF'&&v.id==='praktyka'?window.WANFANG_CTF_BRIEFINGS.find(b=>b.day===d.number):null;
     root.innerHTML=`<a class="text-link" href="${trip?'#trip/'+trip.id:'#program/'+p.code+'/'+v.id}">← ${trip?'Mój objazd':'Dni programu'}</a>`+header(`${p.code} · DZIEŃ ${position+1}${trip?.startDate?' · '+C.dateForDay(trip.startDate,position):''}`,trip?.titles[d.number]||d.title,v.name)+
-      `<div class="work-actions">${button('Czytaj materiały kolejno','read-day',available.map(t=>t.id).join(','),available.length?'':'disabled')}${button('Drukuj dzień / PDF','print')}<a class="button" href="#catalog">Uzupełnij materiały</a></div>
-      <div class="day-columns"><section><h2>Na miejscu</h2>${d.places.map(id=>resource(id,trip)).join('')||'<p>To dzień podróży — wykorzystaj tematy na przejazd.</p>'}<h2>Do opowiedzenia w drodze</h2>${d.talks.map(id=>resource(id,trip)).join('')}</section><aside class="day-checks"><span class="tiny-label">PRZED WYJŚCIEM</span><h2>Do potwierdzenia</h2><ul>${d.checks.map(s=>`<li>${esc(s)}</li>`).join('')}</ul><p>Godziny i bilety sprawdź w odprawie swojej grupy.</p>${trip?`<label class="check-label"><input id="confirmDay" type="checkbox" ${trip.confirmed.includes(d.number)?'checked':''}> Plan tego dnia potwierdzony</label>`:`<a href="#trip/new/${p.code}/${v.id}">Utwórz objazd, żeby zapisywać ustalenia →</a>`}</aside></div>
-      <section class="full-materials"><span class="tiny-label">TEKSTY DO CZYTANIA I OPOWIADANIA</span><h2>Pełne materiały na ten dzień</h2><p>Otwórz wybrany temat — poniżej znajduje się cała treść przypisana do tego dnia, a nie jej skrót.</p>${full||'<p>Do tego dnia nie odzyskano jeszcze pełnego tekstu. Dostępne hasła są oznaczone wyżej jako „Do opracowania”.</p>'}</section>
+      `<section class="day-topic-hub" id="dayTopicList"><span class="tiny-label">DZIEŃ ${position+1}</span><h2>Tematy dnia</h2><p>Kliknij temat, aby otworzyć pełny tekst.</p><div class="day-topic-buttons">${topicButtons}${missingButtons||''}</div><details class="day-topic-editor"><summary>＋ Dodaj lub usuń temat</summary><div class="selected-topics">${ids.map(id=>{const c=item(id);return c?`<span>${esc(c.title)} ${button('×','remove-day-topic',`${dayKey}|${id}`,`aria-label="Usuń: ${esc(c.title)}"`)}</span>`:''}).join('')}</div><div class="topic-add-row"><label>Wybierz temat<input id="dayTopicChoice" list="dayTopicOptions" placeholder="Wpisz np. szybka kolej"></label><datalist id="dayTopicOptions">${remaining.map(c=>`<option value="${esc(c.title)}" data-id="${c.id}"></option>`).join('')}</datalist>${button('Dodaj','add-day-topic',dayKey)}${storage.dayTopics[dayKey]?button('Przywróć program','reset-day-topics',dayKey):''}</div></details></section>
+      <section class="full-materials"><span class="tiny-label">PEŁNE TEKSTY</span><h2>Materiały na ten dzień</h2>${full.html||'<p>Do tego dnia nie odzyskano jeszcze pełnego tekstu. Dodaj inny temat albo otwórz hasło oznaczone jako brak tekstu.</p>'}</section>
+      <nav class="day-topic-footer"><strong>Kolejny temat?</strong><div class="day-topic-buttons">${topicButtons}${missingButtons||''}</div><button class="button" data-action="day-topic-list">↑ Wróć do listy tematów</button></nav>
       <details class="quick-panel compact-panel"><summary><strong>Mam tylko 5 minut — pokaż skróty</strong></summary><p>Wybierz jedną krótką wersję. Czas szacowany przy około 130 słowach na minutę.</p>${short.map(({topic:t,script:s})=>`<details><summary>${esc(t.title)} · około ${s.minutes} min</summary><div class="reading-copy">${s.content}</div><a href="#topic/${t.id}">Pełny materiał →</a></details>`).join('')||'<p>Do tego dnia nie ma jeszcze krótkiej wersji.</p>'}</details>
-      ${briefing?`<details class="preparation-panel editorial-only"><summary><strong>Odprawa robocza CTF i informacje do sprawdzenia</strong></summary><p>Materiał pomocniczy do przygotowania dnia. Pełne teksty znajdują się wyżej.</p>${briefing.narration.map(n=>`<details><summary>${esc(n.title)}</summary><div class="reading-copy">${n.content}</div></details>`).join('')}${briefing.myth?`<p><strong>Do sprawdzenia:</strong> ${esc(briefing.myth)}</p>`:''}${briefing.closing?`<p><strong>Domknięcie dnia:</strong> ${esc(briefing.closing)}</p>`:''}</details>`:''}
       ${trip?`<section class="notes-panel"><h2>Notatki z tego dnia</h2><label>Nazwa dnia w Twoim objeździe<input id="dayTitle" maxlength="200" value="${esc(trip.titles[d.number]||d.title)}"></label><label>Ustalenia, pytania grupy i nowe ciekawostki<textarea id="dayNotes" rows="8" placeholder="Co warto dopisać do kompendium po powrocie?">${esc(trip.notes[d.number]||'')}</textarea></label><p id="noteStatus" role="status">Zapis lokalny na tym urządzeniu. Eksport kopii przenosi notatki między urządzeniami.</p>${button('Eksportuj kopię z notatkami','backup')}</section>`:''}
       <nav class="day-pagination" aria-label="Sąsiednie dni">${position>0?`<a class="button" href="${link(order[position-1])}">← Poprzedni dzień</a>`:'<span></span>'}${position<order.length-1?`<a class="button" href="${link(order[position+1])}">Następny dzień →</a>`:''}</nav>`;
-    if(trip){$('#dayNotes').oninput=e=>{trip.notes[d.number]=e.target.value;$('#noteStatus').textContent=persist()?'Zapisano na tym urządzeniu.':'Zapis nie powiódł się — wyeksportuj kopię.';};$('#dayTitle').onchange=e=>{trip.titles[d.number]=e.target.value;persist();};$('#confirmDay').onchange=e=>{trip.confirmed=e.target.checked?C.unique([...trip.confirmed,d.number]):trip.confirmed.filter(n=>n!==d.number);persist();};}
+    if(trip){$('#dayNotes').oninput=e=>{trip.notes[d.number]=e.target.value;$('#noteStatus').textContent=persist()?'Zapisano na tym urządzeniu.':'Zapis nie powiódł się — wyeksportuj kopię.';};$('#dayTitle').onchange=e=>{trip.titles[d.number]=e.target.value;persist();};}
   }
   function catalogPage(){root.innerHTML=header('ZAKRES KOMPENDIUM','Katalog tematów i braków','Dostępny materiał może być szkicem lub rozdziałem szerszego opracowania. Status nie oznacza zakończonej weryfikacji.')+`<div class="catalog-filters"><label>Szukaj tematu<input type="search" id="catalogSearch" value="${esc(filters.query)}" placeholder="np. Longmen, jedwab, rodzina"></label><label>Program<select id="catalogProgram"><option value="">Wszystkie</option>${programs.map(p=>`<option ${filters.program===p.code?'selected':''}>${p.code}</option>`).join('')}</select></label><label>Materiał<select id="catalogStatus"><option value="">Wszystkie</option>${[['missing','Do opracowania'],['fragment','Krótkie materiały'],['material','Materiały']].map(([id,label])=>`<option value="${id}" ${filters.status===id?'selected':''}>${label}</option>`).join('')}</select></label>${button('Eksportuj katalog','catalog-export')}</div><p id="catalogSummary" role="status"></p><div id="catalogResults"></div>`;
     const draw=()=>{const found=catalog.map(c=>item(c.id)).filter(c=>(!filters.program||c.programs.includes(filters.program))&&(!filters.status||info(c).status===filters.status)&&C.matches([c.title,c.region,...c.aliases].join(' '),filters.query));$('#catalogSummary').textContent=`${found.length} z ${catalog.length} tematów`;$('#catalogResults').innerHTML=found.map(c=>`<article class="catalog-row"><div><a href="#catalog/${c.id}"><strong>${esc(c.title)}</strong></a><small>${esc(c.region)} · ${c.programs.join(' · ')}</small></div>${badge(c)}<a class="text-link" href="${href(c)}">${c.topicId?'Czytaj →':'Zobacz zakres →'}</a></article>`).join('')||'<p>Brak wyników. Zmień hasło lub filtry.</p>';};
@@ -94,7 +97,7 @@
     A.showView('compendium');document.querySelectorAll('.nav-link').forEach(el=>el.classList.toggle('active',el.dataset.view===(name==='day'||name==='program'?'programs':name)));
     if(name==='programs')root.innerHTML=header('TRZY DROGI PRZEZ CHINY','Wybierz program','Jedna baza wiedzy, materiały przypisane do kolejnych dni.')+`<div class="program-grid">${cards()}</div>`;
     if(name==='program')programPage(a,b);
-    if(name==='day'){const p=program(a),v=variant(p,b);if(p&&v)dayPage(p,v,v.days.find(d=>d.number===+c));else missing();}
+    if(name==='day'){const p=program(a),v=variant(p,b);if(p&&v)dayPage(p,v,v.days.find(d=>d.number===+c));else missing();requestAnimationFrame(()=>window.scrollTo(0,0));}
     if(name==='catalog')a?catalogItem(a):catalogPage();
     if(name==='trip'){if(a==='new')tripForm(b,c);else if(a&&b){const t=storage.trips.find(t=>t.id===a),p=t&&program(t.program),v=t&&variant(p,t.variant);if(t&&v)dayPage(p,v,v.days.find(d=>d.number===+b),t);else missing();}else if(a)tripPage(a);else tripList();}return true;
   }
@@ -117,6 +120,11 @@
     document.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;const value=b.dataset.value;switch(b.dataset.action){
       case 'print':window.print();break;case 'backup':A.exportBackup();break;case 'offline':offline();break;
       case 'bookmark':bookmark(value,true);break;
+      case 'open-day-topic':{const all=[...root.querySelectorAll('.full-material')],target=all.find(x=>x.dataset.materialKey===value);if(target){all.forEach(x=>x.open=x===target);target.scrollIntoView({behavior:'smooth',block:'start'});}break;}
+      case 'day-topic-list':$('#dayTopicList')?.scrollIntoView({behavior:'smooth',block:'start'});break;
+      case 'remove-day-topic':{const cut=value.lastIndexOf('|'),key=value.slice(0,cut),id=value.slice(cut+1),base=storage.dayTopics[key]||defaultDayIds(key);storage.dayTopics[key]=base.filter(x=>x!==id);persist();route(location.hash.slice(1));break;}
+      case 'add-day-topic':{const input=$('#dayTopicChoice'),choice=(input?.value||'').trim(),c=catalog.find(x=>x.id===choice||x.title.toLocaleLowerCase('pl')===choice.toLocaleLowerCase('pl'));if(!c){A.toast('Wybierz temat z listy.');break;}const key=value,current=storage.dayTopics[key]||defaultDayIds(key);storage.dayTopics[key]=C.unique([...current,c.id]);persist();route(location.hash.slice(1));break;}
+      case 'reset-day-topics':delete storage.dayTopics[value];persist();route(location.hash.slice(1));break;
       case 'read-day':{const ids=value.split(',').filter(C.validId);if(ids.length){A.state.route=ids;A.save();A.updateCounts();A.startRoute(ids[0]);}break;}
       case 'told':{const t=active();if(t){t.told=t.told.includes(value)?t.told.filter(id=>id!==value):[...t.told,value];persist();b.textContent=t.told.includes(value)?'✓ Opowiedziane':'Oznacz jako opowiedziane';b.setAttribute('aria-pressed',String(t.told.includes(value)));}break;}
       case 'move':{const t=active();if(t){const [n,delta]=value.split(':').map(Number),i=t.order.indexOf(n),j=i+delta;if(i>=0&&j>=0&&j<t.order.length){[t.order[i],t.order[j]]=[t.order[j],t.order[i]];persist();tripPage(t.id);}}break;}

@@ -39,7 +39,9 @@
     }
     const progress=Object.fromEntries(Object.entries({...current.progress,...incoming.progress}).filter(([id,p])=>validId(id)&&p&&validId(p.section)&&Number.isFinite(p.updated)).map(([id,p])=>[id,{section:p.section,updated:p.updated}]));
     const bindings=Object.fromEntries(Object.entries({...current.bindings,...incoming.bindings}).filter(([id,topic])=>validId(id)&&validId(topic)));
-    return {version:1,trips:[...trips.values()],activeTrip:trips.has(incoming.activeTrip)?incoming.activeTrip:current.activeTrip || '',progress,bindings};
+    const validDayKey=value=>/^(?:(?:CHT|CJA|CTF)\/[a-zA-Z0-9_-]+|trip\/[a-zA-Z0-9_-]+)\/(?:[1-9]|[1-3][0-9]|40)$/.test(value);
+    const dayTopics=Object.fromEntries(Object.entries({...current.dayTopics,...incoming.dayTopics}).filter(([key,ids])=>validDayKey(key)&&Array.isArray(ids)&&ids.length<=100).map(([key,ids])=>[key,unique(ids.filter(validId))]));
+    return {version:2,trips:[...trips.values()],activeTrip:trips.has(incoming.activeTrip)?incoming.activeTrip:current.activeTrip || '',progress,bindings,dayTopics};
   }
   function topicFromCatalog(item, topics) { return topics.find(t => t.id === item.topicId); }
   function materialInfo(item, topics) {
