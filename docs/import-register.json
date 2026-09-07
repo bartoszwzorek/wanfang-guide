@@ -1,0 +1,343 @@
+[
+  {
+    "id": "wielki-mur",
+    "title": "Wielki Mur Chiński",
+    "words": 3927,
+    "sections": 10,
+    "sources": [
+      "nawijka_wielki_mur_chinski.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "palac-letni",
+    "title": "Pałac Letni, Yiheyuan i Cixi",
+    "words": 4361,
+    "sections": 16,
+    "sources": [
+      "letni_palac_pekin_przewodnik_interaktywny.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "swieta-droga",
+    "title": "Święta Droga i Grobowce Ming",
+    "words": 4234,
+    "sections": 13,
+    "sources": [
+      "Swieta_Droga_Grobowce_Ming_przewodnik.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "swiatynia-nieba",
+    "title": "Świątynia Nieba — rytuał i architektura",
+    "words": 3710,
+    "sections": 12,
+    "sources": [
+      "nawijka_temple_of_heaven_tiantan.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "hukou",
+    "title": "Hukou — meldunek, migracje i rodzina",
+    "words": 3469,
+    "sections": 11,
+    "sources": [
+      "nawijka_hukou_chiny.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "pekin",
+    "title": "Pekin — historia, oś miasta i codzienność",
+    "words": 2980,
+    "sections": 8,
+    "sources": [
+      "chiny_rozdzial_4_pekin.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "cesarz-panstwo",
+    "title": "Cesarz, państwo i porządek społeczny",
+    "words": 2537,
+    "sections": 8,
+    "sources": [
+      "chiny_rozdzial_3_cesarz_panstwo_porządek.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "chiny-wprowadzenie",
+    "title": "Chiny — skala, ciągłość i kontrasty",
+    "words": 3270,
+    "sections": 8,
+    "sources": [
+      "chiny_rozdzial_1_cywilizacja_skali.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "geografia-chin",
+    "title": "Geografia Chin — rzeki, regiony i miasta",
+    "words": 3976,
+    "sections": 10,
+    "sources": [
+      "chiny_rozdzial_2_geografia.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "starozytne-chiny",
+    "title": "Starożytne Chiny i pierwsze cesarstwo",
+    "words": 5330,
+    "sections": 7,
+    "sources": [
+      "starozytne_chiny_nawijka_polaczona.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "wojny-opiumowe",
+    "title": "Chiny, srebro i wojny opiumowe",
+    "words": 7459,
+    "sections": 25,
+    "sources": [
+      "chiny_srebro_opium_pelne_nawijki_FINAL_v2.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "shaolin",
+    "title": "Shaolin — chan, kung fu i Las Pagód",
+    "words": 3528,
+    "sections": 11,
+    "sources": [
+      "chiny_rozdzial_20_shaolin.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "hongcun-tunxi",
+    "title": "Hongcun, Tunxi i kultura Huizhou",
+    "words": 3546,
+    "sections": 23,
+    "sources": [
+      "hongcun_tunxi_anhui_panel_przewodnika.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "changsha",
+    "title": "Changsha i młody Mao",
+    "words": 2923,
+    "sections": 11,
+    "sources": [
+      "changsha_przewodnik_nawijka_v2.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "zhangjiajie",
+    "title": "Zhangjiajie, Tianmen i góry Avatara",
+    "words": 7173,
+    "sections": 20,
+    "sources": [
+      "zhangjiajie_tryb_pilot_chiny(1).html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "pekin-olimpijski",
+    "title": "Pekin olimpijski — stadiony, wieże i parki",
+    "words": 3561,
+    "sections": 11,
+    "sources": [
+      "nawijka_wioska_olimpijska_pekin_fixed.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "plany-piecioletnie",
+    "title": "Plany pięcioletnie",
+    "words": 706,
+    "sections": 2,
+    "sources": [
+      "chiny_dodatkowe_tematy_nawijki_porządnie.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "gaokao",
+    "title": "Szkoła i gaokao",
+    "words": 665,
+    "sections": 1,
+    "sources": [
+      "chiny_dodatkowe_tematy_nawijki_porządnie.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "sluzba-zdrowia",
+    "title": "Opieka zdrowotna w Chinach",
+    "words": 616,
+    "sections": 1,
+    "sources": [
+      "chiny_dodatkowe_tematy_nawijki_porządnie.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "szanghaj",
+    "title": "Szanghaj — port, Bund i Pudong",
+    "words": 623,
+    "sections": 1,
+    "sources": [
+      "chiny_dodatkowe_tematy_nawijki_porządnie.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "shanghai-tower",
+    "title": "Shanghai Tower",
+    "words": 573,
+    "sections": 1,
+    "sources": [
+      "chiny_dodatkowe_tematy_nawijki_porządnie.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "szybka-kolej",
+    "title": "Szybka kolej w Chinach",
+    "words": 550,
+    "sections": 1,
+    "sources": [
+      "chiny_dodatkowe_tematy_nawijki_porządnie.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "samochody-elektryczne",
+    "title": "Samochody elektryczne, BYD i baterie",
+    "words": 556,
+    "sections": 1,
+    "sources": [
+      "chiny_dodatkowe_tematy_nawijki_porządnie.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "praktyczne-alipay",
+    "title": "Alipay, WeChat Pay i życie bez portfela",
+    "words": 569,
+    "sections": 1,
+    "sources": [
+      "chiny_dodatkowe_tematy_nawijki_porządnie.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "social-credit",
+    "title": "Social credit i monitoring — fakty i mity",
+    "words": 641,
+    "sections": 1,
+    "sources": [
+      "chiny_dodatkowe_tematy_nawijki_porządnie.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "urbanizacja",
+    "title": "Urbanizacja i nowe dzielnice",
+    "words": 628,
+    "sections": 1,
+    "sources": [
+      "chiny_dodatkowe_tematy_nawijki_porządnie.html"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "huangshan",
+    "title": "Huangshan — góry w chińskim krajobrazie",
+    "words": 204,
+    "sections": 5,
+    "sources": [
+      "CTF_Gory_Avatara_opracowanie_pilota_dzien_po_dniu.docx"
+    ],
+    "coverage": "fragment",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "chongqing",
+    "title": "Chongqing — miasto w pionie",
+    "words": 432,
+    "sections": 10,
+    "sources": [
+      "CTF_Gory_Avatara_opracowanie_pilota_dzien_po_dniu.docx"
+    ],
+    "coverage": "fragment",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "chengdu",
+    "title": "Chengdu — pandy, świątynie i Syczuan",
+    "words": 248,
+    "sections": 6,
+    "sources": [
+      "CTF_Gory_Avatara_opracowanie_pilota_dzien_po_dniu.docx"
+    ],
+    "coverage": "fragment",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "powitanie-grupy",
+    "title": "Powitanie grupy — gotowa odprawa",
+    "words": 1114,
+    "sections": 16,
+    "sources": [
+      "CTF_Gory_Avatara_program_i_karta_odprawy_bez_dat.docx"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  },
+  {
+    "id": "rejs-jangcy",
+    "title": "Rejs po Jangcy — przebieg i odprawy",
+    "words": 2391,
+    "sections": 42,
+    "sources": [
+      "Wklejony kod markdown.md"
+    ],
+    "coverage": "material",
+    "review": "Do przeglądu"
+  }
+]

@@ -1,10 +1,12 @@
 (() => {
-  const baseTopics = window.WANFANG_TOPICS || [];
+  const C = window.WanfangCore;
+  const baseTopics = [...new Map([...(window.WANFANG_TOPICS || []), ...(window.WANFANG_IMPORTED_TOPICS || [])].map(t=>[t.id,t])).values()];
+  const storedArray = key => {try{const value=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(value)?value:[];}catch{return [];}};
   const state = {
     query: "", city: "", category: "", layout: "grid", currentTopicId: null,
-    favorites: new Set(JSON.parse(localStorage.getItem("wanfang:favorites") || "[]")),
-    route: JSON.parse(localStorage.getItem("wanfang:route") || "[]"),
-    customTopics: JSON.parse(localStorage.getItem("wanfang:customTopics") || "[]")
+    favorites: new Set(storedArray("wanfang:favorites").filter(C.validId)),
+    route: C.unique(storedArray("wanfang:route").filter(C.validId)),
+    customTopics: storedArray("wanfang:customTopics").filter(t=>t&&C.validId(t.id)&&typeof t.title==='string').map(cleanCustomTopic)
   };
   const $ = (s, root=document) => root.querySelector(s);
   const $$ = (s, root=document) => [...root.querySelectorAll(s)];
@@ -23,29 +25,45 @@
     "praktyczne-alipay":"assets/illustrations/payments.svg"
   };
 
-  const views = {home:$("#homeView"),library:$("#libraryView"),favorites:$("#favoritesView"),route:$("#routeView"),topic:$("#topicView")};
+  const views = {home:$("#homeView"),library:$("#libraryView"),favorites:$("#favoritesView"),route:$("#routeView"),topic:$("#topicView"),compendium:$("#compendiumView")};
   let factTopicId = null;
 
   function save(){
+    try {
     localStorage.setItem("wanfang:favorites", JSON.stringify([...state.favorites]));
     localStorage.setItem("wanfang:route", JSON.stringify(state.route));
     localStorage.setItem("wanfang:customTopics", JSON.stringify(state.customTopics));
+    } catch {toast('Brak miejsca na zapis. Wyeksportuj kopię swoich danych.');}
   }
   function toast(message){ const el=$("#toast"); el.textContent=message; el.classList.add("show"); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove("show"),2200); }
-  function escapeHtml(s=""){return s.replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#039;",'"':"&quot;"}[c]));}
+  function escapeHtml(s=""){return String(s??'').replace(/nawijk[\p{L}]*/giu,'opowieść').replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#039;",'"':"&quot;"}[c]));}
+  function safeRich(html){
+    const template=document.createElement('template');template.innerHTML=String(html||'');
+    const allowed=new Set(['P','BR','B','STRONG','I','EM','UL','OL','LI','H2','H3','H4','BLOCKQUOTE','TABLE','THEAD','TBODY','TR','TH','TD','DETAILS','SUMMARY','A']);
+    [...template.content.querySelectorAll('*')].reverse().forEach(el=>{
+      if(['SCRIPT','STYLE','IFRAME','OBJECT','EMBED','SVG','MATH','FORM'].includes(el.tagName)){el.remove();return;}
+      if(!allowed.has(el.tagName)){el.replaceWith(...el.childNodes);return;}
+      const href=el.getAttribute('href');[...el.attributes].forEach(a=>el.removeAttribute(a.name));
+      if(el.tagName==='A'&&/^https?:\/\//i.test(href||'')){el.setAttribute('href',href);el.setAttribute('rel','noreferrer noopener');}
+    });return template.innerHTML;
+  }
+  function cleanCustomTopic(t){
+    const value=key=>String(t[key]||'').slice(0,10000);
+    return {id:t.id,title:value('title'),city:value('city'),category:value('category'),chinese:value('chinese'),pronunciation:value('pronunciation'),summary:value('summary'),quickTalk:value('quickTalk'),status:'szkic',accent:'gold',readingTime:Number(t.readingTime)||5,updated:value('updated'),tags:(Array.isArray(t.tags)?t.tags:[]).filter(s=>typeof s==='string'),facts:(Array.isArray(t.facts)?t.facts:[]).filter(s=>typeof s==='string'),sections:(Array.isArray(t.sections)?t.sections:[]).map((s,i)=>({id:C.validId(s.id)?s.id:`wlasny-${i+1}`,title:String(s.title||'Materiał'),content:safeRich(s.content)})),guideScripts:(Array.isArray(t.guideScripts)?t.guideScripts:[]).map((s,i)=>({id:`wlasna-${i+1}`,label:String(s.label||'Opowieść'),content:safeRich(s.content)}))};
+  }
   function slug(s=""){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");}
   function colorFor(topic){return accentMap[topic.accent] || "var(--red)";}
   function artworkFor(topic){
     if(artworkMap[topic.id]) return artworkMap[topic.id];
-    return ({"Historia":"assets/illustrations/ming-tombs.svg","Kultura i zwyczaje":"assets/illustrations/tea.svg","Życie codzienne":"assets/illustrations/society.svg","Praktyczne":"assets/illustrations/payments.svg","Miasta i trasy":"assets/illustrations/xian.svg","Nawijki":"assets/illustrations/forbidden-city.svg"})[topic.category] || "assets/illustrations/hero-atlas.svg";
+    return ({"Historia":"assets/illustrations/ming-tombs.svg","Kultura i zwyczaje":"assets/illustrations/tea.svg","Życie codzienne":"assets/illustrations/society.svg","Praktyczne":"assets/illustrations/payments.svg","Miasta i trasy":"assets/illustrations/xian.svg","Opowieści":"assets/illustrations/forbidden-city.svg"})[topic.category] || "assets/illustrations/hero-atlas.svg";
   }
-  function categorySymbol(category){return ({"Miasta i trasy":"城","Historia":"史","Kultura i zwyczaje":"礼","Życie codzienne":"人","Praktyczne":"行","Nawijki":"话"})[category]||"录";}
+  function categorySymbol(category){return ({"Miasta i trasy":"城","Historia":"史","Kultura i zwyczaje":"礼","Życie codzienne":"人","Praktyczne":"行","Opowieści":"话"})[category]||"录";}
 
   function topicCard(t){
     const fav=state.favorites.has(t.id); const inRoute=state.route.includes(t.id);
     return `<article class="topic-card" style="--card-accent:${colorFor(t)}" data-id="${t.id}">
       <div class="topic-card-visual" style="background-image:url('${artworkFor(t)}')">
-        <span class="status ${t.status}">${t.status}</span>
+        <span class="status ${t.status==='szkic'?'szkic':'gotowe'}">${C.materialInfo({topicId:t.id},[t]).label}</span>
         <span class="visual-city">${escapeHtml(t.city)} · ${escapeHtml(t.category)}</span>
         <span class="card-cn">${t.icon||categorySymbol(t.category)}</span>
         <button class="favorite-button ${fav?'active':''}" data-fav="${t.id}" title="Ulubione">${fav?'★':'☆'}</button>
@@ -67,13 +85,14 @@
       ["Kultura i zwyczaje","礼","Symbole, religie, herbata i codzienne zachowania"],
       ["Życie codzienne","人","Hukou, szkoła, praca, rodzina i społeczeństwo"],
       ["Praktyczne","行","Płatności, transport, internet i komunikaty dla grupy"],
-      ["Nawijki","话","Gotowe wersje 30 sekund, 2 minuty i długie opowieści"]
+      ["Opowieści","话","Gotowe wersje 30 sekund, 2 minuty i długie opowieści"]
     ];
     $("#categoryGrid").innerHTML=cats.map(([name,cn,desc])=>`<button class="category-card" data-home-category="${name}"><span class="cn">${cn}</span><small>${all.filter(t=>t.category===name).length} materiałów</small><strong>${name}</strong><p>${desc}</p></button>`).join("");
     $$('[data-home-category]').forEach(b=>b.onclick=()=>{state.category=b.dataset.homeCategory;location.hash="library";renderLibrary();});
     $("#featuredTopics").innerHTML=all.slice(0,6).map(topicCard).join(""); bindCards($("#featuredTopics"));
     const cities=new Set(all.map(t=>t.city));
     $("#statTopics").textContent=all.length; $("#statCities").textContent=cities.size; $("#statTalks").textContent=all.filter(t=>t.quickTalk).length; $("#statFavorites").textContent=state.favorites.size;
+    window.WanfangCompendium.home();
   }
 
   function renderFilters(){
@@ -82,14 +101,17 @@
     $("#categoryFilter").innerHTML='<option value="">Wszystkie kategorie</option>'+categories.map(c=>`<option ${state.category===c?'selected':''}>${escapeHtml(c)}</option>`).join("");
   }
   function stripHtml(html=""){const box=document.createElement("div");box.innerHTML=html;return box.textContent||"";}
+  const searchCache=new WeakMap();
   function topicSearchText(t){
+    if(searchCache.has(t))return searchCache.get(t);
     const sectionText=(t.sections||[]).map(s=>`${s.title||""} ${s.subtitle||""} ${stripHtml(s.content||"")}`).join(" ");
     const quizText=(t.quiz||[]).map(q=>`${q.question||""} ${(q.answers||[]).join(" ")} ${q.explanation||""}`).join(" ");
-    return [t.title,t.chinese,t.pronunciation,t.city,t.category,t.summary,...(t.tags||[]),sectionText,quizText].join(" ").toLowerCase();
+    const aliases=(window.WANFANG_CATALOG||[]).filter(c=>c.topicId===t.id).map(c=>[c.title,...c.aliases].join(' ')).join(' ');
+    const result=C.fold([t.title,t.chinese,t.pronunciation,t.city,t.category,t.summary,...(t.tags||[]),aliases,sectionText,quizText].join(' '));searchCache.set(t,result);return result;
   }
   function filteredTopics(source=topics()){
     const q=state.query.trim().toLowerCase();
-    return source.filter(t=>(!state.city||t.city===state.city)&&(!state.category||t.category===state.category)&&(!q||topicSearchText(t).includes(q)));
+    return source.filter(t=>(!state.city||t.city===state.city)&&(!state.category||t.category===state.category)&&(!q||C.matches(topicSearchText(t),q)));
   }
   function renderLibrary(){
     renderFilters(); const found=filteredTopics(); const grid=$("#libraryGrid"); grid.classList.toggle("list-layout",state.layout==="list"); grid.innerHTML=found.map(topicCard).join(""); bindCards(grid);
@@ -126,7 +148,7 @@
     ];
     const statCards=(t.stats?.length?t.stats:fallbackStats).slice(0,4);
     const scriptsHtml=scripts.length?`<section class="guide-scripts-panel" id="guide-scripts">
-      <div class="guide-scripts-head"><div><span class="tiny-label">TRYB PRZEWODNIKA · GOTOWE TEKSTY</span><h2>Wybierz długość nawijki</h2><p>Możesz czytać prawie słowo w słowo albo potraktować tekst jako rusztowanie własnej opowieści.</p></div></div>
+      <div class="guide-scripts-head"><div><h2>Wybierz wersję</h2></div></div>
       <div class="guide-script-tabs">${scripts.map(s=>`<button class="guide-script-tab ${s.id===(t.defaultGuideScript||scripts[0].id)?'active':''}" data-guide-script="${escapeHtml(s.id)}">${escapeHtml(s.label)}</button>`).join("")}</div>
       ${scripts.map(s=>`<div class="guide-script-content ${s.id===(t.defaultGuideScript||scripts[0].id)?'active':''}" data-guide-script-panel="${escapeHtml(s.id)}">${s.content}</div>`).join("")}
     </section>`:"";
@@ -142,7 +164,7 @@
         <div class="quiz-actions"><button id="nextQuestion" type="button" hidden>Następne pytanie →</button><button id="restartQuiz" type="button" hidden>Zacznij od początku</button></div>
       </div>
     </section>`:"";
-    const guideNav=`<div class="guide-mode-nav"><button data-guide-jump="guide-scripts">🎤 Nawijki</button>${sections.some(s=>s.id==='trasa')?'<button data-guide-jump="topic-section-trasa">🧭 Trasa 12 punktów</button>':''}${quiz.length?'<button data-guide-jump="topic-quiz">🧠 Quiz</button>':''}<button data-guide-font="-1">A−</button><button data-guide-font="1">A+</button></div>`;
+    const guideNav=`<div class="guide-mode-nav"><button data-guide-jump="guide-scripts">🎤 Opowieści</button>${sections.some(s=>s.id==='trasa')?'<button data-guide-jump="topic-section-trasa">🧭 Trasa 12 punktów</button>':''}${quiz.length?'<button data-guide-jump="topic-quiz">🧠 Quiz</button>':''}<button data-guide-font="-1">A−</button><button data-guide-font="1">A+</button></div>`;
     const routeList=routeTopics(),routeIndex=routeList.findIndex(x=>x.id===id),isRouteTopic=routeIndex>=0;
     const guideRouteBar=`<div class="guide-route-bar ${isRouteTopic?'has-route':'standalone'}" id="guideRouteBar">
       <button class="guide-plan-button" id="guideRoutePlan" type="button">← Plan</button>
@@ -162,10 +184,10 @@
     </header>
     <div class="topic-toolbar"><button id="backLibrary">← Baza</button><button id="topicFav">${fav?'★ Ulubione':'☆ Ulubione'}</button><button id="topicRoute">${inRoute?'✓ W trasie':'＋ Do trasy'}</button><span class="spacer"></span><button class="hide-mobile" id="printTopic">Drukuj / PDF</button><button id="enterGuide">🎤 Tryb przewodnika</button></div>
     <div class="topic-stat-row">${statCards.map(s=>`<div class="topic-stat"><strong>${escapeHtml(String(s.value))}</strong><span>${escapeHtml(String(s.label))}</span></div>`).join("")}</div>
-    <section class="talk-box"><span class="tiny-label">OTWARCIE DO GRUPY · GOTOWA NAWIJKA</span><p>${escapeHtml(t.quickTalk||t.summary)}</p></section>
+    ${t.id==='praktyczne-alipay'?'':`<section class="talk-box"><span class="tiny-label">W SKRÓCIE</span><p>${escapeHtml(t.quickTalk||t.summary)}</p></section>`}
     ${scriptsHtml}
     <div class="facts-panel">${facts.map((f,i)=>`<div class="fact-card"><span class="tiny-label">CIEKAWOSTKA ${String(i+1).padStart(2,'0')}</span><p>${escapeHtml(f)}</p></div>`).join("")}</div>
-    <div class="topic-layout"><aside class="topic-toc"><strong>SPIS TREŚCI</strong>${scripts.length?'<a href="#guide-scripts" data-scroll="guide-scripts">🎤 Gotowe nawijki</a>':''}${quiz.length?`<a class="topic-toc-quiz" href="#topic-quiz" data-scroll="topic-quiz"><span>🧠 Quiz sprawdzający</span><b>${quiz.length}</b></a>`:''}${sections.map((s,i)=>`<a href="#${sectionAnchor(s,i)}" data-scroll="${sectionAnchor(s,i)}">${String(i+1).padStart(2,"0")}. ${escapeHtml(s.title)}</a>`).join("")}<a href="#personal-notes" data-scroll="personal-notes">Moje notatki</a></aside><div class="topic-article">${sections.map((s,i)=>`<section class="article-section rich-section" id="${sectionAnchor(s,i)}" data-section-id="${escapeHtml(s.id||String(i+1))}" data-cn="${t.icon||categorySymbol(t.category)}"><span class="tiny-label">${String(i+1).padStart(2,"0")}</span><h2>${escapeHtml(s.title)}</h2>${s.subtitle?`<p class="article-subtitle">${escapeHtml(s.subtitle)}</p>`:""}${s.content}</section>`).join("")}${quizHtml}<section class="notes-panel" id="personal-notes"><span class="tiny-label">TYLKO DLA CIEBIE</span><h2>Moje notatki do tego tematu</h2><textarea id="topicNotes" placeholder="Dopisz pytania turystów, własne żarty, punkt zbiórki, informacje praktyczne…">${escapeHtml(notes)}</textarea><div class="notes-actions"><button class="button primary" id="saveNotes">Zapisz notatki</button></div></section></div></div>`;
+    <div class="topic-layout"><aside class="topic-toc"><strong>SPIS TREŚCI</strong>${scripts.length?'<a href="#guide-scripts" data-scroll="guide-scripts">🎤 Gotowe opowieści</a>':''}${quiz.length?`<a class="topic-toc-quiz" href="#topic-quiz" data-scroll="topic-quiz"><span>🧠 Quiz sprawdzający</span><b>${quiz.length}</b></a>`:''}${sections.map((s,i)=>`<a href="#${sectionAnchor(s,i)}" data-scroll="${sectionAnchor(s,i)}">${String(i+1).padStart(2,"0")}. ${escapeHtml(s.title)}</a>`).join("")}<a href="#personal-notes" data-scroll="personal-notes">Moje notatki</a></aside><div class="topic-article">${sections.map((s,i)=>`<section class="article-section rich-section" id="${sectionAnchor(s,i)}" data-section-id="${escapeHtml(s.id||String(i+1))}" data-cn="${t.icon||categorySymbol(t.category)}"><span class="tiny-label">${String(i+1).padStart(2,"0")}</span><h2>${escapeHtml(s.title)}</h2>${s.subtitle?`<p class="article-subtitle">${escapeHtml(s.subtitle)}</p>`:""}${s.content}</section>`).join("")}${quizHtml}<section class="notes-panel" id="personal-notes"><span class="tiny-label">TYLKO DLA CIEBIE</span><h2>Moje notatki do tego tematu</h2><textarea id="topicNotes" placeholder="Dopisz pytania turystów, własne żarty, punkt zbiórki, informacje praktyczne…">${escapeHtml(notes)}</textarea><div class="notes-actions"><button class="button primary" id="saveNotes">Zapisz notatki</button></div></section></div></div>`;
     $("#backLibrary").onclick=()=>location.hash="library"; $("#topicFav").onclick=()=>toggleFavorite(id); $("#topicRoute").onclick=()=>toggleRoute(id); $("#printTopic").onclick=()=>window.print(); $("#enterGuide").onclick=enterGuide;
     bindGuideRouteBar(t,routeList,routeIndex);
     $("#saveNotes").onclick=()=>{localStorage.setItem(`wanfang:notes:${id}`,$("#topicNotes").value);toast("Notatki zapisane");};
@@ -176,6 +198,7 @@
     $$('.tab[data-tab]',views.topic).forEach(btn=>btn.onclick=()=>{$$('.tab[data-tab]',views.topic).forEach(x=>x.classList.toggle('active',x===btn));$$('.talk',views.topic).forEach(x=>x.classList.toggle('active',x.id===btn.dataset.tab));});
     $$('.map-stop[data-target]',views.topic).forEach(g=>g.onclick=()=>document.getElementById(g.dataset.target)?.scrollIntoView({behavior:'smooth',block:'start'}));
     initTopicQuiz(t);
+    window.WanfangCompendium.onTopic(t,views.topic);
   }
   function bindGuideRouteBar(t,routeList,routeIndex){
     const plan=$("#guideRoutePlan",views.topic),exit=$("#guideExit",views.topic),prev=$("#guidePrevTopic",views.topic),next=$("#guideNextTopic",views.topic),select=$("#guideRouteSelect",views.topic),input=$("#guideSearchInput",views.topic),results=$("#guideSearchResults",views.topic);
@@ -188,7 +211,7 @@
       const drawResults=()=>{
         const q=input.value.trim().toLowerCase();
         if(!q){results.innerHTML="";results.classList.remove("show");return;}
-        const found=topics().filter(x=>topicSearchText(x).includes(q)).slice(0,8);
+        const found=topics().filter(x=>C.matches(topicSearchText(x),q)).slice(0,8);
         results.innerHTML=found.length?found.map(x=>`<button type="button" data-guide-open="${x.id}"><strong>${escapeHtml(x.title)}</strong><small>${escapeHtml(x.city)} · ${escapeHtml(x.category)}</small></button>`).join(""):`<div class="guide-search-empty">Nic nie znalazłem.</div>`;
         results.classList.add("show");
         $$('[data-guide-open]',results).forEach(b=>b.onclick=()=>openTopicInGuide(b.dataset.guideOpen));
@@ -286,7 +309,14 @@
   function exitGuide(){document.body.classList.remove("guide-mode");updateReadingProgress();}
 
   function showView(name){Object.values(views).forEach(v=>v.classList.remove("active-view"));(views[name]||views.home).classList.add("active-view");$$('.nav-link').forEach(a=>a.classList.toggle("active",a.dataset.view===name));$("#mainContent").focus({preventScroll:true});}
-  function routeHash(){const raw=location.hash.slice(1)||"home";if(raw.startsWith("topic/")){const id=raw.split("/")[1];showView("topic");renderTopic(id);}else{document.body.classList.remove("guide-mode");if(raw==="library"){showView("library");renderLibrary();}else if(raw==="favorites"){showView("favorites");renderFavorites();}else if(raw==="route"){showView("route");renderRoute();}else{showView("home");renderHome();}}closeSidebar();window.scrollTo(0,0);requestAnimationFrame(updateReadingProgress);}
+  function routeHash(){
+    const raw=location.hash.slice(1)||'home';
+    if(raw.startsWith('topic/')){showView('topic');renderTopic(raw.split('/')[1]);}
+    else{document.body.classList.remove('guide-mode');if(!window.WanfangCompendium.route(raw)){
+      if(raw==='library'){showView('library');renderLibrary();}else if(raw==='favorites'){showView('favorites');renderFavorites();}else if(raw==='route'){showView('route');renderRoute();}else{showView('home');renderHome();}
+    }}
+    closeSidebar();window.scrollTo(0,0);requestAnimationFrame(()=>{updateReadingProgress();if(raw.startsWith('topic/')){const section=raw.split('/')[2];if(section)document.getElementById('topic-section-'+section)?.scrollIntoView({block:'start'});}});
+  }
 
   function randomFact(){const candidates=topics().filter(t=>t.facts?.length);const t=candidates[Math.floor(Math.random()*candidates.length)];const fact=t.facts[Math.floor(Math.random()*t.facts.length)];factTopicId=t.id;$("#randomFactContent").innerHTML=`<h3>${escapeHtml(t.title)} · ${escapeHtml(t.city)}</h3><blockquote>${escapeHtml(fact)}</blockquote>`;if(!$("#factDialog").open)$("#factDialog").showModal();}
   function closeSidebar(){$("#sidebar").classList.remove("open");$("#sidebarBackdrop").classList.remove("show");}
@@ -299,17 +329,39 @@
     $$('[data-layout]').forEach(b=>b.onclick=()=>{state.layout=b.dataset.layout;$$('[data-layout]').forEach(x=>x.classList.toggle("active",x===b));renderLibrary();});
     $$('[data-category]').forEach(b=>b.onclick=()=>{state.category=b.dataset.category;location.hash="library";renderLibrary();});
     $("#themeButton").onclick=()=>{document.body.classList.toggle("dark");localStorage.setItem("wanfang:dark",document.body.classList.contains("dark")?"1":"0");};
-    $("#guideModeButton").onclick=()=>{if(state.currentTopicId)enterGuide();else toast("Najpierw otwórz wybrany temat");};
+    $("#guideModeButton").onclick=()=>{if(state.currentTopicId)openTopicInGuide(state.currentTopicId);else toast("Najpierw otwórz wybrany temat");};
     $("#menuButton").onclick=()=>{$("#sidebar").classList.add("open");$("#sidebarBackdrop").classList.add("show");};$("#sidebarBackdrop").onclick=closeSidebar;
     $("#randomTopicButton").onclick=randomFact;$("#anotherFactButton").onclick=randomFact;$("#openFactTopicButton").onclick=()=>{if(factTopicId){$("#factDialog").close();openTopic(factTopicId);}};
     $("#addTopicButton").onclick=()=>$("#topicDialog").showModal();
-    $("#saveTopicButton").onclick=e=>{e.preventDefault();const form=$("#topicForm");if(!form.reportValidity())return;const fd=new FormData(form);const title=fd.get("title").trim();const id=`custom-${slug(title)}-${Date.now().toString().slice(-5)}`;const raw=fd.get("content").trim();state.customTopics.push({id,title,city:fd.get("city").trim(),category:fd.get("category"),chinese:fd.get("chinese").trim(),pronunciation:"",status:"szkic",readingTime:Math.max(2,Math.ceil(raw.split(/\s+/).length/180)),updated:new Date().toLocaleDateString("pl-PL"),icon:categorySymbol(fd.get("category")),accent:"gold",summary:fd.get("summary").trim(),tags:[fd.get("city").trim(),fd.get("category")],facts:[],quickTalk:fd.get("summary").trim(),sections:[{title:"Roboczy materiał",content:`<p>${escapeHtml(raw||"Treść do uzupełnienia.").replace(/\n/g,"</p><p>")}</p>`}],media:[]});save();updateCounts();renderHome();form.reset();$("#topicDialog").close();openTopic(id);toast("Temat został dodany");};
+    $("#saveTopicButton").onclick=e=>{e.preventDefault();const form=$("#topicForm");if(!form.reportValidity())return;const fd=new FormData(form);const title=fd.get("title").trim();const id=`custom-${slug(title)}-${Date.now().toString().slice(-5)}`;const raw=fd.get("content").trim();state.customTopics.push({id,title,city:fd.get("city").trim(),category:fd.get("category"),chinese:fd.get("chinese").trim(),pronunciation:"",status:"szkic",readingTime:Math.max(2,Math.ceil(raw.split(/\s+/).length/180)),updated:new Date().toLocaleDateString("pl-PL"),icon:categorySymbol(fd.get("category")),accent:"gold",summary:fd.get("summary").trim(),tags:[fd.get("city").trim(),fd.get("category")],facts:[],quickTalk:fd.get("summary").trim(),sections:[{title:"Roboczy materiał",content:`<p>${escapeHtml(raw||"Treść do uzupełnienia.").replace(/\n/g,"</p><p>")}</p>`}],media:[]});save();window.WanfangCompendium.onCustomTopic(id);updateCounts();renderHome();form.reset();$("#topicDialog").close();openTopic(id);toast("Temat został dodany lokalnie — pamiętaj o eksporcie kopii");};
     $("#clearRouteButton").onclick=()=>{state.route=[];save();renderRoute();updateCounts();toast("Plan trasy wyczyszczony");};$("#printRouteButton").onclick=()=>window.print();$("#startRouteButton").onclick=()=>startRoute();
     $("#backupButton").onclick=exportBackup;$("#importInput").onchange=importBackup;
     window.addEventListener("scroll",updateReadingProgress,{passive:true});window.addEventListener("resize",updateReadingProgress);
   }
-  function exportBackup(){const notes={};topics().forEach(t=>{const n=localStorage.getItem(`wanfang:notes:${t.id}`);if(n)notes[t.id]=n;});const data={version:1,date:new Date().toISOString(),favorites:[...state.favorites],route:state.route,customTopics:state.customTopics,notes};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`wanfang-backup-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);}
-  function importBackup(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const d=JSON.parse(reader.result);state.favorites=new Set(d.favorites||[]);state.route=d.route||[];state.customTopics=d.customTopics||[];Object.entries(d.notes||{}).forEach(([id,n])=>localStorage.setItem(`wanfang:notes:${id}`,n));save();updateCounts();renderHome();renderLibrary();renderFavorites();renderRoute();toast("Kopia została wczytana");}catch{toast("Nie udało się wczytać pliku");}};reader.readAsText(file);e.target.value="";}
+  function exportBackup(){
+    const notes={};topics().forEach(t=>{const n=localStorage.getItem(`wanfang:notes:${t.id}`);if(n)notes[t.id]=n;});
+    const data={version:2,date:new Date().toISOString(),favorites:[...state.favorites],route:state.route,customTopics:state.customTopics,notes,compendium:window.WanfangCompendium.exportData()};
+    window.WanfangCompendium.download(`wanfang-backup-${new Date().toISOString().slice(0,10)}.json`,JSON.stringify(data,null,2),'application/json');
+  }
+  async function importBackup(e){
+    const file=e.target.files[0];e.target.value='';if(!file)return;
+    try{
+      if(file.size>30000000)throw new Error('Kopia jest większa niż 30 MB.');
+      const d=JSON.parse(await file.text());
+      if(![1,2].includes(d.version)||!Array.isArray(d.favorites)||!Array.isArray(d.route)||!Array.isArray(d.customTopics)||d.customTopics.length>1000)throw new Error('To nie jest obsługiwana kopia Wanfang.');
+      const ids=list=>{if(!list.every(C.validId))throw new Error('Nieprawidłowe identyfikatory w kopii.');return list;};
+      const favorites=ids(d.favorites),route=ids(d.route);
+      const customs=d.customTopics.map(t=>{if(!t||!C.validId(t.id)||!t.id.startsWith('custom-')||typeof t.title!=='string')throw new Error('Nieprawidłowy własny temat.');return cleanCustomTopic(t);});
+      const extension=window.WanfangCompendium.prepareImport(d.compendium);
+      const notes=Object.entries(d.notes||{}).filter(([id,n])=>C.validId(id)&&typeof n==='string');
+      state.favorites=new Set([...state.favorites,...favorites]);state.route=C.unique([...state.route,...route]);
+      state.customTopics=[...new Map([...state.customTopics,...customs].map(t=>[t.id,t])).values()];
+      for(const [id,n] of notes){const old=localStorage.getItem(`wanfang:notes:${id}`)||'';localStorage.setItem(`wanfang:notes:${id}`,old&&old!==n&&!old.includes(n)?old+'\n\n— Z importowanej kopii —\n'+n:n||old);}
+      window.WanfangCompendium.applyImport(extension);save();updateCounts();renderHome();renderLibrary();renderFavorites();renderRoute();routeHash();toast('Kopia połączona z bieżącymi danymi.');
+    }catch(error){toast(error.message||'Nie udało się wczytać kopii.');}
+  }
   function init(){if(localStorage.getItem("wanfang:dark")==="1")document.body.classList.add("dark");updateCounts();renderHome();renderLibrary();renderFavorites();renderRoute();initEvents();routeHash();}
+  window.Wanfang={topics,state,toast,escapeHtml,showView,openTopic,startRoute,save,exportBackup,renderHome,renderTopic,routeHash,updateCounts};
+  window.WanfangCompendium.init(window.Wanfang);
   init();
 })();

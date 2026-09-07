@@ -1,4 +1,8 @@
-# Wanfang Guide — aktualizacja 0.4
+# Wanfang Guide — kopia robocza 2026-09-07
+
+Aktualny zakres i stan publikacji opisuje `AKTUALIZACJA.md`. Poniżej zachowano historyczny opis wersji 0.4. Instrukcja publikacji nie oznacza, że obecna aktualizacja została wdrożona.
+
+## Historyczny opis wersji 0.4
 
 Ta paczka zawiera poprzednią rozbudowaną wersję materiału o **Zakazanym Mieście** oraz nowy tryb prowadzenia całego planu trasy.
 

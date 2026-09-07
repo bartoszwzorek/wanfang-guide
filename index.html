@@ -3,12 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="wanfang-version" content="0.4">
-  <meta name="description" content="Wanfang Guide — prywatna baza wiedzy pilota i przewodnika po Chinach.">
+  <meta name="wanfang-version" content="0.9">
+  <meta name="description" content="Kompendium pilota po Chinach: CHT, CJA i CTF, programy dzień po dniu, pełne opowieści i atlas tematów.">
   <meta name="theme-color" content="#7d171d">
   <title>Wanfang Guide — przewodnik dla przewodnika</title>
   <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/compendium.css">
+  <link rel="manifest" href="manifest.webmanifest">
   <script defer src="data/topics.js"></script>
+  <script defer src="data/compendium-topics.js"></script>
+  <script defer src="data/ctf-briefings.js"></script>
+  <script defer src="data/programs.js"></script>
+  <script defer src="data/catalog.js"></script>
+  <script defer src="assets/compendium-core.js"></script>
+  <script defer src="assets/compendium.js"></script>
   <script defer src="assets/app.js"></script>
 </head>
 <body>
@@ -22,7 +30,7 @@
     </a>
     <div class="global-search">
       <span aria-hidden="true">⌕</span>
-      <input id="searchInput" type="search" placeholder="Szukaj: Zakazane Miasto, smok, Tang, hutongi…" autocomplete="off">
+      <input id="searchInput" type="search" aria-label="Szukaj w materiałach" placeholder="Szukaj miejsca, tematu lub ciekawostki…" autocomplete="off">
       <kbd>⌘ K</kbd>
     </div>
     <div class="top-actions">
@@ -37,6 +45,9 @@
       <nav>
         <div class="nav-label">Baza wiedzy</div>
         <a class="nav-link active" href="#home" data-view="home"><span>⌂</span> Start</a>
+        <a class="nav-link" href="#programs" data-view="programs"><span>路</span> CHT · CJA · CTF</a>
+        <a class="nav-link" href="#trip" data-view="trip"><span>日</span> Mój objazd</a>
+        <a class="nav-link" href="#catalog" data-view="catalog"><span>目</span> Katalog i braki <b id="catalogCount">0</b></a>
         <a class="nav-link" href="#library" data-view="library"><span>▦</span> Wszystkie tematy <b id="allCount">0</b></a>
         <a class="nav-link" href="#favorites" data-view="favorites"><span>★</span> Ulubione <b id="favoriteCount">0</b></a>
         <a class="nav-link" href="#route" data-view="route"><span>↝</span> Plan aktualnej trasy <b id="routeCount">0</b></a>
@@ -47,7 +58,7 @@
         <button class="filter-link" data-category="Kultura i zwyczaje"><span>礼</span> Kultura i zwyczaje</button>
         <button class="filter-link" data-category="Życie codzienne"><span>人</span> Życie codzienne</button>
         <button class="filter-link" data-category="Praktyczne"><span>行</span> Praktyczne</button>
-        <button class="filter-link" data-category="Nawijki"><span>话</span> Gotowe nawijki</button>
+        <button class="filter-link" data-category="Opowieści"><span>话</span> Gotowe opowieści</button>
       </nav>
 
       <div class="sidebar-card">
@@ -69,14 +80,14 @@
       <section id="homeView" class="view active-view">
         <div class="hero-panel">
           <div class="hero-copy">
-            <div class="eyebrow">PRYWATNY ATLAS PILOTA • CHINY</div>
-            <h1>Przewodnik<br><em>dla przewodnika.</em></h1>
-            <p>Nie kolejny suchy katalog. To ma być Twoja własna księga Chin: miasta, historia, gotowe opowieści, zdjęcia, filmy, szybkie odpowiedzi i plan całego objazdu.</p>
+            <div class="eyebrow">KOMPENDIUM PILOTA • CHINY</div>
+            <h1>Dokąd dziś<br><em>prowadzisz grupę?</em></h1>
+            <p>Wybierz program i dzień. Otwórz opowieść do miejsca, przygotuj opowieść na przejazd albo wróć do swoich notatek.</p>
             <div class="hero-buttons">
-              <a class="button primary large" href="#library">Wejdź do atlasu</a>
+              <a class="button primary large" href="#programs">Wybierz program</a>
               <button class="button large" id="randomTopicButton">Losuj ciekawostkę</button>
             </div>
-            <div class="hero-signature">Budowane rozdział po rozdziale pod Twoje trasy i sposób opowiadania.</div>
+            <div class="hero-signature" id="continueReading"></div>
           </div>
           <div class="hero-art" aria-hidden="true">
             <div class="stamp">万方<br><small>WANFANG</small></div>
@@ -91,11 +102,13 @@
         <div class="stats-row">
           <div class="stat-card"><span>📚</span><div><strong id="statTopics">0</strong><small>tematów w bazie</small></div></div>
           <div class="stat-card"><span>🏙️</span><div><strong id="statCities">0</strong><small>miast i regionów</small></div></div>
-          <div class="stat-card"><span>🎤</span><div><strong id="statTalks">0</strong><small>gotowych nawijek</small></div></div>
+          <div class="stat-card"><span>🎤</span><div><strong id="statTalks">0</strong><small>gotowych opowieści</small></div></div>
           <div class="stat-card"><span>⭐</span><div><strong id="statFavorites">0</strong><small>ulubionych</small></div></div>
         </div>
 
-        <section class="journey-strip" aria-label="Przykładowa trasa po Chinach">
+        <div id="homePrograms" class="program-grid" aria-label="Programy po Chinach"></div>
+        <div id="homeOffline" class="offline-panel"></div>
+        <section class="journey-strip" aria-label="Jak korzystać z materiałów" hidden>
           <div class="journey-copy">
             <span class="tiny-label" style="color:#e7c77f">PRZYKŁADOWA OŚ OPOWIEŚCI</span>
             <h2>Jedna podróż, wiele warstw Chin</h2>
@@ -161,6 +174,7 @@
       </section>
 
       <article id="topicView" class="view topic-view"></article>
+      <section id="compendiumView" class="view"></section>
     </main>
   </div>
 
@@ -172,10 +186,10 @@
       <div class="form-grid">
         <label>Tytuł<input name="title" required placeholder="np. Świątynia Lamy w Pekinie"></label>
         <label>Miasto / region<input name="city" required placeholder="np. Pekin"></label>
-        <label>Kategoria<select name="category" required><option>Miasta i trasy</option><option>Historia</option><option>Kultura i zwyczaje</option><option>Życie codzienne</option><option>Praktyczne</option><option>Nawijki</option></select></label>
+        <label>Kategoria<select name="category" required><option>Miasta i trasy</option><option>Historia</option><option>Kultura i zwyczaje</option><option>Życie codzienne</option><option>Praktyczne</option><option>Opowieści</option></select></label>
         <label>Chińska nazwa<input name="chinese" placeholder="np. 雍和宫"></label>
         <label class="full">Krótki opis<textarea name="summary" required rows="3" placeholder="O czym jest ten materiał?"></textarea></label>
-        <label class="full">Treść / notatki<textarea name="content" rows="8" placeholder="Wklej tekst, plan nawijki, linki albo robocze notatki…"></textarea></label>
+        <label class="full">Treść / notatki<textarea name="content" rows="8" placeholder="Wklej tekst, , linki albo robocze notatki…"></textarea></label>
       </div>
       <div class="modal-actions"><button class="button" value="cancel">Anuluj</button><button class="button primary" value="default" id="saveTopicButton">Zapisz temat</button></div>
     </form>

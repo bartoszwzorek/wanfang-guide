@@ -1,0 +1,17 @@
+{
+  "date": "2026-09-07",
+  "approvedTopic": "praktyczne-alipay",
+  "topics": 37,
+  "importedTopics": 31,
+  "briefings": 15,
+  "changesInLastScriptRun": [
+    {
+      "file": "data/compendium-topics.js",
+      "id": "chongqing",
+      "title": "Chongqing — miasto w pionie",
+      "editorialStatus": "Redakcja językowa; informacje zmienne do sprawdzenia"
+    }
+  ],
+  "scope": "Redakcja językowa dostępnego zbioru. Lista changesInLastScriptRun obejmuje tylko ostatnie uruchomienie skryptu, nie cały zakres zmian. Nie jest to pełna aktualizacja merytoryczna wszystkich faktów.",
+  "publication": "Kopia lokalna; zmiany niewysłane na GitHub i nieopublikowane na stronie konta firmowego."
+}

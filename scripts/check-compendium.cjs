@@ -1,0 +1,18 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),c={window:{}};vm.createContext(c);
+for(const p of ['data/topics.js','data/compendium-topics.js','data/ctf-briefings.js','data/programs.js','data/catalog.js','assets/compendium-core.js'])vm.runInContext(read(p),c);
+const w=c.window,C=w.WanfangCore,topics=[...new Map([...w.WANFANG_TOPICS,...w.WANFANG_IMPORTED_TOPICS].map(t=>[t.id,t])).values()],byId=new Map(topics.map(t=>[t.id,t])),catalog=new Map(w.WANFANG_CATALOG.map(t=>[t.id,t]));
+assert.equal(w.WANFANG_IMPORTED_TOPICS.length,31);assert.equal(w.WANFANG_CTF_BRIEFINGS.length,15);
+for(const list of [w.WANFANG_TOPICS,w.WANFANG_IMPORTED_TOPICS,w.WANFANG_CATALOG])assert.equal(new Set(list.map(x=>x.id)).size,list.length);
+for(const p of w.WANFANG_PROGRAMS)for(const v of p.variants){assert.equal(v.days.length,new Set(v.days.map(d=>d.number)).size);for(const d of v.days)for(const id of [...d.places,...d.talks])assert(catalog.has(id),`${p.code}/${v.id}/${d.number}: ${id}`);}
+for(const item of catalog.values()){if(item.topicId)assert(byId.has(item.topicId),item.id);if(item.sectionId)assert(byId.get(item.topicId).sections.some(s=>s.id===item.sectionId),item.id);}
+for(const t of topics){assert.equal(new Set(t.sections.map((s,i)=>s.id||String(i+1))).size,t.sections.length,`sections ${t.id}`);const text=[t.title,t.summary,t.quickTalk,...t.sections.map(s=>s.content),...(t.guideScripts||[]).map(s=>s.content)].join(' ').replace(/<[^>]+>/g,' ');assert(!/nawijk/iu.test(text),`Forbidden label: ${t.id}`);assert(!/można powiedzieć grupie|dla grupy można|dla turystów najprościej|jako przewodnik powiedziałbym/iu.test(text),`Editorial address: ${t.id}`);}
+const alipay=byId.get('praktyczne-alipay');assert(alipay.sections[0].content.includes('Bo człowiek spogląda na ekran'));assert(alipay.sections[0].content.includes('X Money ma już oficjalną ofertę'));assert(!alipay.sections[0].content.includes('doświadczenie turysty'));
+assert.equal(byId.get('powitanie-grupy').sections.length,8);assert(byId.get('powitanie-grupy').preparationSections.length>=8);assert.equal(byId.get('rejs-jangcy').preparationSections.length,42);
+assert(C.matches('Łódź, Święta Droga i chińska herbata','swieta lodz'));assert.equal(C.dateForDay('2026-09-30',1),'2026-10-01');assert.equal(C.dateForDay('2026-02-30',0),'');
+const first={id:'trip-a',name:'A',program:'CTF',variant:'praktyka',order:[1,2],notes:{1:'Notatka A'},told:['wielki-mur']},second={...first,id:'trip-b',name:'B',notes:{1:'Notatka B'},told:[]};
+const merged=C.mergeExtension({trips:[first],activeTrip:'trip-a'}, {trips:[second],activeTrip:'trip-b'});assert.equal(merged.trips[0].notes['1'],'Notatka A');assert.equal(merged.trips[1].notes['1'],'Notatka B');assert.equal(merged.trips[1].told.length,0);
+assert.equal(C.talkOptions({guideScripts:[{content:'słowo '.repeat(651)}]},5).length,0);
+const index=read('index.html');for(const match of index.matchAll(/(?:src|href)="([^"#]+)"/g)){const p=match[1];if(!/^https?:/.test(p))assert(fs.existsSync(path.join(root,p)),`Missing asset ${p}`);}
+const sw={self:{}};vm.runInNewContext(read('precache.js'),sw);for(const p of sw.self.WANFANG_CACHE_FILES)assert(fs.existsSync(path.join(root,p)),`Offline: ${p}`);
+console.log(JSON.stringify({topics:topics.length,imports:31,briefings:15,catalog:catalog.size,variants:w.WANFANG_PROGRAMS.reduce((n,p)=>n+p.variants.length,0),offlineAssets:sw.self.WANFANG_CACHE_FILES.length,result:'PASS'}));
