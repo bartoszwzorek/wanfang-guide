@@ -18,6 +18,9 @@
   const href=c=>c.topicId?`#topic/${c.topicId}${c.sectionId?'/'+c.sectionId:''}`:`#catalog/${c.id}`;
   const topicFor=c=>c?.topicId&&A.topics().find(t=>t.id===c.topicId);
   const categoryFor=c=>topicFor(c)?.category||'Inne';
+  function preferredProgram(){let code='';try{code=localStorage.getItem('wanfang:last-program')||'';}catch{}return program(code)||program('CTF')||programs[0];}
+  function rememberProgram(p,v){if(!p)return;try{localStorage.setItem('wanfang:last-program',p.code);localStorage.setItem(`wanfang:last-variant:${p.code}`,v?.id||p.defaultVariant);}catch{}}
+  function preferredVariant(p){let id='';try{id=localStorage.getItem(`wanfang:last-variant:${p.code}`)||'';}catch{}return variant(p,id||p.defaultVariant);}
   function persist(){try{localStorage.setItem('wanfang:compendium',JSON.stringify(storage));return true;}catch{A.toast('Nie udało się zapisać danych. Wyeksportuj kopię.');return false;}}
   function download(name,text,type='text/plain'){const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   const button=(label,action,value='',extra='')=>`<button class="button" data-action="${action}" data-value="${esc(value)}" ${extra}>${label}</button>`;
@@ -33,7 +36,8 @@
   }
   function resource(id,trip){const c=item(id);if(!c)return '';return `<div class="resource-row"><div><a href="${href(c)}">${esc(c.title)}</a><small>${esc(c.region)}${c.topicId&&c.topicId!==c.id?' · rozdział powiązany':''}</small></div>${badge(c)}${trip?button(trip.told.includes(id)?'✓ Opowiedziane':'Oznacz jako opowiedziane','told',id,`aria-pressed="${trip.told.includes(id)}"`):''}</div>`;}
   function programPage(code,vid){const p=program(code);if(!p)return missing();const v=variant(p,vid);
-    root.innerHTML=header(p.code,p.name,p.theme)+`<div class="work-actions"><label>Wariant programu <select id="programVariant">${p.variants.map(x=>`<option value="${x.id}" ${x.id===v.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select></label><a class="button primary" href="#trip/new/${p.code}/${v.id}">Utwórz mój objazd</a></div><p class="source-note">Program wzorcowy. Kolejność, rezerwacje i przejazdy potwierdź dla konkretnej grupy. ${esc(p.note||'')} <a href="${p.source}" target="_blank" rel="noreferrer">Program organizatora ↗</a></p><div class="day-grid">${v.days.map(d=>dayCard(p,v,d)).join('')}</div>`;
+    rememberProgram(p,v);
+    root.innerHTML=header(p.code,p.name,p.theme)+`<div class="work-actions"><label>Wariant programu <select id="programVariant">${p.variants.map(x=>`<option value="${x.id}" ${x.id===v.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select></label><a class="button primary" href="#trip/new/${p.code}/${v.id}">Utwórz mój objazd</a></div><div class="day-grid">${v.days.map(d=>dayCard(p,v,d)).join('')}</div>`;
     $('#programVariant').onchange=e=>location.hash=`program/${p.code}/${e.target.value}`;
   }
   function dayCard(p,v,d,trip,index){const ids=C.unique([...d.places,...d.talks]), gaps=ids.filter(id=>item(id)&&info(item(id)).status==='missing').length;
@@ -68,7 +72,7 @@
     if(!d)return missing();const order=trip?trip.order:v.days.map(x=>x.number), position=order.indexOf(d.number);
     const link=n=>trip?`#trip/${trip.id}/${n}`:`#day/${p.code}/${v.id}/${n}`;
     returnDay=link(d.number);
-    if(trip){storage.activeTrip=trip.id;trip.lastDay=d.number;persist();}
+    if(trip){storage.activeTrip=trip.id;trip.lastDay=d.number;persist();}else rememberProgram(p,v);
     const defaultIds=C.unique([...d.places,...d.talks]),dayKey=trip?`trip/${trip.id}/${d.number}`:`${p.code}/${v.id}/${d.number}`;
     const ids=storage.dayTopics[dayKey]||defaultIds;
     const available=C.unique(ids.map(id=>item(id)?.topicId).filter(Boolean)).map(id=>A.topics().find(t=>t.id===id)).filter(Boolean);
@@ -176,7 +180,7 @@
     const days=programs.flatMap(p=>p.variants.flatMap(v=>v.days.filter(d=>[...d.places,...d.talks].includes(c.id)).map(d=>`<li><a href="#day/${p.code}/${v.id}/${d.number}">${p.code} · ${esc(v.name)} · dzień ${d.number}: ${esc(d.title)}</a></li>`)));
     root.innerHTML=`<a class="text-link" href="#topics">← Wszystkie tematy</a>`+header(c.programs.join(' · '),c.title,c.region)+badge(c)+`<section class="quick-panel"><h2>Co znajduje się w opracowaniu</h2><ul>${c.outline.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>${topic?`<p>Powiązany tekst: <a href="${href(c)}">${esc(topic.title)} →</a>.</p>`:'<p>Nie znaleziono osobnego materiału w odzyskanych opracowaniach.</p>'}<div class="work-actions">${topic?`<a class="button primary" href="${href(c)}">Otwórz materiał</a>`:''}${button('Wklej własne opracowanie','add-material',c.id)}</div><p class="source-note">Własny tekst zapisuje się na tym urządzeniu. Uwzględnij go w eksporcie kopii.</p></section><section><h2>W programach</h2>${days.length?`<ul class="related-days">${days.join('')}</ul>`:'<p>Temat ogólny, do wykorzystania na przejazdach we wszystkich przypisanych programach.</p>'}</section>`;
   }
-  function tripList(){root.innerHTML=header('TWOJE GRUPY','Moje objazdy','Każdy wyjazd ma osobne notatki, kolejność dni i listę opowiedzianych tematów.')+`<div class="work-actions"><a class="button primary" href="#trip/new">Nowy objazd</a>${button('Eksportuj kopię','backup')}</div><p class="source-note">Dane są zapisane w tej przeglądarce. Przed zmianą telefonu lub wyczyszczeniem danych wykonaj kopię.</p><div class="day-grid">${storage.trips.map(t=>`<article class="day-card"><span class="tiny-label">${t.program} · ${t.startDate||'BEZ DATY'}</span><h2><a href="#trip/${t.id}">${esc(t.name)}</a></h2><p>${t.order.length} dni · ${t.told.length} opowiedzianych tematów</p><a class="text-link" href="#trip/${t.id}/${t.lastDay}">Wróć do dnia →</a></article>`).join('')||'<p>Utwórz pierwszy objazd na podstawie CHT, CJA albo CTF.</p>'}</div>`;}
+  function tripList(){const own=storage.trips.map(t=>`<article class="day-card"><span class="tiny-label">${t.program} · ${t.startDate||'BEZ DATY'}</span><h2><a href="#trip/${t.id}">${esc(t.name)}</a></h2><p>${t.order.length} dni · ${t.told.length} opowiedzianych tematów</p><a class="text-link" href="#trip/${t.id}">Otwórz dni objazdu →</a></article>`).join('');root.innerHTML=header('TWOJE GRUPY','Moje objazdy','Twórz własne objazdy albo otwórz jeden z trzech programów.')+`<div class="work-actions"><a class="button primary" href="#trip/new">Nowy objazd</a>${button('Eksportuj kopię','backup')}</div><p class="source-note">Dane są zapisane w tej przeglądarce. Przed zmianą telefonu lub wyczyszczeniem danych wykonaj kopię.</p>${own?`<div class="day-grid own-trip-grid">${own}</div>`:''}<section class="program-list-section"><span class="tiny-label">PROGRAMY</span><h2>Wybierz program</h2><div class="program-grid">${cards()}</div></section>`;}
   function tripForm(code,vid){const p=program(code)||programs[0],v=variant(p,vid||p.defaultVariant);
     root.innerHTML=header('NOWY OBJAZD','Przygotuj wyjazd','Program wzorcowy skopiujemy do osobnego planu Twojej grupy.')+`<form id="tripForm" class="trip-form"><label>Nazwa wyjazdu<input name="name" required maxlength="200" placeholder="np. CTF — moja wrześniowa grupa"></label><label>Program<select id="tripProgram">${programs.map(x=>`<option ${x===p?'selected':''}>${x.code}</option>`).join('')}</select></label><label>Wariant<select id="tripVariant">${p.variants.map(x=>`<option value="${x.id}" ${x===v?'selected':''}>${esc(x.name)}</option>`).join('')}</select></label><label>Pierwszy dzień programu — opcjonalnie<input type="date" name="startDate"></label><p>Daty liczymy od pierwszego dnia programu, zwykle wylotu. Kolejność dni możesz później zmienić.</p><button class="button primary" type="submit">Utwórz objazd</button></form>`;
     $('#tripProgram').onchange=e=>{const next=program(e.target.value);$('#tripVariant').innerHTML=next.variants.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('');};
@@ -189,9 +193,11 @@
   }
   function missing(){root.innerHTML=header('NIE ZNALEZIONO','Ten widok nie istnieje')+'<a href="#programs">Wróć do programów →</a>';}
   function syncMobileNav(raw=location.hash.slice(1)||'home'){
-    const nav=$('#mobilePrimaryNav');if(!nav)return;const trip=active(),parts=raw.split('/'),dayLink=trip?`#trip/${trip.id}/${trip.lastDay}`:(raw.startsWith('day/')?'#'+raw:'#programs'),planLink=trip?`#trip/${trip.id}`:'#trip';
-    const day=$('[data-mobile-tab="day"]',nav),topics=$('[data-mobile-tab="topics"]',nav),plan=$('[data-mobile-tab="plan"]',nav);day.href=dayLink;plan.href=planLink;
-    const tab=raw==='topics'||raw==='quiz'||raw.startsWith('catalog/')||raw.startsWith('topic/')||raw==='library'||raw==='favorites'?'topics':raw.startsWith('day/')||(parts[0]==='trip'&&parts.length>2)?'day':'plan';
+    const nav=$('#mobilePrimaryNav');if(!nav)return;const trip=active(),parts=raw.split('/'),routeTrip=parts[0]==='trip'&&parts[1]&&parts[1]!=='new'?storage.trips.find(t=>t.id===parts[1]):null,p=parts[0]==='program'||parts[0]==='day'?program(parts[1]):preferredProgram(),v=p?(parts[0]==='program'||parts[0]==='day'?variant(p,parts[2]):preferredVariant(p)):null;
+    const dayLink=routeTrip?`#trip/${routeTrip.id}`:trip?`#trip/${trip.id}`:`#program/${p.code}/${v.id}`;
+    const day=$('[data-mobile-tab="day"]',nav),topics=$('[data-mobile-tab="topics"]',nav),plan=$('[data-mobile-tab="plan"]',nav);day.href=dayLink;plan.href='#trip';
+    const tripDays=parts[0]==='trip'&&parts[1]&&parts[1]!=='new';
+    const tab=raw==='topics'||raw==='quiz'||raw.startsWith('catalog/')||raw.startsWith('topic/')||raw==='library'||raw==='favorites'?'topics':raw.startsWith('program/')||raw.startsWith('day/')||tripDays?'day':'plan';
     nav.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.dataset.mobileTab===tab));
   }
   function route(raw){const [name,a,b,c]=raw.split('/');syncMobileNav(raw);if(!['programs','program','day','topics','quiz','catalog','trip'].includes(name))return false;
