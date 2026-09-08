@@ -410,3 +410,16 @@ body.guide-mode .topic-photo figcaption{font-size:16px}
   .topic-photo{box-shadow:none;break-inside:avoid}
   .topic-photo img{max-height:430px;object-fit:cover}
 }
+
+/* Czytanie mobilne: stała kotwica sekcji i oszczędne znaczniki treści */
+.reading-section-anchor{display:flex;align-items:center;gap:10px;max-width:900px;margin:0 0 18px;padding:8px 11px;border-left:4px solid var(--topic-accent);background:color-mix(in srgb,var(--topic-accent) 7%,var(--paper));border-radius:0 10px 10px 0}.reading-section-anchor span{flex:0 0 auto;color:var(--topic-accent);font:850 10px/1.2 Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}.reading-section-anchor strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:750 13px/1.3 Inter,system-ui,sans-serif}
+.reading-context,.reading-curiosity,.reading-takeaway{max-width:900px;padding:15px 17px!important;border-radius:0 12px 12px 0;margin:18px 0!important}.reading-context{border-left:5px solid var(--red)!important;background:color-mix(in srgb,var(--red) 8%,var(--paper))!important}.reading-curiosity{border-left:5px solid var(--gold)!important;background:color-mix(in srgb,var(--gold) 13%,var(--paper))!important}.reading-takeaway{border-left:5px solid var(--jade)!important;background:color-mix(in srgb,var(--jade) 10%,var(--paper))!important}
+.article-section p.reading-context,.article-section p.reading-curiosity,.article-section p.reading-takeaway{padding:14px 16px!important}
+
+@media(max-width:620px){
+  .topic-hero h1{font-size:40px}.topic-lead{font-size:17px}.talk-box p{font-size:18px;line-height:1.55}
+  .article-section{padding:22px 17px}.article-section h2{font-size:29px;margin:15px 0 21px}.article-section p{font-size:16px;line-height:1.66;margin-bottom:1.05em}.article-subtitle{font-size:17px!important}
+  .guide-script-content{padding:15px}.guide-script-content p{font-size:16px;line-height:1.66}
+  body.guide-mode{--guide-font-size:17px}body.guide-mode .article-section h2{font-size:31px}body.guide-mode .article-section,body.guide-mode .guide-scripts-panel{padding-left:12px;padding-right:12px}
+  .reading-section-anchor{position:sticky;top:calc(var(--topbar) + 3px);z-index:35;margin:0 -7px 16px;padding:8px 10px;background:color-mix(in srgb,var(--paper) 94%,var(--topic-accent));box-shadow:0 5px 18px rgba(39,26,17,.1)}body.guide-mode .reading-section-anchor{top:145px}
+}

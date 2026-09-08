@@ -13,6 +13,9 @@ Kompendium zawiera 54 główne opracowania, w tym 31 materiałów zaimportowanyc
 - W bibliotece można zaznaczyć kilka tematów, wybrać własny objazd albo program wzorcowy oraz konkretny dzień, a następnie przypisać materiały jedną operacją. Tematy przypisane można również usuwać bez opuszczania biblioteki.
 - Globalna wyszukiwarka i skróty kategorii prowadzą teraz do wspólnej biblioteki, zamiast rozdzielać wyniki między dwa katalogi.
 - Usunięto z widoku programu panel „Do potwierdzenia”.
+- Zmniejszono typografię długich tekstów w widoku mobilnym do 16 px, a w mobilnym trybie przewodnika ustawiono czytelny punkt wyjścia 17 px z zachowaniem przycisków A−/A+.
+- Dodano przyklejoną etykietę bieżącej części oraz trzy oszczędne wyróżnienia: kontekst historyczny, ciekawostka i puenta. Zwykłe akapity pozostają bez tła.
+- Usunięto quizy z kart poszczególnych tematów. Wszystkie 106 odzyskanych pytań z 11 tematów trafiają do jednego widoku „Quiz wiedzy”, gdzie można wybrać wszystkie materiały, aktywny objazd albo ręcznie wskazane tematy.
 - Uzupełniono wszystkie pozycje wcześniej oznaczone jako brakujące lub krótkie. Długie istniejące opracowania (między innymi Zhangjiajie, Hongcun–Tunxi, Changsha, Wielki Mur i Święta Droga) zachowano jako główne zamiast zastępować je krótszymi tekstami zbiorczymi.
 - Redakcja całej bazy nie oznacza zakończonego sprawdzenia każdego faktu; materiały należy teraz przejrzeć dzień po dniu, zaczynając od najbliższego programu CTF.
 

@@ -101,6 +101,17 @@
     $("#categoryFilter").innerHTML='<option value="">Wszystkie kategorie</option>'+categories.map(c=>`<option ${state.category===c?'selected':''}>${escapeHtml(c)}</option>`).join("");
   }
   function stripHtml(html=""){const box=document.createElement("div");box.innerHTML=html;return box.textContent||"";}
+  function decorateReading(scope=document){
+    $$('.article-section,.reading-copy section,.guide-script-content',scope).forEach(section=>{
+      $$('.note,.research-note,.fact-check',section).forEach(el=>el.classList.add('reading-context'));
+      $$('.detail,blockquote',section).forEach(el=>el.classList.add('reading-curiosity'));
+      $$('.say',section).forEach(el=>el.classList.add('reading-takeaway'));
+      const paragraphs=$$('p',section).filter(p=>!p.closest('.reading-context,.reading-curiosity,.reading-takeaway'));
+      const mark=(pattern,className)=>{const p=paragraphs.find(el=>pattern.test(el.textContent.trim()));if(p)p.classList.add(className);};
+      mark(/^(ciekawostka|przy okazji|warto (jeszcze |też )?(wiedzieć|zwrócić uwagę))/iu,'reading-curiosity');
+      mark(/^(najważniejsza puenta|najlepsza puenta|puenta|do zapamiętania|najważniejsze jest)/iu,'reading-takeaway');
+    });
+  }
   const searchCache=new WeakMap();
   function topicSearchText(t){
     if(searchCache.has(t))return searchCache.get(t);
@@ -138,7 +149,7 @@
     const t=topics().find(x=>x.id===id); if(!t){location.hash="library";return;} state.currentTopicId=id;
     const notes=localStorage.getItem(`wanfang:notes:${id}`)||""; const fav=state.favorites.has(id),inRoute=state.route.includes(id);
     views.topic.style.setProperty("--topic-accent",colorFor(t));
-    const rawSections=t.sections||[]; const quiz=t.quiz||[]; const sections=rawSections.filter(s=>s.id!=="quiz"); const facts=t.facts||[]; const tags=t.tags||[]; const scripts=t.guideScripts||[];
+    const rawSections=t.sections||[]; const sections=rawSections.filter(s=>s.id!=="quiz"); const facts=t.facts||[]; const tags=t.tags||[]; const scripts=t.guideScripts||[];
     const sectionAnchor=(s,i)=>`topic-section-${s.id||i+1}`;
     const fallbackStats=[
       {value:`${t.readingTime||5} min`,label:"orientacyjny czas czytania"},
@@ -152,19 +163,7 @@
       <div class="guide-script-tabs">${scripts.map(s=>`<button class="guide-script-tab ${s.id===(t.defaultGuideScript||scripts[0].id)?'active':''}" data-guide-script="${escapeHtml(s.id)}">${escapeHtml(s.label)}</button>`).join("")}</div>
       ${scripts.map(s=>`<div class="guide-script-content ${s.id===(t.defaultGuideScript||scripts[0].id)?'active':''}" data-guide-script-panel="${escapeHtml(s.id)}">${s.content}</div>`).join("")}
     </section>`:"";
-    const quizHtml=quiz.length?`<section class="article-section rich-section topic-quiz-section" id="topic-quiz" data-section-id="quiz" data-cn="问">
-      <span class="tiny-label">QUIZ</span>
-      <h2>Sprawdź się przed wyjściem z grupą</h2>
-      <p class="article-subtitle">Wybierz odpowiedź. Poprawna od razu podświetli się na zielono, a pod pytaniem zobaczysz krótkie wyjaśnienie.</p>
-      <div class="quiz-box" id="quizBox">
-        <div class="quiz-head"><span id="quizCounter">Pytanie 1 z ${quiz.length}</span><div class="quiz-mini-progress"><i id="quizMiniProgress"></i></div></div>
-        <p id="quizQuestion"></p>
-        <div id="quizAnswers"></div>
-        <div class="quiz-result" id="quizFeedback" aria-live="polite"></div>
-        <div class="quiz-actions"><button id="nextQuestion" type="button" hidden>Następne pytanie →</button><button id="restartQuiz" type="button" hidden>Zacznij od początku</button></div>
-      </div>
-    </section>`:"";
-    const guideNav=`<div class="guide-mode-nav"><button data-guide-jump="guide-scripts">🎤 Opowieści</button>${sections.some(s=>s.id==='trasa')?'<button data-guide-jump="topic-section-trasa">🧭 Trasa 12 punktów</button>':''}${quiz.length?'<button data-guide-jump="topic-quiz">🧠 Quiz</button>':''}<button data-guide-font="-1">A−</button><button data-guide-font="1">A+</button></div>`;
+    const guideNav=`<div class="guide-mode-nav"><button data-guide-jump="guide-scripts">🎤 Opowieści</button>${sections.some(s=>s.id==='trasa')?'<button data-guide-jump="topic-section-trasa">🧭 Trasa 12 punktów</button>':''}<button data-guide-font="-1">A−</button><button data-guide-font="1">A+</button></div>`;
     const routeList=routeTopics(),routeIndex=routeList.findIndex(x=>x.id===id),isRouteTopic=routeIndex>=0;
     const guideRouteBar=`<div class="guide-route-bar ${isRouteTopic?'has-route':'standalone'}" id="guideRouteBar">
       <button class="guide-plan-button" id="guideRoutePlan" type="button">← Plan</button>
@@ -180,24 +179,24 @@
     views.topic.innerHTML=`${guideRouteBar}${guideNav}
     <header class="topic-hero" style="--topic-image:url('${artworkFor(t)}')">
       <div class="topic-hero-art"><div class="topic-hero-seal">${t.icon||categorySymbol(t.category)}</div><div class="topic-hero-caption"><span>WANFANG GUIDE · ${escapeHtml(t.city)}</span><strong>${escapeHtml(t.category)} opowiedziane jak historia, nie jak podręcznik.</strong></div></div>
-      <div class="topic-hero-copy"><div class="topic-breadcrumbs"><a href="#topics">Wszystkie tematy</a> / ${escapeHtml(t.city)} / ${escapeHtml(t.category)}</div><span class="tiny-label">${escapeHtml(t.city)} · ${escapeHtml(t.category)}</span><h1>${escapeHtml(t.title)}</h1><div class="cn-title">${escapeHtml(t.chinese||"")} ${t.pronunciation?`· ${escapeHtml(t.pronunciation)}`:""}</div><p class="topic-lead">${escapeHtml(t.summary)}</p><div class="topic-meta"><span>${escapeHtml(t.status)}</span><span>⏱ ${t.readingTime||5} min</span><span>${sections.length} rozdziałów${quiz.length?' + quiz':''}</span>${tags.slice(0,4).map(x=>`<span>#${escapeHtml(x)}</span>`).join("")}</div></div>
+      <div class="topic-hero-copy"><div class="topic-breadcrumbs"><a href="#topics">Wszystkie tematy</a> / ${escapeHtml(t.city)} / ${escapeHtml(t.category)}</div><span class="tiny-label">${escapeHtml(t.city)} · ${escapeHtml(t.category)}</span><h1>${escapeHtml(t.title)}</h1><div class="cn-title">${escapeHtml(t.chinese||"")} ${t.pronunciation?`· ${escapeHtml(t.pronunciation)}`:""}</div><p class="topic-lead">${escapeHtml(t.summary)}</p><div class="topic-meta"><span>${escapeHtml(t.status)}</span><span>⏱ ${t.readingTime||5} min</span><span>${sections.length} rozdziałów</span>${tags.slice(0,4).map(x=>`<span>#${escapeHtml(x)}</span>`).join("")}</div></div>
     </header>
     <div class="topic-toolbar"><button id="backLibrary">← Baza</button><button id="topicFav">${fav?'★ Ulubione':'☆ Ulubione'}</button><button id="topicRoute">${inRoute?'✓ W trasie':'＋ Do trasy'}</button><span class="spacer"></span><button class="hide-mobile" id="printTopic">Drukuj / PDF</button><button id="enterGuide">🎤 Tryb przewodnika</button></div>
     <div class="topic-stat-row">${statCards.map(s=>`<div class="topic-stat"><strong>${escapeHtml(String(s.value))}</strong><span>${escapeHtml(String(s.label))}</span></div>`).join("")}</div>
     ${t.id==='praktyczne-alipay'?'':`<section class="talk-box"><span class="tiny-label">W SKRÓCIE</span><p>${escapeHtml(t.quickTalk||t.summary)}</p></section>`}
     ${scriptsHtml}
     <div class="facts-panel">${facts.map((f,i)=>`<div class="fact-card"><span class="tiny-label">CIEKAWOSTKA ${String(i+1).padStart(2,'0')}</span><p>${escapeHtml(f)}</p></div>`).join("")}</div>
-    <div class="topic-layout"><aside class="topic-toc"><strong>SPIS TREŚCI</strong>${scripts.length?'<a href="#guide-scripts" data-scroll="guide-scripts">🎤 Gotowe opowieści</a>':''}${quiz.length?`<a class="topic-toc-quiz" href="#topic-quiz" data-scroll="topic-quiz"><span>🧠 Quiz sprawdzający</span><b>${quiz.length}</b></a>`:''}${sections.map((s,i)=>`<a href="#${sectionAnchor(s,i)}" data-scroll="${sectionAnchor(s,i)}">${String(i+1).padStart(2,"0")}. ${escapeHtml(s.title)}</a>`).join("")}<a href="#personal-notes" data-scroll="personal-notes">Moje notatki</a></aside><div class="topic-article">${sections.map((s,i)=>`<section class="article-section rich-section" id="${sectionAnchor(s,i)}" data-section-id="${escapeHtml(s.id||String(i+1))}" data-cn="${t.icon||categorySymbol(t.category)}"><span class="tiny-label">${String(i+1).padStart(2,"0")}</span><h2>${escapeHtml(s.title)}</h2>${s.subtitle?`<p class="article-subtitle">${escapeHtml(s.subtitle)}</p>`:""}${s.content}</section>`).join("")}${quizHtml}<section class="notes-panel" id="personal-notes"><span class="tiny-label">TYLKO DLA CIEBIE</span><h2>Moje notatki do tego tematu</h2><textarea id="topicNotes" placeholder="Dopisz pytania turystów, własne żarty, punkt zbiórki, informacje praktyczne…">${escapeHtml(notes)}</textarea><div class="notes-actions"><button class="button primary" id="saveNotes">Zapisz notatki</button></div></section></div></div>`;
+    <div class="topic-layout"><aside class="topic-toc"><strong>SPIS TREŚCI</strong>${scripts.length?'<a href="#guide-scripts" data-scroll="guide-scripts">🎤 Gotowe opowieści</a>':''}${sections.map((s,i)=>`<a href="#${sectionAnchor(s,i)}" data-scroll="${sectionAnchor(s,i)}">${String(i+1).padStart(2,"0")}. ${escapeHtml(s.title)}</a>`).join("")}<a href="#personal-notes" data-scroll="personal-notes">Moje notatki</a></aside><div class="topic-article">${sections.map((s,i)=>`<section class="article-section rich-section" id="${sectionAnchor(s,i)}" data-section-id="${escapeHtml(s.id||String(i+1))}" data-cn="${t.icon||categorySymbol(t.category)}"><div class="reading-section-anchor"><span>Część ${i+1} z ${sections.length}</span><strong>${escapeHtml(s.title)}</strong></div><h2>${escapeHtml(s.title)}</h2>${s.subtitle?`<p class="article-subtitle">${escapeHtml(s.subtitle)}</p>`:""}${s.content}</section>`).join("")}<section class="notes-panel" id="personal-notes"><span class="tiny-label">TYLKO DLA CIEBIE</span><h2>Moje notatki do tego tematu</h2><textarea id="topicNotes" placeholder="Dopisz pytania turystów, własne żarty, punkt zbiórki, informacje praktyczne…">${escapeHtml(notes)}</textarea><div class="notes-actions"><button class="button primary" id="saveNotes">Zapisz notatki</button></div></section></div></div>`;
     $("#backLibrary").onclick=()=>location.hash="library"; $("#topicFav").onclick=()=>toggleFavorite(id); $("#topicRoute").onclick=()=>toggleRoute(id); $("#printTopic").onclick=()=>window.print(); $("#enterGuide").onclick=enterGuide;
     bindGuideRouteBar(t,routeList,routeIndex);
     $("#saveNotes").onclick=()=>{localStorage.setItem(`wanfang:notes:${id}`,$("#topicNotes").value);toast("Notatki zapisane");};
     $$(`[data-scroll]`, views.topic).forEach(a=>a.onclick=e=>{e.preventDefault();document.getElementById(a.dataset.scroll)?.scrollIntoView({behavior:"smooth",block:"start"});});
     $$(`[data-guide-jump]`, views.topic).forEach(b=>b.onclick=()=>document.getElementById(b.dataset.guideJump)?.scrollIntoView({behavior:"smooth",block:"start"}));
-    $$(`[data-guide-font]`, views.topic).forEach(b=>b.onclick=()=>{const current=parseInt(getComputedStyle(document.body).getPropertyValue('--guide-font-size'))||26;const next=Math.max(20,Math.min(36,current+(+b.dataset.guideFont)*2));document.body.style.setProperty('--guide-font-size',`${next}px`);toast(`Tekst: ${next}px`);});
+    $$(`[data-guide-font]`, views.topic).forEach(b=>b.onclick=()=>{const current=parseInt(getComputedStyle(document.body).getPropertyValue('--guide-font-size'))||(matchMedia('(max-width:620px)').matches?17:26);const next=Math.max(15,Math.min(36,current+(+b.dataset.guideFont)*2));document.body.style.setProperty('--guide-font-size',`${next}px`);toast(`Tekst: ${next}px`);});
     $$('.guide-script-tab',views.topic).forEach(btn=>btn.onclick=()=>{$$('.guide-script-tab',views.topic).forEach(x=>x.classList.toggle('active',x===btn));$$('.guide-script-content',views.topic).forEach(x=>x.classList.toggle('active',x.dataset.guideScriptPanel===btn.dataset.guideScript));});
     $$('.tab[data-tab]',views.topic).forEach(btn=>btn.onclick=()=>{$$('.tab[data-tab]',views.topic).forEach(x=>x.classList.toggle('active',x===btn));$$('.talk',views.topic).forEach(x=>x.classList.toggle('active',x.id===btn.dataset.tab));});
     $$('.map-stop[data-target]',views.topic).forEach(g=>g.onclick=()=>document.getElementById(g.dataset.target)?.scrollIntoView({behavior:'smooth',block:'start'}));
-    initTopicQuiz(t);
+    decorateReading(views.topic);
     window.WanfangCompendium.onTopic(t,views.topic);
   }
   function bindGuideRouteBar(t,routeList,routeIndex){
@@ -264,46 +263,6 @@
     if(fill)fill.style.width=index>=0&&list.length?`${((index+topicFraction)/list.length)*100}%`:`${topicFraction*100}%`;
     if(kicker&&index>=0)kicker.textContent=`TRASA · ${index+1} Z ${list.length}`;
   }
-  function initTopicQuiz(t){
-    const quiz=t.quiz||[];
-    const question=$("#quizQuestion",views.topic),answers=$("#quizAnswers",views.topic),feedback=$("#quizFeedback",views.topic),next=$("#nextQuestion",views.topic),restart=$("#restartQuiz",views.topic),counter=$("#quizCounter",views.topic),progress=$("#quizMiniProgress",views.topic);
-    if(!quiz.length||!question||!answers||!feedback||!next||!restart)return;
-    let qi=0,locked=false,score=0;
-    const draw=()=>{
-      locked=false;
-      const item=quiz[qi];
-      if(counter)counter.textContent=`Pytanie ${qi+1} z ${quiz.length}`;
-      if(progress)progress.style.width=`${(qi/quiz.length)*100}%`;
-      question.textContent=item.question;
-      feedback.className="quiz-result";
-      feedback.textContent="";
-      next.hidden=true;
-      restart.hidden=true;
-      answers.innerHTML=item.answers.map((txt,i)=>`<button type="button" data-answer-index="${i}" aria-pressed="false"><span class="answer-letter">${String.fromCharCode(65+i)}</span><span class="answer-text">${escapeHtml(txt)}</span><i class="answer-mark" aria-hidden="true"></i></button>`).join("");
-    };
-    answers.onclick=e=>{
-      const button=e.target.closest("[data-answer-index]");
-      if(!button||locked)return;
-      locked=true;
-      const item=quiz[qi],selected=Number(button.dataset.answerIndex),isCorrect=selected===item.correct;
-      if(isCorrect)score++;
-      $$('[data-answer-index]',answers).forEach((btn,i)=>{
-        btn.disabled=true;
-        btn.setAttribute("aria-pressed",i===selected?"true":"false");
-        if(i===item.correct)btn.classList.add("correct");
-        if(i===selected&&i!==item.correct)btn.classList.add("wrong");
-      });
-      if(progress)progress.style.width=`${((qi+1)/quiz.length)*100}%`;
-      feedback.className=`quiz-result show ${isCorrect?'success':'error'}`;
-      const prefix=isCorrect?"Dobrze!":"Nie tym razem.";
-      const result=qi===quiz.length-1?` Wynik: ${score} z ${quiz.length}.`:"";
-      feedback.innerHTML=`<strong>${prefix}</strong><span>${escapeHtml(item.explanation||"")}${result}</span>`;
-      if(qi<quiz.length-1)next.hidden=false;else restart.hidden=false;
-    };
-    next.onclick=()=>{if(qi<quiz.length-1){qi++;draw();}};
-    restart.onclick=()=>{qi=0;score=0;draw();};
-    draw();
-  }
   function openTopic(id){location.hash=`topic/${id}`;}
   function enterGuide(){document.body.classList.add("guide-mode");updateReadingProgress();window.scrollTo({top:0,behavior:"smooth"});}
   function exitGuide(){document.body.classList.remove("guide-mode");updateReadingProgress();}
@@ -361,7 +320,7 @@
     }catch(error){toast(error.message||'Nie udało się wczytać kopii.');}
   }
   function init(){if(localStorage.getItem("wanfang:dark")==="1")document.body.classList.add("dark");updateCounts();renderHome();renderLibrary();renderFavorites();renderRoute();initEvents();routeHash();}
-  window.Wanfang={topics,state,toast,escapeHtml,showView,openTopic,startRoute,save,exportBackup,renderHome,renderTopic,routeHash,updateCounts};
+  window.Wanfang={topics,state,toast,escapeHtml,showView,openTopic,startRoute,save,exportBackup,renderHome,renderTopic,routeHash,updateCounts,decorateReading};
   window.WanfangCompendium.init(window.Wanfang);
   init();
 })();

@@ -6,6 +6,8 @@
   const empty=()=>({version:2,trips:[],activeTrip:'',progress:{},bindings:{},dayTopics:{}});
   const filters={query:'',program:'',status:'',category:''};
   const selectedTopics=new Set();
+  const quizSelectedTopics=new Set();
+  let quizScope='all';
   let topicsTarget='',topicsDay='';
   const esc=v=>A.escapeHtml(v), program=code=>programs.find(p=>p.code===code);
   const variant=(p,id)=>p?.variants.find(v=>v.id===id)||p?.variants[0];
@@ -55,7 +57,7 @@
       const title=whole?t.title:entries.map(c=>c.title).filter((x,i,a)=>a.indexOf(x)===i).join(' · ');
       materials.push({key:t.id,title,topic:t,sections,whole,words});
     }
-    return {materials,html:materials.map((m,index)=>`<details class="full-material" data-material-key="${esc(m.key)}"><summary><span>${esc(m.title)}</span><small>${m.words.toLocaleString('pl-PL')} słów · około ${Math.max(1,Math.ceil(m.words/130))} min czytania</small></summary><div class="reading-copy">${m.sections.map(s=>`<section id="day-${esc(m.topic.id)}-${esc(s.id||'section')}"><h3>${esc(s.title||m.topic.title)}</h3>${s.content}</section>`).join('')}</div><nav class="material-actions"><button class="button" data-action="day-topic-list">↑ Tematy dnia</button>${index<materials.length-1?button('Następny temat →','open-day-topic',materials[index+1].key):''}</nav></details>`).join('')};
+    return {materials,html:materials.map((m,index)=>`<details class="full-material" data-material-key="${esc(m.key)}"><summary><span>${esc(m.title)}</span><small>${m.words.toLocaleString('pl-PL')} słów · około ${Math.max(1,Math.ceil(m.words/130))} min czytania</small></summary><div class="reading-copy">${m.sections.map((s,sectionIndex)=>`<section id="day-${esc(m.topic.id)}-${esc(s.id||'section')}"><div class="reading-section-anchor"><span>Część ${sectionIndex+1} z ${m.sections.length}</span><strong>${esc(s.title||m.topic.title)}</strong></div><h3>${esc(s.title||m.topic.title)}</h3>${s.content}</section>`).join('')}</div><nav class="material-actions"><button class="button" data-action="day-topic-list">↑ Tematy dnia</button>${index<materials.length-1?button('Następny temat →','open-day-topic',materials[index+1].key):''}</nav></details>`).join('')};
   }
   function dayPage(p,v,d,trip){
     if(!d)return missing();const order=trip?trip.order:v.days.map(x=>x.number), position=order.indexOf(d.number);
@@ -77,6 +79,7 @@
       <details class="quick-panel compact-panel"><summary><strong>Mam tylko 5 minut — pokaż skróty</strong></summary><p>Wybierz jedną krótką wersję. Czas szacowany przy około 130 słowach na minutę.</p>${short.map(({topic:t,script:s})=>`<details><summary>${esc(t.title)} · około ${s.minutes} min</summary><div class="reading-copy">${s.content}</div><a href="#topic/${t.id}">Pełny materiał →</a></details>`).join('')||'<p>Do tego dnia nie ma jeszcze krótkiej wersji.</p>'}</details>
       ${trip?`<section class="notes-panel"><h2>Notatki z tego dnia</h2><label>Nazwa dnia w Twoim objeździe<input id="dayTitle" maxlength="200" value="${esc(trip.titles[d.number]||d.title)}"></label><label>Ustalenia, pytania grupy i nowe ciekawostki<textarea id="dayNotes" rows="8" placeholder="Co warto dopisać do kompendium po powrocie?">${esc(trip.notes[d.number]||'')}</textarea></label><p id="noteStatus" role="status">Zapis lokalny na tym urządzeniu. Eksport kopii przenosi notatki między urządzeniami.</p>${button('Eksportuj kopię z notatkami','backup')}</section>`:''}
       <nav class="day-pagination" aria-label="Sąsiednie dni">${position>0?`<a class="button" href="${link(order[position-1])}">← Poprzedni dzień</a>`:'<span></span>'}${position<order.length-1?`<a class="button" href="${link(order[position+1])}">Następny dzień →</a>`:''}</nav>`;
+    A.decorateReading(root);
     if(trip){$('#dayNotes').oninput=e=>{trip.notes[d.number]=e.target.value;$('#noteStatus').textContent=persist()?'Zapisano na tym urządzeniu.':'Zapis nie powiódł się — wyeksportuj kopię.';};$('#dayTitle').onchange=e=>{trip.titles[d.number]=e.target.value;persist();};}
   }
   function catalogPage(){root.innerHTML=header('ZAKRES KOMPENDIUM','Katalog tematów i braków','Dostępny materiał może być szkicem lub rozdziałem szerszego opracowania. Status nie oznacza zakończonej weryfikacji.')+`<div class="catalog-filters"><label>Szukaj tematu<input type="search" id="catalogSearch" value="${esc(filters.query)}" placeholder="np. Longmen, jedwab, rodzina"></label><label>Program<select id="catalogProgram"><option value="">Wszystkie</option>${programs.map(p=>`<option ${filters.program===p.code?'selected':''}>${p.code}</option>`).join('')}</select></label><label>Materiał<select id="catalogStatus"><option value="">Wszystkie</option>${[['missing','Do opracowania'],['fragment','Krótkie materiały'],['material','Materiały']].map(([id,label])=>`<option value="${id}" ${filters.status===id?'selected':''}>${label}</option>`).join('')}</select></label>${button('Eksportuj katalog','catalog-export')}</div><p id="catalogSummary" role="status"></p><div id="catalogResults"></div>`;
@@ -112,6 +115,7 @@
     const assigned=new Set(storage.dayTopics[dayKey]||defaultDayIds(dayKey));
     const categories=[...new Set(catalog.map(c=>categoryFor(item(c.id))))].sort((a,b)=>a.localeCompare(b,'pl'));
     root.innerHTML=header('BIBLIOTEKA','Wszystkie tematy','Wyszukaj materiały, zaznacz kilka i przypisz je do wybranego dnia.')+
+      `<a class="quiz-entry-card" href="#quiz"><span>QUIZ WIEDZY</span><strong>Jeden quiz z wybranego zakresu</strong><small>Wszystkie pytania, aktualny objazd albo wskazane tematy →</small></a>`+
       `<section class="topic-library-controls"><div class="topic-target-row"><label>Objazd<select id="topicsTarget">${allTargets.map(t=>`<option value="${esc(t.value)}" ${t.value===target.value?'selected':''}>${esc(t.trip?'Mój objazd · '+t.label:t.label)}</option>`).join('')}</select></label><label>Dzień<select id="topicsDay">${target.days.map((d,index)=>`<option value="${d.number}" ${d.number===day.number?'selected':''}>Dzień ${index+1} · ${esc(target.trip?.titles[d.number]||d.title)}</option>`).join('')}</select></label></div><div class="topic-filter-row"><label class="topic-search">Szukaj<input id="topicsSearch" type="search" value="${esc(filters.query)}" placeholder="Bund, Mao, panda, płatności…"></label><label>Program<select id="topicsProgram"><option value="">Wszystkie</option>${programs.map(p=>`<option value="${p.code}" ${filters.program===p.code?'selected':''}>${p.code}</option>`).join('')}</select></label><label>Kategoria<select id="topicsCategory"><option value="">Wszystkie</option>${categories.map(name=>`<option ${filters.category===name?'selected':''}>${esc(name)}</option>`).join('')}</select></label></div></section><p id="topicsSummary" class="topics-summary" role="status"></p><div id="topicsResults" class="mobile-topic-results"></div><div class="topic-assign-bar" id="topicAssignBar"><div><small id="topicSelectionCount">Nie zaznaczono tematów</small><strong>${esc(target.label)} · dzień ${target.days.indexOf(day)+1}</strong></div>${button('Wyczyść','clear-topic-selection','',selectedTopics.size?'':'disabled')}${button('Dodaj do dnia','assign-selected-topics',dayKey,selectedTopics.size?'':'disabled')}</div>`;
     const draw=()=>{
       const found=catalog.map(c=>item(c.id)).filter(c=>(!filters.program||c.programs.includes(filters.program))&&(!filters.category||categoryFor(c)===filters.category)&&C.matches([c.title,c.region,...c.aliases,categoryFor(c)].join(' '),filters.query));
@@ -126,6 +130,44 @@
     $('#topicsProgram').onchange=e=>{filters.program=e.target.value;draw();};
     $('#topicsCategory').onchange=e=>{filters.category=e.target.value;draw();};
     draw();updateSelection();
+  }
+  function quizTopics(){return A.topics().filter(t=>Array.isArray(t.quiz)&&t.quiz.length);}
+  function activeTripQuizIds(){
+    const trip=active(),p=trip&&program(trip.program),v=trip&&variant(p,trip.variant);if(!trip||!v)return new Set();
+    const topicIds=new Set();
+    for(const dayNumber of trip.order){const key=`trip/${trip.id}/${dayNumber}`,ids=storage.dayTopics[key]||defaultDayIds(key);for(const id of ids){const topicId=item(id)?.topicId;if(topicId)topicIds.add(topicId);}}
+    return topicIds;
+  }
+  function shuffled(list){const copy=[...list];for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
+  function quizPage(){
+    const available=quizTopics(),trip=active(),tripIds=activeTripQuizIds(),tripAvailable=available.filter(t=>tripIds.has(t.id));
+    if(quizScope==='trip'&&!tripAvailable.length)quizScope='all';
+    const total=available.reduce((n,t)=>n+t.quiz.length,0);
+    root.innerHTML=`<a class="text-link" href="#topics">← Wszystkie tematy</a>${header('QUIZ WIEDZY','Jeden quiz. Ty wybierasz zakres.','Pytania nie są już dołączane do każdego materiału. Tutaj możesz połączyć dowolne tematy w jedną sesję.')}
+      <section class="quiz-setup"><div class="quiz-scope-list">
+        <label class="quiz-scope"><input type="radio" name="quizScope" value="all" ${quizScope==='all'?'checked':''}><span><strong>Wszystkie tematy</strong><small>${available.length} tematów · ${total} pytań w bazie</small></span></label>
+        <label class="quiz-scope ${tripAvailable.length?'':'is-disabled'}"><input type="radio" name="quizScope" value="trip" ${quizScope==='trip'?'checked':''} ${tripAvailable.length?'':'disabled'}><span><strong>Aktualny objazd${trip?' · '+esc(trip.name):''}</strong><small>${tripAvailable.length?`${tripAvailable.length} tematów z pytaniami`:'Brak aktywnego objazdu z pytaniami'}</small></span></label>
+        <label class="quiz-scope"><input type="radio" name="quizScope" value="manual" ${quizScope==='manual'?'checked':''}><span><strong>Wybieram ręcznie</strong><small>Jeden lub kilka konkretnych tematów</small></span></label>
+      </div>
+      <div id="quizManual" class="quiz-manual" ${quizScope==='manual'?'':'hidden'}><label>Szukaj tematu<input id="quizTopicSearch" type="search" placeholder="Wpisz nazwę tematu…"></label><div id="quizTopicChoices"></div></div>
+      <div class="quiz-start-row"><label>Liczba pytań<select id="quizLength"><option value="10">10</option><option value="20" selected>20</option><option value="all">Wszystkie z wybranego zakresu</option></select></label><div><p id="quizScopeSummary" role="status"></p><button class="button primary" id="startCentralQuiz" type="button">Rozpocznij quiz →</button></div></div>
+      </section>`;
+    const manual=$('#quizManual'),choices=$('#quizTopicChoices'),search=$('#quizTopicSearch'),summary=$('#quizScopeSummary');
+    const scopedTopics=()=>quizScope==='trip'?tripAvailable:quizScope==='manual'?available.filter(t=>quizSelectedTopics.has(t.id)):available;
+    const updateSummary=()=>{const chosen=scopedTopics(),questions=chosen.reduce((n,t)=>n+t.quiz.length,0);summary.textContent=`Wybrano ${chosen.length} ${chosen.length===1?'temat':'tematów'} · dostępnych pytań: ${questions}`;$('#startCentralQuiz').disabled=!questions;};
+    const drawChoices=()=>{const q=(search?.value||'').trim();const found=available.filter(t=>C.matches([t.title,t.city,t.category].join(' '),q));choices.innerHTML=found.map(t=>`<label><input type="checkbox" data-quiz-topic="${t.id}" ${quizSelectedTopics.has(t.id)?'checked':''}><span><strong>${esc(t.title)}</strong><small>${t.quiz.length} pytań · ${esc(t.city)}</small></span></label>`).join('');choices.querySelectorAll('[data-quiz-topic]').forEach(input=>input.onchange=()=>{input.checked?quizSelectedTopics.add(input.dataset.quizTopic):quizSelectedTopics.delete(input.dataset.quizTopic);updateSummary();});};
+    root.querySelectorAll('[name="quizScope"]').forEach(input=>input.onchange=()=>{quizScope=input.value;manual.hidden=quizScope!=='manual';drawChoices();updateSummary();});
+    search.oninput=drawChoices;drawChoices();updateSummary();
+    $('#startCentralQuiz').onclick=()=>{const topics=scopedTopics(),pool=topics.flatMap(t=>t.quiz.map(q=>({...q,topicId:t.id,topicTitle:t.title}))),length=$('#quizLength').value,questions=shuffled(pool).slice(0,length==='all'?pool.length:Number(length));runCentralQuiz(questions);};
+  }
+  function runCentralQuiz(quiz){
+    let qi=0,score=0,locked=false;
+    root.innerHTML=`<a class="text-link" href="#quiz" id="changeQuizScope">← Zmień zakres</a>${header('QUIZ WIEDZY','Sprawdź się','Każde pytanie pokazuje temat źródłowy.')}
+      <section class="central-quiz quiz-box"><div class="quiz-head"><span id="quizCounter"></span><div class="quiz-mini-progress"><i id="quizMiniProgress"></i></div></div><a id="quizTopicLink" class="quiz-topic-link"></a><p id="quizQuestion"></p><div id="quizAnswers"></div><div class="quiz-result" id="quizFeedback" aria-live="polite"></div><div class="quiz-actions"><button id="nextQuestion" type="button" hidden>Następne pytanie →</button><button id="restartQuiz" type="button" hidden>Jeszcze raz</button><a class="button" id="finishQuiz" href="#quiz" hidden>Wybierz inny zakres</a></div></section>`;
+    const question=$('#quizQuestion'),answers=$('#quizAnswers'),feedback=$('#quizFeedback'),next=$('#nextQuestion'),restart=$('#restartQuiz'),finish=$('#finishQuiz'),counter=$('#quizCounter'),progress=$('#quizMiniProgress'),topicLink=$('#quizTopicLink');
+    const draw=()=>{locked=false;const current=quiz[qi];counter.textContent=`Pytanie ${qi+1} z ${quiz.length}`;progress.style.width=`${(qi/quiz.length)*100}%`;topicLink.href=`#topic/${current.topicId}`;topicLink.textContent=`Temat: ${current.topicTitle}`;question.textContent=current.question;feedback.className='quiz-result';feedback.textContent='';next.hidden=true;restart.hidden=true;finish.hidden=true;answers.innerHTML=current.answers.map((answer,i)=>`<button type="button" data-answer-index="${i}"><span class="answer-letter">${String.fromCharCode(65+i)}</span><span>${esc(answer)}</span></button>`).join('');};
+    answers.onclick=e=>{const selectedButton=e.target.closest('[data-answer-index]');if(!selectedButton||locked)return;locked=true;const current=quiz[qi],selected=Number(selectedButton.dataset.answerIndex),correct=selected===current.correct;if(correct)score++;answers.querySelectorAll('[data-answer-index]').forEach((btn,i)=>{btn.disabled=true;if(i===current.correct)btn.classList.add('correct');if(i===selected&&i!==current.correct)btn.classList.add('wrong');});progress.style.width=`${((qi+1)/quiz.length)*100}%`;feedback.className=`quiz-result show ${correct?'success':'error'}`;feedback.innerHTML=`<strong>${correct?'Dobrze!':'Nie tym razem.'}</strong><span>${esc(current.explanation||'')}</span>`;if(qi<quiz.length-1)next.hidden=false;else{feedback.innerHTML+=`<strong class="quiz-final-score">Wynik: ${score} z ${quiz.length}</strong>`;restart.hidden=false;finish.hidden=false;}};
+    next.onclick=()=>{qi++;draw();};restart.onclick=()=>{qi=0;score=0;draw();};draw();
   }
   function catalogItem(id){const c=item(id);if(!c)return missing();const topic=A.topics().find(t=>t.id===c.topicId);
     const days=programs.flatMap(p=>p.variants.flatMap(v=>v.days.filter(d=>[...d.places,...d.talks].includes(c.id)).map(d=>`<li><a href="#day/${p.code}/${v.id}/${d.number}">${p.code} · ${esc(v.name)} · dzień ${d.number}: ${esc(d.title)}</a></li>`)));
@@ -144,15 +186,16 @@
   function syncMobileNav(raw=location.hash.slice(1)||'home'){
     const nav=$('#mobilePrimaryNav');if(!nav)return;const trip=active(),parts=raw.split('/'),dayLink=trip?`#trip/${trip.id}/${trip.lastDay}`:(raw.startsWith('day/')?'#'+raw:'#programs'),planLink=trip?`#trip/${trip.id}`:'#trip';
     const day=$('[data-mobile-tab="day"]',nav),topics=$('[data-mobile-tab="topics"]',nav),plan=$('[data-mobile-tab="plan"]',nav);day.href=dayLink;plan.href=planLink;
-    const tab=raw==='topics'||raw.startsWith('catalog/')||raw.startsWith('topic/')||raw==='library'||raw==='favorites'?'topics':raw.startsWith('day/')||(parts[0]==='trip'&&parts.length>2)?'day':'plan';
+    const tab=raw==='topics'||raw==='quiz'||raw.startsWith('catalog/')||raw.startsWith('topic/')||raw==='library'||raw==='favorites'?'topics':raw.startsWith('day/')||(parts[0]==='trip'&&parts.length>2)?'day':'plan';
     nav.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.dataset.mobileTab===tab));
   }
-  function route(raw){const [name,a,b,c]=raw.split('/');syncMobileNav(raw);if(!['programs','program','day','topics','catalog','trip'].includes(name))return false;
+  function route(raw){const [name,a,b,c]=raw.split('/');syncMobileNav(raw);if(!['programs','program','day','topics','quiz','catalog','trip'].includes(name))return false;
     A.showView('compendium');document.querySelectorAll('.nav-link').forEach(el=>el.classList.toggle('active',el.dataset.view===(name==='day'||name==='program'?'programs':name)));
     if(name==='programs')root.innerHTML=header('TRZY DROGI PRZEZ CHINY','Wybierz program','Jedna baza wiedzy, materiały przypisane do kolejnych dni.')+`<div class="program-grid">${cards()}</div>`;
     if(name==='program')programPage(a,b);
     if(name==='day'){const p=program(a),v=variant(p,b);if(p&&v)dayPage(p,v,v.days.find(d=>d.number===+c));else missing();requestAnimationFrame(()=>window.scrollTo(0,0));}
     if(name==='topics')topicsPage();
+    if(name==='quiz')quizPage();
     if(name==='catalog')a?catalogItem(a):catalogPage();
     if(name==='trip'){if(a==='new')tripForm(b,c);else if(a&&b){const t=storage.trips.find(t=>t.id===a),p=t&&program(t.program),v=t&&variant(p,t.variant);if(t&&v)dayPage(p,v,v.days.find(d=>d.number===+b),t);else missing();}else if(a)tripPage(a);else tripList();}return true;
   }

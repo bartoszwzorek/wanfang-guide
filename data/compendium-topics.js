@@ -73,7 +73,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 3927,
     "sources": [
       {
-        "name": "nawijka_wielki_mur_chinski.html",
+        "name": "opowiesc_wielki_mur_chinski.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       },
@@ -536,7 +536,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 3710,
     "sources": [
       {
-        "name": "nawijka_temple_of_heaven_tiantan.html",
+        "name": "opowiesc_temple_of_heaven_tiantan.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       }
@@ -686,7 +686,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 3469,
     "sources": [
       {
-        "name": "nawijka_hukou_chiny.html",
+        "name": "opowiesc_hukou_chiny.html",
         "date": "2026-05-30",
         "kind": "Archiwum własnych opracowań"
       }
@@ -794,7 +794,7 @@ window.WANFANG_IMPORTED_TOPICS = [
         "content": "<section>\n    \n    <div>\n      <h3>O czym będzie ten rozdział</h3>\n      <ul>\n        <li>Dlaczego państwo w Chinach było przez wieki czymś więcej niż administracją.</li>\n        <li>Kim był cesarz jako Syn Niebios, Tianzi (Tien-dzy), i dlaczego jego rola była kosmiczna, a nie tylko polityczna.</li>\n        <li>Co oznaczało Mandat Niebios, Tianming (Tien-ming), i dlaczego władca musiał utrzymywać harmonię.</li>\n        <li>Jak konfucjanizm, Kongzi (Kung-dzy), rodzina i hierarchia ukształtowały społeczeństwo.</li>\n        <li>Dlaczego chińska administracja i egzaminy urzędnicze stworzyły cywilizację pędzla, tekstu i państwowej ciągłości.</li>\n        <li>Jak te dawne idee pomagają rozumieć współczesne Chiny bez prostych, europejskich skrótów.</li>\n      </ul>\n    </div>\n  </section>"
       },
       {
-        "id": "nawijka",
+        "id": "opowiesc",
         "title": "Opowieść główna — cesarz, państwo i porządek świata",
         "content": "<section>\n    \n    <div>\n      <p>Proszę Państwa, po pierwszych dwóch rozdziałach mamy już dwie ważne rzeczy w głowie. Po pierwsze: Chiny to nie jest tylko kraj, ale ogromna cywilizacja z bardzo długą pamięcią. Po drugie: ta cywilizacja rozgrywała się na gigantycznej scenie — między wielkimi rzekami, górami, stepem, pustyniami, wybrzeżem i megamiastami. Ale teraz trzeba zrobić trzeci krok. Bo sama mapa nie wystarczy. Same daty też nie wystarczą. Żeby Chiny naprawdę zaczęły się układać w całość, trzeba zapytać: jak tutaj przez wieki myślano o państwie, władzy, rodzinie, porządku i człowieku?</p>\n\n      <p>I tutaj od razu wchodzimy w temat, który dla Europejczyka bywa trochę niewygodny, bo my bardzo często myślimy o państwie jako o czymś zewnętrznym. Państwo to urząd, podatki, paszport, policja, szkoła, czasem biurokracja, czasem problem. W chińskiej tradycji państwo przez bardzo długi czas było czymś znacznie głębszym. Było narzędziem utrzymywania ładu w świecie, który łatwo mógł się rozpaść. W kraju ogromnych rzek, powodzi, głodu, migracji, wojen, buntów i milionów ludzi, chaos nie był abstrakcyjnym słowem. Chaos oznaczał głód, rozpad rodziny, bandytyzm, upadek dynastii i cierpienie zwykłych ludzi. Dlatego porządek w Chinach miał wartość prawie świętą.</p>\n\n      <p>W centrum tego porządku stał cesarz. Ale uwaga — cesarz w Chinach to nie jest dokładnie to samo, co król w Europie. Jasne, możemy dla uproszczenia mówić: monarcha, władca, głowa państwa. Ale w tradycyjnym chińskim myśleniu cesarz był kimś więcej. Był Tianzi (Tien-dzy), czyli Synem Niebios. Ta nazwa brzmi pięknie, ale ona nie jest tylko poetycką ozdobą. Ona mówi o całej konstrukcji świata. Cesarz miał stać między Niebem, ziemią i ludźmi. Miał dbać o to, żeby społeczeństwo było uporządkowane, rytuały wykonywane, kalendarz działał, rolnictwo funkcjonowało, rodziny znały swoje miejsce, urzędnicy wykonywali zadania, a państwo nie popadało w chaos.</p>\n\n      <p>To jest niesamowite, bo rola cesarza była jednocześnie polityczna, rytualna i kosmiczna. W Europie mieliśmy królów „z Bożej łaski”, mieliśmy koronacje, Kościół, sakralny wymiar władzy, więc pewne podobieństwa istnieją. Ale w Chinach logika była trochę inna. Cesarz nie tyle reprezentował osobowego Boga, ile utrzymywał harmonię między Niebem, ziemią i społeczeństwem. Jeżeli rządził dobrze, kraj miał być stabilny, zbiory udane, granice względnie bezpieczne, lud spokojny. Jeżeli rządził źle, pojawiały się znaki: klęski żywiołowe, bunty, susze, powodzie, korupcja, wojny. I wtedy można było powiedzieć, że dynastia traci Mandat Niebios, czyli Tianming (Tien-ming).</p>\n\n      <p>Mandat Niebios, Tianming (Tien-ming), to jedno z najważniejszych pojęć w całej chińskiej historii politycznej. Nie oznaczał on, że dana rodzina cesarska ma prawo rządzić zawsze, bez względu na wszystko. Wręcz przeciwnie — prawo do rządzenia trzeba było stale potwierdzać skutecznym i moralnym sprawowaniem władzy. Jeśli dynastia wpadała w korupcję, kraj pogrążał się w chaosie, a lud cierpiał, można było uznać, że Niebo cofnęło swoje poparcie. I tutaj zaczyna się mechanizm, który historycy często nazywają cyklem dynastycznym. Dynastia powstaje, porządkuje kraj, rozwija go, potem z czasem słabnie, urzędnicy korumpują się, podatki rosną, chłopi buntują się, granice pękają, przychodzi nowa siła i ogłasza, że to ona odzyskała Mandat Niebios, Tianming (Tien-ming).</p>\n\n      <p>W Chinach władza była silna, ale musiała udowadniać, że umie utrzymać porządek. To nie była demokracja w europejskim sensie, oczywiście. Lud nie wybierał cesarza w wyborach. Ale historia Chin miała własny brutalny mechanizm rozliczania władzy: jeśli państwo przestawało działać, dynastia mogła upaść. I dlatego chińskie kroniki tak mocno interesowały się nie tylko bitwami i dworami, ale też powodziami, głodem, ceną zboża, buntami i znakami natury. Bo one mówiły o stanie kosmicznego i politycznego porządku.</p>\n\n      <p>Teraz zobaczcie, jak mocno różni się to od naszego europejskiego sposobu mówienia o historii. My często opowiadamy historię przez narody, religie, wojny, rewolucje, wolność, demokrację, prawa jednostki. W Chinach jednym z głównych pytań było: jak utrzymać wielki organizm w całości? Jak sprawić, żeby setki regionów, różne dialekty, inne klimaty, wielkie rzeki, prowincje, miasta i wsie działały pod jednym centrum? To jest pytanie, które zaczęło się bardzo dawno temu i tak naprawdę powraca do dziś.</p>\n\n      <p>Dlatego w Chinach tak ważna była idea centrum. Nie tylko centrum geograficznego, ale centrum symbolicznego. Zhongguo (Dżung-gło), Państwo Środka, to nie jest przypadkowa nazwa. Ona mówi: my jesteśmy środkiem uporządkowanego świata. Wokół mogą być krainy dalsze, bardziej obce, mniej oswojone, ale centrum cywilizacji jest tutaj. I w centrum tego centrum stoi władza. W dawnych czasach był to cesarz w swojej stolicy, otoczony murami, bramami, urzędnikami, rytuałem i architekturą. Współczesne Chiny wyglądają inaczej, ale potrzeba centrum, koordynacji i kontroli nie zniknęła. Zmieniły się narzędzia, zmienił się język, zmieniły się instytucje, ale historyczna pamięć o tym, że wielki kraj wymaga silnego środka, jest nadal bardzo czytelna.</p>\n\n      <p>I tutaj dochodzimy do ważnego słowa: kolektyw. W Europie, zwłaszcza po oświeceniu, rewolucjach i rozwoju liberalnych demokracji, bardzo mocno przyzwyczailiśmy się do myślenia o jednostce. Ja, moje prawa, moja wolność, mój wybór, moja ścieżka. W Chinach oczywiście też są jednostki, ambicje, marzenia, kariery, prywatne dramaty i ogromna energia indywidualna. Nie wolno robić z Chińczyków jednego bezosobowego tłumu. Ale tradycyjny sposób myślenia mocniej wpisywał człowieka w relacje: dziecko wobec rodziców, młodszy wobec starszego, uczeń wobec nauczyciela, urzędnik wobec państwa, poddany wobec cesarza, człowiek wobec przodków.</p>\n\n      <p>To nie znaczy, że każdy był szczęśliwy i grzecznie zgadzał się ze wszystkim. Historia Chin jest pełna buntów, spisków, wojen domowych i konfliktów. Ale ideał był taki: dobre społeczeństwo to nie zbiór samotnych jednostek, tylko sieć relacji, w której każdy zna swoje obowiązki. I tutaj wchodzi konfucjanizm, czyli tradycja związana z Kongzi (Kung-dzy), znanym u nas jako Konfucjusz.</p>\n    </div>\n  </section>"
       },
@@ -1092,7 +1092,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 5330,
     "sources": [
       {
-        "name": "starozytne_chiny_nawijka_polaczona.html",
+        "name": "starozytne_chiny_opowiesc_polaczona.html",
         "date": "2026-05-22",
         "kind": "Archiwum własnych opracowań"
       }
@@ -1259,7 +1259,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 7459,
     "sources": [
       {
-        "name": "chiny_srebro_opium_pelne_nawijki_FINAL_v2.html",
+        "name": "chiny_srebro_opium_pelne_opowiesci_FINAL_v2.html",
         "date": "2026-05-22",
         "kind": "Archiwum własnych opracowań"
       }
@@ -1610,7 +1610,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 2923,
     "sources": [
       {
-        "name": "changsha_przewodnik_nawijka_v2.html",
+        "name": "changsha_przewodnik_opowiesc_v2.html",
         "date": "2026-07-06",
         "kind": "Archiwum własnych opracowań"
       }
@@ -1849,7 +1849,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 3561,
     "sources": [
       {
-        "name": "nawijka_wioska_olimpijska_pekin_fixed.html",
+        "name": "opowiesc_wioska_olimpijska_pekin_fixed.html",
         "date": "2026-06-02",
         "kind": "Archiwum własnych opracowań"
       }
@@ -1901,7 +1901,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 706,
     "sources": [
       {
-        "name": "chiny_dodatkowe_tematy_nawijki_porządnie.html",
+        "name": "chiny_dodatkowe_tematy_opowiesci_porządnie.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       }
@@ -2009,7 +2009,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 665,
     "sources": [
       {
-        "name": "chiny_dodatkowe_tematy_nawijki_porządnie.html",
+        "name": "chiny_dodatkowe_tematy_opowiesci_porządnie.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       }
@@ -2047,7 +2047,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 616,
     "sources": [
       {
-        "name": "chiny_dodatkowe_tematy_nawijki_porządnie.html",
+        "name": "chiny_dodatkowe_tematy_opowiesci_porządnie.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       }
@@ -2094,7 +2094,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 623,
     "sources": [
       {
-        "name": "chiny_dodatkowe_tematy_nawijki_porządnie.html",
+        "name": "chiny_dodatkowe_tematy_opowiesci_porządnie.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       }
@@ -2141,7 +2141,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 573,
     "sources": [
       {
-        "name": "chiny_dodatkowe_tematy_nawijki_porządnie.html",
+        "name": "chiny_dodatkowe_tematy_opowiesci_porządnie.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       }
@@ -2188,7 +2188,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 550,
     "sources": [
       {
-        "name": "chiny_dodatkowe_tematy_nawijki_porządnie.html",
+        "name": "chiny_dodatkowe_tematy_opowiesci_porządnie.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       }
@@ -2235,7 +2235,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 556,
     "sources": [
       {
-        "name": "chiny_dodatkowe_tematy_nawijki_porządnie.html",
+        "name": "chiny_dodatkowe_tematy_opowiesci_porządnie.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       }
@@ -2371,7 +2371,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 641,
     "sources": [
       {
-        "name": "chiny_dodatkowe_tematy_nawijki_porządnie.html",
+        "name": "chiny_dodatkowe_tematy_opowiesci_porządnie.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       }
@@ -2418,7 +2418,7 @@ window.WANFANG_IMPORTED_TOPICS = [
     "wordCount": 628,
     "sources": [
       {
-        "name": "chiny_dodatkowe_tematy_nawijki_porządnie.html",
+        "name": "chiny_dodatkowe_tematy_opowiesci_porządnie.html",
         "date": "2026-05-29",
         "kind": "Archiwum własnych opracowań"
       }

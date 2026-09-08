@@ -20,6 +20,9 @@ assert.equal(C.talkOptions({guideScripts:[{content:'słowo '.repeat(651)}]},5).l
 const index=read('index.html');for(const match of index.matchAll(/(?:src|href)="([^"#]+)"/g)){const p=match[1];if(!/^https?:/.test(p))assert(fs.existsSync(path.join(root,p)),`Missing asset ${p}`);}
 const compendium=read('assets/compendium.js');assert(compendium.includes('id="dayTopicList"'));assert(compendium.includes("case 'add-day-topic'"));assert(compendium.includes("case 'remove-day-topic'"));assert(!compendium.includes('class="day-checks"'));
 assert(compendium.includes('function topicsPage()'));assert(compendium.includes("case 'assign-selected-topics'"));assert(compendium.includes("case 'clear-topic-selection'"));
+assert(compendium.includes('function quizPage()'));assert(compendium.includes("if(name==='quiz')quizPage()"));assert(compendium.includes("value=\"all\""));assert(compendium.includes("value=\"manual\""));
+const app=read('assets/app.js');assert(!app.includes('initTopicQuiz'));assert(!app.includes('topic-quiz-section'));assert(app.includes('reading-section-anchor'));assert(app.includes('decorateReading'));
+assert(read('assets/compendium.css').includes('.central-quiz'));assert(read('assets/style.css').includes('.reading-takeaway'));
 assert(index.includes('id="mobilePrimaryNav"'));assert(index.includes('href="#topics" data-mobile-tab="topics"'));assert(read('assets/compendium.css').includes('.mobile-primary-nav'));
 const sw={self:{}};vm.runInNewContext(read('precache.js'),sw);for(const p of sw.self.WANFANG_CACHE_FILES)assert(fs.existsSync(path.join(root,p)),`Offline: ${p}`);
 console.log(JSON.stringify({topics:topics.length,imports:31,briefings:15,catalog:catalog.size,materialCounts,variants:w.WANFANG_PROGRAMS.reduce((n,p)=>n+p.variants.length,0),offlineAssets:sw.self.WANFANG_CACHE_FILES.length,result:'PASS'}));
