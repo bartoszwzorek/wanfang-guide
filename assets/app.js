@@ -36,7 +36,7 @@
     } catch {toast('Brak miejsca na zapis. Wyeksportuj kopię swoich danych.');}
   }
   function toast(message){ const el=$("#toast"); el.textContent=message; el.classList.add("show"); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove("show"),2200); }
-  function escapeHtml(s=""){return String(s??'').replace(/nawijk[\p{L}]*/giu,'opowieść').replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#039;",'"':"&quot;"}[c]));}
+  function escapeHtml(s=""){return String(s??'').replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#039;",'"':"&quot;"}[c]));}
   function safeRich(html){
     const template=document.createElement('template');template.innerHTML=String(html||'');
     const allowed=new Set(['P','BR','B','STRONG','I','EM','UL','OL','LI','H2','H3','H4','BLOCKQUOTE','TABLE','THEAD','TBODY','TR','TH','TD','DETAILS','SUMMARY','A']);
@@ -132,7 +132,7 @@
   function moveRoute(index,delta){const to=index+delta;if(to<0||to>=state.route.length)return;[state.route[index],state.route[to]]=[state.route[to],state.route[index]];save();renderRoute();updateCounts();}
   function toggleFavorite(id){state.favorites.has(id)?state.favorites.delete(id):state.favorites.add(id);save();updateCounts();renderHome();renderLibrary();renderFavorites(); if(state.currentTopicId===id) renderTopic(id);toast(state.favorites.has(id)?"Dodano do ulubionych":"Usunięto z ulubionych");}
   function toggleRoute(id){state.route.includes(id)?state.route=state.route.filter(x=>x!==id):state.route.push(id);save();updateCounts();renderHome();renderLibrary();renderFavorites();renderRoute();if(state.currentTopicId===id)renderTopic(id);toast(state.route.includes(id)?"Dodano do planu trasy":"Usunięto z planu trasy");}
-  function updateCounts(){const all=topics();$("#allCount").textContent=all.length;$("#favoriteCount").textContent=state.favorites.size;$("#routeCount").textContent=state.route.length;}
+  function updateCounts(){const all=topics();if($("#allCount"))$("#allCount").textContent=all.length;$("#favoriteCount").textContent=state.favorites.size;$("#routeCount").textContent=state.route.length;}
 
   function renderTopic(id){
     const t=topics().find(x=>x.id===id); if(!t){location.hash="library";return;} state.currentTopicId=id;
@@ -180,7 +180,7 @@
     views.topic.innerHTML=`${guideRouteBar}${guideNav}
     <header class="topic-hero" style="--topic-image:url('${artworkFor(t)}')">
       <div class="topic-hero-art"><div class="topic-hero-seal">${t.icon||categorySymbol(t.category)}</div><div class="topic-hero-caption"><span>WANFANG GUIDE · ${escapeHtml(t.city)}</span><strong>${escapeHtml(t.category)} opowiedziane jak historia, nie jak podręcznik.</strong></div></div>
-      <div class="topic-hero-copy"><div class="topic-breadcrumbs"><a href="#library">Baza wiedzy</a> / ${escapeHtml(t.city)} / ${escapeHtml(t.category)}</div><span class="tiny-label">${escapeHtml(t.city)} · ${escapeHtml(t.category)}</span><h1>${escapeHtml(t.title)}</h1><div class="cn-title">${escapeHtml(t.chinese||"")} ${t.pronunciation?`· ${escapeHtml(t.pronunciation)}`:""}</div><p class="topic-lead">${escapeHtml(t.summary)}</p><div class="topic-meta"><span>${escapeHtml(t.status)}</span><span>⏱ ${t.readingTime||5} min</span><span>${sections.length} rozdziałów${quiz.length?' + quiz':''}</span>${tags.slice(0,4).map(x=>`<span>#${escapeHtml(x)}</span>`).join("")}</div></div>
+      <div class="topic-hero-copy"><div class="topic-breadcrumbs"><a href="#topics">Wszystkie tematy</a> / ${escapeHtml(t.city)} / ${escapeHtml(t.category)}</div><span class="tiny-label">${escapeHtml(t.city)} · ${escapeHtml(t.category)}</span><h1>${escapeHtml(t.title)}</h1><div class="cn-title">${escapeHtml(t.chinese||"")} ${t.pronunciation?`· ${escapeHtml(t.pronunciation)}`:""}</div><p class="topic-lead">${escapeHtml(t.summary)}</p><div class="topic-meta"><span>${escapeHtml(t.status)}</span><span>⏱ ${t.readingTime||5} min</span><span>${sections.length} rozdziałów${quiz.length?' + quiz':''}</span>${tags.slice(0,4).map(x=>`<span>#${escapeHtml(x)}</span>`).join("")}</div></div>
     </header>
     <div class="topic-toolbar"><button id="backLibrary">← Baza</button><button id="topicFav">${fav?'★ Ulubione':'☆ Ulubione'}</button><button id="topicRoute">${inRoute?'✓ W trasie':'＋ Do trasy'}</button><span class="spacer"></span><button class="hide-mobile" id="printTopic">Drukuj / PDF</button><button id="enterGuide">🎤 Tryb przewodnika</button></div>
     <div class="topic-stat-row">${statCards.map(s=>`<div class="topic-stat"><strong>${escapeHtml(String(s.value))}</strong><span>${escapeHtml(String(s.label))}</span></div>`).join("")}</div>
@@ -322,12 +322,12 @@
   function closeSidebar(){$("#sidebar").classList.remove("open");$("#sidebarBackdrop").classList.remove("show");}
   function initEvents(){
     window.addEventListener("hashchange",routeHash);
-    $("#searchInput").addEventListener("input",e=>{state.query=e.target.value; if(location.hash!=="#library")location.hash="library";else renderLibrary();});
+    $("#searchInput").addEventListener("input",e=>{state.query=e.target.value;window.WanfangCompendium.setTopicFilters({query:e.target.value});if(location.hash!=="#topics")location.hash="topics";else window.WanfangCompendium.route('topics');});
     document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();const guideSearch=$("#guideSearchInput",views.topic);(document.body.classList.contains("guide-mode")&&guideSearch?guideSearch:$("#searchInput")).focus();}if(e.key==="Escape"&&document.body.classList.contains("guide-mode")&&!$("#guideSearchInput",views.topic)?.matches(":focus"))exitGuide();});
     $("#cityFilter").onchange=e=>{state.city=e.target.value;renderLibrary();}; $("#categoryFilter").onchange=e=>{state.category=e.target.value;renderLibrary();};
     $("#clearFiltersButton").onclick=()=>{state.city="";state.category="";state.query="";$("#searchInput").value="";renderLibrary();};
     $$('[data-layout]').forEach(b=>b.onclick=()=>{state.layout=b.dataset.layout;$$('[data-layout]').forEach(x=>x.classList.toggle("active",x===b));renderLibrary();});
-    $$('[data-category]').forEach(b=>b.onclick=()=>{state.category=b.dataset.category;location.hash="library";renderLibrary();});
+    $$('[data-category]').forEach(b=>b.onclick=()=>{state.category=b.dataset.category;window.WanfangCompendium.setTopicFilters({category:b.dataset.category});if(location.hash!=="#topics")location.hash="topics";else window.WanfangCompendium.route('topics');});
     $("#themeButton").onclick=()=>{document.body.classList.toggle("dark");localStorage.setItem("wanfang:dark",document.body.classList.contains("dark")?"1":"0");};
     $("#guideModeButton").onclick=()=>{if(state.currentTopicId)openTopicInGuide(state.currentTopicId);else toast("Najpierw otwórz wybrany temat");};
     $("#menuButton").onclick=()=>{$("#sidebar").classList.add("open");$("#sidebarBackdrop").classList.add("show");};$("#sidebarBackdrop").onclick=closeSidebar;

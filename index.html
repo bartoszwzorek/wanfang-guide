@@ -48,8 +48,7 @@
         <a class="nav-link active" href="#home" data-view="home"><span>⌂</span> Start</a>
         <a class="nav-link" href="#programs" data-view="programs"><span>路</span> CHT · CJA · CTF</a>
         <a class="nav-link" href="#trip" data-view="trip"><span>日</span> Mój objazd</a>
-        <a class="nav-link" href="#catalog" data-view="catalog"><span>目</span> Katalog i braki <b id="catalogCount">0</b></a>
-        <a class="nav-link" href="#library" data-view="library"><span>▦</span> Wszystkie tematy <b id="allCount">0</b></a>
+        <a class="nav-link" href="#topics" data-view="topics"><span>▦</span> Wszystkie tematy <b id="catalogCount">0</b></a>
         <a class="nav-link" href="#favorites" data-view="favorites"><span>★</span> Ulubione <b id="favoriteCount">0</b></a>
         <a class="nav-link" href="#route" data-view="route"><span>↝</span> Plan aktualnej trasy <b id="routeCount">0</b></a>
 
@@ -133,7 +132,7 @@
         <section class="content-section">
           <div class="section-heading">
             <div><span class="tiny-label">OSTATNIO OPRACOWANE</span><h2>Materiały gotowe do użycia</h2></div>
-            <a href="#library" class="text-link">Zobacz wszystkie →</a>
+            <a href="#topics" class="text-link">Zobacz wszystkie →</a>
           </div>
           <div class="topic-grid" id="featuredTopics"></div>
         </section>
@@ -178,6 +177,12 @@
       <section id="compendiumView" class="view"></section>
     </main>
   </div>
+
+  <nav class="mobile-primary-nav" id="mobilePrimaryNav" aria-label="Główne menu mobilne">
+    <a href="#programs" data-mobile-tab="day"><span aria-hidden="true">日</span><strong>Dzień</strong></a>
+    <a href="#topics" data-mobile-tab="topics"><span aria-hidden="true">▦</span><strong>Tematy</strong></a>
+    <a href="#trip" data-mobile-tab="plan"><span aria-hidden="true">路</span><strong>Plan</strong></a>
+  </nav>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

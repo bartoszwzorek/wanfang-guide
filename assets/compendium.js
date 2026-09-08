@@ -4,7 +4,9 @@
   const $=(s,r=document)=>r.querySelector(s);
   let A, root, pending='', returnDay='', storage, bookmarkTimer;
   const empty=()=>({version:2,trips:[],activeTrip:'',progress:{},bindings:{},dayTopics:{}});
-  const filters={query:'',program:'',status:''};
+  const filters={query:'',program:'',status:'',category:''};
+  const selectedTopics=new Set();
+  let topicsTarget='',topicsDay='';
   const esc=v=>A.escapeHtml(v), program=code=>programs.find(p=>p.code===code);
   const variant=(p,id)=>p?.variants.find(v=>v.id===id)||p?.variants[0];
   const active=()=>storage.trips.find(t=>t.id===storage.activeTrip);
@@ -12,6 +14,8 @@
   const item=id=>{const c=catalog.find(c=>c.id===id);return c&&storage.bindings[id]?{...c,topicId:storage.bindings[id],sectionId:null}:c;};
   const info=c=>C.materialInfo(c,A.topics());
   const href=c=>c.topicId?`#topic/${c.topicId}${c.sectionId?'/'+c.sectionId:''}`:`#catalog/${c.id}`;
+  const topicFor=c=>c?.topicId&&A.topics().find(t=>t.id===c.topicId);
+  const categoryFor=c=>topicFor(c)?.category||'Inne';
   function persist(){try{localStorage.setItem('wanfang:compendium',JSON.stringify(storage));return true;}catch{A.toast('Nie udało się zapisać danych. Wyeksportuj kopię.');return false;}}
   function download(name,text,type='text/plain'){const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   const button=(label,action,value='',extra='')=>`<button class="button" data-action="${action}" data-value="${esc(value)}" ${extra}>${label}</button>`;
@@ -79,9 +83,53 @@
     const draw=()=>{const found=catalog.map(c=>item(c.id)).filter(c=>(!filters.program||c.programs.includes(filters.program))&&(!filters.status||info(c).status===filters.status)&&C.matches([c.title,c.region,...c.aliases].join(' '),filters.query));$('#catalogSummary').textContent=`${found.length} z ${catalog.length} tematów`;$('#catalogResults').innerHTML=found.map(c=>`<article class="catalog-row"><div><a href="#catalog/${c.id}"><strong>${esc(c.title)}</strong></a><small>${esc(c.region)} · ${c.programs.join(' · ')}</small></div>${badge(c)}<a class="text-link" href="${href(c)}">${c.topicId?'Czytaj →':'Zobacz zakres →'}</a></article>`).join('')||'<p>Brak wyników. Zmień hasło lub filtry.</p>';};
     $('#catalogSearch').oninput=e=>{filters.query=e.target.value;draw();};$('#catalogProgram').onchange=e=>{filters.program=e.target.value;draw();};$('#catalogStatus').onchange=e=>{filters.status=e.target.value;draw();};draw();
   }
+  function targetData(value){
+    const parts=String(value||'').split('/');
+    if(parts[0]==='trip'){
+      const trip=storage.trips.find(t=>t.id===parts[1]),p=trip&&program(trip.program),v=trip&&variant(p,trip.variant);
+      return trip&&p&&v?{value:`trip/${trip.id}`,label:trip.name,trip,p,v,days:trip.order.map(n=>v.days.find(d=>d.number===n)).filter(Boolean)}:null;
+    }
+    if(parts[0]==='program'){
+      const p=program(parts[1]),v=p&&variant(p,parts[2]);return p&&v?{value:`program/${p.code}/${v.id}`,label:`${p.code} · ${v.name}`,trip:null,p,v,days:v.days}:null;
+    }
+    return null;
+  }
+  function targets(){
+    const own=storage.trips.map(t=>targetData(`trip/${t.id}`)).filter(Boolean);
+    const templates=programs.flatMap(p=>p.variants.map(v=>targetData(`program/${p.code}/${v.id}`))).filter(Boolean);
+    return [...own,...templates];
+  }
+  function currentTarget(){
+    let target=targetData(topicsTarget);
+    if(!target){const trip=active();target=trip&&targetData(`trip/${trip.id}`)||targets()[0];topicsTarget=target?.value||'';}
+    if(target&&!target.days.some(d=>String(d.number)===String(topicsDay)))topicsDay=String(target.days[0]?.number||'');
+    return target;
+  }
+  function targetDayKey(target,day){return target.trip?`trip/${target.trip.id}/${day}`:`${target.p.code}/${target.v.id}/${day}`;}
+  function topicsPage(){
+    const target=currentTarget(),allTargets=targets();if(!target)return missing();
+    const day=target.days.find(d=>String(d.number)===String(topicsDay))||target.days[0],dayKey=targetDayKey(target,day.number);
+    const assigned=new Set(storage.dayTopics[dayKey]||defaultDayIds(dayKey));
+    const categories=[...new Set(catalog.map(c=>categoryFor(item(c.id))))].sort((a,b)=>a.localeCompare(b,'pl'));
+    root.innerHTML=header('BIBLIOTEKA','Wszystkie tematy','Wyszukaj materiały, zaznacz kilka i przypisz je do wybranego dnia.')+
+      `<section class="topic-library-controls"><div class="topic-target-row"><label>Objazd<select id="topicsTarget">${allTargets.map(t=>`<option value="${esc(t.value)}" ${t.value===target.value?'selected':''}>${esc(t.trip?'Mój objazd · '+t.label:t.label)}</option>`).join('')}</select></label><label>Dzień<select id="topicsDay">${target.days.map((d,index)=>`<option value="${d.number}" ${d.number===day.number?'selected':''}>Dzień ${index+1} · ${esc(target.trip?.titles[d.number]||d.title)}</option>`).join('')}</select></label></div><div class="topic-filter-row"><label class="topic-search">Szukaj<input id="topicsSearch" type="search" value="${esc(filters.query)}" placeholder="Bund, Mao, panda, płatności…"></label><label>Program<select id="topicsProgram"><option value="">Wszystkie</option>${programs.map(p=>`<option value="${p.code}" ${filters.program===p.code?'selected':''}>${p.code}</option>`).join('')}</select></label><label>Kategoria<select id="topicsCategory"><option value="">Wszystkie</option>${categories.map(name=>`<option ${filters.category===name?'selected':''}>${esc(name)}</option>`).join('')}</select></label></div></section><p id="topicsSummary" class="topics-summary" role="status"></p><div id="topicsResults" class="mobile-topic-results"></div><div class="topic-assign-bar" id="topicAssignBar"><div><small id="topicSelectionCount">Nie zaznaczono tematów</small><strong>${esc(target.label)} · dzień ${target.days.indexOf(day)+1}</strong></div>${button('Wyczyść','clear-topic-selection','',selectedTopics.size?'':'disabled')}${button('Dodaj do dnia','assign-selected-topics',dayKey,selectedTopics.size?'':'disabled')}</div>`;
+    const draw=()=>{
+      const found=catalog.map(c=>item(c.id)).filter(c=>(!filters.program||c.programs.includes(filters.program))&&(!filters.category||categoryFor(c)===filters.category)&&C.matches([c.title,c.region,...c.aliases,categoryFor(c)].join(' '),filters.query));
+      $('#topicsSummary').textContent=`${found.length} z ${catalog.length} tematów · ${assigned.size} przypisanych do tego dnia`;
+      $('#topicsResults').innerHTML=found.map(c=>`<article class="mobile-topic-row ${assigned.has(c.id)?'is-assigned':''}"><label><input type="checkbox" data-select-topic="${c.id}" ${selectedTopics.has(c.id)?'checked':''}><span><strong>${esc(c.title)}</strong><small>${esc(c.region)} · ${esc(categoryFor(c))}${assigned.has(c.id)?' · ✓ już w tym dniu':''}</small></span></label><div class="mobile-topic-actions"><a href="${href(c)}" aria-label="Czytaj: ${esc(c.title)}">Czytaj →</a>${assigned.has(c.id)?button('×','remove-day-topic',`${dayKey}|${c.id}`,`aria-label="Usuń z dnia: ${esc(c.title)}"`):''}</div></article>`).join('')||'<p>Brak wyników. Zmień hasło albo filtr.</p>';
+      root.querySelectorAll('[data-select-topic]').forEach(input=>input.onchange=()=>{input.checked?selectedTopics.add(input.dataset.selectTopic):selectedTopics.delete(input.dataset.selectTopic);updateSelection();});
+    };
+    const updateSelection=()=>{const count=selectedTopics.size,$count=$('#topicSelectionCount');if($count)$count.textContent=count?`${count} ${count===1?'zaznaczony temat':'zaznaczone tematy'}`:'Nie zaznaczono tematów';root.querySelectorAll('[data-action="assign-selected-topics"],[data-action="clear-topic-selection"]').forEach(b=>b.disabled=!count);};
+    $('#topicsTarget').onchange=e=>{topicsTarget=e.target.value;topicsDay='';selectedTopics.clear();topicsPage();};
+    $('#topicsDay').onchange=e=>{topicsDay=e.target.value;selectedTopics.clear();topicsPage();};
+    $('#topicsSearch').oninput=e=>{filters.query=e.target.value;draw();};
+    $('#topicsProgram').onchange=e=>{filters.program=e.target.value;draw();};
+    $('#topicsCategory').onchange=e=>{filters.category=e.target.value;draw();};
+    draw();updateSelection();
+  }
   function catalogItem(id){const c=item(id);if(!c)return missing();const topic=A.topics().find(t=>t.id===c.topicId);
     const days=programs.flatMap(p=>p.variants.flatMap(v=>v.days.filter(d=>[...d.places,...d.talks].includes(c.id)).map(d=>`<li><a href="#day/${p.code}/${v.id}/${d.number}">${p.code} · ${esc(v.name)} · dzień ${d.number}: ${esc(d.title)}</a></li>`)));
-    root.innerHTML=`<a class="text-link" href="#catalog">← Katalog</a>`+header(c.programs.join(' · '),c.title,c.region)+badge(c)+`<section class="quick-panel"><h2>Co powinno znaleźć się w opracowaniu</h2><ul>${c.outline.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>${topic?`<p>Powiązany tekst: <a href="${href(c)}">${esc(topic.title)} →</a>. Zakres tego hasła może wymagać rozwinięcia.</p>`:'<p>Nie znaleziono osobnego materiału w odzyskanych opracowaniach.</p>'}<div class="work-actions">${topic?`<a class="button primary" href="${href(c)}">Otwórz materiał</a>`:''}${button('Wklej własne opracowanie','add-material',c.id)}</div><p class="source-note">Własny tekst zapisuje się na tym urządzeniu. Uwzględnij go w eksporcie kopii.</p></section><section><h2>W programach</h2>${days.length?`<ul class="related-days">${days.join('')}</ul>`:'<p>Temat ogólny, do wykorzystania na przejazdach we wszystkich przypisanych programach.</p>'}</section>`;
+    root.innerHTML=`<a class="text-link" href="#topics">← Wszystkie tematy</a>`+header(c.programs.join(' · '),c.title,c.region)+badge(c)+`<section class="quick-panel"><h2>Co znajduje się w opracowaniu</h2><ul>${c.outline.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>${topic?`<p>Powiązany tekst: <a href="${href(c)}">${esc(topic.title)} →</a>.</p>`:'<p>Nie znaleziono osobnego materiału w odzyskanych opracowaniach.</p>'}<div class="work-actions">${topic?`<a class="button primary" href="${href(c)}">Otwórz materiał</a>`:''}${button('Wklej własne opracowanie','add-material',c.id)}</div><p class="source-note">Własny tekst zapisuje się na tym urządzeniu. Uwzględnij go w eksporcie kopii.</p></section><section><h2>W programach</h2>${days.length?`<ul class="related-days">${days.join('')}</ul>`:'<p>Temat ogólny, do wykorzystania na przejazdach we wszystkich przypisanych programach.</p>'}</section>`;
   }
   function tripList(){root.innerHTML=header('TWOJE GRUPY','Moje objazdy','Każdy wyjazd ma osobne notatki, kolejność dni i listę opowiedzianych tematów.')+`<div class="work-actions"><a class="button primary" href="#trip/new">Nowy objazd</a>${button('Eksportuj kopię','backup')}</div><p class="source-note">Dane są zapisane w tej przeglądarce. Przed zmianą telefonu lub wyczyszczeniem danych wykonaj kopię.</p><div class="day-grid">${storage.trips.map(t=>`<article class="day-card"><span class="tiny-label">${t.program} · ${t.startDate||'BEZ DATY'}</span><h2><a href="#trip/${t.id}">${esc(t.name)}</a></h2><p>${t.order.length} dni · ${t.told.length} opowiedzianych tematów</p><a class="text-link" href="#trip/${t.id}/${t.lastDay}">Wróć do dnia →</a></article>`).join('')||'<p>Utwórz pierwszy objazd na podstawie CHT, CJA albo CTF.</p>'}</div>`;}
   function tripForm(code,vid){const p=program(code)||programs[0],v=variant(p,vid||p.defaultVariant);
@@ -93,11 +141,18 @@
     root.innerHTML=`<a class="text-link" href="#trip">← Wszystkie objazdy</a>`+header(t.program,t.name,v.name)+`<div class="work-actions"><a class="button primary" href="#trip/${t.id}/${t.lastDay}">Otwórz ostatni dzień</a>${button('Eksportuj kopię','backup')}${button('Drukuj plan / PDF','print')}</div><p class="source-note">Strzałki zmieniają kolejność całych dni wraz z ich materiałami i notatkami. Daty wynikają z nowej kolejności. Szczegóły zmiany planu wpisz w notatce dnia.</p><div class="day-grid">${t.order.map((n,i)=>{const d=v.days.find(d=>d.number===n);return d?dayCard(p,v,d,t,i):'';}).join('')}</div>`;
   }
   function missing(){root.innerHTML=header('NIE ZNALEZIONO','Ten widok nie istnieje')+'<a href="#programs">Wróć do programów →</a>';}
-  function route(raw){const [name,a,b,c]=raw.split('/');if(!['programs','program','day','catalog','trip'].includes(name))return false;
+  function syncMobileNav(raw=location.hash.slice(1)||'home'){
+    const nav=$('#mobilePrimaryNav');if(!nav)return;const trip=active(),parts=raw.split('/'),dayLink=trip?`#trip/${trip.id}/${trip.lastDay}`:(raw.startsWith('day/')?'#'+raw:'#programs'),planLink=trip?`#trip/${trip.id}`:'#trip';
+    const day=$('[data-mobile-tab="day"]',nav),topics=$('[data-mobile-tab="topics"]',nav),plan=$('[data-mobile-tab="plan"]',nav);day.href=dayLink;plan.href=planLink;
+    const tab=raw==='topics'||raw.startsWith('catalog/')||raw.startsWith('topic/')||raw==='library'||raw==='favorites'?'topics':raw.startsWith('day/')||(parts[0]==='trip'&&parts.length>2)?'day':'plan';
+    nav.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.dataset.mobileTab===tab));
+  }
+  function route(raw){const [name,a,b,c]=raw.split('/');syncMobileNav(raw);if(!['programs','program','day','topics','catalog','trip'].includes(name))return false;
     A.showView('compendium');document.querySelectorAll('.nav-link').forEach(el=>el.classList.toggle('active',el.dataset.view===(name==='day'||name==='program'?'programs':name)));
     if(name==='programs')root.innerHTML=header('TRZY DROGI PRZEZ CHINY','Wybierz program','Jedna baza wiedzy, materiały przypisane do kolejnych dni.')+`<div class="program-grid">${cards()}</div>`;
     if(name==='program')programPage(a,b);
     if(name==='day'){const p=program(a),v=variant(p,b);if(p&&v)dayPage(p,v,v.days.find(d=>d.number===+c));else missing();requestAnimationFrame(()=>window.scrollTo(0,0));}
+    if(name==='topics')topicsPage();
     if(name==='catalog')a?catalogItem(a):catalogPage();
     if(name==='trip'){if(a==='new')tripForm(b,c);else if(a&&b){const t=storage.trips.find(t=>t.id===a),p=t&&program(t.program),v=t&&variant(p,t.variant);if(t&&v)dayPage(p,v,v.days.find(d=>d.number===+b),t);else missing();}else if(a)tripPage(a);else tripList();}return true;
   }
@@ -122,9 +177,11 @@
       case 'bookmark':bookmark(value,true);break;
       case 'open-day-topic':{const all=[...root.querySelectorAll('.full-material')],target=all.find(x=>x.dataset.materialKey===value);if(target){all.forEach(x=>x.open=x===target);target.scrollIntoView({behavior:'smooth',block:'start'});}break;}
       case 'day-topic-list':$('#dayTopicList')?.scrollIntoView({behavior:'smooth',block:'start'});break;
-      case 'remove-day-topic':{const cut=value.lastIndexOf('|'),key=value.slice(0,cut),id=value.slice(cut+1),base=storage.dayTopics[key]||defaultDayIds(key);storage.dayTopics[key]=base.filter(x=>x!==id);persist();route(location.hash.slice(1));break;}
+      case 'remove-day-topic':{const cut=value.lastIndexOf('|'),key=value.slice(0,cut),id=value.slice(cut+1),base=storage.dayTopics[key]||defaultDayIds(key);storage.dayTopics[key]=base.filter(x=>x!==id);selectedTopics.delete(id);persist();route(location.hash.slice(1));break;}
       case 'add-day-topic':{const input=$('#dayTopicChoice'),choice=(input?.value||'').trim(),c=catalog.find(x=>x.id===choice||x.title.toLocaleLowerCase('pl')===choice.toLocaleLowerCase('pl'));if(!c){A.toast('Wybierz temat z listy.');break;}const key=value,current=storage.dayTopics[key]||defaultDayIds(key);storage.dayTopics[key]=C.unique([...current,c.id]);persist();route(location.hash.slice(1));break;}
       case 'reset-day-topics':delete storage.dayTopics[value];persist();route(location.hash.slice(1));break;
+      case 'clear-topic-selection':selectedTopics.clear();topicsPage();break;
+      case 'assign-selected-topics':{if(!selectedTopics.size)break;const current=storage.dayTopics[value]||defaultDayIds(value);storage.dayTopics[value]=C.unique([...current,...selectedTopics]);selectedTopics.clear();persist();A.toast('Tematy dodane do wybranego dnia.');topicsPage();break;}
       case 'read-day':{const ids=value.split(',').filter(C.validId);if(ids.length){A.state.route=ids;A.save();A.updateCounts();A.startRoute(ids[0]);}break;}
       case 'told':{const t=active();if(t){t.told=t.told.includes(value)?t.told.filter(id=>id!==value):[...t.told,value];persist();b.textContent=t.told.includes(value)?'✓ Opowiedziane':'Oznacz jako opowiedziane';b.setAttribute('aria-pressed',String(t.told.includes(value)));}break;}
       case 'move':{const t=active();if(t){const [n,delta]=value.split(':').map(Number),i=t.order.indexOf(n),j=i+delta;if(i>=0&&j>=0&&j<t.order.length){[t.order[i],t.order[j]]=[t.order[j],t.order[i]];persist();tripPage(t.id);}}break;}
@@ -134,7 +191,8 @@
     $('#topicDialog').addEventListener('close',()=>{pending='';});
     window.addEventListener('scroll',()=>{clearTimeout(bookmarkTimer);bookmarkTimer=setTimeout(()=>{if(A.state.currentTopicId)bookmark(A.state.currentTopicId);},800);},{passive:true});
     if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    window.addEventListener('hashchange',()=>syncMobileNav());syncMobileNav();
     if('caches' in window)caches.open('wanfang-complete').then(cache=>cache.match('./offline-ready')).then(r=>{if(r){offlineText='Na tym urządzeniu jest pobrana wersja offline. Przed kolejnym wyjazdem odśwież ją z internetem.';offlinePanel();}}).catch(()=>{});
   }
-  window.WanfangCompendium={init,home,route,onTopic,download,exportData:()=>structuredClone(storage),prepareImport:data=>C.mergeExtension(storage,data),applyImport:data=>{storage=data;persist();},onCustomTopic:id=>{if(pending){storage.bindings[pending]=id;persist();pending='';}}};
+  window.WanfangCompendium={init,home,route,onTopic,download,setTopicFilters:next=>Object.assign(filters,next||{}),exportData:()=>structuredClone(storage),prepareImport:data=>C.mergeExtension(storage,data),applyImport:data=>{storage=data;persist();},onCustomTopic:id=>{if(pending){storage.bindings[pending]=id;persist();pending='';}}};
 })();

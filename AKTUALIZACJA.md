@@ -9,6 +9,9 @@ Kompendium zawiera 54 główne opracowania, w tym 31 materiałów zaimportowanyc
 - W powitaniu i materiale o rejsie oddzielono przygotowania organizacyjne od tekstu do czytania.
 - Dodano style kompendium, katalog, programy, własne objazdy i obsługę pobierania plików do trybu offline.
 - Przebudowano mobilny widok dnia: lista tematów znajduje się na górze i na dole, jeden tekst rozwija się w całości, można przejść do następnego oraz dodawać i usuwać tematy z konkretnego dnia.
+- Dodano stałe mobilne menu „Dzień / Tematy / Plan”. Zakładka „Tematy” udostępnia cały katalog 177 haseł w jednym miejscu.
+- W bibliotece można zaznaczyć kilka tematów, wybrać własny objazd albo program wzorcowy oraz konkretny dzień, a następnie przypisać materiały jedną operacją. Tematy przypisane można również usuwać bez opuszczania biblioteki.
+- Globalna wyszukiwarka i skróty kategorii prowadzą teraz do wspólnej biblioteki, zamiast rozdzielać wyniki między dwa katalogi.
 - Usunięto z widoku programu panel „Do potwierdzenia”.
 - Uzupełniono wszystkie pozycje wcześniej oznaczone jako brakujące lub krótkie. Długie istniejące opracowania (między innymi Zhangjiajie, Hongcun–Tunxi, Changsha, Wielki Mur i Święta Droga) zachowano jako główne zamiast zastępować je krótszymi tekstami zbiorczymi.
 - Redakcja całej bazy nie oznacza zakończonego sprawdzenia każdego faktu; materiały należy teraz przejrzeć dzień po dniu, zaczynając od najbliższego programu CTF.
