@@ -411,7 +411,17 @@ body.guide-mode .topic-photo figcaption{font-size:16px}
   .topic-photo img{max-height:430px;object-fit:cover}
 }
 
-/* Czytanie mobilne: stała kotwica sekcji i oszczędne znaczniki treści */
+/* Compact reading pages: no overlapping section labels or oversized banners. */
+.topic-view .topic-hero{display:block;min-height:0}
+.topic-view .topic-toolbar{position:static}
+.topic-view .topic-toc{scroll-margin-top:calc(var(--topbar) + 14px)}
+.reading-section-anchor{display:none!important}
+.reading-toc-return{position:fixed;right:16px;bottom:18px;z-index:195;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);padding:11px 15px;font:700 13px/1.3 system-ui;box-shadow:var(--shadow-soft);cursor:pointer}
+.reading-toc-return[hidden]{display:none}
+.topic-view{padding-bottom:65px}
+@media(max-width:650px){.reading-toc-return{bottom:calc(76px + env(safe-area-inset-bottom))}.topic-view .topic-hero-copy{padding:24px 18px}}
+@media print{.reading-toc-return{display:none!important}}
+/* Reading emphasis */
 .reading-section-anchor{display:flex;align-items:center;gap:10px;max-width:900px;margin:0 0 18px;padding:8px 11px;border-left:4px solid var(--topic-accent);background:color-mix(in srgb,var(--topic-accent) 7%,var(--paper));border-radius:0 10px 10px 0}.reading-section-anchor span{flex:0 0 auto;color:var(--topic-accent);font:850 10px/1.2 Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}.reading-section-anchor strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:750 13px/1.3 Inter,system-ui,sans-serif}
 .reading-context,.reading-curiosity,.reading-takeaway{max-width:900px;padding:15px 17px!important;border-radius:0 12px 12px 0;margin:18px 0!important}.reading-context{border-left:5px solid var(--red)!important;background:color-mix(in srgb,var(--red) 8%,var(--paper))!important}.reading-curiosity{border-left:5px solid var(--gold)!important;background:color-mix(in srgb,var(--gold) 13%,var(--paper))!important}.reading-takeaway{border-left:5px solid var(--jade)!important;background:color-mix(in srgb,var(--jade) 10%,var(--paper))!important}
 .article-section p.reading-context,.article-section p.reading-curiosity,.article-section p.reading-takeaway{padding:14px 16px!important}

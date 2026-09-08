@@ -187,11 +187,19 @@
     ${scriptsHtml}
     <div class="facts-panel">${facts.map((f,i)=>`<div class="fact-card"><span class="tiny-label">CIEKAWOSTKA ${String(i+1).padStart(2,'0')}</span><p>${escapeHtml(f)}</p></div>`).join("")}</div>
     <div class="topic-layout"><aside class="topic-toc"><strong>SPIS TREŚCI</strong>${scripts.length?'<a href="#guide-scripts" data-scroll="guide-scripts">🎤 Gotowe opowieści</a>':''}${sections.map((s,i)=>`<a href="#${sectionAnchor(s,i)}" data-scroll="${sectionAnchor(s,i)}">${String(i+1).padStart(2,"0")}. ${escapeHtml(s.title)}</a>`).join("")}<a href="#personal-notes" data-scroll="personal-notes">Moje notatki</a></aside><div class="topic-article">${sections.map((s,i)=>`<section class="article-section rich-section" id="${sectionAnchor(s,i)}" data-section-id="${escapeHtml(s.id||String(i+1))}" data-cn="${t.icon||categorySymbol(t.category)}"><div class="reading-section-anchor"><span>Część ${i+1} z ${sections.length}</span><strong>${escapeHtml(s.title)}</strong></div><h2>${escapeHtml(s.title)}</h2>${s.subtitle?`<p class="article-subtitle">${escapeHtml(s.subtitle)}</p>`:""}${s.content}</section>`).join("")}<section class="notes-panel" id="personal-notes"><span class="tiny-label">TYLKO DLA CIEBIE</span><h2>Moje notatki do tego tematu</h2><textarea id="topicNotes" placeholder="Dopisz pytania turystów, własne żarty, punkt zbiórki, informacje praktyczne…">${escapeHtml(notes)}</textarea><div class="notes-actions"><button class="button primary" id="saveNotes">Zapisz notatki</button></div></section></div></div>`;
+    // Keep the reading page compact; source materials remain stored unchanged.
+    $$('.topic-hero-art,.topic-stat-row,.guide-scripts-panel,.talk-box,.reading-section-anchor',views.topic).forEach(el=>el.remove());
+    $$('[data-scroll="guide-scripts"]',views.topic).forEach(el=>el.remove());
+    const toc=$('.topic-toc',views.topic);toc.id='topic-contents';toc.tabIndex=-1;
+    const tocButton=document.createElement('button');tocButton.className='reading-toc-return';tocButton.type='button';tocButton.textContent='↑ Spis treści';
+    tocButton.onclick=()=>{document.body.classList.remove('guide-mode');toc.scrollIntoView({behavior:'smooth',block:'start'});toc.focus({preventScroll:true});};
+    views.topic.append(tocButton);
+    $$('[data-guide-jump="guide-scripts"]',views.topic).forEach(el=>{el.dataset.guideJump='topic-contents';el.textContent='Spis treści';el.onclick=tocButton.onclick;});
     $("#backLibrary").onclick=()=>location.hash="library"; $("#topicFav").onclick=()=>toggleFavorite(id); $("#topicRoute").onclick=()=>toggleRoute(id); $("#printTopic").onclick=()=>window.print(); $("#enterGuide").onclick=enterGuide;
     bindGuideRouteBar(t,routeList,routeIndex);
     $("#saveNotes").onclick=()=>{localStorage.setItem(`wanfang:notes:${id}`,$("#topicNotes").value);toast("Notatki zapisane");};
     $$(`[data-scroll]`, views.topic).forEach(a=>a.onclick=e=>{e.preventDefault();document.getElementById(a.dataset.scroll)?.scrollIntoView({behavior:"smooth",block:"start"});});
-    $$(`[data-guide-jump]`, views.topic).forEach(b=>b.onclick=()=>document.getElementById(b.dataset.guideJump)?.scrollIntoView({behavior:"smooth",block:"start"}));
+    $$(`[data-guide-jump]`, views.topic).forEach(b=>b.onclick=()=>{if(b.dataset.guideJump==='topic-contents'){tocButton.onclick();return;}document.getElementById(b.dataset.guideJump)?.scrollIntoView({behavior:"smooth",block:"start"});});
     $$(`[data-guide-font]`, views.topic).forEach(b=>b.onclick=()=>{const current=parseInt(getComputedStyle(document.body).getPropertyValue('--guide-font-size'))||(matchMedia('(max-width:620px)').matches?17:26);const next=Math.max(15,Math.min(36,current+(+b.dataset.guideFont)*2));document.body.style.setProperty('--guide-font-size',`${next}px`);toast(`Tekst: ${next}px`);});
     $$('.guide-script-tab',views.topic).forEach(btn=>btn.onclick=()=>{$$('.guide-script-tab',views.topic).forEach(x=>x.classList.toggle('active',x===btn));$$('.guide-script-content',views.topic).forEach(x=>x.classList.toggle('active',x.dataset.guideScriptPanel===btn.dataset.guideScript));});
     $$('.tab[data-tab]',views.topic).forEach(btn=>btn.onclick=()=>{$$('.tab[data-tab]',views.topic).forEach(x=>x.classList.toggle('active',x===btn));$$('.talk',views.topic).forEach(x=>x.classList.toggle('active',x.id===btn.dataset.tab));});
@@ -250,6 +258,8 @@
     return Math.max(0,Math.min(1,(window.scrollY-start)/(end-start)));
   }
   function updateReadingProgress(){
+    const toc=$('.topic-toc',views.topic),tocButton=$('.reading-toc-return',views.topic);
+    if(tocButton)tocButton.hidden=!views.topic.classList.contains('active-view')||(!document.body.classList.contains('guide-mode')&&toc.getBoundingClientRect().bottom>parseInt(getComputedStyle(document.documentElement).getPropertyValue('--topbar')));
     const docMax=document.documentElement.scrollHeight-window.innerHeight;
     const page=docMax>0?Math.max(0,Math.min(1,window.scrollY/docMax)):0;
     let visible=page;
