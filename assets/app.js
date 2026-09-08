@@ -267,7 +267,14 @@
   function enterGuide(){document.body.classList.add("guide-mode");updateReadingProgress();window.scrollTo({top:0,behavior:"smooth"});}
   function exitGuide(){document.body.classList.remove("guide-mode");updateReadingProgress();}
 
-  function showView(name){Object.values(views).forEach(v=>v.classList.remove("active-view"));(views[name]||views.home).classList.add("active-view");$$('.nav-link').forEach(a=>a.classList.toggle("active",a.dataset.view===name));$("#mainContent").focus({preventScroll:true});}
+  function showView(name){
+    // Live search must not move focus off the input (or dismiss a phone keyboard).
+    const keepSearchFocus=name==='compendium'&&location.hash==='#topics'&&document.activeElement===$("#searchInput");
+    Object.values(views).forEach(v=>v.classList.remove("active-view"));
+    (views[name]||views.home).classList.add("active-view");
+    $$('.nav-link').forEach(a=>a.classList.toggle("active",a.dataset.view===name));
+    if(!keepSearchFocus)$("#mainContent").focus({preventScroll:true});
+  }
   function routeHash(){
     const raw=location.hash.slice(1)||'home';
     if(raw.startsWith('topic/')){showView('topic');renderTopic(raw.split('/')[1]);}
