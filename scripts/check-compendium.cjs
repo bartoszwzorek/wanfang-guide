@@ -22,10 +22,11 @@ const compendium=read('assets/compendium.js');assert(compendium.includes('id="da
 assert(compendium.includes('function topicsPage()'));assert(compendium.includes("case 'assign-selected-topics'"));assert(compendium.includes("case 'clear-topic-selection'"));
 assert(compendium.includes('class="mobile-topic-read"'));assert(compendium.includes("case 'quick-add-day-topic'"));assert(compendium.includes("case 'move-day-topic'"));
 assert(compendium.includes('function dayTopicEditor('));assert(compendium.includes('id="planDayChoice"'));assert(compendium.includes("c==='edit'"));
+assert(compendium.includes('class="program-list-section"'));assert(compendium.includes("plan.href='#trip'"));assert(compendium.includes("raw.startsWith('program/')"));assert(!compendium.includes('<p class="source-note">Program wzorcowy.'));
 assert(compendium.includes('function quizPage()'));assert(compendium.includes("if(name==='quiz')quizPage()"));assert(compendium.includes("value=\"all\""));assert(compendium.includes("value=\"manual\""));
 assert(index.includes('href="#quiz" data-view="quiz"'));assert(!compendium.includes('quiz-entry-card'));
 const app=read('assets/app.js');assert(!app.includes('initTopicQuiz'));assert(!app.includes('topic-quiz-section'));assert(app.includes('reading-section-anchor'));assert(app.includes('decorateReading'));
 assert(read('assets/compendium.css').includes('.central-quiz'));assert(read('assets/style.css').includes('.reading-takeaway'));
-assert(index.includes('id="mobilePrimaryNav"'));assert(index.includes('href="#topics" data-mobile-tab="topics"'));assert(read('assets/compendium.css').includes('.mobile-primary-nav'));
+assert(index.includes('id="mobilePrimaryNav"'));assert(index.includes('href="#program/CTF/praktyka" data-mobile-tab="day"'));assert(index.includes('href="#topics" data-mobile-tab="topics"'));assert(read('assets/compendium.css').includes('.mobile-primary-nav'));
 const sw={self:{}};vm.runInNewContext(read('precache.js'),sw);for(const p of sw.self.WANFANG_CACHE_FILES)assert(fs.existsSync(path.join(root,p)),`Offline: ${p}`);
 console.log(JSON.stringify({topics:topics.length,imports:31,briefings:15,catalog:catalog.size,materialCounts,variants:w.WANFANG_PROGRAMS.reduce((n,p)=>n+p.variants.length,0),offlineAssets:sw.self.WANFANG_CACHE_FILES.length,result:'PASS'}));
