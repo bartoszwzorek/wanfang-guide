@@ -226,6 +226,9 @@
       preparation.innerHTML='<details><summary>Przygotowania i ustalenia organizacyjne</summary><p>Archiwalne ustalenia. Potwierdź je dla swojej grupy przed użyciem.</p>'+t.preparationSections.map(s=>`<section><h3>${esc(s.title)}</h3>${s.content}</section>`).join('')+'</details>';
       panel.after(preparation);
     }
+    // Keep navigation back to the day, without the bookmark/provenance panel.
+    if(returnDay){const back=document.createElement('a');back.className='button';back.href=returnDay;back.textContent='← Wróć do dnia';$('.topic-toolbar',view).append(back);}
+    panel.remove();
     if(!t.guideScripts?.length){const jump=view.querySelector('[data-guide-jump="guide-scripts"]');if(jump){jump.dataset.guideJump='topic-section-'+(t.sections?.[0]?.id||1);jump.textContent='Czytaj';}}
     $('#topicNotes',view).oninput=e=>{try{localStorage.setItem(`wanfang:notes:${t.id}`,e.target.value);}catch{A.toast('Nie udało się zapisać notatki.');}};
   }

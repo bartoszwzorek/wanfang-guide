@@ -102,6 +102,14 @@
   }
   function stripHtml(html=""){const box=document.createElement("div");box.innerHTML=html;return box.textContent||"";}
   function decorateReading(scope=document){
+    // Remove delivery directions from reading surfaces, never factual narration.
+    $$('.article-section,.reading-copy,.guide-script-content',scope).forEach(copy=>{
+      $$('p,span,li,div',copy).forEach(el=>{
+        if(el.querySelector('p,div,section,ul,ol,details,table'))return;
+        const text=el.textContent.trim();
+        if(/^(?:Najlepsze do (?:powiedzenia|opowiedzenia) w (?:autokarze|busie)|Kiedy\s*:\s*(?:w busie|w autokarze|przed wejściem)|Gotowe do przeczytania\s*$|Przystanek \d+\s*[·—-]\s*w busie)/iu.test(text))el.remove();
+      });
+    });
     $$('.article-section,.reading-copy section,.guide-script-content',scope).forEach(section=>{
       $$('.note,.research-note,.fact-check',section).forEach(el=>el.classList.add('reading-context'));
       $$('.detail,blockquote',section).forEach(el=>el.classList.add('reading-curiosity'));
