@@ -3,30 +3,39 @@ importScripts('./precache.js');
 const markerCache='wanfang-complete',marker=new URL('./offline-ready',self.registration.scope).href;
 let downloading;
 
-/* Imported materials sometimes contain an empty <a href="...jpg"></a> inside a figure.
-   Render those links as real images. Wikimedia thumbnail URLs in older imports use
-   upload.wikimedia.org with a /thumb/ path; current thumbnails are served from
-   thumb.wikimedia.org, so normalize that host before assigning img.src. */
+/* Repair imported photo cards at runtime. Older materials contain empty links to
+   Wikimedia thumbnails. Build a stable Commons Special:Redirect URL from the
+   original filename instead of depending on a particular thumbnail host/path. */
 const photoRepair=`
 ;(()=>{
   const isImageUrl=url=>/\\.(?:jpe?g|png|webp|gif)(?:[?#]|$)/i.test(url||'');
-  const normalizeImageUrl=url=>{
+  const wikimediaFileUrl=raw=>{
     try{
-      const u=new URL(url,location.href);
-      if(u.hostname==='upload.wikimedia.org'&&u.pathname.includes('/wikipedia/commons/thumb/'))u.hostname='thumb.wikimedia.org';
-      return u.href;
-    }catch{return url;}
+      const u=new URL(raw,location.href);
+      if(!/(?:upload|thumb)\\.wikimedia\\.org$/i.test(u.hostname))return u.href;
+      const parts=u.pathname.split('/').filter(Boolean);
+      const thumbIndex=parts.indexOf('thumb');
+      let filename='';
+      if(thumbIndex>=0&&parts.length>thumbIndex+3) filename=parts[thumbIndex+3];
+      else if(parts.length>=4) filename=parts[parts.length-1];
+      if(!filename)return u.href;
+      return 'https://commons.wikimedia.org/wiki/Special:Redirect/file/'+encodeURIComponent(decodeURIComponent(filename))+'?width=1400';
+    }catch{return raw;}
   };
-  const cleanCaption=caption=>{
-    if(!caption)return;
-    caption.innerHTML=caption.innerHTML.replace(/<br\\s*\\/?>\\s*<strong>Gdy podgląd blokuje obraz:<\\/strong>\\s*kliknij kartę zdjęcia\\.?/gi,'');
+  const removePreviewNotices=()=>{
+    document.querySelectorAll('strong').forEach(strong=>{
+      if(!/Gdy podgląd blokuje obraz/i.test(strong.textContent||''))return;
+      const parent=strong.parentElement;
+      if(!parent)return;
+      const html=parent.innerHTML;
+      parent.innerHTML=html.replace(/<br\\s*\\/?>?\\s*<strong>Gdy podgląd blokuje obraz:<\\/strong>\\s*kliknij kartę zdjęcia\\.?/gi,'').replace(/<strong>Gdy podgląd blokuje obraz:<\\/strong>\\s*kliknij kartę zdjęcia\\.?/gi,'');
+    });
   };
   const repairPhotos=()=>{
     document.querySelectorAll('figure > a[href]').forEach(link=>{
       const raw=link.getAttribute('href')||'';
       if(!isImageUrl(raw))return;
-      const href=normalizeImageUrl(raw);
-      if(href!==raw)link.setAttribute('href',href);
+      const href=wikimediaFileUrl(raw);
       const figure=link.closest('figure');
       const caption=figure?.querySelector('figcaption');
       let img=link.querySelector('img');
@@ -39,9 +48,10 @@ const photoRepair=`
         img.style.cssText='display:block;width:100%;height:auto;max-height:70vh;object-fit:cover;border-radius:14px;';
         link.appendChild(img);
       }
-      if(img.getAttribute('src')!==href)img.src=href;
-      cleanCaption(caption);
+      link.href=href;
+      if(img.dataset.wanfangSrc!==href){img.dataset.wanfangSrc=href;img.src=href;}
     });
+    removePreviewNotices();
   };
   const start=()=>{
     repairPhotos();
