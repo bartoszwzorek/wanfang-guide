@@ -1,4 +1,4 @@
-self.WANFANG_CACHE_VERSION="803f0dcac679d312";
+self.WANFANG_CACHE_VERSION="20260908-chat-finish-1";
 self.WANFANG_CACHE_FILES=[
   "assets/app.js",
   "assets/compendium-core.js",
