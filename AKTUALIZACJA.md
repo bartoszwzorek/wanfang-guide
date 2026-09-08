@@ -1,6 +1,6 @@
-# Aktualizacja kompendium — 2026-09-07
+# Aktualizacja kompendium — 2026-09-08
 
-Kompendium zawiera 37 tematów, w tym 31 zaimportowanych opracowań, 15 odpraw CTF oraz katalog 177 tematów i braków. Programy CHT, CJA i CTF mają łącznie sześć wariantów. Statusy i informacje do potwierdzenia pozostają częścią danych: obecność wariantu nie oznacza potwierdzenia jego realizacji.
+Kompendium zawiera 54 główne opracowania, w tym 31 materiałów zaimportowanych, 17 nowych rozdziałów zbiorczych i 15 odpraw CTF. Katalog obejmuje 177 pozycji, a programy CHT, CJA i CTF mają łącznie sześć wariantów. Każda pozycja katalogu prowadzi teraz do materiału mającego co najmniej 350 słów; każdy z 17 nowych rozdziałów przekracza 500 słów. Nowe teksty są pierwszą pełną wersją przeznaczoną do wspólnej redakcji, nie wersją ostateczną.
 
 ## Wprowadzone zmiany
 
@@ -8,7 +8,10 @@ Kompendium zawiera 37 tematów, w tym 31 zaimportowanych opracowań, 15 odpraw C
 - Przeredagowano zwroty skierowane do prowadzącego na wypowiedzi do uczestników; poprawiono etykiety interfejsu.
 - W powitaniu i materiale o rejsie oddzielono przygotowania organizacyjne od tekstu do czytania.
 - Dodano style kompendium, katalog, programy, własne objazdy i obsługę pobierania plików do trybu offline.
-- Zachowano oznaczenia braków i potrzebnej weryfikacji. Redakcja całej bazy nie oznacza pełnego sprawdzenia wszystkich faktów.
+- Przebudowano mobilny widok dnia: lista tematów znajduje się na górze i na dole, jeden tekst rozwija się w całości, można przejść do następnego oraz dodawać i usuwać tematy z konkretnego dnia.
+- Usunięto z widoku programu panel „Do potwierdzenia”.
+- Uzupełniono wszystkie pozycje wcześniej oznaczone jako brakujące lub krótkie. Długie istniejące opracowania (między innymi Zhangjiajie, Hongcun–Tunxi, Changsha, Wielki Mur i Święta Droga) zachowano jako główne zamiast zastępować je krótszymi tekstami zbiorczymi.
+- Redakcja całej bazy nie oznacza zakończonego sprawdzenia każdego faktu; materiały należy teraz przejrzeć dzień po dniu, zaczynając od najbliższego programu CTF.
 
 Samodzielny materiał HTML znajduje się w `materials/wanfang-kompendium-po-redakcji.html`, a zatwierdzony rozdział w `materials/alipay-wechat-pay-zatwierdzony.md`. Historyczne pliki źródłowe zachowano jako archiwum; nie są bieżącą wersją redakcyjną.
 
@@ -22,4 +25,4 @@ Po zmianie plików uruchom `node scripts/build-precache.cjs`, następnie `node s
 
 Repozytorium: https://github.com/bartoszwzorek/wanfang-guide
 
-Aktualizacja przygotowana na gałęzi `codex/kompendium-chiny` jest przeznaczona do publikacji przez GitHub Pages z gałęzi `main`. Wynik konkretnego wdrożenia jest dostępny w GitHub Actions. Strona z konta firmowego jest osobnym projektem.
+Aktualizacja jest przygotowywana lokalnie na gałęzi `codex/kompendium-chiny`, a publikowana przez GitHub Pages z gałęzi `main`. Wynik konkretnego wdrożenia jest dostępny w GitHub Actions. Strona z konta firmowego jest osobnym projektem.

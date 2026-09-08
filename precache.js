@@ -1,4 +1,4 @@
-self.WANFANG_CACHE_VERSION="fbbd472e3de35ea8";
+self.WANFANG_CACHE_VERSION="0823048ad270ee7e";
 self.WANFANG_CACHE_FILES=[
   "assets/app.js",
   "assets/compendium-core.js",
@@ -26,6 +26,7 @@ self.WANFANG_CACHE_FILES=[
   "data/catalog.js",
   "data/compendium-topics.js",
   "data/ctf-briefings.js",
+  "data/expanded-topics.js",
   "data/programs.js",
   "data/topics.js",
   "index.html",

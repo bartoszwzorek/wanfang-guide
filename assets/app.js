@@ -1,6 +1,6 @@
 (() => {
   const C = window.WanfangCore;
-  const baseTopics = [...new Map([...(window.WANFANG_TOPICS || []), ...(window.WANFANG_IMPORTED_TOPICS || [])].map(t=>[t.id,t])).values()];
+  const baseTopics = [...new Map([...(window.WANFANG_TOPICS || []), ...(window.WANFANG_IMPORTED_TOPICS || []), ...(window.WANFANG_EXPANDED_TOPICS || [])].map(t=>[t.id,t])).values()];
   const storedArray = key => {try{const value=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(value)?value:[];}catch{return [];}};
   const state = {
     query: "", city: "", category: "", layout: "grid", currentTopicId: null,
