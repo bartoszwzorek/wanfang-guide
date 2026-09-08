@@ -1,4 +1,4 @@
-self.WANFANG_CACHE_VERSION="0c666d742f48b175";
+self.WANFANG_CACHE_VERSION="231e05871610f43f";
 self.WANFANG_CACHE_FILES=[
   "assets/app.js",
   "assets/compendium-core.js",

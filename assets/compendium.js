@@ -85,15 +85,13 @@
     const defaultIds=C.unique([...d.places,...d.talks]),dayKey=trip?`trip/${trip.id}/${d.number}`:`${p.code}/${v.id}/${d.number}`;
     const ids=storage.dayTopics[dayKey]||defaultIds;
     const available=C.unique(ids.map(id=>item(id)?.topicId).filter(Boolean)).map(id=>A.topics().find(t=>t.id===id)).filter(Boolean);
-    const trial=p.code==='CTF'&&d.number===4;
-    const full=trial?trialDayMaterials(ids):fullDayMaterials(ids);
+    const full=trialDayMaterials(ids);
     const topicButtons=full.materials.map(m=>button(m.title,'open-day-topic',m.key)).join('');
     const missingButtons=ids.map(id=>item(id)).filter(c=>c&&!c.topicId).map(c=>`<a class="day-topic missing-topic" href="#catalog/${c.id}">${esc(c.title)} <small>brak tekstu</small></a>`).join('');
     const short=available.flatMap(t=>C.talkOptions(t,5).slice(0,1).map(s=>({topic:t,script:s})));
     root.innerHTML=`<a class="text-link" href="${trip?'#trip/'+trip.id:'#program/'+p.code+'/'+v.id}">← ${trip?'Mój objazd':'Dni programu'}</a>`+header(`${p.code} · DZIEŃ ${position+1}${trip?.startDate?' · '+C.dateForDay(trip.startDate,position):''}`,trip?.titles[d.number]||d.title,v.name)+
       `<section class="day-topic-hub" id="dayTopicList"><span class="tiny-label">DZIEŃ ${position+1}</span><h2>Plan dnia i czytanie</h2><p>Tematy są ułożone w kolejności. Kliknij wybrany materiał, aby od razu otworzyć pełny tekst.</p><div class="day-topic-buttons">${topicButtons}${missingButtons||''}</div>${dayTopicEditor(ids,dayKey,editTopics)}</section>
       <section class="full-materials"><span class="tiny-label">PEŁNE TEKSTY</span><h2>Materiały na ten dzień</h2>${full.html||'<p>Do tego dnia nie odzyskano jeszcze pełnego tekstu. Dodaj inny temat albo otwórz hasło oznaczone jako brak tekstu.</p>'}</section>
-      ${trial?'':`<nav class="day-topic-footer"><strong>Kolejny temat?</strong><div class="day-topic-buttons">${topicButtons}${missingButtons||''}</div><button class="button" data-action="day-topic-list">↑ Wróć do listy tematów</button></nav>`}
       <details class="quick-panel compact-panel"><summary><strong>Mam tylko 5 minut — pokaż skróty</strong></summary><p>Wybierz jedną krótką wersję. Czas szacowany przy około 130 słowach na minutę.</p>${short.map(({topic:t,script:s})=>`<details><summary>${esc(t.title)} · około ${s.minutes} min</summary><div class="reading-copy">${s.content}</div><a href="#topic/${t.id}">Pełny materiał →</a></details>`).join('')||'<p>Do tego dnia nie ma jeszcze krótkiej wersji.</p>'}</details>
       ${trip?`<section class="notes-panel"><h2>Notatki z tego dnia</h2><label>Nazwa dnia w Twoim objeździe<input id="dayTitle" maxlength="200" value="${esc(trip.titles[d.number]||d.title)}"></label><label>Ustalenia, pytania grupy i nowe ciekawostki<textarea id="dayNotes" rows="8" placeholder="Co warto dopisać do kompendium po powrocie?">${esc(trip.notes[d.number]||'')}</textarea></label><p id="noteStatus" role="status">Zapis lokalny na tym urządzeniu. Eksport kopii przenosi notatki między urządzeniami.</p>${button('Eksportuj kopię z notatkami','backup')}</section>`:''}
       <nav class="day-pagination" aria-label="Sąsiednie dni">${position>0?`<a class="button" href="${link(order[position-1])}">← Poprzedni dzień</a>`:'<span></span>'}${position<order.length-1?`<a class="button" href="${link(order[position+1])}">Następny dzień →</a>`:''}</nav>`;

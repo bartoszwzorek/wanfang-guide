@@ -11,5 +11,14 @@ assert.equal((result.html.match(/ open>/g)||[]).length,1);assert(!/Część \d+ 
 for(const m of result.materials){assert(m.sections.length>0,m.key);for(const s of m.sections)assert(result.html.includes(s.content.replace(/<h[1-6]\b[^>]*>[\s\S]*?<\/h[1-6]>/gi,'')));}
 assert.equal(ctx.trialDayMaterials([...ids,'praktyczne-alipay']).materials.length,6);
 assert.equal(ctx.trialDayMaterials([]).html,'');
-assert(src.includes("const trial=p.code==='CTF'&&d.number===4;"));
-console.log('PASS: CTF day 4 has five independent texts, first open, full prose retained, added topics visible');
+assert(src.includes('const full=trialDayMaterials(ids);'));
+assert(!src.includes('class="day-topic-footer"'));
+let days=0;
+for(const p of w.WANFANG_PROGRAMS)for(const v of p.variants)for(const d of v.days){
+  const assigned=[...new Set([...d.places,...d.talks])],rendered=ctx.trialDayMaterials(assigned);
+  assert.deepEqual(Array.from(rendered.materials,m=>m.key),assigned,`${p.code}/${v.id}/${d.number}`);
+  assert.equal((rendered.html.match(/<details class="full-material trial-reading"[^>]* open>/g)||[]).length,assigned.length?1:0);
+  for(const m of rendered.materials)assert(m.sections.length>0,`${p.code}/${v.id}/${d.number}/${m.key}`);
+  days++;
+}
+console.log(`PASS: ${days} days across all programs/variants; individual texts, first open, no repeated footer`);
