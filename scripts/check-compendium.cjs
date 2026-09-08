@@ -21,6 +21,7 @@ const index=read('index.html');for(const match of index.matchAll(/(?:src|href)="
 const compendium=read('assets/compendium.js');assert(compendium.includes('id="dayTopicList"'));assert(compendium.includes("case 'add-day-topic'"));assert(compendium.includes("case 'remove-day-topic'"));assert(!compendium.includes('class="day-checks"'));
 assert(compendium.includes('function topicsPage()'));assert(compendium.includes("case 'assign-selected-topics'"));assert(compendium.includes("case 'clear-topic-selection'"));
 assert(compendium.includes('function quizPage()'));assert(compendium.includes("if(name==='quiz')quizPage()"));assert(compendium.includes("value=\"all\""));assert(compendium.includes("value=\"manual\""));
+assert(index.includes('href="#quiz" data-view="quiz"'));assert(!compendium.includes('quiz-entry-card'));
 const app=read('assets/app.js');assert(!app.includes('initTopicQuiz'));assert(!app.includes('topic-quiz-section'));assert(app.includes('reading-section-anchor'));assert(app.includes('decorateReading'));
 assert(read('assets/compendium.css').includes('.central-quiz'));assert(read('assets/style.css').includes('.reading-takeaway'));
 assert(index.includes('id="mobilePrimaryNav"'));assert(index.includes('href="#topics" data-mobile-tab="topics"'));assert(read('assets/compendium.css').includes('.mobile-primary-nav'));
