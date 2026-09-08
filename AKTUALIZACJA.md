@@ -35,3 +35,9 @@ Po zmianie plików uruchom `node scripts/build-precache.cjs`, następnie `node s
 Repozytorium: https://github.com/bartoszwzorek/wanfang-guide
 
 Aktualizacja jest przygotowywana lokalnie na gałęzi `codex/kompendium-chiny`, a publikowana przez GitHub Pages z gałęzi `main`. Wynik konkretnego wdrożenia jest dostępny w GitHub Actions. Strona z konta firmowego jest osobnym projektem.
+# 2026-09-08 — rozdzielenie „Dnia” i „Planu” na telefonie
+
+- `Dzień` prowadzi teraz do rozpiski dni wybranego programu lub aktywnego objazdu i jest poprawnie podświetlony.
+- `Plan` zawsze otwiera ekran „Moje objazdy”. Pod własnymi objazdami znajdują się programy CHT, CJA i CTF.
+- Z ekranu programu usunięto techniczny opis „Program wzorcowy…” oraz informacje do potwierdzania.
+- Ostatnio wybrany program i wariant są zapamiętywane w przeglądarce.
