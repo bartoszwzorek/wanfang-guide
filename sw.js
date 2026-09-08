@@ -4,29 +4,42 @@ const markerCache='wanfang-complete',marker=new URL('./offline-ready',self.regis
 let downloading;
 
 /* Imported materials sometimes contain an empty <a href="...jpg"></a> inside a figure.
-   The source link is valid, but without an <img> the browser has nothing to render.
-   Append a tiny client-side repair to app.js so every such photo card works everywhere. */
+   Render those links as real images. Wikimedia thumbnail URLs in older imports use
+   upload.wikimedia.org with a /thumb/ path; current thumbnails are served from
+   thumb.wikimedia.org, so normalize that host before assigning img.src. */
 const photoRepair=`
 ;(()=>{
   const isImageUrl=url=>/\\.(?:jpe?g|png|webp|gif)(?:[?#]|$)/i.test(url||'');
+  const normalizeImageUrl=url=>{
+    try{
+      const u=new URL(url,location.href);
+      if(u.hostname==='upload.wikimedia.org'&&u.pathname.includes('/wikipedia/commons/thumb/'))u.hostname='thumb.wikimedia.org';
+      return u.href;
+    }catch{return url;}
+  };
   const cleanCaption=caption=>{
     if(!caption)return;
     caption.innerHTML=caption.innerHTML.replace(/<br\\s*\\/?>\\s*<strong>Gdy podgląd blokuje obraz:<\\/strong>\\s*kliknij kartę zdjęcia\\.?/gi,'');
   };
   const repairPhotos=()=>{
     document.querySelectorAll('figure > a[href]').forEach(link=>{
-      const href=link.getAttribute('href')||'';
-      if(link.querySelector('img')||!isImageUrl(href))return;
+      const raw=link.getAttribute('href')||'';
+      if(!isImageUrl(raw))return;
+      const href=normalizeImageUrl(raw);
+      if(href!==raw)link.setAttribute('href',href);
       const figure=link.closest('figure');
       const caption=figure?.querySelector('figcaption');
-      const img=document.createElement('img');
-      img.src=href;
-      img.alt=((caption?.textContent||'Zdjęcie').replace(/Źródło obrazu:[\\s\\S]*$/i,'').trim()||'Zdjęcie');
-      img.loading='lazy';
-      img.decoding='async';
-      img.referrerPolicy='no-referrer';
-      img.style.cssText='display:block;width:100%;height:auto;max-height:70vh;object-fit:cover;border-radius:14px;';
-      link.appendChild(img);
+      let img=link.querySelector('img');
+      if(!img){
+        img=document.createElement('img');
+        img.alt=((caption?.textContent||'Zdjęcie').replace(/Źródło obrazu:[\\s\\S]*$/i,'').trim()||'Zdjęcie');
+        img.loading='lazy';
+        img.decoding='async';
+        img.referrerPolicy='no-referrer';
+        img.style.cssText='display:block;width:100%;height:auto;max-height:70vh;object-fit:cover;border-radius:14px;';
+        link.appendChild(img);
+      }
+      if(img.getAttribute('src')!==href)img.src=href;
       cleanCaption(caption);
     });
   };
