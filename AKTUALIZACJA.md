@@ -12,6 +12,9 @@ Kompendium zawiera 54 główne opracowania, w tym 31 materiałów zaimportowanyc
 - Dodano stałe mobilne menu „Dzień / Tematy / Plan”. Zakładka „Tematy” udostępnia cały katalog 177 haseł w jednym miejscu.
 - W bibliotece można zaznaczyć kilka tematów, wybrać własny objazd albo program wzorcowy oraz konkretny dzień, a następnie przypisać materiały jedną operacją. Tematy przypisane można również usuwać bez opuszczania biblioteki.
 - Globalna wyszukiwarka i skróty kategorii prowadzą teraz do wspólnej biblioteki, zamiast rozdzielać wyniki między dwa katalogi.
+- Rozdzielono trzy główne funkcje mobilne. „Tematy” jest prostą biblioteką: kliknięcie tytułu natychmiast otwiera pełny tekst, a osobny przycisk „＋” dodaje materiał do wybranego dnia. Wyszukiwanie działa również bez polskich znaków.
+- „Dzień” pokazuje materiały w ustalonej kolejności i zawiera rozwijany edytor całego dnia: wyszukiwanie w bazie 177 haseł, dodawanie, usuwanie oraz przesuwanie tematów w górę i w dół.
+- „Plan” pozwala wybrać konkretny dzień objazdu i użyć głównego przycisku „Ułóż tematy dnia”; osobny przycisk prowadzi bezpośrednio do czytania tego dnia.
 - Usunięto z widoku programu panel „Do potwierdzenia”.
 - Zmniejszono typografię długich tekstów w widoku mobilnym do 16 px, a w mobilnym trybie przewodnika ustawiono czytelny punkt wyjścia 17 px z zachowaniem przycisków A−/A+.
 - Dodano przyklejoną etykietę bieżącej części oraz trzy oszczędne wyróżnienia: kontekst historyczny, ciekawostka i puenta. Zwykłe akapity pozostają bez tła.

@@ -20,6 +20,8 @@ assert.equal(C.talkOptions({guideScripts:[{content:'słowo '.repeat(651)}]},5).l
 const index=read('index.html');for(const match of index.matchAll(/(?:src|href)="([^"#]+)"/g)){const p=match[1];if(!/^https?:/.test(p))assert(fs.existsSync(path.join(root,p)),`Missing asset ${p}`);}
 const compendium=read('assets/compendium.js');assert(compendium.includes('id="dayTopicList"'));assert(compendium.includes("case 'add-day-topic'"));assert(compendium.includes("case 'remove-day-topic'"));assert(!compendium.includes('class="day-checks"'));
 assert(compendium.includes('function topicsPage()'));assert(compendium.includes("case 'assign-selected-topics'"));assert(compendium.includes("case 'clear-topic-selection'"));
+assert(compendium.includes('class="mobile-topic-read"'));assert(compendium.includes("case 'quick-add-day-topic'"));assert(compendium.includes("case 'move-day-topic'"));
+assert(compendium.includes('function dayTopicEditor('));assert(compendium.includes('id="planDayChoice"'));assert(compendium.includes("c==='edit'"));
 assert(compendium.includes('function quizPage()'));assert(compendium.includes("if(name==='quiz')quizPage()"));assert(compendium.includes("value=\"all\""));assert(compendium.includes("value=\"manual\""));
 assert(index.includes('href="#quiz" data-view="quiz"'));assert(!compendium.includes('quiz-entry-card'));
 const app=read('assets/app.js');assert(!app.includes('initTopicQuiz'));assert(!app.includes('topic-quiz-section'));assert(app.includes('reading-section-anchor'));assert(app.includes('decorateReading'));
