@@ -194,7 +194,7 @@
   function missing(){root.innerHTML=header('NIE ZNALEZIONO','Ten widok nie istnieje')+'<a href="#programs">Wróć do programów →</a>';}
   function syncMobileNav(raw=location.hash.slice(1)||'home'){
     const nav=$('#mobilePrimaryNav');if(!nav)return;const trip=active(),parts=raw.split('/'),routeTrip=parts[0]==='trip'&&parts[1]&&parts[1]!=='new'?storage.trips.find(t=>t.id===parts[1]):null,p=parts[0]==='program'||parts[0]==='day'?program(parts[1]):preferredProgram(),v=p?(parts[0]==='program'||parts[0]==='day'?variant(p,parts[2]):preferredVariant(p)):null;
-    const dayLink=routeTrip?`#trip/${routeTrip.id}`:trip?`#trip/${trip.id}`:`#program/${p.code}/${v.id}`;
+    const dayLink=parts[0]==='program'||parts[0]==='day'?`#program/${p.code}/${v.id}`:routeTrip?`#trip/${routeTrip.id}`:trip?`#trip/${trip.id}`:`#program/${p.code}/${v.id}`;
     const day=$('[data-mobile-tab="day"]',nav),topics=$('[data-mobile-tab="topics"]',nav),plan=$('[data-mobile-tab="plan"]',nav);day.href=dayLink;plan.href='#trip';
     const tripDays=parts[0]==='trip'&&parts[1]&&parts[1]!=='new';
     const tab=raw==='topics'||raw==='quiz'||raw.startsWith('catalog/')||raw.startsWith('topic/')||raw==='library'||raw==='favorites'?'topics':raw.startsWith('program/')||raw.startsWith('day/')||tripDays?'day':'plan';
