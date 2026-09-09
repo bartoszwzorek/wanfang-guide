@@ -43,7 +43,7 @@
     [...template.content.querySelectorAll('*')].reverse().forEach(el=>{
       if(['SCRIPT','STYLE','IFRAME','OBJECT','EMBED','SVG','MATH','FORM'].includes(el.tagName)){el.remove();return;}
       if(!allowed.has(el.tagName)){el.replaceWith(...el.childNodes);return;}
-      const href=el.getAttribute('href');[...el.attributes].forEach(a=>el.removeAttribute(a.name));
+      const href=el.getAttribute('href');const note=['note-fact','note-legend','note-guide'].find(name=>el.classList.contains(name));[...el.attributes].forEach(a=>el.removeAttribute(a.name));if(note)el.className=note;
       if(el.tagName==='A'&&/^https?:\/\//i.test(href||'')){el.setAttribute('href',href);el.setAttribute('rel','noreferrer noopener');}
     });return template.innerHTML;
   }
