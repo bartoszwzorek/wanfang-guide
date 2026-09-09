@@ -1,0 +1,6 @@
+blockquote.note-fact,blockquote.note-legend,blockquote.note-guide{--note-edge:#268053;--note-fill:rgba(38,128,83,.09);margin:1.5rem 0;padding:1.25rem 1.5rem;border:0;border-left:5px solid var(--note-edge);border-radius:0 1rem 1rem 0;background:var(--note-fill);font-family:Georgia,'Times New Roman',serif;font-size:1.08em;line-height:1.8;overflow-wrap:anywhere}
+blockquote.note-legend{--note-edge:#b78018;--note-fill:rgba(202,150,40,.13)}blockquote.note-guide{--note-edge:#3670aa;--note-fill:rgba(54,112,170,.10)}
+blockquote.note-fact>strong:first-child,blockquote.note-legend>strong:first-child,blockquote.note-guide>strong:first-child{display:block;font-family:system-ui,sans-serif;font-size:.82rem;font-weight:750;letter-spacing:.045em;margin:0 0 .6rem}blockquote p{margin:.4em 0}blockquote p:last-child{margin-bottom:0}
+blockquote.note-legend>p:first-of-type::first-letter{float:left;font-size:3.1em;line-height:.95;padding:.1em .12em 0 0;color:#b78018;font-weight:700}
+@media(prefers-color-scheme:dark){blockquote.note-fact{--note-edge:#71c397;--note-fill:rgba(79,157,113,.15)}blockquote.note-legend{--note-edge:#e5bd68;--note-fill:rgba(210,167,81,.15)}blockquote.note-guide{--note-edge:#88b6e6;--note-fill:rgba(89,147,204,.14)}}
+@media(max-width:600px){blockquote.note-fact,blockquote.note-legend,blockquote.note-guide{padding:1rem;font-size:1em;margin:1.1rem 0}}
