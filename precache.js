@@ -1,4 +1,4 @@
-self.WANFANG_CACHE_VERSION="20260909-approved-great-wall";
+self.WANFANG_CACHE_VERSION="20260909-ctf-notes-1";
 self.WANFANG_CACHE_FILES=[
   "assets/app.js",
   "assets/compendium-core.js",
