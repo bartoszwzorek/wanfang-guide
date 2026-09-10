@@ -4,3 +4,10 @@ blockquote.note-fact>strong:first-child,blockquote.note-legend>strong:first-chil
 blockquote.note-legend>p:first-of-type::first-letter{float:left;font-size:3.1em;line-height:.95;padding:.1em .12em 0 0;color:#b78018;font-weight:700}
 @media(prefers-color-scheme:dark){blockquote.note-fact{--note-edge:#71c397;--note-fill:rgba(79,157,113,.15)}blockquote.note-legend{--note-edge:#e5bd68;--note-fill:rgba(210,167,81,.15)}blockquote.note-guide{--note-edge:#88b6e6;--note-fill:rgba(89,147,204,.14)}}
 @media(max-width:600px){blockquote.note-fact,blockquote.note-legend,blockquote.note-guide{padding:1rem;font-size:1em;margin:1.1rem 0}}
+
+/* Match the application's explicit theme switch, including mobile reading mode. */
+body.dark blockquote.note-fact{--note-edge:#71c397;--note-fill:rgba(79,157,113,.18)}
+body.dark blockquote.note-legend{--note-edge:#e5bd68;--note-fill:rgba(210,167,81,.18)}
+body.dark blockquote.note-guide{--note-edge:#88b6e6;--note-fill:rgba(89,147,204,.18)}
+body.dark blockquote.note-legend>p:first-of-type::first-letter{color:#e5bd68}
+.note-fact,.note-legend,.note-guide{color:inherit;max-width:100%;box-sizing:border-box}

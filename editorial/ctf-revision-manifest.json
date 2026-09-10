@@ -1,0 +1,267 @@
+{
+  "date": "2026-09-10",
+  "sources": 32,
+  "topics": [
+    {
+      "id": "pogrzeby",
+      "sources": [
+        "TEMATY OGÓLNE/POGRZEBY.docx"
+      ],
+      "sections": 22,
+      "words": 2484
+    },
+    {
+      "id": "miasta-duchow",
+      "sources": [
+        "TEMATY OGÓLNE/MIASTA DUCHÓW.docx"
+      ],
+      "sections": 19,
+      "words": 2412
+    },
+    {
+      "id": "konfucjanizm",
+      "sources": [
+        "TEMATY OGÓLNE/KONFUCJONIZM.docx"
+      ],
+      "sections": 26,
+      "words": 1857
+    },
+    {
+      "id": "rodzina-malzenstwo",
+      "sources": [
+        "TEMATY OGÓLNE/CHIŃSKA RODZINA, SPOŁECZEŃSTWO, CHARAKTER CHIŃCZYKÓW I SYTUACJA KOBIET W CHINACH.docx"
+      ],
+      "sections": 22,
+      "words": 2272
+    },
+    {
+      "id": "emerytury",
+      "sources": [
+        "TEMATY OGÓLNE/EMERYTURY.docx"
+      ],
+      "sections": 14,
+      "words": 1476
+    },
+    {
+      "id": "jedno-dziecko",
+      "sources": [
+        "TEMATY OGÓLNE/POLITYKA JEDNEGO DZIECKA_.docx"
+      ],
+      "sections": 30,
+      "words": 2950
+    },
+    {
+      "id": "mao-zedong",
+      "sources": [
+        "TEMATY OGÓLNE/MAO ZEDONG.docx"
+      ],
+      "sections": 22,
+      "words": 4370
+    },
+    {
+      "id": "sluby",
+      "sources": [
+        "TEMATY OGÓLNE/ŚLUBY.docx"
+      ],
+      "sections": 22,
+      "words": 3477
+    },
+    {
+      "id": "feng-shui",
+      "sources": [
+        "TEMATY OGÓLNE/FENG SHUI.docx"
+      ],
+      "sections": 36,
+      "words": 2906
+    },
+    {
+      "id": "huangshan",
+      "sources": [
+        "HUANGSHAN/HUANGSHAN_.docx",
+        "HUANGSHAN/ŻÓŁTE GÓRY.docx",
+        "Dotychczasowe kompendium: ctf-huangshan-huizhou"
+      ],
+      "sections": 33,
+      "words": 4757
+    },
+    {
+      "id": "kuchnia-hui",
+      "sources": [
+        "HUANGSHAN/KUCHNIA HUI.docx"
+      ],
+      "sections": 17,
+      "words": 1775
+    },
+    {
+      "id": "kult-przodkow",
+      "sources": [
+        "HUANGSHAN/KULT PRZODKÓW.docx"
+      ],
+      "sections": 34,
+      "words": 2389
+    },
+    {
+      "id": "hongcun",
+      "sources": [
+        "HUANGSHAN/HONGCUN_.docx",
+        "Dotychczasowe kompendium: hongcun-tunxi"
+      ],
+      "sections": 38,
+      "words": 2259
+    },
+    {
+      "id": "tunxi",
+      "sources": [
+        "HUANGSHAN/TUNXI.docx",
+        "Dotychczasowe kompendium: hongcun-tunxi"
+      ],
+      "sections": 14,
+      "words": 2524
+    },
+    {
+      "id": "wenshu",
+      "sources": [
+        "CHENGDU/WENSHU MONASTYR.docx"
+      ],
+      "sections": 21,
+      "words": 1932
+    },
+    {
+      "id": "wuhou",
+      "sources": [
+        "CHENGDU/WUHOU SHRINE.docx"
+      ],
+      "sections": 24,
+      "words": 2067
+    },
+    {
+      "id": "pandy",
+      "sources": [
+        "CHENGDU/PANDY.docx"
+      ],
+      "sections": 23,
+      "words": 1586
+    },
+    {
+      "id": "trzy-krolestwa",
+      "sources": [
+        "CHENGDU/TRZY KRÓLESTWA.docx"
+      ],
+      "sections": 23,
+      "words": 2876
+    },
+    {
+      "id": "liu-bei",
+      "sources": [
+        "CHENGDU/LIU BEI.docx"
+      ],
+      "sections": 24,
+      "words": 2480
+    },
+    {
+      "id": "wyspa-pomaranczowa",
+      "sources": [
+        "ZHANGJIAJIE/WYSPA POMARAŃCZY.docx"
+      ],
+      "sections": 29,
+      "words": 3205
+    },
+    {
+      "id": "tianmen",
+      "sources": [
+        "ZHANGJIAJIE/GÓRA TIANMEN.docx",
+        "Dotychczasowe kompendium: zhangjiajie"
+      ],
+      "sections": 23,
+      "words": 3470
+    },
+    {
+      "id": "kuchnia-hunan",
+      "sources": [
+        "ZHANGJIAJIE/KUCHNIA HUNAŃSKA.docx"
+      ],
+      "sections": 21,
+      "words": 2066
+    },
+    {
+      "id": "gory-avatara",
+      "sources": [
+        "ZHANGJIAJIE/GÓRY AWATARA.docx",
+        "Dotychczasowe kompendium: zhangjiajie"
+      ],
+      "sections": 28,
+      "words": 5320
+    },
+    {
+      "id": "changsha",
+      "sources": [
+        "ZHANGJIAJIE/CHANGSHA.docx",
+        "Dotychczasowe kompendium: changsha"
+      ],
+      "sections": 36,
+      "words": 3132
+    },
+    {
+      "id": "chenghuang",
+      "sources": [
+        "SHANGHAI/CHINA TOWN.docx"
+      ],
+      "sections": 17,
+      "words": 1456
+    },
+    {
+      "id": "rewolucja-kulturalna",
+      "sources": [
+        "SHANGHAI/REWOLUCJA KULTURALNA.docx"
+      ],
+      "sections": 34,
+      "words": 7688
+    },
+    {
+      "id": "jadeitowy-budda",
+      "sources": [
+        "SHANGHAI/ŚWIĄTYNIA JADEITOWEGO BUDDY.docx"
+      ],
+      "sections": 19,
+      "words": 5086
+    },
+    {
+      "id": "nanbin-road",
+      "sources": [
+        "CHONGQING/NANKIN.docx"
+      ],
+      "sections": 21,
+      "words": 1088
+    },
+    {
+      "id": "ciqikou",
+      "sources": [
+        "CHONGQING/CHIKIKOU.docx"
+      ],
+      "sections": 21,
+      "words": 2011
+    },
+    {
+      "id": "chongqing",
+      "sources": [
+        "CHONGQING/CHONGQING.docx"
+      ],
+      "sections": 22,
+      "words": 1710
+    },
+    {
+      "id": "liziba",
+      "sources": [
+        "CHONGQING/LIBIZA.docx"
+      ],
+      "sections": 21,
+      "words": 1810
+    }
+  ],
+  "corrections": [
+    "Emerytury: usunięto nieudokumentowaną tabelę kwot i pozorny cennik za staż; zachowano reformę oraz rozróżnienie systemów.",
+    "Jadeitowy Budda: oddzielono ikonografię konkretnego ołtarza od buddów trzech czasów; opowieść o ocaleniu oznaczono jako relację; zasady zdjęć zależą od oznaczeń.",
+    "Liziba: rozdzielono etapy uruchamiania; połączono powtarzające się rozdziały konstrukcyjne."
+  ],
+  "verification": "Editorial integration with targeted factual corrections; not an exhaustive independent fact-check of every supplied claim."
+}

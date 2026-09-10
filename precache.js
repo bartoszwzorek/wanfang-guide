@@ -1,4 +1,4 @@
-self.WANFANG_CACHE_VERSION="20260909-ctf-notes-1";
+self.WANFANG_CACHE_VERSION="20260910-ctf-editorial-1";
 self.WANFANG_CACHE_FILES=[
   "assets/app.js",
   "assets/compendium-core.js",
@@ -28,6 +28,8 @@ self.WANFANG_CACHE_FILES=[
   "data/compendium-topics.js",
   "data/ctf-briefings.js",
   "data/ctf-materials.js",
+  "data/ctf-revision.js",
+  "data/ctf-revision-links.js",
   "data/expanded-topics.js",
   "data/programs.js",
   "data/topics.js",
