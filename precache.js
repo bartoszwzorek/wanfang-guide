@@ -1,4 +1,4 @@
-self.WANFANG_CACHE_VERSION="20260910-ctf-editorial-1";
+self.WANFANG_CACHE_VERSION="20260910-pudong-1";
 self.WANFANG_CACHE_FILES=[
   "assets/app.js",
   "assets/compendium-core.js",
@@ -30,6 +30,7 @@ self.WANFANG_CACHE_FILES=[
   "data/ctf-materials.js",
   "data/ctf-revision.js",
   "data/ctf-revision-links.js",
+  "data/pudong-materials.js",
   "data/expanded-topics.js",
   "data/programs.js",
   "data/topics.js",
