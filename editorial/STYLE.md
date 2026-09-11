@@ -14,3 +14,6 @@ Podstawą redakcji są zaakceptowane teksty przewodnickie z paczek CTF.
 - Nowe treści łączyć z cennymi starszymi opisami przyrody, rzemiosła i praktyki prowadzenia grupy.
 
 Ta zmiana obejmuje dostarczone 32 opracowania (dwa teksty Huangshan połączono) i ich powiązania. Pozostałe teksty kompendium są kolejnym etapem redakcji. Krótkich materiałów o operze syczuańskiej, Jinli i kuchni syczuańskiej nie oznaczono jako pełnych nawijek.
+
+## Wymowa — reguła obowiązkowa
+Każde użycie chińskiej nazwy lub terminu w narracji, tytule i ciekawostce otrzymuje polskie przybliżenie wymowy w nawiasach kwadratowych. Dotyczy także powtórzeń i nowych materiałów. Zachowuj pinyin lub zapis chiński, jeśli pomaga identyfikacji. Nie zmieniaj adresów URL, identyfikatorów ani nazw plików. Nawias to pomoc dla polskiego pilota, nie zapis tonów. Nowe nazwy dopisuj do data/pronunciation.js i sprawdzaj wynik w czytniku.

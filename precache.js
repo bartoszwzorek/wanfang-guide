@@ -1,5 +1,7 @@
-self.WANFANG_CACHE_VERSION="20260910-pudong-1";
+self.WANFANG_CACHE_VERSION="20260911-general-1";
 self.WANFANG_CACHE_FILES=[
+  "data/general-revision.js",
+  "data/pronunciation.js",
   "assets/app.js",
   "assets/compendium-core.js",
   "assets/compendium.css",
