@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f3f2ee">
+<title>WANFANG — dane firmy</title>
+<style>
+:root{
+  --bg:#f3f2ee;
+  --card:#ffffff;
+  --text:#111111;
+  --muted:#76736d;
+  --line:#e7e4de;
+  --soft:#f8f7f4;
+  --shadow:0 22px 70px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.95), transparent 36%),
+    var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Helvetica,Arial,sans-serif;
+}
+.shell{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:28px 18px;
+}
+.card{
+  width:min(760px,100%);
+  background:rgba(255,255,255,.96);
+  border:1px solid var(--line);
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.header{
+  padding:34px 34px 26px;
+  border-bottom:1px solid var(--line);
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:28px;
+}
+.mark{
+  width:40px;height:40px;
+  border:1px solid #161616;
+  border-radius:12px;
+  display:grid;place-items:center;
+  font-weight:800;
+  font-size:16px;
+  letter-spacing:-.03em;
+}
+.brand-name{
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:800;
+}
+.eyebrow{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:8px;
+}
+h1{
+  margin:0;
+  font-size:clamp(34px,7vw,62px);
+  letter-spacing:-.055em;
+  line-height:.96;
+  font-weight:760;
+}
+.subtitle{
+  margin:16px 0 0;
+  color:var(--muted);
+  font-size:15px;
+}
+.content{padding:8px 34px 32px}
+.row{
+  display:grid;
+  grid-template-columns:145px 1fr auto;
+  gap:14px;
+  align-items:center;
+  padding:19px 0;
+  border-bottom:1px solid var(--line);
+}
+.row:last-of-type{border-bottom:0}
+.label{
+  color:var(--muted);
+  font-size:13px;
+}
+.value{
+  font-size:16px;
+  font-weight:650;
+  line-height:1.45;
+  overflow-wrap:anywhere;
+}
+.copy{
+  border:1px solid var(--line);
+  background:var(--soft);
+  color:var(--text);
+  border-radius:12px;
+  padding:8px 11px;
+  font-size:12px;
+  font-weight:750;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.copy:hover{transform:translateY(-1px);background:#f1f0ec}
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  padding-top:22px;
+}
+.btn{
+  border-radius:14px;
+  border:1px solid #111;
+  padding:12px 15px;
+  font-size:14px;
+  font-weight:750;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.btn.primary{background:#111;color:#fff}
+.btn.secondary{background:#fff;color:#111;border-color:var(--line)}
+.btn:hover{transform:translateY(-1px)}
+.footer{
+  padding:0 34px 30px;
+  color:var(--muted);
+  font-size:12px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
+.toast{
+  position:fixed;
+  left:50%;bottom:22px;
+  transform:translateX(-50%) translateY(10px);
+  opacity:0;
+  pointer-events:none;
+  background:#111;
+  color:white;
+  padding:10px 14px;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:700;
+  transition:.22s ease;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:620px){
+  .shell{padding:14px}
+  .card{border-radius:24px}
+  .header{padding:26px 20px 22px}
+  .content{padding:6px 20px 26px}
+  .footer{padding:0 20px 24px}
+  .row{grid-template-columns:1fr auto;gap:7px 10px}
+  .label{grid-column:1/3}
+  .value{font-size:15px}
+  .actions{display:grid;grid-template-columns:1fr}
+  .btn{width:100%}
+}
+@media print{
+  body{background:#fff}
+  .shell{display:block;padding:0}
+  .card{width:100%;border:none;box-shadow:none}
+  .copy,.actions,.toast{display:none!important}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <main class="card">
+    <section class="header">
+      <div class="brand">
+        <div class="mark">万方</div>
+        <div class="brand-name">WANFANG</div>
+      </div>
+
+      <div class="eyebrow">Dane firmowe</div>
+      <h1>Wanfang<br>Bartosz Wzorek</h1>
+      <p class="subtitle">Dane do faktury i przelewu</p>
+    </section>
+
+    <section class="content">
+      <div class="row">
+        <div class="label">NIP</div>
+        <div class="value" id="nip">9542486848</div>
+        <button class="copy" onclick="copyField('nip','NIP')">Kopiuj</button>
+      </div>
+
+      <div class="row">
+        <div class="label">REGON</div>
+        <div class="value" id="regon">545246472</div>
+        <button class="copy" onclick="copyField('regon','REGON')">Kopiuj</button>
+      </div>
+
+      <div class="row">
+        <div class="label">Adres</div>
+        <div class="value" id="address">ul. Brzozowa 33/9<br>43-100 Tychy, Polska</div>
+        <button class="copy" onclick="copyField('address','Adres')">Kopiuj</button>
+      </div>
+
+      <div class="row">
+        <div class="label">E-mail</div>
+        <div class="value"><a id="email" href="mailto:bartosz.wanfang@gmail.com">bartosz.wanfang@gmail.com</a></div>
+        <button class="copy" onclick="copyField('email','E-mail')">Kopiuj</button>
+      </div>
+
+      <div class="row">
+        <div class="label">Bank</div>
+        <div class="value">Erste Bank Polska S.A.</div>
+        <span></span>
+      </div>
+
+      <div class="row">
+        <div class="label">Rachunek PLN</div>
+        <div class="value" id="account">50 1090 1652 0000 0001 6784 6786</div>
+        <button class="copy" onclick="copyField('account','Konto')">Kopiuj</button>
+      </div>
+
+      <div class="row">
+        <div class="label">IBAN</div>
+        <div class="value" id="iban">PL50 1090 1652 0000 0001 6784 6786</div>
+        <button class="copy" onclick="copyField('iban','IBAN')">Kopiuj</button>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" onclick="copyCompany()">Kopiuj dane firmy</button>
+        <button class="btn secondary" onclick="copyPayment()">Kopiuj dane do przelewu</button>
+        <button class="btn secondary" onclick="window.print()">Drukuj / PDF</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>WANFANG · Bartosz Wzorek</span>
+      <span>Tychy, Polska</span>
+    </footer>
+  </main>
+</div>
+
+<div class="toast" id="toast">Skopiowano</div>
+
+<script>
+function cleanText(id){
+  return document.getElementById(id).innerText.replace(/\n+/g,'\n').trim();
+}
+function showToast(text){
+  const t=document.getElementById('toast');
+  t.textContent=text;
+  t.classList.add('show');
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>t.classList.remove('show'),1200);
+}
+async function copyRaw(text,label='Skopiowano'){
+  await navigator.clipboard.writeText(text);
+  showToast(label);
+}
+function copyField(id,label){
+  copyRaw(cleanText(id), label + ' skopiowany');
+}
+function copyCompany(){
+  const text=`Wanfang Bartosz Wzorek
+NIP: 9542486848
+REGON: 545246472
+Adres: ul. Brzozowa 33/9, 43-100 Tychy, Polska
+E-mail: bartosz.wanfang@gmail.com`;
+  copyRaw(text,'Dane firmy skopiowane');
+}
+function copyPayment(){
+  const text=`Wanfang Bartosz Wzorek
+Bank: Erste Bank Polska S.A.
+Rachunek PLN: 50 1090 1652 0000 0001 6784 6786
+IBAN: PL50 1090 1652 0000 0001 6784 6786`;
+  copyRaw(text,'Dane do przelewu skopiowane');
+}
+</script>
+</body>
+</html>
