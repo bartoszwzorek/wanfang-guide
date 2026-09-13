@@ -1,0 +1,1 @@
+window.WANFANG_TRAIN_SECTIONS = [];
