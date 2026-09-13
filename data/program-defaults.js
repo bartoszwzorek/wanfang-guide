@@ -1,0 +1,1 @@
+for(const p of window.WANFANG_PROGRAMS||[])for(const v of p.variants||[])for(const day of v.days||[]){day.places=['powitanie-grupy',...(day.places||[]).filter(id=>id!=='powitanie-grupy')];day.talks=(day.talks||[]).filter(id=>id!=='powitanie-grupy');}
