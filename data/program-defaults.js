@@ -1,2 +1,3 @@
 (()=>{for(const src of ['data/energy-china.js','data/energy-china-sources.js','data/energy-china-grid.js','data/energy-china-final.js']){try{const req=new XMLHttpRequest();req.open('GET',src,false);req.send(null);if((req.status>=200&&req.status<300)||req.status===0){const script=document.createElement('script');script.textContent=req.responseText;document.head.appendChild(script);script.remove();}}catch(err){console.error('Wanfang energy module:',src,err);}}})();
 for(const p of window.WANFANG_PROGRAMS||[])for(const v of p.variants||[])for(const day of v.days||[]){day.places=['powitanie-grupy',...(day.places||[]).filter(id=>id!=='powitanie-grupy')];day.talks=(day.talks||[]).filter(id=>id!=='powitanie-grupy');}
+// rail chapter refresh marker
